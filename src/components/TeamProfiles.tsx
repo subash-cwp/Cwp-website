@@ -73,6 +73,7 @@ export const TeamProfiles = () => {
                 <img 
                   src={member.image} 
                   alt={member.name}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
                 {/* Overlay gradient on hover */}

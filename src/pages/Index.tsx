@@ -18,11 +18,26 @@ import { InteractiveParticles } from "@/components/InteractiveParticles";
 import { PageTransition } from "@/components/PageTransition";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxSection } from "@/components/ParallaxSection";
+import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { lazy, Suspense } from "react";
+
+// Lazy load heavy components
+const LazyPortfolio = lazy(() => import("@/components/Portfolio").then(module => ({ default: module.Portfolio })));
+const LazyTeamProfiles = lazy(() => import("@/components/TeamProfiles").then(module => ({ default: module.TeamProfiles })));
+const LazyTestimonials = lazy(() => import("@/components/Testimonials").then(module => ({ default: module.Testimonials })));
+
+// Loading fallback component
+const SectionLoader = () => (
+  <div className="section-spacing flex items-center justify-center">
+    <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+  </div>
+);
 
 const Index = () => {
   return (
     <>
       <PageTransition />
+      <ScrollProgressBar />
       <div className="min-h-screen relative">
         <InteractiveParticles />
         <div className="relative z-10">
@@ -61,19 +76,25 @@ const Index = () => {
           
           <ScrollAnimationWrapper animation="slide-in-right" threshold={0.1}>
             <ParallaxSection speed={0.35} direction="down">
-              <Portfolio />
+              <Suspense fallback={<SectionLoader />}>
+                <LazyPortfolio />
+              </Suspense>
             </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
             <ParallaxSection speed={0.3} direction="up">
-              <TeamProfiles />
+              <Suspense fallback={<SectionLoader />}>
+                <LazyTeamProfiles />
+              </Suspense>
             </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="fade-in" threshold={0.15}>
             <ParallaxSection speed={0.4} direction="down">
-              <Testimonials />
+              <Suspense fallback={<SectionLoader />}>
+                <LazyTestimonials />
+              </Suspense>
             </ParallaxSection>
           </ScrollAnimationWrapper>
           

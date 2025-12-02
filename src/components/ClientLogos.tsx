@@ -70,6 +70,7 @@ export const ClientLogos = () => {
               <img 
                 src={logo.src} 
                 alt={logo.alt} 
+                loading="lazy"
                 className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
@@ -87,7 +88,8 @@ export const ClientLogos = () => {
             >
               <img 
                 src={logo.src} 
-                alt={logo.alt} 
+                alt={logo.alt}
+                loading="lazy"
                 className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
@@ -105,7 +107,8 @@ export const ClientLogos = () => {
             >
               <img 
                 src={logo.src} 
-                alt={logo.alt} 
+                alt={logo.alt}
+                loading="lazy"
                 className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
