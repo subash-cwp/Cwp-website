@@ -12,6 +12,13 @@ import rocketnewsLogo from "@/assets/logos/rocketnews.png";
 import reinventLogo from "@/assets/logos/reinvent.png";
 import eaglyticsLogo from "@/assets/logos/eaglytics.png";
 import web3tixLogo from "@/assets/logos/web3tix.png";
+import ustigersLogo from "@/assets/logos/ustigers.png";
+import ifutureLogo from "@/assets/logos/ifuture.png";
+import kingswayLogo from "@/assets/logos/kingsway.png";
+import swiftcheckLogo from "@/assets/logos/swiftcheck.png";
+import xorecLogo from "@/assets/logos/xorec.png";
+import leonstrideLogo from "@/assets/logos/leonstride.png";
+import wellversedLogo from "@/assets/logos/wellversed.png";
 
 export const ClientLogos = () => {
   const row1Logos = [
@@ -22,6 +29,8 @@ export const ClientLogos = () => {
     { src: bdsoftLogo, alt: "BD Software" },
     { src: leadratLogo, alt: "Leadrat" },
     { src: healthassLogo, alt: "Healthass" },
+    { src: ustigersLogo, alt: "US Tigers" },
+    { src: ifutureLogo, alt: "iFuture" },
   ];
   
   const row2Logos = [
@@ -32,6 +41,8 @@ export const ClientLogos = () => {
     { src: groupLogo, alt: "Group" },
     { src: rocketnewsLogo, alt: "Rocket News" },
     { src: reinventLogo, alt: "Reinvent" },
+    { src: kingswayLogo, alt: "Kingsway" },
+    { src: swiftcheckLogo, alt: "Swift Check AI" },
   ];
   
   const row3Logos = [
@@ -42,6 +53,9 @@ export const ClientLogos = () => {
     { src: amanstraLogo, alt: "Amanstra Consulting" },
     { src: eaglyticsLogo, alt: "Eaglytics Co" },
     { src: web3tixLogo, alt: "Web3Tix" },
+    { src: xorecLogo, alt: "Xorec" },
+    { src: leonstrideLogo, alt: "Leonstride Technologies" },
+    { src: wellversedLogo, alt: "Wellversed" },
   ];
 
   return (
