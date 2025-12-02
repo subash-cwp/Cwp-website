@@ -25,7 +25,7 @@ const benefits = [
 
 export const WhyChoose = () => {
   return (
-    <section className="section-spacing bg-secondary/30">
+    <section id="about" className="section-spacing bg-secondary/30">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
