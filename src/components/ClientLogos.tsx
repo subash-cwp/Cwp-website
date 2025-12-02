@@ -55,7 +55,7 @@ export const ClientLogos = () => {
     <section className="section-spacing bg-background/50 overflow-hidden">
       <div className="mb-12 text-center">
         <h3 className="text-2xl font-semibold text-muted-foreground">
-          Trusted by 100+ Brands
+          Trusted by 20+ Brands
         </h3>
       </div>
       

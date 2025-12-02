@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/MobileMenu";
+import logo from "@/assets/logo.png";
 
 export const Navbar = () => {
   const handleContactClick = () => {
@@ -11,9 +12,7 @@ export const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-xl font-bold text-primary-foreground">C</span>
-            </div>
+            <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain" />
             <span className="text-xl font-bold">CWP</span>
           </div>
 

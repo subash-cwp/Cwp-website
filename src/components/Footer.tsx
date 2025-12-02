@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 import { Newsletter } from "@/components/Newsletter";
+import logo from "@/assets/logo.png";
 
 export const Footer = () => {
   return (
@@ -12,15 +13,14 @@ export const Footer = () => {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-xl font-bold text-primary-foreground">C</span>
-              </div>
+              <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain" />
               <span className="text-xl font-bold">CWP</span>
             </div>
             <p className="text-sm text-muted-foreground mb-4">
               CWP MARKETING STRATEGY & GROWTH CO LTD/PRIVATED LIMITED—GXR-2024 (NOT REGISTERED)
             </p>
             <div className="flex gap-3">
+              {/* TODO: Replace with your actual social media URLs */}
               <a href="https://linkedin.com/company/YOUR-LINKEDIN" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors">
                 <Linkedin className="w-4 h-4 text-primary" />
               </a>
@@ -67,6 +67,7 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
+                {/* TODO: Replace with your actual phone number */}
                 <span className="text-sm text-muted-foreground">Call Us: (+91) 9876543210</span>
               </li>
               <li className="flex items-start gap-2">
