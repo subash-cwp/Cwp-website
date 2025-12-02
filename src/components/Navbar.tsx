@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/MobileMenu";
 import { Link, useLocation } from "react-router-dom";
+import { Search } from "lucide-react";
+import { SearchDialog } from "@/components/SearchDialog";
 import logo from "@/assets/logo.png";
 
 export const Navbar = () => {
   const location = useLocation();
+  const [searchOpen, setSearchOpen] = useState(false);
   const isHomePage = location.pathname === "/";
 
   const handleContactClick = () => {
@@ -52,6 +56,9 @@ export const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
+            <Button variant="ghost" size="icon" onClick={() => setSearchOpen(true)} className="hidden md:inline-flex">
+              <Search className="h-5 w-5" />
+            </Button>
             <Button className="hidden md:inline-flex" onClick={handleContactClick}>
               Contact Us
             </Button>
@@ -59,6 +66,7 @@ export const Navbar = () => {
           </div>
         </div>
       </div>
+      <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </nav>
   );
 };
