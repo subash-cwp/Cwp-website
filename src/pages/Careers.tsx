@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export default function Careers() {
   const openPositions = [
@@ -73,6 +75,11 @@ export default function Careers() {
     }
   ];
 
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Careers" }
+  ];
+
   const handleApply = (position: string) => {
     const message = encodeURIComponent(`Hi! I'm interested in applying for the ${position} position.`);
     window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
@@ -83,10 +90,18 @@ export default function Careers() {
       <Navbar />
       <WhatsAppButton />
       <BackToTop />
+      
+      <SEOHead 
+        title="Careers - Join Our Team"
+        description="Join our growing team and help revolutionize digital marketing. Explore open positions and grow your career with us."
+        keywords="marketing careers, digital marketing jobs, marketing agency jobs"
+      />
 
       {/* Hero Section */}
       <section className="section-spacing pt-32">
         <div className="container-custom">
+          <Breadcrumbs />
+          
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
               Join Our Growing Team

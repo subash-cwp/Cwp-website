@@ -2,16 +2,31 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export default function PrivacyPolicy() {
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Privacy Policy" }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <WhatsAppButton />
       <BackToTop />
+      
+      <SEOHead 
+        title="Privacy Policy"
+        description="Read our privacy policy to understand how we collect, use, and protect your personal information."
+        keywords="privacy policy, data protection, personal information"
+      />
 
       <section className="section-spacing pt-32">
         <div className="container-custom max-w-4xl">
+          <Breadcrumbs />
+          
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Privacy Policy</h1>
           <p className="text-muted-foreground mb-8">Last updated: December 2, 2025</p>
 

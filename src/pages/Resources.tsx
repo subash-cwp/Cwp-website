@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export default function Resources() {
   const resources = [
@@ -82,8 +84,12 @@ export default function Resources() {
     }
   ];
 
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Resources" }
+  ];
+
   const handleDownload = (title: string) => {
-    // In production, this would trigger actual file download
     alert(`Downloading: ${title}\n\nNote: This is a demo. In production, the file would download.`);
   };
 
@@ -92,10 +98,18 @@ export default function Resources() {
       <Navbar />
       <WhatsAppButton />
       <BackToTop />
+      
+      <SEOHead 
+        title="Free Marketing Resources"
+        description="Download free marketing guides, templates, and tools to accelerate your business growth. Expert resources 100% free."
+        keywords="marketing resources, free marketing templates, digital marketing guides"
+      />
 
       {/* Hero Section */}
       <section className="section-spacing pt-32">
         <div className="container-custom">
+          <Breadcrumbs />
+          
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
               Free Marketing Resources

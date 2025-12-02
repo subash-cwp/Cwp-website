@@ -5,6 +5,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export default function Pricing() {
   const plans = [
@@ -63,6 +65,11 @@ export default function Pricing() {
     }
   ];
 
+  const breadcrumbItems = [
+    { label: "Home", href: "/" },
+    { label: "Pricing" }
+  ];
+
   const handleBookCall = () => {
     window.open("https://calendly.com/YOUR-CALENDLY-LINK", "_blank");
   };
@@ -72,10 +79,18 @@ export default function Pricing() {
       <Navbar />
       <WhatsAppButton />
       <BackToTop />
+      
+      <SEOHead 
+        title="Pricing - Marketing Plans"
+        description="Choose the perfect marketing plan for your business. Transparent pricing with proven strategies and dedicated support."
+        keywords="marketing pricing, digital marketing plans, marketing packages"
+      />
 
       {/* Hero Section */}
       <section className="section-spacing pt-32">
         <div className="container-custom">
+          <Breadcrumbs />
+          
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
               Simple, Transparent Pricing

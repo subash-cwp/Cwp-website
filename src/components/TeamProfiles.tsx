@@ -1,42 +1,91 @@
-import { Linkedin, Twitter } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Linkedin, Twitter, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
 import narenImage from "@/assets/team-naren.png";
 
+interface TeamMember {
+  id: string;
+  name: string;
+  role: string | null;
+  avatar: string | null;
+  bio: string | null;
+  linkedin: string | null;
+  twitter: string | null;
+}
+
+// Fallback data
+const fallbackTeam = [
+  {
+    id: "1",
+    name: "Naren",
+    role: "Founder & Chief Strategist",
+    avatar: narenImage,
+    bio: "15+ years driving digital growth for Fortune 500 companies. Strategic marketing expert with a passion for data-driven growth.",
+    linkedin: "https://linkedin.com/in/YOUR-LINKEDIN",
+    twitter: "https://twitter.com/YOUR-TWITTER"
+  },
+  {
+    id: "2",
+    name: "Michael Chen",
+    role: "Head of Performance Marketing",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+    bio: "Former Google Ads specialist. Generated $50M+ in revenue through paid campaigns. Stanford Computer Science.",
+    linkedin: "#",
+    twitter: "#"
+  },
+  {
+    id: "3",
+    name: "Emily Rodriguez",
+    role: "Creative Director",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
+    bio: "Award-winning designer with 200+ successful brand campaigns. Parsons School of Design graduate.",
+    linkedin: "#",
+    twitter: "#"
+  },
+  {
+    id: "4",
+    name: "David Park",
+    role: "SEO & Content Lead",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
+    bio: "Built organic traffic to 1M+ monthly visitors for multiple clients. Published author on content strategy.",
+    linkedin: "#",
+    twitter: "#"
+  }
+];
+
 export const TeamProfiles = () => {
-  const team = [
-    {
-      name: "Naren",
-      role: "Founder & Chief Strategist",
-      image: narenImage,
-      bio: "15+ years driving digital growth for Fortune 500 companies. Strategic marketing expert with a passion for data-driven growth.",
-      linkedin: "https://linkedin.com/in/YOUR-LINKEDIN",
-      twitter: "https://twitter.com/YOUR-TWITTER"
-    },
-    {
-      name: "Michael Chen",
-      role: "Head of Performance Marketing",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-      bio: "Former Google Ads specialist. Generated $50M+ in revenue through paid campaigns. Stanford Computer Science.",
-      linkedin: "#",
-      twitter: "#"
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "Creative Director",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-      bio: "Award-winning designer with 200+ successful brand campaigns. Parsons School of Design graduate.",
-      linkedin: "#",
-      twitter: "#"
-    },
-    {
-      name: "David Park",
-      role: "SEO & Content Lead",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-      bio: "Built organic traffic to 1M+ monthly visitors for multiple clients. Published author on content strategy.",
-      linkedin: "#",
-      twitter: "#"
-    }
-  ];
+  const [team, setTeam] = useState<TeamMember[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      const { data, error } = await supabase
+        .from("team_members")
+        .select("*")
+        .eq("published", true)
+        .order("sort_order", { ascending: true });
+      
+      if (error || !data || data.length === 0) {
+        setTeam(fallbackTeam);
+      } else {
+        setTeam(data);
+      }
+      setLoading(false);
+    };
+
+    fetchTeam();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="section-spacing bg-muted/30 relative overflow-hidden">
+        <div className="container-custom flex justify-center py-20">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="section-spacing bg-muted/30 relative overflow-hidden">
@@ -62,7 +111,7 @@ export const TeamProfiles = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {team.map((member, index) => (
             <Card 
-              key={index} 
+              key={member.id} 
               className="overflow-hidden group hover:shadow-2xl transition-all duration-500 relative hover-lift animate-scale-in border-border/50 hover:border-primary/50"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -71,7 +120,7 @@ export const TeamProfiles = () => {
               
               <div className="aspect-square overflow-hidden relative">
                 <img 
-                  src={member.image} 
+                  src={member.avatar || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"} 
                   alt={member.name}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -84,22 +133,26 @@ export const TeamProfiles = () => {
                 <p className="text-primary font-semibold text-sm mb-3">{member.role}</p>
                 <p className="text-sm text-muted-foreground mb-4 group-hover:text-foreground/80 transition-colors">{member.bio}</p>
                 <div className="flex gap-3">
-                  <a 
-                    href={member.linkedin} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:rotate-12 transition-all duration-300"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </a>
-                  <a 
-                    href={member.twitter} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:-rotate-12 transition-all duration-300"
-                  >
-                    <Twitter className="w-4 h-4" />
-                  </a>
+                  {member.linkedin && (
+                    <a 
+                      href={member.linkedin} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:rotate-12 transition-all duration-300"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                    </a>
+                  )}
+                  {member.twitter && (
+                    <a 
+                      href={member.twitter} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:-rotate-12 transition-all duration-300"
+                    >
+                      <Twitter className="w-4 h-4" />
+                    </a>
+                  )}
                 </div>
               </div>
             </Card>
