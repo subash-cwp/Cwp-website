@@ -17,11 +17,14 @@ import { BackToTop } from "@/components/BackToTop";
 import { InteractiveParticles } from "@/components/InteractiveParticles";
 import { PageTransition } from "@/components/PageTransition";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
+import { CustomCursor } from "@/components/CustomCursor";
+import { ParallaxSection } from "@/components/ParallaxSection";
 
 const Index = () => {
   return (
     <>
       <PageTransition />
+      <CustomCursor />
       <div className="min-h-screen relative">
         <InteractiveParticles />
         <div className="relative z-10">
@@ -29,47 +32,69 @@ const Index = () => {
           <Hero />
           
           <ScrollAnimationWrapper animation="fade-in" threshold={0.2}>
-            <ClientLogos />
+            <ParallaxSection speed={0.3} direction="up">
+              <ClientLogos />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
-            <Services />
+            <ParallaxSection speed={0.4} direction="down">
+              <Services />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-in-left" threshold={0.15}>
-            <WhyChoose />
+            <ParallaxSection speed={0.3} direction="up">
+              <WhyChoose />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
-            <AnimatedStats />
+            <ParallaxSection speed={0.5} direction="down">
+              <AnimatedStats />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
-            <Process />
+            <ParallaxSection speed={0.4} direction="up">
+              <Process />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-in-right" threshold={0.1}>
-            <Portfolio />
+            <ParallaxSection speed={0.35} direction="down">
+              <Portfolio />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
-            <TeamProfiles />
+            <ParallaxSection speed={0.3} direction="up">
+              <TeamProfiles />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="fade-in" threshold={0.15}>
-            <Testimonials />
+            <ParallaxSection speed={0.4} direction="down">
+              <Testimonials />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-up" threshold={0.2}>
-            <FAQ />
+            <ParallaxSection speed={0.3} direction="up">
+              <FAQ />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
-            <BookingSection />
+            <ParallaxSection speed={0.4} direction="down">
+              <BookingSection />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-up" threshold={0.2}>
-            <ContactForm />
+            <ParallaxSection speed={0.3} direction="up">
+              <ContactForm />
+            </ParallaxSection>
           </ScrollAnimationWrapper>
           
           <Footer />
