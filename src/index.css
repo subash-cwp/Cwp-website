@@ -79,11 +79,11 @@ All colors MUST be HSL.
   }
 
   .animate-scroll-rtl {
-    animation: scroll-rtl 30s linear infinite;
+    animation: scroll-rtl 40s linear infinite;
   }
 
   .animate-scroll-ltr {
-    animation: scroll-ltr 30s linear infinite;
+    animation: scroll-ltr 40s linear infinite;
   }
 
   @keyframes scroll-rtl {
