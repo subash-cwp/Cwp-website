@@ -1,86 +1,105 @@
-import { Calendar, Shield, Target, CheckCircle2 } from "lucide-react";
+import { Calendar, Linkedin, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import narenImage from "@/assets/team-naren.png";
 
 export const BookingSection = () => {
-  const benefits = [
-    {
-      icon: Target,
-      text: "On-point solutions (No AI fluff)"
-    },
-    {
-      icon: Shield,
-      text: "First Discovery & Free Initial Audit"
-    },
-    {
-      icon: CheckCircle2,
-      text: "100% Confidential—side-by-side insights"
-    }
-  ];
-
   const handleBooking = () => {
     window.open("https://calendly.com/YOUR-CALENDLY-LINK", "_blank");
   };
 
   return (
-    <section className="section-spacing bg-background">
+    <section className="py-20 bg-[#1a1a1a] text-white">
       <div className="container-custom">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Why Book This <span className="text-[#F59E0B]">Strategy Call?</span>
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-          {/* Left side - Naren's Profile */}
-          <Card className="p-8 md:p-12 bg-card/50 backdrop-blur">
-            <div className="flex flex-col items-center text-center">
-              <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border-4 border-primary/20">
-                <img 
-                  src={narenImage} 
-                  alt="Naren Ethiraj"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-2xl font-bold mb-2">Naren Ethiraj</h3>
-              <p className="text-[#F59E0B] font-bold text-lg mb-4">
-                FOUNDER & CEO OF CWP
-              </p>
-              <p className="text-muted-foreground">
-                Ex-founder, BBA graduate, and a growth strategist with two years of hardcore marketing experience in SaaS, Consumer Tech, and Growth
-              </p>
+        <div className="grid lg:grid-cols-[450px_1fr_1fr] gap-12 items-center">
+          {/* Left - Naren's Image */}
+          <div className="flex justify-center lg:justify-start">
+            <div className="relative">
+              <img 
+                src={narenImage} 
+                alt="Naren Ethiraj"
+                className="w-full max-w-md h-auto object-cover"
+              />
             </div>
-          </Card>
+          </div>
 
-          {/* Right side - Benefits */}
-          <div>
-            <h3 className="text-2xl md:text-3xl font-bold mb-6">
-              Let's Figure Out Roadblocks & Grab Faster
-            </h3>
-            <p className="text-muted-foreground mb-8">
-              Get insights in a 1:1 call to find where your brand is positioned and how to scale it step-by-step
-            </p>
-
-            <div className="space-y-6 mb-8">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-4">
-                  <div className="w-8 h-8 rounded-full bg-[#F59E0B]/20 flex items-center justify-center flex-shrink-0 mt-1">
-                    <benefit.icon className="w-5 h-5 text-[#F59E0B]" />
-                  </div>
-                  <p className="text-lg">{benefit.text}</p>
-                </div>
-              ))}
+          {/* Middle - Profile Info */}
+          <div className="space-y-6">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <h3 className="text-3xl font-bold">Naren Ethiraj</h3>
+                <a 
+                  href="https://linkedin.com/in/YOUR-LINKEDIN" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 bg-[#0077B5] rounded flex items-center justify-center hover:bg-[#006399] transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </div>
+              <p className="text-gray-400 text-lg mb-6">FOUNDER & CEO OF CWP</p>
+              
+              <div className="border-l-4 border-[#F59E0B] pl-4 mb-8">
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  <span className="text-[#F59E0B] text-2xl">"</span>
+                  Backed 100+ founders across 15+ industries, shaping strategy, amplifying marketing, and scaling sales through high-performance growth systems.
+                  <span className="text-[#F59E0B] text-2xl">"</span>
+                </p>
+              </div>
             </div>
 
             <Button 
               onClick={handleBooking}
               size="lg"
-              className="w-full md:w-auto bg-[#F59E0B] hover:bg-[#D97706] text-black font-bold px-8 py-6 text-lg"
+              className="bg-[#F59E0B] hover:bg-[#D97706] text-black font-bold px-12 py-6 text-lg rounded-lg"
             >
-              <Calendar className="w-5 h-5 mr-2" />
-              Book Complimentary Call Now!
+              Book Now
             </Button>
+          </div>
+
+          {/* Right - Benefits Accordion */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">
+              Why Book This Strategy Call?
+            </h2>
+
+            <Accordion type="single" collapsible defaultValue="item-1" className="space-y-4">
+              <AccordionItem value="item-1" className="border-none">
+                <AccordionTrigger className="bg-[#F59E0B] text-black hover:bg-[#D97706] px-6 py-4 rounded-lg font-bold text-left hover:no-underline [&[data-state=open]]:rounded-b-none">
+                  Drive More Sales & Boost Revenue
+                </AccordionTrigger>
+                <AccordionContent className="bg-white text-black px-6 py-4 rounded-b-lg">
+                  Get expert guidance to define your market, optimize positioning, and implement actionable steps that generate measurable revenue growth.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="border-none">
+                <AccordionTrigger className="bg-[#F59E0B] text-black hover:bg-[#D97706] px-6 py-4 rounded-lg font-bold text-left hover:no-underline [&[data-state=open]]:rounded-b-none">
+                  Maximize Your Pipeline & Close Deals Faster
+                </AccordionTrigger>
+                <AccordionContent className="bg-white text-black px-6 py-4 rounded-b-lg">
+                  Learn proven strategies to fill your pipeline with qualified leads and accelerate your sales cycle to close more deals in less time.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="border-none">
+                <AccordionTrigger className="bg-[#F59E0B] text-black hover:bg-[#D97706] px-6 py-4 rounded-lg font-bold text-left hover:no-underline [&[data-state=open]]:rounded-b-none">
+                  Free Discovery & GTM Report
+                </AccordionTrigger>
+                <AccordionContent className="bg-white text-black px-6 py-4 rounded-b-lg">
+                  Receive a comprehensive go-to-market analysis with actionable insights tailored to your business, absolutely free with your strategy call.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="border-none">
+                <AccordionTrigger className="bg-[#F59E0B] text-black hover:bg-[#D97706] px-6 py-4 rounded-lg font-bold text-left hover:no-underline [&[data-state=open]]:rounded-b-none">
+                  Scale Confidently with Expert Insights
+                </AccordionTrigger>
+                <AccordionContent className="bg-white text-black px-6 py-4 rounded-b-lg">
+                  Gain clarity on your growth path with battle-tested strategies and expert insights from someone who's scaled 100+ businesses across industries.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </div>
