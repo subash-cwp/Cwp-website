@@ -77,4 +77,30 @@ All colors MUST be HSL.
   .container-custom {
     @apply container mx-auto px-4 md:px-6 lg:px-8;
   }
+
+  .animate-scroll-rtl {
+    animation: scroll-rtl 30s linear infinite;
+  }
+
+  .animate-scroll-ltr {
+    animation: scroll-ltr 30s linear infinite;
+  }
+
+  @keyframes scroll-rtl {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  @keyframes scroll-ltr {
+    0% {
+      transform: translateX(-33.333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
 }
