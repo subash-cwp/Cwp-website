@@ -5,6 +5,13 @@ import bdsoftLogo from "@/assets/logos/bdsoft.png";
 import iqonicLogo from "@/assets/logos/iqonic.png";
 import godeskLogo from "@/assets/logos/godesk.svg";
 import amanstraLogo from "@/assets/logos/amanstra.png";
+import leadratLogo from "@/assets/logos/leadrat.png";
+import healthassLogo from "@/assets/logos/healthass.png";
+import groupLogo from "@/assets/logos/group.png";
+import rocketnewsLogo from "@/assets/logos/rocketnews.png";
+import reinventLogo from "@/assets/logos/reinvent.png";
+import eaglyticsLogo from "@/assets/logos/eaglytics.png";
+import web3tixLogo from "@/assets/logos/web3tix.png";
 
 export const ClientLogos = () => {
   const row1Logos = [
@@ -13,6 +20,8 @@ export const ClientLogos = () => {
     { src: godeskLogo, alt: "Godesk" },
     { src: cognisLogo, alt: "Cognis" },
     { src: bdsoftLogo, alt: "BD Software" },
+    { src: leadratLogo, alt: "Leadrat" },
+    { src: healthassLogo, alt: "Healthass" },
   ];
   
   const row2Logos = [
@@ -20,6 +29,9 @@ export const ClientLogos = () => {
     { src: amanstraLogo, alt: "Amanstra Consulting" },
     { src: zeoniusLogo, alt: "Zeonius IT Services" },
     { src: aadicuraLogo, alt: "Aadicura" },
+    { src: groupLogo, alt: "Group" },
+    { src: rocketnewsLogo, alt: "Rocket News" },
+    { src: reinventLogo, alt: "Reinvent" },
   ];
   
   const row3Logos = [
@@ -28,6 +40,8 @@ export const ClientLogos = () => {
     { src: godeskLogo, alt: "Godesk" },
     { src: iqonicLogo, alt: "IQONIC Design" },
     { src: amanstraLogo, alt: "Amanstra Consulting" },
+    { src: eaglyticsLogo, alt: "Eaglytics Co" },
+    { src: web3tixLogo, alt: "Web3Tix" },
   ];
 
   return (
