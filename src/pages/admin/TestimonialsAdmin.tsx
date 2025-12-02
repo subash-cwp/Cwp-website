@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Pencil, Trash2, Loader2, Star } from "lucide-react";
+import { ImageUpload } from "@/components/admin/ImageUpload";
+import { AdminSearch } from "@/components/admin/AdminSearch";
 
 interface Testimonial {
   id: string;
@@ -29,6 +31,7 @@ export default function TestimonialsAdmin() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editingItem, setEditingItem] = useState<Testimonial | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   const [form, setForm] = useState({
@@ -51,6 +54,16 @@ export default function TestimonialsAdmin() {
     setTestimonials(data || []);
     setLoading(false);
   };
+
+  const filteredTestimonials = useMemo(() => {
+    if (!searchQuery) return testimonials;
+    const query = searchQuery.toLowerCase();
+    return testimonials.filter(item => 
+      item.name.toLowerCase().includes(query) ||
+      item.company?.toLowerCase().includes(query) ||
+      item.content.toLowerCase().includes(query)
+    );
+  }, [testimonials, searchQuery]);
 
   const openDialog = (item?: Testimonial) => {
     if (item) {
@@ -113,7 +126,7 @@ export default function TestimonialsAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h1 className="text-3xl font-bold">Testimonials</h1>
             <p className="text-muted-foreground">Manage client testimonials</p>
@@ -122,7 +135,7 @@ export default function TestimonialsAdmin() {
             <DialogTrigger asChild>
               <Button onClick={() => openDialog()}><Plus className="h-4 w-4 mr-2" /> Add Testimonial</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-lg">
+            <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingItem ? "Edit" : "New"} Testimonial</DialogTitle>
               </DialogHeader>
@@ -145,15 +158,17 @@ export default function TestimonialsAdmin() {
                   <Label>Testimonial Content</Label>
                   <Textarea value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} rows={4} />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Avatar URL</Label>
-                    <Input value={form.avatar} onChange={(e) => setForm({ ...form, avatar: e.target.value })} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Rating (1-5)</Label>
-                    <Input type="number" min={1} max={5} value={form.rating} onChange={(e) => setForm({ ...form, rating: parseInt(e.target.value) || 5 })} />
-                  </div>
+                
+                <ImageUpload
+                  label="Avatar"
+                  value={form.avatar}
+                  onChange={(url) => setForm({ ...form, avatar: url })}
+                  folder="testimonials"
+                />
+                
+                <div className="space-y-2">
+                  <Label>Rating (1-5)</Label>
+                  <Input type="number" min={1} max={5} value={form.rating} onChange={(e) => setForm({ ...form, rating: parseInt(e.target.value) || 5 })} />
                 </div>
                 <div className="flex gap-6">
                   <div className="flex items-center gap-2">
@@ -174,13 +189,21 @@ export default function TestimonialsAdmin() {
           </Dialog>
         </div>
 
+        <div className="max-w-sm">
+          <AdminSearch 
+            value={searchQuery} 
+            onChange={setSearchQuery} 
+            placeholder="Search testimonials..."
+          />
+        </div>
+
         {loading ? (
           <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
-        ) : testimonials.length === 0 ? (
-          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">No testimonials yet.</p></CardContent></Card>
+        ) : filteredTestimonials.length === 0 ? (
+          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">{searchQuery ? "No results found." : "No testimonials yet."}</p></CardContent></Card>
         ) : (
           <div className="grid gap-4">
-            {testimonials.map((item) => (
+            {filteredTestimonials.map((item) => (
               <Card key={item.id}>
                 <CardContent className="py-4">
                   <div className="flex items-start justify-between gap-4">

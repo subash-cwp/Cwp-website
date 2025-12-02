@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
+import { ImageUpload } from "@/components/admin/ImageUpload";
+import { AdminSearch } from "@/components/admin/AdminSearch";
 
 interface TeamMember {
   id: string;
@@ -30,6 +32,7 @@ export default function TeamAdmin() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   const [form, setForm] = useState({
@@ -53,6 +56,15 @@ export default function TeamAdmin() {
     setMembers(data || []);
     setLoading(false);
   };
+
+  const filteredMembers = useMemo(() => {
+    if (!searchQuery) return members;
+    const query = searchQuery.toLowerCase();
+    return members.filter(member => 
+      member.name.toLowerCase().includes(query) ||
+      member.role?.toLowerCase().includes(query)
+    );
+  }, [members, searchQuery]);
 
   const openDialog = (member?: TeamMember) => {
     if (member) {
@@ -117,7 +129,7 @@ export default function TeamAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h1 className="text-3xl font-bold">Team Members</h1>
             <p className="text-muted-foreground">Manage your team</p>
@@ -126,7 +138,7 @@ export default function TeamAdmin() {
             <DialogTrigger asChild>
               <Button onClick={() => openDialog()}><Plus className="h-4 w-4 mr-2" /> Add Member</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-lg">
+            <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingMember ? "Edit" : "New"} Team Member</DialogTitle>
               </DialogHeader>
@@ -145,10 +157,14 @@ export default function TeamAdmin() {
                   <Label>Bio</Label>
                   <Textarea value={form.bio} onChange={(e) => setForm({ ...form, bio: e.target.value })} rows={3} />
                 </div>
-                <div className="space-y-2">
-                  <Label>Avatar URL</Label>
-                  <Input value={form.avatar} onChange={(e) => setForm({ ...form, avatar: e.target.value })} />
-                </div>
+                
+                <ImageUpload
+                  label="Avatar"
+                  value={form.avatar}
+                  onChange={(url) => setForm({ ...form, avatar: url })}
+                  folder="team"
+                />
+                
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>LinkedIn URL</Label>
@@ -182,13 +198,21 @@ export default function TeamAdmin() {
           </Dialog>
         </div>
 
+        <div className="max-w-sm">
+          <AdminSearch 
+            value={searchQuery} 
+            onChange={setSearchQuery} 
+            placeholder="Search team members..."
+          />
+        </div>
+
         {loading ? (
           <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
-        ) : members.length === 0 ? (
-          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">No team members yet.</p></CardContent></Card>
+        ) : filteredMembers.length === 0 ? (
+          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">{searchQuery ? "No results found." : "No team members yet."}</p></CardContent></Card>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {members.map((member) => (
+            {filteredMembers.map((member) => (
               <Card key={member.id}>
                 <CardContent className="py-4">
                   <div className="flex items-center gap-4">

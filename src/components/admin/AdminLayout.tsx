@@ -30,6 +30,7 @@ const menuItems = [
   { icon: Users, label: "Team", path: "/admin/team" },
   { icon: MessageSquare, label: "Testimonials", path: "/admin/testimonials" },
   { icon: Mail, label: "Leads", path: "/admin/leads" },
+  { icon: Settings, label: "Site Settings", path: "/admin/settings" },
 ];
 
 export const AdminLayout = ({ children }: AdminLayoutProps) => {
