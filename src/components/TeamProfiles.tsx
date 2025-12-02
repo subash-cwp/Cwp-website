@@ -1,15 +1,16 @@
 import { Linkedin, Twitter } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import narenImage from "@/assets/team-naren.png";
 
 export const TeamProfiles = () => {
   const team = [
     {
-      name: "Sarah Johnson",
+      name: "Naren",
       role: "Founder & Chief Strategist",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80",
-      bio: "15+ years driving digital growth for Fortune 500 companies. Harvard MBA with a passion for data-driven marketing.",
-      linkedin: "#",
-      twitter: "#"
+      image: narenImage,
+      bio: "15+ years driving digital growth for Fortune 500 companies. Strategic marketing expert with a passion for data-driven growth.",
+      linkedin: "https://linkedin.com/in/YOUR-LINKEDIN",
+      twitter: "https://twitter.com/YOUR-TWITTER"
     },
     {
       name: "Michael Chen",
