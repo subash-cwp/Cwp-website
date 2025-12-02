@@ -98,11 +98,20 @@ const services = [
 
 export const Services = () => {
   return (
-    <section id="services" className="section-spacing">
-      <div className="container-custom">
-        <div className="text-center mb-16">
+    <section id="services" className="section-spacing relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute top-20 right-20 w-72 h-72 bg-neon-cyan/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-20 w-72 h-72 bg-neon-purple/20 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container-custom relative">
+        <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Our <span className="text-primary">Services</span>
+            Our <span className="text-gradient-primary relative">
+              Services
+              <span className="absolute -inset-2 bg-primary/10 blur-2xl -z-10" />
+            </span>
           </h2>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             We bring a unique blend of strategic marketing and creative services to help your brand stand out and scale effectively in today's competitive landscape.
@@ -113,24 +122,35 @@ export const Services = () => {
           {services.map((service, index) => (
             <Card
               key={index}
-              className="p-6 bg-card border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,214,0,0.1)] group"
+              className="p-6 bg-card border-border/50 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover-lift animate-scale-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <service.icon className="w-6 h-6 text-primary" />
+              {/* Animated border gradient */}
+              <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 rounded-lg border-2 border-transparent bg-gradient-to-r from-primary via-neon-cyan to-primary bg-[length:200%_100%] animate-border-spin" style={{ WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', padding: '1px' }} />
               </div>
-              
-              <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-              <p className="text-sm text-primary mb-3">{service.subtitle}</p>
-              <p className="text-muted-foreground mb-4">{service.description}</p>
-              
-              <ul className="space-y-2">
-                {service.bullets.map((bullet, i) => (
-                  <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                    <span className="text-primary mt-1">•</span>
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
+
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg" />
+
+              <div className="relative z-10">
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                  <service.icon className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                </div>
+                
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary-glow transition-colors">{service.title}</h3>
+                <p className="text-sm text-primary mb-3">{service.subtitle}</p>
+                <p className="text-muted-foreground mb-4 group-hover:text-foreground transition-colors">{service.description}</p>
+                
+                <ul className="space-y-2">
+                  {service.bullets.map((bullet, i) => (
+                    <li key={i} className="text-sm text-muted-foreground flex items-start gap-2 group-hover:text-muted-foreground/90 transition-colors">
+                      <span className="text-primary mt-1 group-hover:scale-125 transition-transform inline-block">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </Card>
           ))}
         </div>
