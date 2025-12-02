@@ -1,4 +1,4 @@
-import { Target, Megaphone, LineChart, TrendingUp, Users, Palette } from "lucide-react";
+import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const services = [
@@ -71,6 +71,27 @@ const services = [
       "Dynamic, brand consistency, and UX-friendly website",
       "Transform your online presence into a growth-centric business",
       "Content work and customly designed photo shoot (branding)"
+    ]
+  },
+  {
+    icon: FileText,
+    title: "Content Marketing & Thought Leadership",
+    subtitle: "Blogs, whitepapers, case studies tailored to buyer journey",
+    description: "",
+    bullets: [
+      "Drip campaigns, newsletters, long-form content, and lead magnets",
+      "Thought leadership content to establish founders and leaders as industry authorities"
+    ]
+  },
+  {
+    icon: Share2,
+    title: "Social Media Management & Branding",
+    subtitle: "Monthly content calendars, designs, and community management",
+    description: "",
+    bullets: [
+      "Follower growth, engagement campaigns, reels, stories, and posts",
+      "Performance tracking and analytics for social growth",
+      "Influencer collaborations to boost credibility and reach"
     ]
   }
 ];
