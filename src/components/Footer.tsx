@@ -21,13 +21,13 @@ export const Footer = () => {
               CWP MARKETING STRATEGY & GROWTH CO LTD/PRIVATED LIMITED—GXR-2024 (NOT REGISTERED)
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://linkedin.com/company/YOUR-LINKEDIN" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors">
                 <Linkedin className="w-4 h-4 text-primary" />
               </a>
-              <a href="#" className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://twitter.com/YOUR-TWITTER" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors">
                 <Twitter className="w-4 h-4 text-primary" />
               </a>
-              <a href="#" className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://facebook.com/YOUR-FACEBOOK" target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors">
                 <Facebook className="w-4 h-4 text-primary" />
               </a>
             </div>
@@ -37,11 +37,15 @@ export const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">USEFUL LINKS</h4>
             <ul className="space-y-2">
-              <li><a href="#home" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</a></li>
-              <li><a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</a></li>
-              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</a></li>
-              <li><a href="#portfolio" className="text-sm text-muted-foreground hover:text-primary transition-colors">Portfolio</a></li>
-              <li><a href="#contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="/#home" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</a></li>
+              <li><a href="/#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</a></li>
+              <li><a href="/#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</a></li>
+              <li><a href="/#portfolio" className="text-sm text-muted-foreground hover:text-primary transition-colors">Portfolio</a></li>
+              <li><a href="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors">Blog</a></li>
+              <li><a href="/case-studies" className="text-sm text-muted-foreground hover:text-primary transition-colors">Case Studies</a></li>
+              <li><a href="/resources" className="text-sm text-muted-foreground hover:text-primary transition-colors">Resources</a></li>
+              <li><a href="/careers" className="text-sm text-muted-foreground hover:text-primary transition-colors">Careers</a></li>
+              <li><a href="/#contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
             </ul>
           </div>
 
@@ -49,10 +53,11 @@ export const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">SERVICES</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Growth Marketing</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Performance Marketing</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Full Stack Marketing</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Startup Marketing</a></li>
+              <li><a href="/#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Growth Marketing</a></li>
+              <li><a href="/#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Performance Marketing</a></li>
+              <li><a href="/#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Full Stack Marketing</a></li>
+              <li><a href="/#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Startup Marketing</a></li>
+              <li><a href="/pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">Pricing</a></li>
             </ul>
           </div>
 
@@ -82,7 +87,7 @@ export const Footer = () => {
 
         <div className="border-t border-border/50 mt-12 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
-            Copyright © All Rights Reserved cwp-mktng.org (2025). Privacy Policy.
+            Copyright © All Rights Reserved cwp-mktng.org (2025). <a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a>.
           </p>
         </div>
       </div>
