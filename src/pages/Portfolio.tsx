@@ -5,6 +5,8 @@ import { BackToTop } from "@/components/BackToTop";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TrendingUp, Users, Target, ArrowRight, Quote } from "lucide-react";
 
 const portfolioItems = [
@@ -101,6 +103,11 @@ const Portfolio = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Portfolio - Our Success Stories | CWP Marketing"
+        description="Explore our portfolio of successful marketing campaigns. See how we've helped D2C, SaaS, and B2B brands achieve 10x ROAS, generate leads, and scale revenue."
+        keywords="marketing portfolio, case studies, success stories, ROAS, lead generation, brand growth"
+      />
       <Navbar />
       
       {/* Hero Section */}

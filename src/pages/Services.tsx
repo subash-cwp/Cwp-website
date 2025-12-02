@@ -5,6 +5,8 @@ import { BackToTop } from "@/components/BackToTop";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, CheckCircle2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -118,6 +120,11 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Marketing Services - CWP Full-Stack Growth Solutions"
+        description="Comprehensive marketing services including Performance Marketing, SEO, Content Marketing, Social Media Management, CRM Automation, and Creative Branding."
+        keywords="marketing services, performance marketing, SEO services, content marketing, social media management, brand identity"
+      />
       <Navbar />
       
       {/* Hero Section */}
@@ -128,6 +135,7 @@ const Services = () => {
         </div>
         
         <div className="container-custom relative">
+          <Breadcrumbs />
           <div className="text-center max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-4 text-primary border-primary/30">
               Our Services

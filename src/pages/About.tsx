@@ -4,6 +4,8 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Target, Eye, Heart, Award, Users, Zap, Globe, TrendingUp } from "lucide-react";
 import teamNaren from "@/assets/team-naren.png";
 
@@ -40,6 +42,11 @@ const stats = [
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="About CWP Marketing - Our Story, Mission & Values"
+        description="Learn about CWP Marketing - a full-stack growth partner for D2C, SaaS, and B2B brands. Discover our mission, values, and the team behind 50+ successful brand transformations."
+        keywords="about CWP, marketing agency story, growth partner, brand transformation, marketing team"
+      />
       <Navbar />
       
       {/* Hero Section */}
@@ -50,6 +57,7 @@ const About = () => {
         </div>
         
         <div className="container-custom relative">
+          <Breadcrumbs />
           <div className="text-center max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-4 text-primary border-primary/30">
               About Us
