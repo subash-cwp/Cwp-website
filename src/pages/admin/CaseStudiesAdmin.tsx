@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
+import { ImageUpload } from "@/components/admin/ImageUpload";
+import { AdminSearch } from "@/components/admin/AdminSearch";
 
 interface CaseStudy {
   id: string;
@@ -33,6 +35,7 @@ export default function CaseStudiesAdmin() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editingStudy, setEditingStudy] = useState<CaseStudy | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   const [form, setForm] = useState({
@@ -63,6 +66,16 @@ export default function CaseStudiesAdmin() {
     if (!error) setStudies(data || []);
     setLoading(false);
   };
+
+  const filteredStudies = useMemo(() => {
+    if (!searchQuery) return studies;
+    const query = searchQuery.toLowerCase();
+    return studies.filter(study => 
+      study.title.toLowerCase().includes(query) ||
+      study.client?.toLowerCase().includes(query) ||
+      study.industry?.toLowerCase().includes(query)
+    );
+  }, [studies, searchQuery]);
 
   const generateSlug = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -135,7 +148,7 @@ export default function CaseStudiesAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h1 className="text-3xl font-bold">Case Studies</h1>
             <p className="text-muted-foreground">Showcase your work</p>
@@ -185,15 +198,17 @@ export default function CaseStudiesAdmin() {
                   <Label>Results</Label>
                   <Textarea value={form.results} onChange={(e) => setForm({ ...form, results: e.target.value })} rows={3} />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Cover Image URL</Label>
-                    <Input value={form.cover_image} onChange={(e) => setForm({ ...form, cover_image: e.target.value })} />
-                  </div>
-                  <div className="space-y-2">
-                    <Label>Technologies (comma separated)</Label>
-                    <Input value={form.technologies} onChange={(e) => setForm({ ...form, technologies: e.target.value })} />
-                  </div>
+                
+                <ImageUpload
+                  label="Cover Image"
+                  value={form.cover_image}
+                  onChange={(url) => setForm({ ...form, cover_image: url })}
+                  folder="case-studies"
+                />
+                
+                <div className="space-y-2">
+                  <Label>Technologies (comma separated)</Label>
+                  <Input value={form.technologies} onChange={(e) => setForm({ ...form, technologies: e.target.value })} />
                 </div>
                 <div className="flex gap-6">
                   <div className="flex items-center gap-2">
@@ -214,13 +229,21 @@ export default function CaseStudiesAdmin() {
           </Dialog>
         </div>
 
+        <div className="max-w-sm">
+          <AdminSearch 
+            value={searchQuery} 
+            onChange={setSearchQuery} 
+            placeholder="Search case studies..."
+          />
+        </div>
+
         {loading ? (
           <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
-        ) : studies.length === 0 ? (
-          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">No case studies yet.</p></CardContent></Card>
+        ) : filteredStudies.length === 0 ? (
+          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">{searchQuery ? "No results found." : "No case studies yet."}</p></CardContent></Card>
         ) : (
           <div className="grid gap-4">
-            {studies.map((study) => (
+            {filteredStudies.map((study) => (
               <Card key={study.id}>
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">

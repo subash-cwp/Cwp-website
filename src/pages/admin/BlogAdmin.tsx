@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
+import { ImageUpload } from "@/components/admin/ImageUpload";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { AdminSearch } from "@/components/admin/AdminSearch";
+import { Textarea } from "@/components/ui/textarea";
 
 interface BlogPost {
   id: string;
@@ -33,6 +36,7 @@ export default function BlogAdmin() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   const [form, setForm] = useState({
@@ -66,6 +70,16 @@ export default function BlogAdmin() {
     }
     setLoading(false);
   };
+
+  const filteredPosts = useMemo(() => {
+    if (!searchQuery) return posts;
+    const query = searchQuery.toLowerCase();
+    return posts.filter(post => 
+      post.title.toLowerCase().includes(query) ||
+      post.category?.toLowerCase().includes(query) ||
+      post.excerpt?.toLowerCase().includes(query)
+    );
+  }, [posts, searchQuery]);
 
   const generateSlug = (title: string) => {
     return title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -164,7 +178,7 @@ export default function BlogAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <h1 className="text-3xl font-bold">Blog Posts</h1>
             <p className="text-muted-foreground">Manage your blog content</p>
@@ -175,7 +189,7 @@ export default function BlogAdmin() {
                 <Plus className="h-4 w-4 mr-2" /> Add Post
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingPost ? "Edit Post" : "New Post"}</DialogTitle>
               </DialogHeader>
@@ -195,38 +209,47 @@ export default function BlogAdmin() {
                     <Input value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} />
                   </div>
                 </div>
+                
                 <div className="space-y-2">
                   <Label>Excerpt</Label>
                   <Textarea value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} rows={2} />
                 </div>
-                <div className="space-y-2">
-                  <Label>Content</Label>
-                  <Textarea value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} rows={8} />
-                </div>
+                
+                <RichTextEditor
+                  label="Content"
+                  value={form.content}
+                  onChange={(value) => setForm({ ...form, content: value })}
+                />
+                
+                <ImageUpload
+                  label="Cover Image"
+                  value={form.cover_image}
+                  onChange={(url) => setForm({ ...form, cover_image: url })}
+                  folder="blog"
+                />
+                
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label>Cover Image URL</Label>
-                    <Input value={form.cover_image} onChange={(e) => setForm({ ...form, cover_image: e.target.value })} />
-                  </div>
                   <div className="space-y-2">
                     <Label>Category</Label>
                     <Input value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} />
                   </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Tags (comma separated)</Label>
                     <Input value={form.tags} onChange={(e) => setForm({ ...form, tags: e.target.value })} />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>Author Name</Label>
+                    <Input value={form.author_name} onChange={(e) => setForm({ ...form, author_name: e.target.value })} />
                   </div>
                   <div className="space-y-2">
                     <Label>Read Time</Label>
                     <Input value={form.read_time} onChange={(e) => setForm({ ...form, read_time: e.target.value })} placeholder="5 min read" />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label>Author Name</Label>
-                  <Input value={form.author_name} onChange={(e) => setForm({ ...form, author_name: e.target.value })} />
-                </div>
+                
                 <div className="flex gap-6">
                   <div className="flex items-center gap-2">
                     <Switch checked={form.published} onCheckedChange={(v) => setForm({ ...form, published: v })} />
@@ -237,6 +260,7 @@ export default function BlogAdmin() {
                     <Label>Featured</Label>
                   </div>
                 </div>
+                
                 <Button onClick={handleSave} disabled={saving} className="w-full">
                   {saving && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
                   {editingPost ? "Update Post" : "Create Post"}
@@ -246,19 +270,29 @@ export default function BlogAdmin() {
           </Dialog>
         </div>
 
+        <div className="max-w-sm">
+          <AdminSearch 
+            value={searchQuery} 
+            onChange={setSearchQuery} 
+            placeholder="Search posts..."
+          />
+        </div>
+
         {loading ? (
           <div className="flex justify-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
           </div>
-        ) : posts.length === 0 ? (
+        ) : filteredPosts.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">
-              <p className="text-muted-foreground">No blog posts yet. Create your first post!</p>
+              <p className="text-muted-foreground">
+                {searchQuery ? "No posts found matching your search." : "No blog posts yet. Create your first post!"}
+              </p>
             </CardContent>
           </Card>
         ) : (
           <div className="grid gap-4">
-            {posts.map((post) => (
+            {filteredPosts.map((post) => (
               <Card key={post.id}>
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">

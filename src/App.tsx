@@ -25,6 +25,7 @@ import ServicesAdmin from "./pages/admin/ServicesAdmin";
 import TeamAdmin from "./pages/admin/TeamAdmin";
 import TestimonialsAdmin from "./pages/admin/TestimonialsAdmin";
 import LeadsAdmin from "./pages/admin/LeadsAdmin";
+import SiteSettingsAdmin from "./pages/admin/SiteSettingsAdmin";
 import { Analytics } from "@/components/Analytics";
 
 const queryClient = new QueryClient();
@@ -58,6 +59,7 @@ const App = () => (
             <Route path="/admin/team" element={<TeamAdmin />} />
             <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
             <Route path="/admin/leads" element={<LeadsAdmin />} />
+            <Route path="/admin/settings" element={<SiteSettingsAdmin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
