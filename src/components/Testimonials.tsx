@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import {
   Carousel,
@@ -6,52 +7,87 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Star } from "lucide-react";
+import { Star, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
-const testimonials = [
+interface Testimonial {
+  id: string;
+  name: string;
+  company: string | null;
+  role: string | null;
+  avatar: string | null;
+  rating: number | null;
+  content: string;
+}
+
+// Fallback data when database is empty
+const fallbackTestimonials = [
   {
+    id: "1",
     name: "Rajesh Kumar",
     company: "TechStart India",
     role: "CEO",
-    image: "RK",
+    avatar: null,
     rating: 5,
-    text: "CWP transformed our digital presence completely. Their strategic approach to performance marketing helped us achieve 10x ROAS within 3 months. Highly recommended!"
+    content: "CWP transformed our digital presence completely. Their strategic approach to performance marketing helped us achieve 10x ROAS within 3 months. Highly recommended!"
   },
   {
+    id: "2",
     name: "Priya Sharma",
     company: "Fashion Forward",
     role: "Marketing Director",
-    image: "PS",
+    avatar: null,
     rating: 5,
-    text: "Working with CWP has been a game-changer for our D2C brand. Their comprehensive email marketing setup and automation increased our conversion rate by 35%."
+    content: "Working with CWP has been a game-changer for our D2C brand. Their comprehensive email marketing setup and automation increased our conversion rate by 35%."
   },
   {
+    id: "3",
     name: "Amit Patel",
     company: "GrowthTech Solutions",
     role: "Founder",
-    image: "AP",
+    avatar: null,
     rating: 5,
-    text: "The team at CWP doesn't just execute - they strategize. Their data-driven approach and creative campaigns helped us scale from 100 to 1000+ qualified leads per month."
-  },
-  {
-    name: "Sarah Johnson",
-    company: "EcoLife Products",
-    role: "CMO",
-    image: "SJ",
-    rating: 5,
-    text: "CWP's SEO expertise positioned our brand on page 1 of Google for all our target keywords. Their content strategy delivered sustainable organic growth month after month."
-  },
-  {
-    name: "Vikram Singh",
-    company: "FinServe Pro",
-    role: "Co-Founder",
-    image: "VS",
-    rating: 5,
-    text: "From branding to performance marketing, CWP handled everything professionally. Their strategic insights and execution excellence made them an invaluable growth partner."
+    content: "The team at CWP doesn't just execute - they strategize. Their data-driven approach and creative campaigns helped us scale from 100 to 1000+ qualified leads per month."
   }
 ];
 
 export const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      const { data, error } = await supabase
+        .from("testimonials")
+        .select("*")
+        .eq("published", true)
+        .order("created_at", { ascending: false });
+      
+      if (error || !data || data.length === 0) {
+        setTestimonials(fallbackTestimonials);
+      } else {
+        setTestimonials(data);
+      }
+      setLoading(false);
+    };
+
+    fetchTestimonials();
+  }, []);
+
+  const getInitials = (name: string) => {
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  };
+
+  if (loading) {
+    return (
+      <section className="section-spacing bg-secondary/30 relative overflow-hidden">
+        <div className="container-custom flex justify-center py-20">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="section-spacing bg-secondary/30 relative overflow-hidden">
       {/* Background effects */}
@@ -82,15 +118,15 @@ export const Testimonials = () => {
             className="w-full"
           >
             <CarouselContent>
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
+              {testimonials.map((testimonial) => (
+                <CarouselItem key={testimonial.id} className="md:basis-1/2 lg:basis-1/2">
                   <Card className="p-8 h-full bg-card border-border/50 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover-lift">
                     {/* Subtle glow on hover */}
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-neon-cyan/0 group-hover:from-primary/5 group-hover:to-neon-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
                     <div className="relative z-10">
                       <div className="flex gap-1 mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
+                        {[...Array(testimonial.rating || 5)].map((_, i) => (
                           <Star 
                             key={i} 
                             className="w-5 h-5 fill-primary text-primary group-hover:scale-110 transition-transform" 
@@ -99,12 +135,20 @@ export const Testimonials = () => {
                         ))}
                       </div>
                       <p className="text-muted-foreground mb-6 leading-relaxed group-hover:text-foreground/80 transition-colors">
-                        "{testimonial.text}"
+                        "{testimonial.content}"
                       </p>
                       <div className="flex items-center gap-4 mt-auto">
-                        <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center font-bold text-primary group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300">
-                          {testimonial.image}
-                        </div>
+                        {testimonial.avatar ? (
+                          <img 
+                            src={testimonial.avatar} 
+                            alt={testimonial.name}
+                            className="w-12 h-12 rounded-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center font-bold text-primary group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300">
+                            {getInitials(testimonial.name)}
+                          </div>
+                        )}
                         <div>
                           <p className="font-bold group-hover:text-primary-glow transition-colors">{testimonial.name}</p>
                           <p className="text-sm text-muted-foreground">
