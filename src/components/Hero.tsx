@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { MagneticButton } from "@/components/MagneticButton";
 
 export const Hero = () => {
   return (
@@ -90,24 +91,28 @@ export const Hero = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-slide-up" style={{ animationDelay: '0.5s' }}>
-            <Button 
-              size="lg" 
-              className="gap-2 text-lg px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
-              onClick={() => window.open('https://calendly.com/narenethiraj', '_blank')}
-            >
-              <span className="relative z-10">Book a Strategy Call</span>
-              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="text-lg px-8 py-6 hover-lift glow-border group"
-              onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              View Our Work
-              <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
-            </Button>
+            <MagneticButton strength={0.5} range={120}>
+              <Button 
+                size="lg" 
+                className="gap-2 text-lg px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+                onClick={() => window.open('https://calendly.com/narenethiraj', '_blank')}
+              >
+                <span className="relative z-10">Book a Strategy Call</span>
+                <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Button>
+            </MagneticButton>
+            <MagneticButton strength={0.5} range={120}>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="text-lg px-8 py-6 hover-lift glow-border group"
+                onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                View Our Work
+                <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
+              </Button>
+            </MagneticButton>
           </div>
 
           <p className="text-sm text-muted-foreground animate-slide-up" style={{ animationDelay: '0.6s' }}>

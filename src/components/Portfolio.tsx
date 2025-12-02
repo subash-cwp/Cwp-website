@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, TrendingUp, Users, Target } from "lucide-react";
+import { MagneticButton } from "@/components/MagneticButton";
 
 const portfolioItems = [
   {
@@ -70,11 +71,11 @@ export const Portfolio = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {portfolioItems.map((item, index) => (
-            <Card 
-              key={index} 
-              className="p-8 bg-card border-border/50 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden cursor-pointer hover-lift animate-scale-in"
-              style={{ animationDelay: `${index * 0.15}s` }}
-            >
+            <MagneticButton key={index} strength={0.35} range={90}>
+              <Card 
+                className="p-8 bg-card border-border/50 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden cursor-pointer hover-lift animate-scale-in"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
               {/* Animated background glow */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-neon-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
@@ -124,6 +125,7 @@ export const Portfolio = () => {
                 </div>
               </div>
             </Card>
+            </MagneticButton>
           ))}
         </div>
       </div>
