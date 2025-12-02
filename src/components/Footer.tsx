@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
 import { Newsletter } from "@/components/Newsletter";
+import { FooterContactForm } from "@/components/FooterContactForm";
 import logo from "@/assets/logo.png";
 
 export const Footer = () => {
@@ -9,7 +10,7 @@ export const Footer = () => {
         <div className="mb-12">
           <Newsletter />
         </div>
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
@@ -61,7 +62,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Contact Info */}
           <div>
             <h4 className="font-bold mb-4">CONTACT</h4>
             <ul className="space-y-3">
@@ -82,6 +83,12 @@ export const Footer = () => {
                 </span>
               </li>
             </ul>
+          </div>
+
+          {/* Quick Contact Form */}
+          <div className="md:col-span-2 lg:col-span-1">
+            <h4 className="font-bold mb-4">QUICK MESSAGE</h4>
+            <FooterContactForm />
           </div>
         </div>
 
