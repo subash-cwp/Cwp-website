@@ -38,17 +38,17 @@ export const Hero = () => {
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
             We build, grow and
             <br />
-            <span className="text-primary">help you scale</span>
+            help you scale
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            By bringing the best strategic marketing, creative and growth consulting that aligns with your brand's vision
+            By bringing the best strategic marketing, creative and growth consulting that aligns with your brand&apos;s vision
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <span className="text-sm text-muted-foreground">For:</span>
             <div className="flex flex-wrap gap-3 justify-center">
-              {['Startups', 'D2C Brands', 'Founders', 'Growth-focused Enterprises'].map((tag) => (
+              {['Startups', 'D2C Brands', 'Founders and Growth-focused Enterprises'].map((tag) => (
                 <span key={tag} className="px-4 py-1.5 bg-muted/30 rounded-full text-sm border border-border/30">
                   {tag}
                 </span>

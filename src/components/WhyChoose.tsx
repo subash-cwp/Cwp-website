@@ -4,22 +4,22 @@ const benefits = [
   {
     icon: CheckCircle2,
     title: "Revenue-Centric Mindset",
-    description: "Every marketing dollar spent is designed to give you more and help you generate in return."
+    description: "Every marketing dollar spent is designed to give you more and help you generate in return"
   },
   {
     icon: Users,
     title: "Multi-Channel Expertise",
-    description: "We lead you across SEO, paid ads, email, social media, and much more."
+    description: "We lead you across SEO, paid ads, email, social media, and much more"
   },
   {
     icon: Target,
     title: "Founder-Friendly Systems",
-    description: "Easy, flexible processes so you can focus on scaling—not on tech stack confusion."
+    description: "Easy, flexible processes so you can focus on scaling—not on tech stack confusion"
   },
   {
     icon: TrendingUp,
     title: "Sustainable & Scalable Results",
-    description: "We bring profitable growth not just the traffic—real ROI, not vanity metrics."
+    description: "We bring profitable growth not just the traffic—real ROI, not vanity metrics"
   }
 ];
 
@@ -49,7 +49,7 @@ export const WhyChoose = () => {
 
         <div className="mt-16 text-center">
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            CWP doesn't do one-size-fits-all. We tailor every strategy—from messaging to media channels—so it reflects your brand's unique strengths and aligns with your business goals. The whole point: Strategic alignment. Real results. And a partner that's got your back as you scale up.
+            CWP doesn&apos;t do one-size-fits-all. We tailor every strategy—from messaging to media channels—so it reflects your brand&apos;s unique strengths and aligns with your business goals. The whole point: Strategic alignment. Real results. And a partner that&apos;s got your back as you scale up.
           </p>
         </div>
       </div>
