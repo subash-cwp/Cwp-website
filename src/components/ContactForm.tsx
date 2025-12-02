@@ -36,19 +36,39 @@ export const ContactForm = () => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Encode values for WhatsApp
-    const message = `New Contact Form Submission:\n\nName: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone}\nCompany: ${values.company}\n\nMessage:\n${values.message}`;
-    const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
-    
-    window.open(whatsappUrl, '_blank');
-    
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you soon.",
-    });
-    
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      
+      const { error } = await supabase.from("contact_submissions").insert({
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
+        company: values.company,
+        message: values.message,
+        source: "contact_form"
+      });
+
+      if (error) throw error;
+
+      // Also send via WhatsApp
+      const message = `New Contact Form Submission:\n\nName: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone}\nCompany: ${values.company}\n\nMessage:\n${values.message}`;
+      const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+      
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you soon.",
+      });
+      
+      form.reset();
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+      });
+    }
   };
 
   return (

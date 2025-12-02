@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -16,35 +17,52 @@ import Careers from "./pages/Careers";
 import Resources from "./pages/Resources";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
+import AdminDashboard from "./pages/admin/Dashboard";
+import BlogAdmin from "./pages/admin/BlogAdmin";
+import CaseStudiesAdmin from "./pages/admin/CaseStudiesAdmin";
+import ServicesAdmin from "./pages/admin/ServicesAdmin";
+import TeamAdmin from "./pages/admin/TeamAdmin";
+import TestimonialsAdmin from "./pages/admin/TestimonialsAdmin";
+import LeadsAdmin from "./pages/admin/LeadsAdmin";
 import { Analytics } from "@/components/Analytics";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Analytics />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogPost />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
-          <Route path="/careers" element={<Careers />} />
-          <Route path="/resources" element={<Resources />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Analytics />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:id" element={<BlogPost />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/blog" element={<BlogAdmin />} />
+            <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
+            <Route path="/admin/services" element={<ServicesAdmin />} />
+            <Route path="/admin/team" element={<TeamAdmin />} />
+            <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
+            <Route path="/admin/leads" element={<LeadsAdmin />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
