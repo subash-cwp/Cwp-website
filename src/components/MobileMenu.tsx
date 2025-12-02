@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link, useLocation } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -11,20 +12,26 @@ import {
 
 export const MobileMenu = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const navItems = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "Blog", href: "/blog" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Portfolio", href: "/portfolio" },
   ];
 
-  const handleNavClick = (href: string) => {
+  const handleContactClick = () => {
     setOpen(false);
-    setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+    if (isHomePage) {
+      setTimeout(() => {
+        document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      window.location.href = "/#contact";
+    }
   };
 
   return (
@@ -45,17 +52,24 @@ export const MobileMenu = () => {
         </SheetHeader>
         <nav className="flex flex-col gap-4 mt-8">
           {navItems.map((item) => (
-            <button
+            <Link
               key={item.href}
-              onClick={() => handleNavClick(item.href)}
+              to={item.href}
+              onClick={() => setOpen(false)}
               className="text-left py-3 px-4 rounded-lg hover:bg-secondary transition-colors text-lg"
             >
               {item.label}
-            </button>
+            </Link>
           ))}
+          <button
+            onClick={handleContactClick}
+            className="text-left py-3 px-4 rounded-lg hover:bg-secondary transition-colors text-lg"
+          >
+            Contact
+          </button>
           <Button
             className="mt-4"
-            onClick={() => handleNavClick("#contact")}
+            onClick={handleContactClick}
           >
             Contact Us
           </Button>
