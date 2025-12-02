@@ -17,14 +17,12 @@ import { BackToTop } from "@/components/BackToTop";
 import { InteractiveParticles } from "@/components/InteractiveParticles";
 import { PageTransition } from "@/components/PageTransition";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
-import { CustomCursor } from "@/components/CustomCursor";
 import { ParallaxSection } from "@/components/ParallaxSection";
 
 const Index = () => {
   return (
     <>
       <PageTransition />
-      <CustomCursor />
       <div className="min-h-screen relative">
         <InteractiveParticles />
         <div className="relative z-10">
