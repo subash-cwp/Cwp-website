@@ -108,10 +108,10 @@ export default function CaseStudies() {
               <Card key={study.id} className="overflow-hidden">
                 <div className={`grid md:grid-cols-2 gap-8 ${index % 2 === 1 ? 'md:grid-flow-dense' : ''}`}>
                   <div className={`aspect-[4/3] ${index % 2 === 1 ? 'md:col-start-2' : ''}`}>
-                    <img 
+                    <LazyImage 
                       src={study.image} 
                       alt={study.company}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full"
                     />
                   </div>
                   <div className="p-8 md:p-12 flex flex-col justify-center">

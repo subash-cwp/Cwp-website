@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,6 +9,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Plus, Pencil, Trash2, Loader2 } from "lucide-react";
+import { AdminSearch } from "@/components/admin/AdminSearch";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 interface Service {
   id: string;
@@ -25,10 +26,12 @@ interface Service {
 
 export default function ServicesAdmin() {
   const [services, setServices] = useState<Service[]>([]);
+  const [filteredServices, setFilteredServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editingService, setEditingService] = useState<Service | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const { toast } = useToast();
 
   const [form, setForm] = useState({
@@ -46,9 +49,24 @@ export default function ServicesAdmin() {
     fetchServices();
   }, []);
 
+  useEffect(() => {
+    if (searchQuery) {
+      setFilteredServices(
+        services.filter(
+          (s) =>
+            s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            s.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    } else {
+      setFilteredServices(services);
+    }
+  }, [searchQuery, services]);
+
   const fetchServices = async () => {
     const { data } = await supabase.from("services").select("*").order("sort_order");
     setServices(data || []);
+    setFilteredServices(data || []);
     setLoading(false);
   };
 
@@ -124,7 +142,7 @@ export default function ServicesAdmin() {
             <DialogTrigger asChild>
               <Button onClick={() => openDialog()}><Plus className="h-4 w-4 mr-2" /> Add Service</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-lg">
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingService ? "Edit" : "New"} Service</DialogTitle>
               </DialogHeader>
@@ -139,10 +157,13 @@ export default function ServicesAdmin() {
                     <Input value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <Label>Description</Label>
-                  <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} />
-                </div>
+                
+                <RichTextEditor
+                  label="Description"
+                  value={form.description}
+                  onChange={(val) => setForm({ ...form, description: val })}
+                />
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Icon (Lucide name)</Label>
@@ -155,7 +176,11 @@ export default function ServicesAdmin() {
                 </div>
                 <div className="space-y-2">
                   <Label>Features (one per line)</Label>
-                  <Textarea value={form.features} onChange={(e) => setForm({ ...form, features: e.target.value })} rows={4} />
+                  <textarea 
+                    className="w-full min-h-[120px] rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    value={form.features} 
+                    onChange={(e) => setForm({ ...form, features: e.target.value })} 
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
@@ -176,13 +201,19 @@ export default function ServicesAdmin() {
           </Dialog>
         </div>
 
+        <AdminSearch
+          value={searchQuery}
+          onChange={setSearchQuery}
+          placeholder="Search services..."
+        />
+
         {loading ? (
           <div className="flex justify-center py-12"><Loader2 className="h-8 w-8 animate-spin text-primary" /></div>
-        ) : services.length === 0 ? (
-          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">No services yet.</p></CardContent></Card>
+        ) : filteredServices.length === 0 ? (
+          <Card><CardContent className="py-12 text-center"><p className="text-muted-foreground">No services found.</p></CardContent></Card>
         ) : (
           <div className="grid gap-4">
-            {services.map((service) => (
+            {filteredServices.map((service) => (
               <Card key={service.id}>
                 <CardContent className="py-4">
                   <div className="flex items-center justify-between">

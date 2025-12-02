@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Linkedin, Twitter, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
+import { LazyImage } from "@/components/LazyImage";
 import narenImage from "@/assets/team-naren.png";
-
 interface TeamMember {
   id: string;
   name: string;
@@ -119,11 +119,10 @@ export const TeamProfiles = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-neon-cyan/0 group-hover:from-primary/10 group-hover:to-neon-cyan/10 transition-all duration-500 pointer-events-none" />
               
               <div className="aspect-square overflow-hidden relative">
-                <img 
+                <LazyImage 
                   src={member.avatar || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"} 
                   alt={member.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full group-hover:scale-110 transition-transform duration-700"
                 />
                 {/* Overlay gradient on hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
