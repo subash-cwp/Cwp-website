@@ -67,8 +67,7 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <Phone className="w-4 h-4 text-primary mt-1 flex-shrink-0" />
-                {/* TODO: Replace with your actual phone number */}
-                <span className="text-sm text-muted-foreground">Call Us: (+91) 9876543210</span>
+                <span className="text-sm text-muted-foreground">Call Us: (+91) 8610986622</span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 text-primary mt-1 flex-shrink-0" />

@@ -5,8 +5,7 @@ import narenImage from "@/assets/team-naren.png";
 
 export const BookingSection = () => {
   const handleBooking = () => {
-    // TODO: Replace with your actual Calendly link
-    window.open("https://calendly.com/YOUR-CALENDLY-LINK", "_blank");
+    window.open("https://calendly.com/narenethiraj", "_blank");
   };
 
   return (
@@ -29,9 +28,8 @@ export const BookingSection = () => {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <h3 className="text-3xl font-bold">Naren Ethiraj</h3>
-                {/* TODO: Replace with Naren's actual LinkedIn profile URL */}
                 <a 
-                  href="https://linkedin.com/in/YOUR-LINKEDIN" 
+                  href="https://www.linkedin.com/in/naren-ethiraj-14834514b/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="w-8 h-8 bg-[#0077B5] rounded flex items-center justify-center hover:bg-[#006399] transition-colors"
