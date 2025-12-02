@@ -57,12 +57,21 @@ export const Hero = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <Button size="lg" className="gap-2 text-lg px-8 py-6">
+            <Button 
+              size="lg" 
+              className="gap-2 text-lg px-8 py-6"
+              onClick={() => window.open('https://calendly.com/cwpmktng', '_blank')}
+            >
               Book a Strategy Call
               <ArrowRight className="w-5 h-5" />
             </Button>
-            <Button size="lg" variant="outline" className="text-lg px-8 py-6">
-              Our Retainer
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="text-lg px-8 py-6"
+              onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+            >
+              View Our Work
             </Button>
           </div>
 

@@ -54,7 +54,11 @@ export const BookingSection = () => {
               </div>
 
               <div className="pt-4">
-                <Button size="lg" className="w-full md:w-auto gap-2">
+                <Button 
+                  size="lg" 
+                  className="w-full md:w-auto gap-2"
+                  onClick={() => window.open('https://calendly.com/cwpmktng', '_blank')}
+                >
                   <Calendar className="w-5 h-5" />
                   Book Complimentary Call Now!
                 </Button>

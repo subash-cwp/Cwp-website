@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { MobileMenu } from "@/components/MobileMenu";
 
 export const Navbar = () => {
+  const handleContactClick = () => {
+    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="container-custom">
@@ -18,15 +22,14 @@ export const Navbar = () => {
             <a href="#about" className="text-sm hover:text-primary transition-colors">About</a>
             <a href="#services" className="text-sm hover:text-primary transition-colors">Services</a>
             <a href="#portfolio" className="text-sm hover:text-primary transition-colors">Portfolio</a>
+            <a href="#contact" className="text-sm hover:text-primary transition-colors">Contact</a>
           </div>
 
           <div className="flex items-center gap-4">
-            <Button className="hidden md:inline-flex">
+            <Button className="hidden md:inline-flex" onClick={handleContactClick}>
               Contact Us
             </Button>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="w-5 h-5" />
-            </Button>
+            <MobileMenu />
           </div>
         </div>
       </div>

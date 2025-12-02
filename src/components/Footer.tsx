@@ -1,9 +1,13 @@
 import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook } from "lucide-react";
+import { Newsletter } from "@/components/Newsletter";
 
 export const Footer = () => {
   return (
     <footer className="bg-secondary/50 border-t border-border/50">
       <div className="container-custom py-16">
+        <div className="mb-12">
+          <Newsletter />
+        </div>
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div>
@@ -33,10 +37,11 @@ export const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">USEFUL LINKS</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</a></li>
-              <li><a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Portfolio</a></li>
+              <li><a href="#home" className="text-sm text-muted-foreground hover:text-primary transition-colors">Home</a></li>
+              <li><a href="#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About</a></li>
+              <li><a href="#services" className="text-sm text-muted-foreground hover:text-primary transition-colors">Services</a></li>
+              <li><a href="#portfolio" className="text-sm text-muted-foreground hover:text-primary transition-colors">Portfolio</a></li>
+              <li><a href="#contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</a></li>
             </ul>
           </div>
 
