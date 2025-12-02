@@ -14,27 +14,70 @@ import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
+import { InteractiveParticles } from "@/components/InteractiveParticles";
+import { PageTransition } from "@/components/PageTransition";
+import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
-      <ClientLogos />
-      <Services />
-      <WhyChoose />
-      <AnimatedStats />
-      <Process />
-      <Portfolio />
-      <TeamProfiles />
-      <Testimonials />
-      <FAQ />
-      <BookingSection />
-      <ContactForm />
-      <Footer />
-      <WhatsAppButton />
-      <BackToTop />
-    </div>
+    <>
+      <PageTransition />
+      <div className="min-h-screen relative">
+        <InteractiveParticles />
+        <div className="relative z-10">
+          <Navbar />
+          <Hero />
+          
+          <ScrollAnimationWrapper animation="fade-in" threshold={0.2}>
+            <ClientLogos />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <Services />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="slide-in-left" threshold={0.15}>
+            <WhyChoose />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
+            <AnimatedStats />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <Process />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="slide-in-right" threshold={0.1}>
+            <Portfolio />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <TeamProfiles />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="fade-in" threshold={0.15}>
+            <Testimonials />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.2}>
+            <FAQ />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
+            <BookingSection />
+          </ScrollAnimationWrapper>
+          
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.2}>
+            <ContactForm />
+          </ScrollAnimationWrapper>
+          
+          <Footer />
+          <WhatsAppButton />
+          <BackToTop />
+        </div>
+      </div>
+    </>
   );
 };
 
