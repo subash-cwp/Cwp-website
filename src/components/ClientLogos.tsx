@@ -29,28 +29,21 @@ export const ClientLogos = () => {
     { src: bdsoftLogo, alt: "BD Software" },
     { src: leadratLogo, alt: "Leadrat" },
     { src: healthassLogo, alt: "Healthass" },
-    { src: ustigersLogo, alt: "US Tigers" },
-    { src: ifutureLogo, alt: "iFuture" },
   ];
   
   const row2Logos = [
+    { src: ustigersLogo, alt: "US Tigers" },
+    { src: ifutureLogo, alt: "iFuture" },
     { src: iqonicLogo, alt: "IQONIC Design" },
     { src: amanstraLogo, alt: "Amanstra Consulting" },
-    { src: zeoniusLogo, alt: "Zeonius IT Services" },
-    { src: aadicuraLogo, alt: "Aadicura" },
     { src: groupLogo, alt: "Group" },
     { src: rocketnewsLogo, alt: "Rocket News" },
     { src: reinventLogo, alt: "Reinvent" },
-    { src: kingswayLogo, alt: "Kingsway" },
-    { src: swiftcheckLogo, alt: "Swift Check AI" },
   ];
   
   const row3Logos = [
-    { src: cognisLogo, alt: "Cognis" },
-    { src: bdsoftLogo, alt: "BD Software" },
-    { src: godeskLogo, alt: "Godesk" },
-    { src: iqonicLogo, alt: "IQONIC Design" },
-    { src: amanstraLogo, alt: "Amanstra Consulting" },
+    { src: kingswayLogo, alt: "Kingsway" },
+    { src: swiftcheckLogo, alt: "Swift Check AI" },
     { src: eaglyticsLogo, alt: "Eaglytics Co" },
     { src: web3tixLogo, alt: "Web3Tix" },
     { src: xorecLogo, alt: "Xorec" },
