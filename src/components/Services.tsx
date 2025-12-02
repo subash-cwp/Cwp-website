@@ -1,6 +1,5 @@
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { MagneticButton } from "@/components/MagneticButton";
 
 const services = [
   {
@@ -121,11 +120,11 @@ export const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <MagneticButton key={index} strength={0.3} range={80}>
-              <Card
-                className="p-6 bg-card border-border/50 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover-lift animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+            <Card
+              key={index}
+              className="p-6 bg-card border-border/50 hover:border-primary/50 transition-all duration-500 group relative overflow-hidden hover-lift animate-scale-in"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               {/* Animated border gradient */}
               <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <div className="absolute inset-0 rounded-lg border-2 border-transparent bg-gradient-to-r from-primary via-neon-cyan to-primary bg-[length:200%_100%] animate-border-spin" style={{ WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude', padding: '1px' }} />
@@ -153,7 +152,6 @@ export const Services = () => {
                 </ul>
               </div>
             </Card>
-            </MagneticButton>
           ))}
         </div>
       </div>
