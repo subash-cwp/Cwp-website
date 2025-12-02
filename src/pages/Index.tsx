@@ -19,6 +19,9 @@ import { PageTransition } from "@/components/PageTransition";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
+import { SEOHead } from "@/components/SEOHead";
+import { JsonLd } from "@/components/JsonLd";
+import { ExitIntentPopup } from "@/components/ExitIntentPopup";
 import { lazy, Suspense } from "react";
 
 // Lazy load heavy components
@@ -36,6 +39,26 @@ const SectionLoader = () => (
 const Index = () => {
   return (
     <>
+      <SEOHead 
+        title="CWP Marketing - Strategic Marketing & Growth Consulting"
+        description="We build, grow and help you scale. Strategic marketing, creative solutions, and growth consulting that aligns with your brand's vision. Trusted by 50+ brands."
+        keywords="marketing agency, growth consulting, digital marketing, SEO, social media marketing, brand strategy, Chennai"
+      />
+      <JsonLd 
+        schema={{
+          type: "Organization",
+          name: "CWP Marketing",
+          url: window.location.origin,
+          logo: `${window.location.origin}/og-image.png`,
+          description: "Strategic marketing and growth consulting agency trusted by 50+ brands",
+          contactPoint: {
+            telephone: "+919876543210",
+            contactType: "sales"
+          },
+          sameAs: ["https://linkedin.com/company/cwpmktng", "https://twitter.com/cwpmktng"]
+        }}
+      />
+      <ExitIntentPopup />
       <PageTransition />
       <ScrollProgressBar />
       <div className="min-h-screen relative">

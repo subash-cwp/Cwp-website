@@ -2,13 +2,15 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { Mail } from "lucide-react";
 
 export const Newsletter = () => {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!email || !email.includes("@")) {
@@ -20,13 +22,20 @@ export const Newsletter = () => {
       return;
     }
 
-    // Here you would typically send to your email service
-    toast({
-      title: "Subscribed!",
-      description: "Thank you for subscribing to our newsletter.",
-    });
-    
-    setEmail("");
+    setLoading(true);
+    const { error } = await supabase.from("newsletter_subscribers").insert({ email });
+    setLoading(false);
+
+    if (error) {
+      if (error.code === "23505") {
+        toast({ title: "You're already subscribed!", description: "Check your inbox for our latest updates." });
+      } else {
+        toast({ variant: "destructive", title: "Error", description: "Failed to subscribe. Please try again." });
+      }
+    } else {
+      toast({ title: "Subscribed!", description: "Thank you for subscribing to our newsletter." });
+      setEmail("");
+    }
   };
 
   return (
@@ -47,7 +56,7 @@ export const Newsletter = () => {
             onChange={(e) => setEmail(e.target.value)}
             className="flex-1"
           />
-          <Button type="submit">Subscribe</Button>
+          <Button type="submit" disabled={loading}>{loading ? "..." : "Subscribe"}</Button>
         </form>
       </div>
     </div>

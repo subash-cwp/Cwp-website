@@ -5,6 +5,9 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
+import { SEOHead } from "@/components/SEOHead";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { LazyImage } from "@/components/LazyImage";
 import { Link } from "react-router-dom";
 
 export default function CaseStudies() {
@@ -77,6 +80,11 @@ export default function CaseStudies() {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="Case Studies - Marketing Success Stories | CWP"
+        description="Explore our detailed case studies showcasing real results. See how we helped businesses achieve 400%+ traffic growth, generate leads, and increase revenue."
+        keywords="marketing case studies, success stories, SEO results, lead generation, revenue growth"
+      />
       <Navbar />
       <WhatsAppButton />
       <BackToTop />
@@ -84,6 +92,7 @@ export default function CaseStudies() {
       {/* Hero Section */}
       <section className="section-spacing pt-32">
         <div className="container-custom">
+          <Breadcrumbs />
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
               Real Results, Real Growth
