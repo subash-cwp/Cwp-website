@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/MobileMenu";
 import logo from "@/assets/logo.png";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Navbar = () => {
   const handleContactClick = () => {
@@ -41,7 +40,6 @@ export const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <ThemeToggle />
             <Button className="hidden md:inline-flex" onClick={handleContactClick}>
               Contact Us
             </Button>
