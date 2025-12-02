@@ -1,8 +1,10 @@
 export const ClientLogos = () => {
   const clients = [
-    'Amaneira Consulting', 'IQONIC DESIGN', 'NameSYS Analytics',
-    'Cogniti', 'Zelyus', 'Optessed', 'Devs', 'Leadrat',
-    'InfuiLac', 'Kings Way', 'Leasezirite', 'Smarten'
+    'Amaneira Consulting', 'IQONIC DESIGN', 'Prise',
+    'Cogniti', 'Zelyus', 'Aura',
+    'Optessed', 'Devs', 'NameSYS Analytics',
+    'Leadrat', 'InfuiLac', 'Kings Way',
+    'Leasezirite', 'Smarten', 'MCS'
   ];
 
   return (

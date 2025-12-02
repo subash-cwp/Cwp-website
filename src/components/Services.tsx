@@ -6,7 +6,7 @@ const services = [
     icon: Target,
     title: "Strategy & Planning",
     subtitle: "Market research, CRO, Paid Ads consultation, Email flow audit",
-    description: "Make your D2C Brand a strategic powerhouse by providing growth.",
+    description: "Make your D2C Brand a strategic powerhouse by providing growth",
     bullets: [
       "Build a data-based strategy that gets you exactly where you want to be",
       "Enhance UX & conversion optimization",
@@ -17,7 +17,7 @@ const services = [
     icon: Megaphone,
     title: "CRM & Marketing Automation",
     subtitle: "Email & SMS",
-    description: "Generate more qualified leads with the most optimized conversion.",
+    description: "Generate more qualified leads with the most optimized conversion",
     bullets: [
       "Complete email marketing setup (2-3 templates)",
       "Email and SMS marketing audit",
@@ -29,7 +29,7 @@ const services = [
     icon: LineChart,
     title: "Outreach & Demand Generation",
     subtitle: "Paid Ads, B2B, & Cold Email",
-    description: "Generate more qualified leads with the most optimized conversion.",
+    description: "Generate more qualified leads with the most optimized conversion",
     bullets: [
       "Increase your conversion rate by 30%",
       "Generate sales leads through targeted cold emails",
@@ -41,7 +41,7 @@ const services = [
     icon: TrendingUp,
     title: "Performance Marketing",
     subtitle: "Meta Ads, Google, Retargeting, LinkedIn Ads",
-    description: "Make your ad investment work for you. 10x your brand with our guidance.",
+    description: "Make your ad investment work for you. 10x your brand with our guidance",
     bullets: [
       "Increase your brand ROAS by 10x",
       "Comprehensive ad strategies from landing page design to ad copies",
@@ -53,19 +53,19 @@ const services = [
     icon: Users,
     title: "SEO & Organic Growth",
     subtitle: "Long-term, scalable results",
-    description: "Dominate your organic presence and stand out in Google searches.",
+    description: "Dominate your organic presence and stand out in Google searches",
     bullets: [
       "Technical SEO overhaul to position your website on the first page",
       "Keyword research (enable the search on SERPs)",
       "Content strategy for organic long-term growth",
-      "I.org organic visibility, traffic, and authority"
+      "Improve organic visibility, traffic, and authority"
     ]
   },
   {
     icon: Palette,
     title: "Creative & Full Branding",
     subtitle: "Logo, Brand Identity, UX/UI, Website",
-    description: "Stand out. Make a full spectrum user experience & branding.",
+    description: "Stand out. Make a full spectrum user experience & branding",
     bullets: [
       "Bring quality and imagination in your creative assets",
       "Dynamic, brand consistency, and UX-friendly website",

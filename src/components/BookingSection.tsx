@@ -27,7 +27,7 @@ export const BookingSection = () => {
                     <h3 className="text-2xl font-bold mb-2">Naren Ethiraj</h3>
                     <p className="text-primary font-semibold mb-1">FOUNDER & CEO OF CWP</p>
                     <p className="text-sm text-muted-foreground">
-                      Ex-founder, BBA graduate, and a growth strategist with two years of hardcore marketing experience in SaaS, Consumer Tech, and Growth.
+                      Ex-founder, BBA graduate, and a growth strategist with two years of hardcore marketing experience in SaaS, Consumer Tech, and Growth
                     </p>
                   </div>
                 </div>
@@ -37,10 +37,10 @@ export const BookingSection = () => {
             <div className="space-y-6">
               <div>
                 <h3 className="text-2xl font-bold mb-4">
-                  Let's Figure Out Roadblocks & Grab Faster
+                  Let&apos;s Figure Out Roadblocks & Grab Faster
                 </h3>
                 <p className="text-muted-foreground mb-6">
-                  Get insights in a 1:1 call to find where your brand is positioned and how to scale it step-by-step.
+                  Get insights in a 1:1 call to find where your brand is positioned and how to scale it step-by-step
                 </p>
               </div>
 
