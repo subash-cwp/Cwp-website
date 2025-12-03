@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { LazyImage } from "@/components/LazyImage";
 import narenImage from "@/assets/team-naren.png";
+
 interface TeamMember {
   id: string;
   name: string;
@@ -14,44 +15,17 @@ interface TeamMember {
   twitter: string | null;
 }
 
-// Fallback data
-const fallbackTeam = [
+// Fallback data - removed placeholder URLs
+const fallbackTeam: TeamMember[] = [
   {
     id: "1",
     name: "Naren",
     role: "Founder & Chief Strategist",
     avatar: narenImage,
     bio: "15+ years driving digital growth for Fortune 500 companies. Strategic marketing expert with a passion for data-driven growth.",
-    linkedin: "https://linkedin.com/in/YOUR-LINKEDIN",
-    twitter: "https://twitter.com/YOUR-TWITTER"
+    linkedin: "https://www.linkedin.com/in/naren-ethiraj-14834514b/",
+    twitter: null
   },
-  {
-    id: "2",
-    name: "Michael Chen",
-    role: "Head of Performance Marketing",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-    bio: "Former Google Ads specialist. Generated $50M+ in revenue through paid campaigns. Stanford Computer Science.",
-    linkedin: "#",
-    twitter: "#"
-  },
-  {
-    id: "3",
-    name: "Emily Rodriguez",
-    role: "Creative Director",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80",
-    bio: "Award-winning designer with 200+ successful brand campaigns. Parsons School of Design graduate.",
-    linkedin: "#",
-    twitter: "#"
-  },
-  {
-    id: "4",
-    name: "David Park",
-    role: "SEO & Content Lead",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-    bio: "Built organic traffic to 1M+ monthly visitors for multiple clients. Published author on content strategy.",
-    linkedin: "#",
-    twitter: "#"
-  }
 ];
 
 export const TeamProfiles = () => {
@@ -60,9 +34,10 @@ export const TeamProfiles = () => {
 
   useEffect(() => {
     const fetchTeam = async () => {
+      // Only select non-sensitive fields (excluding email)
       const { data, error } = await supabase
         .from("team_members")
-        .select("*")
+        .select("id, name, role, avatar, bio, linkedin, twitter")
         .eq("published", true)
         .order("sort_order", { ascending: true });
       
@@ -108,7 +83,7 @@ export const TeamProfiles = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className={`grid gap-8 ${team.length === 1 ? 'max-w-md mx-auto' : team.length === 2 ? 'md:grid-cols-2 max-w-2xl mx-auto' : team.length === 3 ? 'md:grid-cols-3 max-w-4xl mx-auto' : 'md:grid-cols-2 lg:grid-cols-4'}`}>
           {team.map((member, index) => (
             <Card 
               key={member.id} 
