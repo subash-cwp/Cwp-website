@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Briefcase, MapPin, Clock, ArrowRight, Heart, TrendingUp, Users, Zap } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,8 +8,11 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CareerApplicationForm } from "@/components/CareerApplicationForm";
 
 export default function Careers() {
+  const [selectedPosition, setSelectedPosition] = useState<string | null>(null);
+
   const openPositions = [
     {
       title: "Senior Digital Marketing Strategist",
@@ -75,16 +79,6 @@ export default function Careers() {
     }
   ];
 
-  const breadcrumbItems = [
-    { label: "Home", href: "/" },
-    { label: "Careers" }
-  ];
-
-  const handleApply = (position: string) => {
-    const message = encodeURIComponent(`Hi! I'm interested in applying for the ${position} position.`);
-    window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
@@ -148,7 +142,7 @@ export default function Careers() {
                         </div>
                       </div>
                     </div>
-                    <Button onClick={() => handleApply(position.title)}>
+                    <Button onClick={() => setSelectedPosition(position.title)}>
                       Apply Now <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
                   </div>
@@ -172,12 +166,19 @@ export default function Careers() {
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
               We're always looking for talented individuals. Send us your resume and let's talk about how you can contribute to our team.
             </p>
-            <Button size="lg" onClick={() => handleApply("General Application")}>
+            <Button size="lg" onClick={() => setSelectedPosition("General Application")}>
               Send Your Resume
             </Button>
           </div>
         </div>
       </section>
+
+      {/* Application Modal */}
+      <CareerApplicationForm 
+        position={selectedPosition || ""}
+        isOpen={!!selectedPosition}
+        onClose={() => setSelectedPosition(null)}
+      />
 
       <Footer />
     </div>

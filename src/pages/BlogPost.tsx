@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Calendar, Clock, ArrowLeft, Linkedin, Twitter, Facebook, User, Loader2 } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, User, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
@@ -10,6 +10,8 @@ import { BackToTop } from "@/components/BackToTop";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import { ReadingProgress } from "@/components/ReadingProgress";
+import { SocialShareButtons } from "@/components/SocialShareButtons";
 import { supabase } from "@/integrations/supabase/client";
 
 interface BlogPost {
@@ -35,13 +37,11 @@ export default function BlogPost() {
 
   useEffect(() => {
     const fetchPost = async () => {
-      // Try to find by slug first, then by id
       let query = supabase
         .from("blog_posts")
         .select("*")
         .eq("published", true);
 
-      // Check if id is a UUID or a slug
       const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id || '');
       
       if (isUUID) {
@@ -57,7 +57,7 @@ export default function BlogPost() {
       } else {
         setPost(data);
         
-        // Fetch related posts
+        // Fetch related posts (same category or random if no category)
         const { data: related } = await supabase
           .from("blog_posts")
           .select("*")
@@ -77,7 +77,7 @@ export default function BlogPost() {
     if (!dateString) return "";
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
-      month: "short",
+      month: "long",
       day: "numeric"
     });
   };
@@ -114,14 +114,11 @@ export default function BlogPost() {
     );
   }
 
-  const breadcrumbItems = [
-    { label: "Home", href: "/" },
-    { label: "Blog", href: "/blog" },
-    { label: post.title }
-  ];
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
 
   return (
     <div className="min-h-screen bg-background">
+      <ReadingProgress />
       <Navbar />
       <WhatsAppButton />
       <BackToTop />
@@ -172,7 +169,7 @@ export default function BlogPost() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
             {post.excerpt && <p className="text-xl text-muted-foreground mb-8">{post.excerpt}</p>}
 
-            {/* Author */}
+            {/* Author & Share */}
             <div className="flex items-center justify-between flex-wrap gap-4">
               <div className="flex items-center gap-4">
                 {post.author_avatar ? (
@@ -188,37 +185,11 @@ export default function BlogPost() {
                 )}
                 <div>
                   <p className="font-semibold">{post.author_name || "CWP Team"}</p>
+                  <p className="text-sm text-muted-foreground">{formatDate(post.created_at)}</p>
                 </div>
               </div>
 
-              {/* Share */}
-              <div className="flex items-center gap-3">
-                <span className="text-sm text-muted-foreground">Share:</span>
-                <a 
-                  href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors"
-                >
-                  <Linkedin className="w-4 h-4 text-primary" />
-                </a>
-                <a 
-                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors"
-                >
-                  <Twitter className="w-4 h-4 text-primary" />
-                </a>
-                <a 
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 bg-primary/10 hover:bg-primary/20 rounded-lg flex items-center justify-center transition-colors"
-                >
-                  <Facebook className="w-4 h-4 text-primary" />
-                </a>
-              </div>
+              <SocialShareButtons url={currentUrl} title={post.title} />
             </div>
           </header>
 
@@ -251,6 +222,14 @@ export default function BlogPost() {
               ))}
             </div>
           )}
+
+          {/* Share at bottom */}
+          <div className="max-w-3xl mx-auto mt-12 pt-8 border-t border-border">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <p className="text-muted-foreground">Enjoyed this article? Share it!</p>
+              <SocialShareButtons url={currentUrl} title={post.title} />
+            </div>
+          </div>
 
           {/* Related Posts */}
           {relatedPosts.length > 0 && (
