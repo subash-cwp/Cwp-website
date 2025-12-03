@@ -164,8 +164,8 @@ export default function Resources() {
             <p className="text-xl mb-8 text-primary-foreground/90 max-w-2xl mx-auto">
               Subscribe to our newsletter and get new guides, templates, and exclusive content every week.
             </p>
-            <Button size="lg" variant="secondary" asChild>
-              <a href="/#newsletter">Subscribe Now</a>
+            <Button size="lg" variant="secondary" onClick={() => window.location.href = '/#contact'}>
+              Subscribe Now
             </Button>
           </div>
         </div>
