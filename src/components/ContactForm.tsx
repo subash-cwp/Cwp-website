@@ -13,18 +13,23 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
+import { useState } from "react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters").max(100),
-  email: z.string().email("Invalid email address").max(255),
-  phone: z.string().min(10, "Phone must be at least 10 digits").max(15),
-  company: z.string().min(2, "Company name required").max(100),
-  message: z.string().min(10, "Message must be at least 10 characters").max(1000),
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
+  email: z.string().trim().email("Invalid email address").max(255),
+  phone: z.string().trim().min(10, "Phone must be at least 10 digits").max(15),
+  company: z.string().trim().min(2, "Company name required").max(100),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(1000),
 });
 
 export const ContactForm = () => {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { settings } = useSiteSettings();
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,23 +42,25 @@ export const ContactForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
     try {
       const { supabase } = await import("@/integrations/supabase/client");
       
       const { error } = await supabase.from("contact_submissions").insert({
-        name: values.name,
-        email: values.email,
-        phone: values.phone,
-        company: values.company,
-        message: values.message,
+        name: values.name.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim(),
+        company: values.company.trim(),
+        message: values.message.trim(),
         source: "contact_form"
       });
 
       if (error) throw error;
 
       // Also send via WhatsApp
+      const whatsappNumber = settings.integrations.whatsappNumber.replace(/[^0-9]/g, "");
       const message = `New Contact Form Submission:\n\nName: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone}\nCompany: ${values.company}\n\nMessage:\n${values.message}`;
-      const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
       
       toast({
@@ -63,11 +70,14 @@ export const ContactForm = () => {
       
       form.reset();
     } catch (error) {
+      console.error("Error submitting form:", error);
       toast({
         variant: "destructive",
         title: "Error",
         description: "Failed to send message. Please try again.",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -95,8 +105,8 @@ export const ContactForm = () => {
                     </div>
                     <div>
                       <p className="font-semibold mb-1">Phone</p>
-                      <a href="tel:+919876543210" className="text-muted-foreground hover:text-primary transition-colors">
-                        (+91) 9876543210
+                      <a href={`tel:${settings.company.phone.replace(/\s/g, "")}`} className="text-muted-foreground hover:text-primary transition-colors">
+                        {settings.company.phone}
                       </a>
                     </div>
                   </div>
@@ -106,8 +116,8 @@ export const ContactForm = () => {
                     </div>
                     <div>
                       <p className="font-semibold mb-1">Email</p>
-                      <a href="mailto:hello@cwpmktng.com" className="text-muted-foreground hover:text-primary transition-colors">
-                        hello@cwpmktng.com
+                      <a href={`mailto:${settings.company.email}`} className="text-muted-foreground hover:text-primary transition-colors">
+                        {settings.company.email}
                       </a>
                     </div>
                   </div>
@@ -118,8 +128,7 @@ export const ContactForm = () => {
                     <div>
                       <p className="font-semibold mb-1">Location</p>
                       <p className="text-muted-foreground">
-                        No.34, Radhakrishnan St, West Mambalam,<br />
-                        Chennai, Tamil Nadu 600033, India
+                        {settings.company.address}
                       </p>
                     </div>
                   </div>
@@ -137,7 +146,7 @@ export const ContactForm = () => {
                       <FormItem>
                         <FormLabel>Full Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="John Doe" {...field} />
+                          <Input placeholder="John Doe" {...field} disabled={isSubmitting} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -150,7 +159,7 @@ export const ContactForm = () => {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="john@example.com" {...field} />
+                          <Input type="email" placeholder="john@example.com" {...field} disabled={isSubmitting} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -163,7 +172,7 @@ export const ContactForm = () => {
                       <FormItem>
                         <FormLabel>Phone</FormLabel>
                         <FormControl>
-                          <Input placeholder="+91 98765 43210" {...field} />
+                          <Input placeholder="+91 98765 43210" {...field} disabled={isSubmitting} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -176,7 +185,7 @@ export const ContactForm = () => {
                       <FormItem>
                         <FormLabel>Company</FormLabel>
                         <FormControl>
-                          <Input placeholder="Your Company Name" {...field} />
+                          <Input placeholder="Your Company Name" {...field} disabled={isSubmitting} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -192,15 +201,23 @@ export const ContactForm = () => {
                           <Textarea 
                             placeholder="Tell us about your project..." 
                             className="min-h-[120px]"
-                            {...field} 
+                            {...field}
+                            disabled={isSubmitting}
                           />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                  <Button type="submit" className="w-full" size="lg">
-                    Send Message
+                  <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      "Send Message"
+                    )}
                   </Button>
                 </form>
               </Form>

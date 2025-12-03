@@ -1,9 +1,17 @@
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import * as z from "zod";
+
+const formSchema = z.object({
+  name: z.string().trim().min(2, "Name required").max(100),
+  email: z.string().trim().email("Invalid email").max(255),
+  message: z.string().trim().min(5, "Message required").max(500),
+});
 
 export const FooterContactForm = () => {
   const { toast } = useToast();
@@ -13,59 +21,100 @@ export const FooterContactForm = () => {
     email: "",
     message: ""
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    // Validate
+    const result = formSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Construct WhatsApp message
-    const whatsappMessage = `Hi! I'm ${formData.name}.\n\nEmail: ${formData.email}\n\nMessage: ${formData.message}`;
-    const encodedMessage = encodeURIComponent(whatsappMessage);
-    const whatsappUrl = `https://wa.me/918610986622?text=${encodedMessage}`;
+    try {
+      // Save to database
+      const { error } = await supabase.from("contact_submissions").insert({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+        source: "footer_form"
+      });
 
-    // Open WhatsApp
-    window.open(whatsappUrl, "_blank");
+      if (error) throw error;
 
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
 
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
+      // Reset form
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-3">
       <div className="grid grid-cols-2 gap-3">
-        <Input
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          required
-          className="bg-background/50 border-border/50"
-        />
-        <Input
-          type="email"
-          placeholder="Your Email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          required
-          className="bg-background/50 border-border/50"
-        />
+        <div>
+          <Input
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className="bg-background/50 border-border/50 h-10 text-sm"
+            disabled={isSubmitting}
+          />
+          {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
+        </div>
+        <div>
+          <Input
+            type="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="bg-background/50 border-border/50 h-10 text-sm"
+            disabled={isSubmitting}
+          />
+          {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+        </div>
       </div>
-      <Textarea
-        placeholder="Your Message"
-        value={formData.message}
-        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-        required
-        rows={3}
-        className="bg-background/50 border-border/50 resize-none"
-      />
-      <Button type="submit" className="w-full" disabled={isSubmitting}>
-        <Send className="w-4 h-4 mr-2" />
-        Send Quick Message
+      <div>
+        <Textarea
+          placeholder="Your Message"
+          value={formData.message}
+          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          rows={3}
+          className="bg-background/50 border-border/50 resize-none text-sm"
+          disabled={isSubmitting}
+        />
+        {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
+      </div>
+      <Button type="submit" className="w-full" size="sm" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+        ) : (
+          <Send className="w-4 h-4 mr-2" />
+        )}
+        Send Message
       </Button>
     </form>
   );

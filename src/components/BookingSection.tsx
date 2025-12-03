@@ -1,11 +1,15 @@
-import { Calendar, Linkedin, ChevronDown } from "lucide-react";
+import { Calendar, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import narenImage from "@/assets/team-naren.png";
 
 export const BookingSection = () => {
+  const { settings } = useSiteSettings();
+
   const handleBooking = () => {
-    window.open("https://calendly.com/narenethiraj", "_blank");
+    const calendlyLink = settings.integrations.calendlyLink || "https://calendly.com/narenethiraj";
+    window.open(calendlyLink, "_blank");
   };
 
   return (
@@ -28,14 +32,16 @@ export const BookingSection = () => {
             <div>
               <div className="flex items-center gap-3 mb-2">
                 <h3 className="text-3xl font-bold">Naren Ethiraj</h3>
-                <a 
-                  href="https://www.linkedin.com/in/naren-ethiraj-14834514b/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 bg-[#0077B5] rounded flex items-center justify-center hover:bg-[#006399] transition-colors"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
+                {settings.social.linkedin && (
+                  <a 
+                    href={settings.social.linkedin}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 bg-[#0077B5] rounded flex items-center justify-center hover:bg-[#006399] transition-colors"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                )}
               </div>
               <p className="text-gray-400 text-lg mb-6">FOUNDER & CEO OF CWP</p>
               

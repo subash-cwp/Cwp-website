@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -7,115 +8,121 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, CheckCircle2, ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
-const services = [
+// Icon mapping for database services
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  Target,
+  Megaphone,
+  LineChart,
+  TrendingUp,
+  Users,
+  Palette,
+  FileText,
+  Share2,
+};
+
+// Fallback services data
+const fallbackServices = [
   {
-    icon: Target,
+    id: "1",
+    icon: "Target",
     title: "Strategy & Planning",
-    subtitle: "Market research, CRO, Paid Ads consultation, Email flow audit",
-    description: "Make your D2C Brand a strategic powerhouse by providing growth",
-    bullets: [
-      "Build a data-based strategy that gets you exactly where you want to be",
-      "Enhance UX & conversion optimization",
-      "Break down your objectives into a simplified, actionable road map"
-    ],
+    description: "Make your D2C Brand a strategic powerhouse by providing growth. Build a data-based strategy that gets you exactly where you want to be.",
     features: ["Market Analysis", "Competitor Research", "Growth Roadmap", "KPI Framework"]
   },
   {
-    icon: Megaphone,
+    id: "2",
+    icon: "Megaphone",
     title: "CRM & Marketing Automation",
-    subtitle: "Email & SMS",
-    description: "Generate more qualified leads with the most optimized conversion",
-    bullets: [
-      "Complete email marketing setup (2-3 templates)",
-      "Email and SMS marketing audit",
-      "Implement email & SMS segmentation",
-      "Devise Email/SMS automation & workflows"
-    ],
+    description: "Generate more qualified leads with the most optimized conversion. Complete email marketing setup and automation workflows.",
     features: ["Email Campaigns", "SMS Marketing", "Automation Flows", "Segmentation"]
   },
   {
-    icon: LineChart,
+    id: "3",
+    icon: "LineChart",
     title: "Outreach & Demand Generation",
-    subtitle: "Paid Ads, B2B, & Cold Email",
-    description: "Generate more qualified leads with the most optimized conversion",
-    bullets: [
-      "Increase your conversion rate by 30%",
-      "Generate sales leads through targeted cold emails",
-      "Multichannel strategy to power up lead generation",
-      "Build opportunity"
-    ],
+    description: "Generate more qualified leads through targeted outreach. Multichannel strategy to power up lead generation.",
     features: ["Cold Outreach", "LinkedIn Automation", "Lead Nurturing", "Pipeline Building"]
   },
   {
-    icon: TrendingUp,
+    id: "4",
+    icon: "TrendingUp",
     title: "Performance Marketing",
-    subtitle: "Meta Ads, Google, Retargeting, LinkedIn Ads",
-    description: "Make your ad investment work for you. 10x your brand with our guidance",
-    bullets: [
-      "Increase your brand ROAS by 10x",
-      "Comprehensive ad strategies from landing page design to ad copies",
-      "Optimize campaigns and ad budgets",
-      "Hyper retargeting, lead ads and look-a-like ads"
-    ],
+    description: "Make your ad investment work for you. 10x your brand with comprehensive ad strategies.",
     features: ["Meta Ads", "Google Ads", "Retargeting", "Analytics"]
   },
   {
-    icon: Users,
+    id: "5",
+    icon: "Users",
     title: "SEO & Organic Growth",
-    subtitle: "Long-term, scalable results",
-    description: "Dominate your organic presence and stand out in Google searches",
-    bullets: [
-      "Technical SEO overhaul to position your website on the first page",
-      "Keyword research (enable the search on SERPs)",
-      "Content strategy for organic long-term growth",
-      "Improve organic visibility, traffic, and authority"
-    ],
+    description: "Dominate your organic presence and stand out in Google searches with technical SEO and content strategy.",
     features: ["Technical SEO", "Content Strategy", "Link Building", "Local SEO"]
   },
   {
-    icon: Palette,
+    id: "6",
+    icon: "Palette",
     title: "Creative & Full Branding",
-    subtitle: "Logo, Brand Identity, UX/UI, Website",
-    description: "Stand out. Make a full spectrum user experience & branding",
-    bullets: [
-      "Bring quality and imagination in your creative assets",
-      "Dynamic, brand consistency, and UX-friendly website",
-      "Transform your online presence into a growth-centric business",
-      "Content work and customly designed photo shoot (branding)"
-    ],
+    description: "Stand out with full spectrum user experience & branding. Transform your online presence into a growth-centric business.",
     features: ["Brand Identity", "Logo Design", "Website Design", "UI/UX"]
   },
   {
-    icon: FileText,
+    id: "7",
+    icon: "FileText",
     title: "Content Marketing & Thought Leadership",
-    subtitle: "Blogs, whitepapers, case studies tailored to buyer journey",
-    description: "Establish authority and drive organic growth through strategic content",
-    bullets: [
-      "Drip campaigns, newsletters, long-form content, and lead magnets",
-      "Thought leadership content to establish founders and leaders as industry authorities"
-    ],
+    description: "Establish authority and drive organic growth through strategic content and thought leadership.",
     features: ["Blog Writing", "Whitepapers", "Case Studies", "Newsletters"]
   },
   {
-    icon: Share2,
-    title: "Social Media Management & Branding",
-    subtitle: "Monthly content calendars, designs, and community management",
-    description: "Build a strong social presence that engages and converts",
-    bullets: [
-      "Follower growth, engagement campaigns, reels, stories, and posts",
-      "Performance tracking and analytics for social growth",
-      "Influencer collaborations to boost credibility and reach"
-    ],
+    id: "8",
+    icon: "Share2",
+    title: "Social Media Management",
+    description: "Build a strong social presence that engages and converts with monthly content calendars and community management.",
     features: ["Content Calendar", "Community Management", "Influencer Marketing", "Analytics"]
   }
 ];
 
+interface Service {
+  id: string;
+  title: string;
+  description: string | null;
+  icon: string | null;
+  features: string[] | null;
+}
+
 const Services = () => {
+  const navigate = useNavigate();
+  const [services, setServices] = useState<Service[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      const { data, error } = await supabase
+        .from("services")
+        .select("id, title, description, icon, features")
+        .eq("published", true)
+        .order("sort_order", { ascending: true });
+
+      if (error || !data || data.length === 0) {
+        setServices(fallbackServices);
+      } else {
+        setServices(data);
+      }
+      setLoading(false);
+    };
+
+    fetchServices();
+  }, []);
+
   const handleContactClick = () => {
-    window.location.href = "/#contact";
+    navigate("/#contact");
+  };
+
+  const getIcon = (iconName: string | null) => {
+    if (!iconName) return Target;
+    return iconMap[iconName] || Target;
   };
 
   return (
@@ -156,58 +163,61 @@ const Services = () => {
       {/* Services Grid */}
       <section className="py-20">
         <div className="container-custom">
-          <div className="space-y-16">
-            {services.map((service, index) => (
-              <Card 
-                key={index}
-                className="p-8 md:p-12 bg-card border-border/50 hover:border-primary/50 transition-all group relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-start">
-                  <div>
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <service.icon className="w-7 h-7 text-primary" />
-                      </div>
+          {loading ? (
+            <div className="flex justify-center py-20">
+              <Loader2 className="h-8 w-8 animate-spin text-primary" />
+            </div>
+          ) : (
+            <div className="space-y-16">
+              {services.map((service, index) => {
+                const IconComponent = getIcon(service.icon);
+                return (
+                  <Card 
+                    key={service.id}
+                    className="p-8 md:p-12 bg-card border-border/50 hover:border-primary/50 transition-all group relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-start">
                       <div>
-                        <h2 className="text-2xl md:text-3xl font-bold group-hover:text-primary-glow transition-colors">{service.title}</h2>
-                        <p className="text-primary text-sm">{service.subtitle}</p>
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            <IconComponent className="w-7 h-7 text-primary" />
+                          </div>
+                          <div>
+                            <h2 className="text-2xl md:text-3xl font-bold group-hover:text-primary-glow transition-colors">{service.title}</h2>
+                          </div>
+                        </div>
+                        
+                        <p className="text-muted-foreground mb-6 text-lg">{service.description}</p>
+                      </div>
+                      
+                      <div className="lg:pl-8">
+                        {service.features && service.features.length > 0 && (
+                          <>
+                            <h4 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">What's Included</h4>
+                            <div className="grid grid-cols-2 gap-3">
+                              {service.features.map((feature, i) => (
+                                <div 
+                                  key={i}
+                                  className="px-4 py-3 bg-background/50 border border-border/50 rounded-lg text-sm text-center hover:border-primary/50 transition-colors"
+                                >
+                                  {feature}
+                                </div>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                        <Button variant="outline" className="mt-6 w-full" onClick={handleContactClick}>
+                          Learn More
+                        </Button>
                       </div>
                     </div>
-                    
-                    <p className="text-muted-foreground mb-6 text-lg">{service.description}</p>
-                    
-                    <ul className="space-y-3">
-                      {service.bullets.map((bullet, i) => (
-                        <li key={i} className="flex items-start gap-3 text-muted-foreground">
-                          <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  
-                  <div className="lg:pl-8">
-                    <h4 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">What's Included</h4>
-                    <div className="grid grid-cols-2 gap-3">
-                      {service.features.map((feature, i) => (
-                        <div 
-                          key={i}
-                          className="px-4 py-3 bg-background/50 border border-border/50 rounded-lg text-sm text-center hover:border-primary/50 transition-colors"
-                        >
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-                    <Button variant="outline" className="mt-6 w-full" onClick={handleContactClick}>
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
