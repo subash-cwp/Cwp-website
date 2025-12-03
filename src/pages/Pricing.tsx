@@ -7,8 +7,10 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 export default function Pricing() {
+  const { settings } = useSiteSettings();
   const plans = [
     {
       name: "Starter",
@@ -71,7 +73,8 @@ export default function Pricing() {
   ];
 
   const handleBookCall = () => {
-    window.open("https://calendly.com/YOUR-CALENDLY-LINK", "_blank");
+    const calendlyLink = settings.integrations.calendlyLink || "https://calendly.com/narenethiraj";
+    window.open(calendlyLink, "_blank");
   };
 
   return (
