@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -7,7 +8,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { TrendingUp, Users, Target, ArrowRight, Quote } from "lucide-react";
+import { TrendingUp, Users, Target, ArrowRight, Quote, Search, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 const portfolioItems = [
   {
@@ -97,6 +99,34 @@ const portfolioItems = [
 ];
 
 const Portfolio = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const categories = ["All", ...new Set(portfolioItems.map((item) => item.category))];
+
+  const filteredItems = useMemo(() => {
+    let result = portfolioItems;
+
+    // Filter by category
+    if (activeCategory !== "All") {
+      result = result.filter((item) => item.category === activeCategory);
+    }
+
+    // Filter by search
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        (item) =>
+          item.title.toLowerCase().includes(query) ||
+          item.description.toLowerCase().includes(query) ||
+          item.category.toLowerCase().includes(query) ||
+          item.tags.some((tag) => tag.toLowerCase().includes(query))
+      );
+    }
+
+    return result;
+  }, [activeCategory, searchQuery]);
+
   const handleContactClick = () => {
     window.location.href = "/#contact";
   };
@@ -118,6 +148,7 @@ const Portfolio = () => {
         </div>
         
         <div className="container-custom relative">
+          <Breadcrumbs />
           <div className="text-center max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-4 text-primary border-primary/30">
               Our Work
@@ -132,71 +163,133 @@ const Portfolio = () => {
         </div>
       </section>
 
+      {/* Filters */}
+      <section className="py-8 border-b border-border">
+        <div className="container-custom">
+          {/* Search */}
+          <div className="relative max-w-md mx-auto mb-6">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+            <Input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search projects..."
+              className="pl-10 pr-10"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+
+          {/* Category filter */}
+          <div className="flex flex-wrap gap-3 justify-center">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={category === activeCategory ? "default" : "outline"}
+                size="sm"
+                onClick={() => setActiveCategory(category)}
+                className="transition-all"
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+
+          {/* Results count */}
+          {(searchQuery || activeCategory !== "All") && (
+            <p className="text-center text-muted-foreground mt-4">
+              {filteredItems.length} project{filteredItems.length !== 1 ? "s" : ""} found
+            </p>
+          )}
+        </div>
+      </section>
+
       {/* Portfolio Items */}
       <section className="py-20">
         <div className="container-custom">
-          <div className="space-y-12">
-            {portfolioItems.map((item, index) => (
-              <Card 
-                key={index}
-                className="p-8 md:p-12 bg-card border-border/50 hover:border-primary/50 transition-all group relative overflow-hidden"
+          {filteredItems.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-xl text-muted-foreground mb-4">No projects found</p>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  setSearchQuery("");
+                  setActiveCategory("All");
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="relative z-10">
-                  <div className="flex flex-wrap items-center gap-4 mb-6">
-                    <Badge variant="secondary" className="text-primary border-primary/30">
-                      {item.category}
-                    </Badge>
-                    <div className="flex flex-wrap gap-2">
-                      {item.tags.map((tag, i) => (
-                        <Badge key={i} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
+                Clear filters
+              </Button>
+            </div>
+          ) : (
+            <div className="space-y-12">
+              {filteredItems.map((item, index) => (
+                <Card 
+                  key={index}
+                  className="p-8 md:p-12 bg-card border-border/50 hover:border-primary/50 transition-all group relative overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative z-10">
+                    <div className="flex flex-wrap items-center gap-4 mb-6">
+                      <Badge variant="secondary" className="text-primary border-primary/30">
+                        {item.category}
+                      </Badge>
+                      <div className="flex flex-wrap gap-2">
+                        {item.tags.map((tag, i) => (
+                          <Badge key={i} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <h2 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary-glow transition-colors">
+                      {item.title}
+                    </h2>
+                    <p className="text-lg text-muted-foreground mb-8">{item.description}</p>
+                    
+                    <div className="grid md:grid-cols-2 gap-8 mb-8">
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">The Challenge</h4>
+                        <p className="text-muted-foreground">{item.challenge}</p>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-primary mb-2">Our Solution</h4>
+                        <p className="text-muted-foreground">{item.solution}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Metrics */}
+                    <div className="grid grid-cols-3 gap-4 mb-8 p-6 bg-background/50 rounded-lg border border-border/50">
+                      {item.metrics.map((metric, i) => (
+                        <div key={i} className="text-center">
+                          <metric.icon className="w-6 h-6 text-primary mx-auto mb-2" />
+                          <div className="text-2xl md:text-3xl font-bold text-primary mb-1">
+                            {metric.value}
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            {metric.label}
+                          </div>
+                        </div>
                       ))}
                     </div>
-                  </div>
-                  
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-primary-glow transition-colors">
-                    {item.title}
-                  </h2>
-                  <p className="text-lg text-muted-foreground mb-8">{item.description}</p>
-                  
-                  <div className="grid md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                      <h4 className="font-semibold text-primary mb-2">The Challenge</h4>
-                      <p className="text-muted-foreground">{item.challenge}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-primary mb-2">Our Solution</h4>
-                      <p className="text-muted-foreground">{item.solution}</p>
+                    
+                    {/* Testimonial */}
+                    <div className="flex items-start gap-4 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                      <Quote className="w-8 h-8 text-primary flex-shrink-0" />
+                      <p className="text-muted-foreground italic">{item.testimonial}</p>
                     </div>
                   </div>
-                  
-                  {/* Metrics */}
-                  <div className="grid grid-cols-3 gap-4 mb-8 p-6 bg-background/50 rounded-lg border border-border/50">
-                    {item.metrics.map((metric, i) => (
-                      <div key={i} className="text-center">
-                        <metric.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-                        <div className="text-2xl md:text-3xl font-bold text-primary mb-1">
-                          {metric.value}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {metric.label}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  {/* Testimonial */}
-                  <div className="flex items-start gap-4 p-6 bg-primary/5 rounded-lg border border-primary/20">
-                    <Quote className="w-8 h-8 text-primary flex-shrink-0" />
-                    <p className="text-muted-foreground italic">{item.testimonial}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

@@ -22,6 +22,7 @@ import { ScrollProgressBar } from "@/components/ScrollProgressBar";
 import { SEOHead } from "@/components/SEOHead";
 import { JsonLd } from "@/components/JsonLd";
 import { ExitIntentPopup } from "@/components/ExitIntentPopup";
+import { CookieConsent } from "@/components/CookieConsent";
 import { lazy, Suspense } from "react";
 
 // Lazy load heavy components
@@ -59,6 +60,7 @@ const Index = () => {
         }}
       />
       <ExitIntentPopup />
+      <CookieConsent />
       <PageTransition />
       <ScrollProgressBar />
       <div className="min-h-screen relative">

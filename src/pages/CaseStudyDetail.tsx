@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { TrendingUp, Users, DollarSign, Target, ArrowLeft, Quote, Calendar, Building, Loader2 } from "lucide-react";
+import { TrendingUp, Users, DollarSign, Target, ArrowLeft, Quote, Building, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/Navbar";
@@ -10,6 +10,7 @@ import { BackToTop } from "@/components/BackToTop";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
+import { SocialShareButtons } from "@/components/SocialShareButtons";
 import { supabase } from "@/integrations/supabase/client";
 
 interface CaseStudy {
@@ -178,15 +179,18 @@ export default function CaseStudyDetail() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{study.client || study.title}</h1>
             {study.description && <p className="text-xl text-muted-foreground mb-6">{study.description}</p>}
 
-            {study.technologies && study.technologies.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {study.technologies.map((tag, idx) => (
-                  <span key={idx} className="px-4 py-2 bg-primary/10 text-primary text-sm rounded-full font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              {study.technologies && study.technologies.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {study.technologies.map((tag, idx) => (
+                    <span key={idx} className="px-4 py-2 bg-primary/10 text-primary text-sm rounded-full font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <SocialShareButtons url={window.location.href} title={study.client || study.title} />
+            </div>
           </header>
 
           {/* Featured Image */}

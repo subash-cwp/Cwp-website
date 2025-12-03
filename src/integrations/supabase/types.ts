@@ -167,6 +167,48 @@ export type Database = {
         }
         Relationships: []
       }
+      job_applications: {
+        Row: {
+          cover_letter: string | null
+          created_at: string
+          email: string
+          id: string
+          linkedin_url: string | null
+          name: string
+          phone: string | null
+          portfolio_url: string | null
+          position: string
+          resume_url: string | null
+          status: string | null
+        }
+        Insert: {
+          cover_letter?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          linkedin_url?: string | null
+          name: string
+          phone?: string | null
+          portfolio_url?: string | null
+          position: string
+          resume_url?: string | null
+          status?: string | null
+        }
+        Update: {
+          cover_letter?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          linkedin_url?: string | null
+          name?: string
+          phone?: string | null
+          portfolio_url?: string | null
+          position?: string
+          resume_url?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string | null
@@ -317,6 +359,42 @@ export type Database = {
           role?: string | null
           sort_order?: number | null
           twitter?: string | null
+        }
+        Relationships: []
+      }
+      testimonial_submissions: {
+        Row: {
+          approved: boolean | null
+          company: string | null
+          content: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          rating: number | null
+          role: string | null
+        }
+        Insert: {
+          approved?: boolean | null
+          company?: string | null
+          content: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          rating?: number | null
+          role?: string | null
+        }
+        Update: {
+          approved?: boolean | null
+          company?: string | null
+          content?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          rating?: number | null
+          role?: string | null
         }
         Relationships: []
       }
