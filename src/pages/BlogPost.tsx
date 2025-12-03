@@ -12,6 +12,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { JsonLd } from "@/components/JsonLd";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { SocialShareButtons } from "@/components/SocialShareButtons";
+import { TableOfContents, calculateReadTime } from "@/components/TableOfContents";
 import { supabase } from "@/integrations/supabase/client";
 
 interface BlogPost {
@@ -57,15 +58,38 @@ export default function BlogPost() {
       } else {
         setPost(data);
         
-        // Fetch related posts (same category or random if no category)
-        const { data: related } = await supabase
+        // Fetch related posts - prioritize same category
+        let relatedQuery = supabase
           .from("blog_posts")
           .select("*")
           .eq("published", true)
-          .neq("id", data.id)
-          .limit(3);
+          .neq("id", data.id);
         
-        setRelatedPosts(related || []);
+        if (data.category) {
+          // First try to get posts from the same category
+          const { data: sameCategoryPosts } = await relatedQuery
+            .eq("category", data.category)
+            .limit(3);
+          
+          if (sameCategoryPosts && sameCategoryPosts.length >= 3) {
+            setRelatedPosts(sameCategoryPosts);
+          } else {
+            // If not enough, get more from other categories
+            const existingIds = sameCategoryPosts?.map(p => p.id) || [];
+            const { data: otherPosts } = await supabase
+              .from("blog_posts")
+              .select("*")
+              .eq("published", true)
+              .neq("id", data.id)
+              .not("id", "in", `(${existingIds.join(",")})`)
+              .limit(3 - (sameCategoryPosts?.length || 0));
+            
+            setRelatedPosts([...(sameCategoryPosts || []), ...(otherPosts || [])]);
+          }
+        } else {
+          const { data: related } = await relatedQuery.limit(3);
+          setRelatedPosts(related || []);
+        }
       }
       setLoading(false);
     };
@@ -158,12 +182,10 @@ export default function BlogPost() {
                 <Calendar className="w-4 h-4" />
                 <span>{formatDate(post.created_at)}</span>
               </div>
-              {post.read_time && (
-                <div className="flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  <span>{post.read_time}</span>
-                </div>
-              )}
+              <div className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                <span>{post.read_time || (post.content ? calculateReadTime(post.content) : "5 min read")}</span>
+              </div>
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
@@ -204,12 +226,22 @@ export default function BlogPost() {
             </div>
           )}
 
-          {/* Content */}
+          {/* Content with TOC */}
           {post.content && (
-            <div 
-              className="max-w-3xl mx-auto prose prose-invert prose-lg prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className="flex gap-8 max-w-6xl mx-auto">
+              {/* Table of Contents - Desktop */}
+              <aside className="hidden lg:block w-64 flex-shrink-0">
+                <TableOfContents content={post.content} />
+              </aside>
+              
+              {/* Main Content */}
+              <div className="flex-1 min-w-0">
+                <div 
+                  className="prose prose-invert prose-lg prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary max-w-none"
+                  dangerouslySetInnerHTML={{ __html: post.content }}
+                />
+              </div>
+            </div>
           )}
 
           {/* Tags */}
