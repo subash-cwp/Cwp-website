@@ -1,40 +1,66 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Star, Send, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const testimonialSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
+  email: z.string().trim().email("Please enter a valid email").max(255, "Email is too long"),
+  company: z.string().trim().max(100, "Company name is too long").optional().or(z.literal("")),
+  role: z.string().trim().max(100, "Role is too long").optional().or(z.literal("")),
+  content: z.string().trim().min(20, "Testimonial must be at least 20 characters").max(1000, "Testimonial is too long"),
+  rating: z.number().min(1).max(5),
+});
+
+type TestimonialFormData = z.infer<typeof testimonialSchema>;
 
 export function TestimonialForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    role: "",
-    content: "",
-    rating: 5,
-  });
+  const [rating, setRating] = useState(5);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleRatingClick = (rating: number) => {
-    setFormData((prev) => ({ ...prev, rating }));
+  const form = useForm<TestimonialFormData>({
+    resolver: zodResolver(testimonialSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      company: "",
+      role: "",
+      content: "",
+      rating: 5,
+    },
+  });
+
+  const handleRatingClick = (value: number) => {
+    setRating(value);
+    form.setValue("rating", value);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: TestimonialFormData) => {
     setIsSubmitting(true);
 
     const { error } = await supabase.from("testimonial_submissions").insert({
-      name: formData.name,
-      email: formData.email,
-      company: formData.company || null,
-      role: formData.role || null,
-      content: formData.content,
-      rating: formData.rating,
+      name: data.name,
+      email: data.email,
+      company: data.company || null,
+      role: data.role || null,
+      content: data.content,
+      rating: data.rating,
     });
 
     setIsSubmitting(false);
@@ -50,120 +76,135 @@ export function TestimonialForm() {
         title: "Thank you!",
         description: "Your testimonial has been submitted for review.",
       });
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        role: "",
-        content: "",
-        rating: 5,
-      });
+      form.reset();
+      setRating(5);
     }
   };
 
   return (
-    <Card className="p-8">
-      <div className="text-center mb-8">
-        <h3 className="text-2xl font-bold mb-2">Share Your Experience</h3>
-        <p className="text-muted-foreground">
+    <Card className="p-4 sm:p-8">
+      <div className="text-center mb-6 sm:mb-8">
+        <h3 className="text-xl sm:text-2xl font-bold mb-2">Share Your Experience</h3>
+        <p className="text-muted-foreground text-sm sm:text-base">
           We'd love to hear about your experience working with us!
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="name">Your Name *</Label>
-            <Input
-              id="name"
-              required
-              value={formData.name}
-              onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-              placeholder="John Doe"
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+          <div className="grid sm:grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Your Name *</FormLabel>
+                  <FormControl>
+                    <Input placeholder="John Doe" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email *</FormLabel>
+                  <FormControl>
+                    <Input type="email" placeholder="john@company.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email *</Label>
-            <Input
-              id="email"
-              type="email"
-              required
-              value={formData.email}
-              onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-              placeholder="john@company.com"
-            />
-          </div>
-        </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <Label htmlFor="company">Company</Label>
-            <Input
-              id="company"
-              value={formData.company}
-              onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
-              placeholder="Your Company"
+          <div className="grid sm:grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="company"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Company</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Your Company" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Your Role</FormLabel>
+                  <FormControl>
+                    <Input placeholder="CEO, Marketing Manager, etc." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
           </div>
+
           <div className="space-y-2">
-            <Label htmlFor="role">Your Role</Label>
-            <Input
-              id="role"
-              value={formData.role}
-              onChange={(e) => setFormData((prev) => ({ ...prev, role: e.target.value }))}
-              placeholder="CEO, Marketing Manager, etc."
-            />
+            <FormLabel>Rating</FormLabel>
+            <div className="flex gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => handleRatingClick(star)}
+                  className="p-1 transition-transform hover:scale-110"
+                >
+                  <Star
+                    className={`w-6 h-6 sm:w-8 sm:h-8 ${
+                      star <= rating
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "text-muted-foreground"
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="space-y-2">
-          <Label>Rating</Label>
-          <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <button
-                key={star}
-                type="button"
-                onClick={() => handleRatingClick(star)}
-                className="p-1 transition-transform hover:scale-110"
-              >
-                <Star
-                  className={`w-8 h-8 ${
-                    star <= formData.rating
-                      ? "fill-yellow-400 text-yellow-400"
-                      : "text-muted-foreground"
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="content">Your Testimonial *</Label>
-          <Textarea
-            id="content"
-            required
-            rows={5}
-            value={formData.content}
-            onChange={(e) => setFormData((prev) => ({ ...prev, content: e.target.value }))}
-            placeholder="Tell us about your experience working with CWP Marketing..."
+          <FormField
+            control={form.control}
+            name="content"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Your Testimonial *</FormLabel>
+                <FormControl>
+                  <Textarea
+                    rows={5}
+                    placeholder="Tell us about your experience working with CWP Marketing..."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
 
-        <Button type="submit" disabled={isSubmitting} className="w-full">
-          {isSubmitting ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Submitting...
-            </>
-          ) : (
-            <>
-              <Send className="w-4 h-4 mr-2" />
-              Submit Testimonial
-            </>
-          )}
-        </Button>
-      </form>
+          <Button type="submit" disabled={isSubmitting} className="w-full">
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4 mr-2" />
+                Submit Testimonial
+              </>
+            )}
+          </Button>
+        </form>
+      </Form>
     </Card>
   );
 }

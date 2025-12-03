@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import DOMPurify from "dompurify";
 import { Calendar, Clock, ArrowLeft, User, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -238,7 +239,7 @@ export default function BlogPost() {
               <div className="flex-1 min-w-0">
                 <div 
                   className="prose prose-invert prose-lg prose-headings:font-bold prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary max-w-none"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
                 />
               </div>
             </div>

@@ -129,19 +129,19 @@ export default function EmailCampaignsAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Email Campaigns</h1>
-            <p className="text-muted-foreground">{subscriberCount} active subscribers</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">Email Campaigns</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">{subscriberCount} active subscribers</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button onClick={() => { setEditingCampaign(null); setForm({ name: "", subject: "", content: "", segment: "all" }); }}>
+              <Button onClick={() => { setEditingCampaign(null); setForm({ name: "", subject: "", content: "", segment: "all" }); }} className="w-full sm:w-auto">
                 <Plus className="h-4 w-4 mr-2" />
                 New Campaign
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="max-w-2xl mx-4 sm:mx-auto max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>{editingCampaign ? "Edit Campaign" : "Create Campaign"}</DialogTitle>
               </DialogHeader>
@@ -237,41 +237,48 @@ export default function EmailCampaignsAdmin() {
             ) : campaigns.length === 0 ? (
               <p className="text-center text-muted-foreground py-8">No campaigns yet</p>
             ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Subject</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Sent</TableHead>
-                    <TableHead>Opens</TableHead>
-                    <TableHead>Clicks</TableHead>
-                    <TableHead>Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {campaigns.map((campaign) => (
-                    <TableRow key={campaign.id}>
-                      <TableCell className="font-medium">{campaign.name}</TableCell>
-                      <TableCell className="max-w-xs truncate">{campaign.subject}</TableCell>
-                      <TableCell>{getStatusBadge(campaign.status)}</TableCell>
-                      <TableCell>{campaign.sent_count}</TableCell>
-                      <TableCell>{campaign.open_count}</TableCell>
-                      <TableCell>{campaign.click_count}</TableCell>
-                      <TableCell>
-                        <div className="flex gap-2">
-                          <Button variant="ghost" size="icon" onClick={() => handleEdit(campaign)}>
-                            <Edit className="h-4 w-4" />
-                          </Button>
-                          <Button variant="ghost" size="icon" onClick={() => handleDelete(campaign.id)}>
-                            <Trash2 className="h-4 w-4 text-destructive" />
-                          </Button>
-                        </div>
-                      </TableCell>
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead className="hidden sm:table-cell">Subject</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="hidden md:table-cell">Sent</TableHead>
+                      <TableHead className="hidden md:table-cell">Opens</TableHead>
+                      <TableHead className="hidden md:table-cell">Clicks</TableHead>
+                      <TableHead>Actions</TableHead>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHeader>
+                  <TableBody>
+                    {campaigns.map((campaign) => (
+                      <TableRow key={campaign.id}>
+                        <TableCell>
+                          <div>
+                            <p className="font-medium">{campaign.name}</p>
+                            <p className="text-xs text-muted-foreground sm:hidden truncate max-w-[150px]">{campaign.subject}</p>
+                          </div>
+                        </TableCell>
+                        <TableCell className="hidden sm:table-cell max-w-xs truncate">{campaign.subject}</TableCell>
+                        <TableCell>{getStatusBadge(campaign.status)}</TableCell>
+                        <TableCell className="hidden md:table-cell">{campaign.sent_count}</TableCell>
+                        <TableCell className="hidden md:table-cell">{campaign.open_count}</TableCell>
+                        <TableCell className="hidden md:table-cell">{campaign.click_count}</TableCell>
+                        <TableCell>
+                          <div className="flex gap-1">
+                            <Button variant="ghost" size="icon" onClick={() => handleEdit(campaign)}>
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="icon" onClick={() => handleDelete(campaign.id)}>
+                              <Trash2 className="h-4 w-4 text-destructive" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             )}
           </CardContent>
         </Card>

@@ -76,13 +76,13 @@ export default function AnalyticsAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Analytics Dashboard</h1>
-            <p className="text-muted-foreground">Track your website performance</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">Analytics Dashboard</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">Track your website performance</p>
           </div>
           <Select value={timeRange} onValueChange={setTimeRange}>
-            <SelectTrigger className="w-32">
+            <SelectTrigger className="w-full sm:w-32">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

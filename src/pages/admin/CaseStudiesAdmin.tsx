@@ -148,21 +148,21 @@ export default function CaseStudiesAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Case Studies</h1>
-            <p className="text-muted-foreground">Showcase your work</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">Case Studies</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">Showcase your work</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button onClick={() => openDialog()}><Plus className="h-4 w-4 mr-2" /> Add Case Study</Button>
+              <Button onClick={() => openDialog()} className="w-full sm:w-auto"><Plus className="h-4 w-4 mr-2" /> Add Case Study</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
               <DialogHeader>
                 <DialogTitle>{editingStudy ? "Edit" : "New"} Case Study</DialogTitle>
               </DialogHeader>
               <div className="space-y-4 py-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Title</Label>
                     <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value, slug: generateSlug(e.target.value) })} />
@@ -172,7 +172,7 @@ export default function CaseStudiesAdmin() {
                     <Input value={form.slug} onChange={(e) => setForm({ ...form, slug: e.target.value })} />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Client</Label>
                     <Input value={form.client} onChange={(e) => setForm({ ...form, client: e.target.value })} />
@@ -246,19 +246,19 @@ export default function CaseStudiesAdmin() {
             {filteredStudies.map((study) => (
               <Card key={study.id}>
                 <CardContent className="py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      {study.cover_image && <img src={study.cover_image} alt="" className="w-16 h-16 object-cover rounded" />}
-                      <div>
-                        <h3 className="font-semibold">{study.title}</h3>
-                        <p className="text-sm text-muted-foreground">{study.client} • {study.industry}</p>
-                        <div className="flex gap-2 mt-1">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4 min-w-0">
+                      {study.cover_image && <img src={study.cover_image} alt="" className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded flex-shrink-0" />}
+                      <div className="min-w-0">
+                        <h3 className="font-semibold truncate">{study.title}</h3>
+                        <p className="text-sm text-muted-foreground truncate">{study.client} • {study.industry}</p>
+                        <div className="flex gap-2 mt-1 flex-wrap">
                           {study.published && <span className="text-xs bg-green-500/20 text-green-500 px-2 py-0.5 rounded">Published</span>}
                           {study.featured && <span className="text-xs bg-yellow-500/20 text-yellow-500 px-2 py-0.5 rounded">Featured</span>}
                         </div>
                       </div>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-shrink-0 self-end sm:self-center">
                       <Button variant="outline" size="icon" onClick={() => openDialog(study)}><Pencil className="h-4 w-4" /></Button>
                       <Button variant="outline" size="icon" onClick={() => handleDelete(study.id)}><Trash2 className="h-4 w-4" /></Button>
                     </div>

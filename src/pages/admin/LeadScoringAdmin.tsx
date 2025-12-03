@@ -150,12 +150,12 @@ export default function LeadScoringAdmin() {
     <AdminLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold">Lead Scoring</h1>
-          <p className="text-muted-foreground">Score and prioritize your leads</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Lead Scoring</h1>
+          <p className="text-muted-foreground text-sm sm:text-base">Score and prioritize your leads</p>
         </div>
 
         {/* Stats */}
-        <div className="grid sm:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           <Card>
             <CardHeader className="pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">Hot Leads</CardTitle>
@@ -227,46 +227,52 @@ export default function LeadScoringAdmin() {
             ) : filteredLeads.length === 0 ? (
               <p className="text-center text-muted-foreground py-8">No leads found</p>
             ) : (
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Score</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Company</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredLeads.map((lead) => (
-                    <TableRow key={lead.id}>
-                      <TableCell>{getScoreBadge(lead.score)}</TableCell>
-                      <TableCell className="font-medium">{lead.name}</TableCell>
-                      <TableCell>{lead.email}</TableCell>
-                      <TableCell>{lead.company || "-"}</TableCell>
-                      <TableCell>{getStatusBadge(lead.status)}</TableCell>
-                      <TableCell className="text-muted-foreground">
-                        {new Date(lead.created_at).toLocaleDateString()}
-                      </TableCell>
-                      <TableCell>
-                        <div className="flex gap-2">
-                          <Button variant="ghost" size="sm" onClick={() => calculateScore(lead)}>
-                            <Star className="h-4 w-4" />
-                          </Button>
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button variant="ghost" size="sm" onClick={() => setSelectedLead(lead)}>
-                                <Eye className="h-4 w-4" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                              <DialogHeader>
-                                <DialogTitle>Lead Details: {lead.name}</DialogTitle>
-                              </DialogHeader>
-                              <div className="space-y-4">
-                                <div className="grid grid-cols-2 gap-4">
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Score</TableHead>
+                      <TableHead>Name</TableHead>
+                      <TableHead className="hidden sm:table-cell">Email</TableHead>
+                      <TableHead className="hidden md:table-cell">Company</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="hidden sm:table-cell">Date</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {filteredLeads.map((lead) => (
+                      <TableRow key={lead.id}>
+                        <TableCell>{getScoreBadge(lead.score)}</TableCell>
+                        <TableCell>
+                          <div>
+                            <p className="font-medium">{lead.name}</p>
+                            <p className="text-xs text-muted-foreground sm:hidden">{lead.email}</p>
+                          </div>
+                        </TableCell>
+                        <TableCell className="hidden sm:table-cell">{lead.email}</TableCell>
+                        <TableCell className="hidden md:table-cell">{lead.company || "-"}</TableCell>
+                        <TableCell>{getStatusBadge(lead.status)}</TableCell>
+                        <TableCell className="hidden sm:table-cell text-muted-foreground">
+                          {new Date(lead.created_at).toLocaleDateString()}
+                        </TableCell>
+                        <TableCell>
+                          <div className="flex gap-1">
+                            <Button variant="ghost" size="sm" onClick={() => calculateScore(lead)}>
+                              <Star className="h-4 w-4" />
+                            </Button>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button variant="ghost" size="sm" onClick={() => setSelectedLead(lead)}>
+                                  <Eye className="h-4 w-4" />
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent className="max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
+                                <DialogHeader>
+                                  <DialogTitle className="text-lg">Lead: {lead.name}</DialogTitle>
+                                </DialogHeader>
+                                <div className="space-y-4">
+                                  <div className="grid sm:grid-cols-2 gap-4">
                                   <div>
                                     <p className="text-sm text-muted-foreground">Email</p>
                                     <p>{lead.email}</p>
@@ -327,12 +333,13 @@ export default function LeadScoringAdmin() {
                               </div>
                             </DialogContent>
                           </Dialog>
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             )}
           </CardContent>
         </Card>

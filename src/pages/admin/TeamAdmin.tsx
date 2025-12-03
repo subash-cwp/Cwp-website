@@ -129,21 +129,21 @@ export default function TeamAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Team Members</h1>
-            <p className="text-muted-foreground">Manage your team</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">Team Members</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">Manage your team</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button onClick={() => openDialog()}><Plus className="h-4 w-4 mr-2" /> Add Member</Button>
+              <Button onClick={() => openDialog()} className="w-full sm:w-auto"><Plus className="h-4 w-4 mr-2" /> Add Member</Button>
             </DialogTrigger>
-            <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
               <DialogHeader>
                 <DialogTitle>{editingMember ? "Edit" : "New"} Team Member</DialogTitle>
               </DialogHeader>
               <div className="space-y-4 py-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Name</Label>
                     <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
@@ -165,7 +165,7 @@ export default function TeamAdmin() {
                   folder="team"
                 />
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>LinkedIn URL</Label>
                     <Input value={form.linkedin} onChange={(e) => setForm({ ...form, linkedin: e.target.value })} />
@@ -175,7 +175,7 @@ export default function TeamAdmin() {
                     <Input value={form.twitter} onChange={(e) => setForm({ ...form, twitter: e.target.value })} />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Email</Label>
                     <Input value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
