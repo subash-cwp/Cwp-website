@@ -13,7 +13,13 @@ import {
   LogOut,
   Loader2,
   Menu,
-  X
+  X,
+  BarChart3,
+  Image,
+  TestTube,
+  Search,
+  History,
+  Send
 } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
@@ -24,12 +30,18 @@ interface AdminLayoutProps {
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
+  { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
   { icon: FileText, label: "Blog Posts", path: "/admin/blog" },
   { icon: Briefcase, label: "Case Studies", path: "/admin/case-studies" },
   { icon: Settings, label: "Services", path: "/admin/services" },
   { icon: Users, label: "Team", path: "/admin/team" },
   { icon: MessageSquare, label: "Testimonials", path: "/admin/testimonials" },
-  { icon: Mail, label: "Leads", path: "/admin/leads" },
+  { icon: Mail, label: "Lead Scoring", path: "/admin/leads-scoring" },
+  { icon: Send, label: "Email Campaigns", path: "/admin/email-campaigns" },
+  { icon: Image, label: "Media Library", path: "/admin/media" },
+  { icon: TestTube, label: "A/B Testing", path: "/admin/ab-testing" },
+  { icon: Search, label: "SEO Analyzer", path: "/admin/seo" },
+  { icon: History, label: "Activity Log", path: "/admin/activity-log" },
   { icon: Settings, label: "Site Settings", path: "/admin/settings" },
 ];
 

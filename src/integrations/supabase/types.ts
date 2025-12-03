@@ -14,6 +14,116 @@ export type Database = {
   }
   public: {
     Tables: {
+      ab_test_results: {
+        Row: {
+          converted: boolean | null
+          created_at: string
+          id: string
+          test_id: string | null
+          variant: string
+          visitor_id: string
+        }
+        Insert: {
+          converted?: boolean | null
+          created_at?: string
+          id?: string
+          test_id?: string | null
+          variant: string
+          visitor_id: string
+        }
+        Update: {
+          converted?: boolean | null
+          created_at?: string
+          id?: string
+          test_id?: string | null
+          variant?: string
+          visitor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ab_test_results_test_id_fkey"
+            columns: ["test_id"]
+            isOneToOne: false
+            referencedRelation: "ab_tests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ab_tests: {
+        Row: {
+          created_at: string
+          description: string | null
+          ended_at: string | null
+          id: string
+          name: string
+          started_at: string | null
+          status: string
+          traffic_split: number | null
+          variant_a: Json
+          variant_b: Json
+          winner: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          ended_at?: string | null
+          id?: string
+          name: string
+          started_at?: string | null
+          status?: string
+          traffic_split?: number | null
+          variant_a: Json
+          variant_b: Json
+          winner?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          ended_at?: string | null
+          id?: string
+          name?: string
+          started_at?: string | null
+          status?: string
+          traffic_split?: number | null
+          variant_a?: Json
+          variant_b?: Json
+          winner?: string | null
+        }
+        Relationships: []
+      }
+      activity_logs: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json | null
+          entity_id: string | null
+          entity_type: string
+          id: string
+          ip_address: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: Json | null
+          entity_id?: string | null
+          entity_type: string
+          id?: string
+          ip_address?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          entity_id?: string | null
+          entity_type?: string
+          id?: string
+          ip_address?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       blog_posts: {
         Row: {
           author_avatar: string | null
@@ -27,6 +137,9 @@ export type Database = {
           id: string
           published: boolean | null
           read_time: string | null
+          scheduled_publish_at: string | null
+          seo_score: number | null
+          seo_suggestions: Json | null
           slug: string
           tags: string[] | null
           title: string
@@ -44,6 +157,9 @@ export type Database = {
           id?: string
           published?: boolean | null
           read_time?: string | null
+          scheduled_publish_at?: string | null
+          seo_score?: number | null
+          seo_suggestions?: Json | null
           slug: string
           tags?: string[] | null
           title: string
@@ -61,6 +177,9 @@ export type Database = {
           id?: string
           published?: boolean | null
           read_time?: string | null
+          scheduled_publish_at?: string | null
+          seo_score?: number | null
+          seo_suggestions?: Json | null
           slug?: string
           tags?: string[] | null
           title?: string
@@ -81,6 +200,7 @@ export type Database = {
           metrics: Json | null
           published: boolean | null
           results: string | null
+          scheduled_publish_at: string | null
           slug: string
           solution: string | null
           technologies: string[] | null
@@ -101,6 +221,7 @@ export type Database = {
           metrics?: Json | null
           published?: boolean | null
           results?: string | null
+          scheduled_publish_at?: string | null
           slug: string
           solution?: string | null
           technologies?: string[] | null
@@ -121,6 +242,7 @@ export type Database = {
           metrics?: Json | null
           published?: boolean | null
           results?: string | null
+          scheduled_publish_at?: string | null
           slug?: string
           solution?: string | null
           technologies?: string[] | null
@@ -133,37 +255,103 @@ export type Database = {
       }
       contact_submissions: {
         Row: {
+          assigned_to: string | null
           company: string | null
           created_at: string | null
           email: string
           id: string
           message: string | null
           name: string
+          notes: string | null
           phone: string | null
           read: boolean | null
+          score: number | null
+          score_factors: Json | null
           source: string | null
+          status: string | null
         }
         Insert: {
+          assigned_to?: string | null
           company?: string | null
           created_at?: string | null
           email: string
           id?: string
           message?: string | null
           name: string
+          notes?: string | null
           phone?: string | null
           read?: boolean | null
+          score?: number | null
+          score_factors?: Json | null
           source?: string | null
+          status?: string | null
         }
         Update: {
+          assigned_to?: string | null
           company?: string | null
           created_at?: string | null
           email?: string
           id?: string
           message?: string | null
           name?: string
+          notes?: string | null
           phone?: string | null
           read?: boolean | null
+          score?: number | null
+          score_factors?: Json | null
           source?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      email_campaigns: {
+        Row: {
+          click_count: number | null
+          content: string
+          created_at: string
+          created_by: string | null
+          id: string
+          name: string
+          open_count: number | null
+          scheduled_at: string | null
+          segment: string | null
+          sent_at: string | null
+          sent_count: number | null
+          status: string
+          subject: string
+          updated_at: string
+        }
+        Insert: {
+          click_count?: number | null
+          content: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name: string
+          open_count?: number | null
+          scheduled_at?: string | null
+          segment?: string | null
+          sent_at?: string | null
+          sent_count?: number | null
+          status?: string
+          subject: string
+          updated_at?: string
+        }
+        Update: {
+          click_count?: number | null
+          content?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          name?: string
+          open_count?: number | null
+          scheduled_at?: string | null
+          segment?: string | null
+          sent_at?: string | null
+          sent_count?: number | null
+          status?: string
+          subject?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -206,6 +394,45 @@ export type Database = {
           position?: string
           resume_url?: string | null
           status?: string | null
+        }
+        Relationships: []
+      }
+      media_library: {
+        Row: {
+          alt_text: string | null
+          created_at: string
+          file_name: string
+          file_path: string
+          file_size: number | null
+          file_type: string
+          folder: string | null
+          id: string
+          tags: string[] | null
+          uploaded_by: string | null
+        }
+        Insert: {
+          alt_text?: string | null
+          created_at?: string
+          file_name: string
+          file_path: string
+          file_size?: number | null
+          file_type: string
+          folder?: string | null
+          id?: string
+          tags?: string[] | null
+          uploaded_by?: string | null
+        }
+        Update: {
+          alt_text?: string | null
+          created_at?: string
+          file_name?: string
+          file_path?: string
+          file_size?: number | null
+          file_type?: string
+          folder?: string | null
+          id?: string
+          tags?: string[] | null
+          uploaded_by?: string | null
         }
         Relationships: []
       }
@@ -254,6 +481,39 @@ export type Database = {
           full_name?: string | null
           id?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      scheduled_content: {
+        Row: {
+          content_id: string
+          content_type: string
+          created_at: string
+          created_by: string | null
+          id: string
+          published_at: string | null
+          scheduled_at: string
+          status: string
+        }
+        Insert: {
+          content_id: string
+          content_type: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          published_at?: string | null
+          scheduled_at: string
+          status?: string
+        }
+        Update: {
+          content_id?: string
+          content_type?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          published_at?: string | null
+          scheduled_at?: string
+          status?: string
         }
         Relationships: []
       }
