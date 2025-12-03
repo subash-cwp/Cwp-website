@@ -26,6 +26,13 @@ import TeamAdmin from "./pages/admin/TeamAdmin";
 import TestimonialsAdmin from "./pages/admin/TestimonialsAdmin";
 import LeadsAdmin from "./pages/admin/LeadsAdmin";
 import SiteSettingsAdmin from "./pages/admin/SiteSettingsAdmin";
+import AnalyticsAdmin from "./pages/admin/AnalyticsAdmin";
+import ActivityLogAdmin from "./pages/admin/ActivityLogAdmin";
+import EmailCampaignsAdmin from "./pages/admin/EmailCampaignsAdmin";
+import LeadScoringAdmin from "./pages/admin/LeadScoringAdmin";
+import MediaLibraryAdmin from "./pages/admin/MediaLibraryAdmin";
+import ABTestingAdmin from "./pages/admin/ABTestingAdmin";
+import SEOAnalyzerAdmin from "./pages/admin/SEOAnalyzerAdmin";
 import { Analytics } from "@/components/Analytics";
 
 const queryClient = new QueryClient();
@@ -53,12 +60,19 @@ const App = () => (
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/analytics" element={<AnalyticsAdmin />} />
             <Route path="/admin/blog" element={<BlogAdmin />} />
             <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
             <Route path="/admin/services" element={<ServicesAdmin />} />
             <Route path="/admin/team" element={<TeamAdmin />} />
             <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
             <Route path="/admin/leads" element={<LeadsAdmin />} />
+            <Route path="/admin/leads-scoring" element={<LeadScoringAdmin />} />
+            <Route path="/admin/email-campaigns" element={<EmailCampaignsAdmin />} />
+            <Route path="/admin/media" element={<MediaLibraryAdmin />} />
+            <Route path="/admin/ab-testing" element={<ABTestingAdmin />} />
+            <Route path="/admin/seo" element={<SEOAnalyzerAdmin />} />
+            <Route path="/admin/activity-log" element={<ActivityLogAdmin />} />
             <Route path="/admin/settings" element={<SiteSettingsAdmin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
