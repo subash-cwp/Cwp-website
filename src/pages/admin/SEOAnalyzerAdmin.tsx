@@ -181,12 +181,12 @@ export default function SEOAnalyzerAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">SEO Analyzer</h1>
-            <p className="text-muted-foreground">Optimize your content for search engines</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">SEO Analyzer</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">Optimize your content for search engines</p>
           </div>
-          <Button onClick={analyzeAll} disabled={!!analyzing}>
+          <Button onClick={analyzeAll} disabled={!!analyzing} className="w-full sm:w-auto">
             <RefreshCw className={`h-4 w-4 mr-2 ${analyzing ? "animate-spin" : ""}`} />
             Analyze All
           </Button>
@@ -236,18 +236,18 @@ export default function SEOAnalyzerAdmin() {
               <Accordion type="single" collapsible className="space-y-2">
                 {posts.map((post) => (
                   <AccordionItem key={post.id} value={post.id} className="border rounded-lg px-4">
-                    <AccordionTrigger className="hover:no-underline">
-                      <div className="flex items-center gap-4 w-full">
-                        <div className="flex-1 text-left">
-                          <p className="font-medium">{post.title}</p>
-                          <p className="text-sm text-muted-foreground">/blog/{post.slug}</p>
+                    <AccordionTrigger className="hover:no-underline py-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 w-full text-left">
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium truncate">{post.title}</p>
+                          <p className="text-xs sm:text-sm text-muted-foreground truncate">/blog/{post.slug}</p>
                         </div>
-                        <div className="flex items-center gap-4">
-                          {getScoreBadge(post.seo_score)}
-                          <div className="w-24">
+                        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
+                          <span className="hidden sm:inline">{getScoreBadge(post.seo_score)}</span>
+                          <div className="w-16 sm:w-24">
                             <Progress value={post.seo_score} className="h-2" />
                           </div>
-                          <span className={`font-bold ${getScoreColor(post.seo_score)}`}>{post.seo_score}</span>
+                          <span className={`font-bold text-sm ${getScoreColor(post.seo_score)}`}>{post.seo_score}</span>
                         </div>
                       </div>
                     </AccordionTrigger>

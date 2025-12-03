@@ -1,12 +1,33 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Loader2, Upload, Send } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const applicationSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
+  email: z.string().trim().email("Please enter a valid email").max(255, "Email is too long"),
+  phone: z.string().trim().max(20, "Phone number is too long").optional().or(z.literal("")),
+  linkedinUrl: z.string().trim().url("Please enter a valid URL").max(500, "URL is too long").optional().or(z.literal("")),
+  portfolioUrl: z.string().trim().url("Please enter a valid URL").max(500, "URL is too long").optional().or(z.literal("")),
+  coverLetter: z.string().trim().max(5000, "Cover letter is too long").optional().or(z.literal("")),
+});
+
+type ApplicationFormData = z.infer<typeof applicationSchema>;
 
 interface CareerApplicationFormProps {
   position: string;
@@ -15,17 +36,21 @@ interface CareerApplicationFormProps {
 }
 
 export function CareerApplicationForm({ position, isOpen, onClose }: CareerApplicationFormProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    linkedinUrl: "",
-    portfolioUrl: "",
-    coverLetter: "",
-  });
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  const form = useForm<ApplicationFormData>({
+    resolver: zodResolver(applicationSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      linkedinUrl: "",
+      portfolioUrl: "",
+      coverLetter: "",
+    },
+  });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -42,19 +67,17 @@ export function CareerApplicationForm({ position, isOpen, onClose }: CareerAppli
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: ApplicationFormData) => {
     setIsSubmitting(true);
 
     let resumeUrl = null;
 
-    // Upload resume if provided
     if (resumeFile) {
       const fileExt = resumeFile.name.split(".").pop();
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
       const filePath = `resumes/${fileName}`;
 
-      const { error: uploadError, data } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from("media")
         .upload(filePath, resumeFile);
 
@@ -72,16 +95,15 @@ export function CareerApplicationForm({ position, isOpen, onClose }: CareerAppli
       resumeUrl = urlData.publicUrl;
     }
 
-    // Save application to database
     const { error } = await supabase.from("job_applications").insert({
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone || null,
+      name: data.name,
+      email: data.email,
+      phone: data.phone || null,
       position: position,
       resume_url: resumeUrl,
-      linkedin_url: formData.linkedinUrl || null,
-      portfolio_url: formData.portfolioUrl || null,
-      cover_letter: formData.coverLetter || null,
+      linkedin_url: data.linkedinUrl || null,
+      portfolio_url: data.portfolioUrl || null,
+      cover_letter: data.coverLetter || null,
     });
 
     setIsSubmitting(false);
@@ -97,14 +119,7 @@ export function CareerApplicationForm({ position, isOpen, onClose }: CareerAppli
         title: "Application Submitted!",
         description: "We'll review your application and get back to you soon.",
       });
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        linkedinUrl: "",
-        portfolioUrl: "",
-        coverLetter: "",
-      });
+      form.reset();
       setResumeFile(null);
       onClose();
     }
@@ -112,126 +127,147 @@ export function CareerApplicationForm({ position, isOpen, onClose }: CareerAppli
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
         <DialogHeader>
-          <DialogTitle>Apply for {position}</DialogTitle>
-          <DialogDescription>
-            Fill out the form below to submit your application. We'll review it and get back to you.
+          <DialogTitle className="text-lg sm:text-xl">Apply for {position}</DialogTitle>
+          <DialogDescription className="text-sm">
+            Fill out the form below to submit your application.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6 mt-4">
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="app-name">Full Name *</Label>
-              <Input
-                id="app-name"
-                required
-                value={formData.name}
-                onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                placeholder="John Doe"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="app-email">Email *</Label>
-              <Input
-                id="app-email"
-                type="email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                placeholder="john@example.com"
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="app-phone">Phone Number</Label>
-              <Input
-                id="app-phone"
-                type="tel"
-                value={formData.phone}
-                onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                placeholder="+91 9876543210"
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="app-linkedin">LinkedIn Profile</Label>
-              <Input
-                id="app-linkedin"
-                type="url"
-                value={formData.linkedinUrl}
-                onChange={(e) => setFormData((prev) => ({ ...prev, linkedinUrl: e.target.value }))}
-                placeholder="https://linkedin.com/in/yourprofile"
-              />
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="app-portfolio">Portfolio URL</Label>
-            <Input
-              id="app-portfolio"
-              type="url"
-              value={formData.portfolioUrl}
-              onChange={(e) => setFormData((prev) => ({ ...prev, portfolioUrl: e.target.value }))}
-              placeholder="https://yourportfolio.com"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="app-resume">Resume (PDF, DOC - Max 5MB)</Label>
-            <div className="border-2 border-dashed border-border rounded-lg p-6 text-center hover:border-primary/50 transition-colors">
-              <input
-                id="app-resume"
-                type="file"
-                accept=".pdf,.doc,.docx"
-                onChange={handleFileChange}
-                className="hidden"
-              />
-              <label htmlFor="app-resume" className="cursor-pointer">
-                <Upload className="w-8 h-8 mx-auto mb-2 text-muted-foreground" />
-                {resumeFile ? (
-                  <p className="text-sm text-primary font-medium">{resumeFile.name}</p>
-                ) : (
-                  <p className="text-sm text-muted-foreground">
-                    Click to upload or drag and drop
-                  </p>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6 mt-4">
+            <div className="grid sm:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name *</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
                 )}
-              </label>
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email *</FormLabel>
+                    <FormControl>
+                      <Input type="email" placeholder="john@example.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="app-cover">Cover Letter</Label>
-            <Textarea
-              id="app-cover"
-              rows={5}
-              value={formData.coverLetter}
-              onChange={(e) => setFormData((prev) => ({ ...prev, coverLetter: e.target.value }))}
-              placeholder="Tell us why you're interested in this position and what makes you a great fit..."
-            />
-          </div>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                      <Input type="tel" placeholder="+91 9876543210" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="linkedinUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>LinkedIn Profile</FormLabel>
+                    <FormControl>
+                      <Input type="url" placeholder="https://linkedin.com/in/profile" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
-          <div className="flex gap-3 justify-end">
-            <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Submitting...
-                </>
-              ) : (
-                <>
-                  <Send className="w-4 h-4 mr-2" />
-                  Submit Application
-                </>
+            <FormField
+              control={form.control}
+              name="portfolioUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Portfolio URL</FormLabel>
+                  <FormControl>
+                    <Input type="url" placeholder="https://yourportfolio.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
               )}
-            </Button>
-          </div>
-        </form>
+            />
+
+            <div className="space-y-2">
+              <FormLabel>Resume (PDF, DOC - Max 5MB)</FormLabel>
+              <div className="border-2 border-dashed border-border rounded-lg p-4 sm:p-6 text-center hover:border-primary/50 transition-colors">
+                <input
+                  id="app-resume"
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+                <label htmlFor="app-resume" className="cursor-pointer">
+                  <Upload className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 text-muted-foreground" />
+                  {resumeFile ? (
+                    <p className="text-sm text-primary font-medium truncate">{resumeFile.name}</p>
+                  ) : (
+                    <p className="text-sm text-muted-foreground">Click to upload</p>
+                  )}
+                </label>
+              </div>
+            </div>
+
+            <FormField
+              control={form.control}
+              name="coverLetter"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Cover Letter</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      rows={4}
+                      placeholder="Tell us why you're interested in this position..."
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <div className="flex flex-col-reverse sm:flex-row gap-3 sm:justify-end">
+              <Button type="button" variant="outline" onClick={onClose} className="w-full sm:w-auto">
+                Cancel
+              </Button>
+              <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto">
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Submit Application
+                  </>
+                )}
+              </Button>
+            </div>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );

@@ -178,23 +178,23 @@ export default function BlogAdmin() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div className="flex items-center justify-between flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold">Blog Posts</h1>
-            <p className="text-muted-foreground">Manage your blog content</p>
+            <h1 className="text-2xl sm:text-3xl font-bold">Blog Posts</h1>
+            <p className="text-muted-foreground text-sm sm:text-base">Manage your blog content</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              <Button onClick={() => openDialog()}>
+              <Button onClick={() => openDialog()} className="w-full sm:w-auto">
                 <Plus className="h-4 w-4 mr-2" /> Add Post
               </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto mx-4 sm:mx-auto">
               <DialogHeader>
                 <DialogTitle>{editingPost ? "Edit Post" : "New Post"}</DialogTitle>
               </DialogHeader>
               <div className="space-y-4 py-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Title</Label>
                     <Input
@@ -228,7 +228,7 @@ export default function BlogAdmin() {
                   folder="blog"
                 />
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Category</Label>
                     <Input value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} />
@@ -239,7 +239,7 @@ export default function BlogAdmin() {
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label>Author Name</Label>
                     <Input value={form.author_name} onChange={(e) => setForm({ ...form, author_name: e.target.value })} />
@@ -295,21 +295,21 @@ export default function BlogAdmin() {
             {filteredPosts.map((post) => (
               <Card key={post.id}>
                 <CardContent className="py-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4 min-w-0">
                       {post.cover_image && (
-                        <img src={post.cover_image} alt="" className="w-16 h-16 object-cover rounded" />
+                        <img src={post.cover_image} alt="" className="w-12 h-12 sm:w-16 sm:h-16 object-cover rounded flex-shrink-0" />
                       )}
-                      <div>
-                        <h3 className="font-semibold">{post.title}</h3>
-                        <p className="text-sm text-muted-foreground">{post.category} • {post.read_time}</p>
-                        <div className="flex gap-2 mt-1">
+                      <div className="min-w-0">
+                        <h3 className="font-semibold truncate">{post.title}</h3>
+                        <p className="text-sm text-muted-foreground truncate">{post.category} • {post.read_time}</p>
+                        <div className="flex gap-2 mt-1 flex-wrap">
                           {post.published && <span className="text-xs bg-green-500/20 text-green-500 px-2 py-0.5 rounded">Published</span>}
                           {post.featured && <span className="text-xs bg-yellow-500/20 text-yellow-500 px-2 py-0.5 rounded">Featured</span>}
                         </div>
                       </div>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-shrink-0 self-end sm:self-center">
                       <Button variant="outline" size="icon" onClick={() => openDialog(post)}>
                         <Pencil className="h-4 w-4" />
                       </Button>
