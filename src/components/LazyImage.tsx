@@ -11,6 +11,7 @@ interface LazyImageProps {
 export const LazyImage = ({ src, alt, className, placeholderClassName }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
+  const [showImage, setShowImage] = useState(false);
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export const LazyImage = ({ src, alt, className, placeholderClassName }: LazyIma
           observer.disconnect();
         }
       },
-      { rootMargin: "100px" }
+      { rootMargin: "200px" }
     );
 
     if (imgRef.current) {
@@ -31,13 +32,22 @@ export const LazyImage = ({ src, alt, className, placeholderClassName }: LazyIma
     return () => observer.disconnect();
   }, []);
 
+  // Delay showing the image until it's fully loaded to prevent blink
+  useEffect(() => {
+    if (isLoaded) {
+      // Small delay to ensure smooth transition
+      const timer = setTimeout(() => setShowImage(true), 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoaded]);
+
   return (
-    <div ref={imgRef} className={cn("relative overflow-hidden", className)}>
-      {/* Blur placeholder */}
+    <div ref={imgRef} className={cn("relative overflow-hidden bg-muted/30", className)}>
+      {/* Subtle placeholder - no animation to avoid flicker */}
       <div
         className={cn(
-          "absolute inset-0 bg-gradient-to-br from-muted to-muted/50 animate-pulse transition-opacity duration-500",
-          isLoaded ? "opacity-0" : "opacity-100",
+          "absolute inset-0 bg-muted/50 transition-opacity duration-300 ease-out",
+          showImage ? "opacity-0 pointer-events-none" : "opacity-100",
           placeholderClassName
         )}
       />
@@ -48,8 +58,8 @@ export const LazyImage = ({ src, alt, className, placeholderClassName }: LazyIma
           alt={alt}
           onLoad={() => setIsLoaded(true)}
           className={cn(
-            "w-full h-full object-cover transition-opacity duration-500",
-            isLoaded ? "opacity-100" : "opacity-0"
+            "w-full h-full object-cover transition-opacity duration-300 ease-out",
+            showImage ? "opacity-100" : "opacity-0"
           )}
         />
       )}
