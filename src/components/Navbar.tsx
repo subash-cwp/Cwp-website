@@ -23,9 +23,8 @@ export const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50 animate-slide-up">
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 group cursor-pointer">
-            <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300" />
-            <span className="text-xl font-bold group-hover:text-primary-glow transition-colors">CWP</span>
+          <Link to="/" className="flex items-center group cursor-pointer">
+            <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain rounded-[5%] group-hover:scale-110 transition-transform duration-300" />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
