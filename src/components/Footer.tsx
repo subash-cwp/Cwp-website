@@ -33,10 +33,9 @@ export const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center gap-2 mb-4 group">
-              <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain group-hover:scale-110 transition-transform" />
-              <span className="text-xl font-bold group-hover:text-primary transition-colors">CWP</span>
-            </Link>
+          <Link to="/" className="flex items-center mb-4 group">
+            <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain rounded-[5%] group-hover:scale-110 transition-transform" />
+          </Link>
             <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
               {settings.company.description || "CWP MARKETING STRATEGY & GROWTH CO LTD/PRIVATED LIMITED—GXR-2024 (NOT REGISTERED)"}
             </p>

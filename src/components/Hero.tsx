@@ -110,9 +110,6 @@ export const Hero = () => {
             </Button>
           </div>
 
-          <p className="text-sm text-muted-foreground animate-slide-up" style={{ animationDelay: '0.6s' }}>
-            <span className="text-primary font-semibold">Trusted by 50+ Brands</span>
-          </p>
         </div>
       </div>
     </section>

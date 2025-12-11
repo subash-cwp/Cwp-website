@@ -53,10 +53,10 @@ const Index = () => {
           logo: `${window.location.origin}/og-image.png`,
           description: "Strategic marketing and growth consulting agency trusted by 50+ brands",
           contactPoint: {
-            telephone: "+919876543210",
+            telephone: "+918610986622",
             contactType: "sales"
           },
-          sameAs: ["https://linkedin.com/company/cwpmktng", "https://twitter.com/cwpmktng"]
+          sameAs: ["https://www.linkedin.com/in/naren-ethiraj-14834514b/"]
         }}
       />
       <ExitIntentPopup />
