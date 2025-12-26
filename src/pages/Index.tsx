@@ -107,6 +107,7 @@ const Index = () => {
             </ParallaxSection>
           </ScrollAnimationWrapper>
           
+          {/* Team section temporarily hidden
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
             <ParallaxSection speed={0.3} direction="up">
               <Suspense fallback={<SectionLoader />}>
@@ -114,6 +115,7 @@ const Index = () => {
               </Suspense>
             </ParallaxSection>
           </ScrollAnimationWrapper>
+          */}
           
           <ScrollAnimationWrapper animation="fade-in" threshold={0.15}>
             <ParallaxSection speed={0.4} direction="down">
