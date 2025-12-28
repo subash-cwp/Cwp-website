@@ -38,11 +38,11 @@ const defaultSettings: SiteSettings = {
     description: "Full-service digital marketing agency specializing in performance marketing, SEO, and brand strategy.",
     email: "hello@cwpmktng.com",
     phone: "+91 8610986622",
-    address: "No.34, Radhakrishnan St, West Mambalam, Chennai, Tamil Nadu 600033, India",
+    address: "G2, Venkateswara Flat, No: 9A, 1st Main Rd, Venkateswara Nagar, Velachery, Chennai, Tamil Nadu 600042",
     logo: "",
   },
   social: {
-    linkedin: "https://www.linkedin.com/in/naren-ethiraj-14834514b/",
+    linkedin: "https://www.linkedin.com/company/100370885",
     twitter: "",
     facebook: "",
     instagram: "",
