@@ -98,7 +98,7 @@ const About = () => {
                 Founded with a vision to bridge the gap between creative marketing and measurable growth, CWP has evolved into a trusted growth partner for businesses across industries.
               </p>
               <p className="text-muted-foreground mb-4">
-                We started with a simple belief: every brand deserves access to world-class marketing strategies that deliver real results. Today, we've helped 50+ brands generate over ₹50 Crores in revenue.
+                We started with a simple belief: every brand deserves access to world-class marketing strategies that deliver real results. Today, we've helped 100+ brands generate over ₹50 Crores in revenue.
               </p>
               <p className="text-muted-foreground">
                 Our team of strategists, creatives, and growth experts work together to create comprehensive marketing solutions that drive sustainable business growth.

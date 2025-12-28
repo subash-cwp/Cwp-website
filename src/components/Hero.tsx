@@ -58,7 +58,7 @@ export const Hero = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors group">
             <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">Trusted by 50+ Brands</span>
+            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">Trusted by 100+ Brands</span>
           </div>
 
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
