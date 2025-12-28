@@ -12,18 +12,18 @@ import teamNaren from "@/assets/team-naren.png";
 const values = [
   {
     icon: Target,
-    title: "Results-Driven",
+    title: "Results' Driven",
     description: "Every strategy we build is focused on measurable outcomes and real business growth."
   },
   {
     icon: Heart,
-    title: "Client-Centric",
+    title: "Client' Centric",
     description: "Your success is our success. We treat every client's business like our own."
   },
   {
     icon: Zap,
     title: "Innovation",
-    description: "We stay ahead of trends and leverage cutting-edge tools to give you a competitive edge."
+    description: "We stay ahead of trends and leverage cutting' edge tools to give you a competitive edge."
   },
   {
     icon: Users,
@@ -98,7 +98,7 @@ const About = () => {
                 Founded with a vision to bridge the gap between creative marketing and measurable growth, CWP has evolved into a trusted growth partner for businesses across industries.
               </p>
               <p className="text-muted-foreground mb-4">
-                We started with a simple belief: every brand deserves access to world-class marketing strategies that deliver real results. Today, we've helped 100+ brands generate over ₹50 Crores in revenue.
+                We started with a simple belief: every brand deserves access to world' class marketing strategies that deliver real results. Today, we've helped 100+ brands generate over ₹50 Crores in revenue.
               </p>
               <p className="text-muted-foreground">
                 Our team of strategists, creatives, and growth experts work together to create comprehensive marketing solutions that drive sustainable business growth.
@@ -115,7 +115,7 @@ const About = () => {
                   </div>
                 </div>
                 <p className="text-muted-foreground italic">
-                  "Our mission is simple: help brands unlock their true potential through strategic, data-driven marketing that delivers measurable results."
+                  "Our mission is simple: help brands unlock their true potential through strategic, data' driven marketing that delivers measurable results."
                 </p>
               </Card>
             </div>
@@ -133,7 +133,7 @@ const About = () => {
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
               <p className="text-muted-foreground">
-                To empower businesses with strategic marketing solutions that drive sustainable growth, increase brand visibility, and deliver exceptional ROI through data-driven methodologies.
+                To empower businesses with strategic marketing solutions that drive sustainable growth, increase brand visibility, and deliver exceptional ROI through data' driven methodologies.
               </p>
             </Card>
             <Card className="p-8 bg-background border-border/50 hover:border-primary/50 transition-all group">
@@ -194,14 +194,14 @@ const About = () => {
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto">
                 <Globe className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Full-Stack Expertise</h3>
+              <h3 className="text-xl font-bold mb-2">Full' Stack Expertise</h3>
               <p className="text-muted-foreground">From strategy to execution, we handle every aspect of your growth</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-4 mx-auto">
                 <TrendingUp className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Data-Driven Results</h3>
+              <h3 className="text-xl font-bold mb-2">Data' Driven Results</h3>
               <p className="text-muted-foreground">Every decision backed by analytics and performance data</p>
             </div>
           </div>

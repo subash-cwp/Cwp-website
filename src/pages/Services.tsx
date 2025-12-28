@@ -30,7 +30,7 @@ const fallbackServices = [
     id: "1",
     icon: "Target",
     title: "Strategy & Planning",
-    description: "Make your D2C Brand a strategic powerhouse by providing growth. Build a data-based strategy that gets you exactly where you want to be.",
+    description: "Make your D2C Brand a strategic powerhouse by providing growth. Build a data' based strategy that gets you exactly where you want to be.",
     features: ["Market Analysis", "Competitor Research", "Growth Roadmap", "KPI Framework"]
   },
   {
@@ -65,7 +65,7 @@ const fallbackServices = [
     id: "6",
     icon: "Palette",
     title: "Creative & Full Branding",
-    description: "Stand out with full spectrum user experience & branding. Transform your online presence into a growth-centric business.",
+    description: "Stand out with full spectrum user experience & branding. Transform your online presence into a growth' centric business.",
     features: ["Brand Identity", "Logo Design", "Website Design", "UI/UX"]
   },
   {
@@ -148,7 +148,7 @@ const Services = () => {
               Our Services
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Full-Stack <span className="text-gradient-primary">Growth Solutions</span>
+              Full' Stack <span className="text-gradient-primary">Growth Solutions</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8">
               We bring a unique blend of strategic marketing and creative services to help your brand stand out and scale effectively in today's competitive landscape.
