@@ -37,7 +37,7 @@ export const Footer = () => {
             <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain rounded-[5%] group-hover:scale-110 transition-transform" />
           </Link>
             <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-              {settings.company.description || "CWP MARKETING STRATEGY & GROWTH CO LTD/PRIVATED LIMITED—GXR-2024 (NOT REGISTERED)"}
+              {settings.company.description || "CWP MARKETING STRATEGY & GROWTH CO LTD/PRIVATED LIMITED - GXR-2024 (NOT REGISTERED)"}
             </p>
             {socialLinks.length > 0 && (
               <div className="flex gap-3">
