@@ -77,7 +77,7 @@ export const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
             <span className="text-sm text-muted-foreground">For:</span>
             <div className="flex flex-wrap gap-3 justify-center">
-              {['Startups', 'D2C Brands', 'Founders and Growth-focused Enterprises'].map((tag, i) => (
+              {['Startups', 'D2C Brands', "Founders and Growth' focused Enterprises"].map((tag, i) => (
                 <span 
                   key={tag} 
                   className="px-4 py-1.5 bg-muted/30 rounded-full text-sm border border-border/30 hover:border-primary/50 hover:bg-muted/50 transition-all cursor-default hover-lift"

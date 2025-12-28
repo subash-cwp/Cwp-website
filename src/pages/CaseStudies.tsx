@@ -67,7 +67,7 @@ const staticCaseStudies: CaseStudy[] = [
     industry: "Food & Beverage",
     description: "Low social media engagement and brand awareness in competitive market",
     challenge: "Low social media engagement and brand awareness in competitive market",
-    solution: "Developed viral social media campaigns, influencer partnerships, and user-generated content strategy",
+    solution: "Developed viral social media campaigns, influencer partnerships, and user' generated content strategy",
     cover_image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
     technologies: ["Social Media", "Influencer Marketing", "Content Creation"],
     metrics: [
@@ -126,7 +126,7 @@ export default function CaseStudies() {
               Real Results, Real Growth
             </h1>
             <p className="text-xl text-muted-foreground">
-              See how we've helped businesses across industries achieve remarkable growth through data-driven marketing strategies.
+              See how we've helped businesses across industries achieve remarkable growth through data' driven marketing strategies.
             </p>
           </div>
 

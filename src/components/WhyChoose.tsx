@@ -3,17 +3,17 @@ import { CheckCircle2, Users, Target, TrendingUp } from "lucide-react";
 const benefits = [
   {
     icon: CheckCircle2,
-    title: "Revenue-Centric Mindset",
+    title: "Revenue' Centric Mindset",
     description: "Every marketing dollar spent is designed to give you more and help you generate in return"
   },
   {
     icon: Users,
-    title: "Multi-Channel Expertise",
+    title: "Multi' Channel Expertise",
     description: "We lead you across SEO, paid ads, email, social media, and much more"
   },
   {
     icon: Target,
-    title: "Founder-Friendly Systems",
+    title: "Founder' Friendly Systems",
     description: "Easy, flexible processes so you can focus on scaling - not on tech stack confusion"
   },
   {
@@ -65,7 +65,7 @@ export const WhyChoose = () => {
 
         <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            CWP doesn't do one-size-fits-all. We tailor every strategy - from messaging to media channels - so it reflects your brand's unique strengths and aligns with your business goals. The whole point: Strategic alignment. Real results. And a partner that's got your back as you scale up.
+            CWP doesn't do one' size' fits' all. We tailor every strategy - from messaging to media channels - so it reflects your brand's unique strengths and aligns with your business goals. The whole point: Strategic alignment. Real results. And a partner that's got your back as you scale up.
           </p>
         </div>
       </div>

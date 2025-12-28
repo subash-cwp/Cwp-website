@@ -30,7 +30,7 @@ const fallbackServices = [
     title: "Strategy & Planning",
     description: "Make your D2C Brand a strategic powerhouse by providing growth",
     features: [
-      "Build a data-based strategy that gets you exactly where you want to be",
+      "Build a data' based strategy that gets you exactly where you want to be",
       "Enhance UX & conversion optimization",
       "Break down your objectives into a simplified, actionable road map"
     ]
@@ -77,7 +77,7 @@ const fallbackServices = [
     features: [
       "Technical SEO overhaul to position your website on the first page",
       "Keyword research (enable the search on SERPs)",
-      "Content strategy for organic long-term growth"
+      "Content strategy for organic long' term growth"
     ]
   },
   {
@@ -87,8 +87,8 @@ const fallbackServices = [
     description: "Stand out. Make a full spectrum user experience & branding",
     features: [
       "Bring quality and imagination in your creative assets",
-      "Dynamic, brand consistency, and UX-friendly website",
-      "Transform your online presence into a growth-centric business"
+      "Dynamic, brand consistency, and UX' friendly website",
+      "Transform your online presence into a growth' centric business"
     ]
   },
   {
@@ -97,7 +97,7 @@ const fallbackServices = [
     title: "Content Marketing & Thought Leadership",
     description: "Establish authority with strategic content",
     features: [
-      "Drip campaigns, newsletters, long-form content, and lead magnets",
+      "Drip campaigns, newsletters, long' form content, and lead magnets",
       "Thought leadership content to establish founders as industry authorities"
     ]
   },

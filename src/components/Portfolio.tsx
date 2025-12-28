@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const portfolioItems = [
   {
-    title: "D2C Fashion Brand Scale-Up",
+    title: "D2C Fashion Brand Scale' Up",
     category: "E-commerce",
     description: "Helped a fashion D2C brand scale from 50K to 5M monthly revenue through strategic performance marketing and conversion optimization.",
     metrics: [
@@ -19,7 +19,7 @@ const portfolioItems = [
   {
     title: "SaaS Lead Generation",
     category: "B2B SaaS",
-    description: "Generated 1000+ qualified enterprise leads for a B2B SaaS platform through multi-channel demand generation and cold outreach.",
+    description: "Generated 1000+ qualified enterprise leads for a B2B SaaS platform through multi' channel demand generation and cold outreach.",
     metrics: [
       { icon: Users, label: "Qualified Leads", value: "1000+" },
       { icon: Target, label: "Conversion Rate", value: "35%" },
