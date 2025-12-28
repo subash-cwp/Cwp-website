@@ -32,10 +32,6 @@ export const Navbar = () => {
               Home
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
             </Link>
-            <Link to="/blog" className="text-sm hover:text-primary transition-all relative group">
-              Blog
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
-            </Link>
             <Link to="/about" className="text-sm hover:text-primary transition-all relative group">
               About
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
@@ -46,6 +42,10 @@ export const Navbar = () => {
             </Link>
             <Link to="/portfolio" className="text-sm hover:text-primary transition-all relative group">
               Portfolio
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+            </Link>
+            <Link to="/blog" className="text-sm hover:text-primary transition-all relative group">
+              Blog
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
             </Link>
             <button onClick={handleContactClick} className="text-sm hover:text-primary transition-all relative group">
