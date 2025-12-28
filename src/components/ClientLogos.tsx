@@ -55,7 +55,7 @@ export const ClientLogos = () => {
     <section className="section-spacing bg-background/50 overflow-hidden">
       <div className="mb-12 text-center">
         <h3 className="text-2xl font-semibold text-muted-foreground">
-          Trusted by 20+ Brands
+          Trusted by 100+ Brands
         </h3>
       </div>
       
@@ -71,7 +71,7 @@ export const ClientLogos = () => {
                 src={logo.src} 
                 alt={logo.alt} 
                 loading="lazy"
-                className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 w-auto object-contain brightness-100 contrast-100 opacity-90 hover:opacity-100 transition-all duration-300"
               />
             </div>
           ))}
@@ -90,7 +90,7 @@ export const ClientLogos = () => {
                 src={logo.src} 
                 alt={logo.alt}
                 loading="lazy"
-                className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 w-auto object-contain brightness-100 contrast-100 opacity-90 hover:opacity-100 transition-all duration-300"
               />
             </div>
           ))}
@@ -109,7 +109,7 @@ export const ClientLogos = () => {
                 src={logo.src} 
                 alt={logo.alt}
                 loading="lazy"
-                className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                className="h-14 w-auto object-contain brightness-100 contrast-100 opacity-90 hover:opacity-100 transition-all duration-300"
               />
             </div>
           ))}
