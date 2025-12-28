@@ -1,6 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ArrowUpRight, TrendingUp, Users, Target } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const portfolioItems = [
   {
@@ -63,9 +65,12 @@ export const Portfolio = () => {
               <span className="absolute -inset-2 bg-primary/10 blur-2xl -z-10 animate-pulse-glow" />
             </span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
             Real results for real businesses. See how we've helped brands achieve exceptional growth.
           </p>
+          <Button asChild variant="outline" size="lg">
+            <Link to="/case-studies">View All Case Studies</Link>
+          </Button>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">

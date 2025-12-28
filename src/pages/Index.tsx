@@ -7,7 +7,6 @@ import { AnimatedStats } from "@/components/AnimatedStats";
 import { Process } from "@/components/Process";
 import { Portfolio } from "@/components/Portfolio";
 import { TeamProfiles } from "@/components/TeamProfiles";
-import { Testimonials } from "@/components/Testimonials";
 import { FAQ } from "@/components/FAQ";
 import { BookingSection } from "@/components/BookingSection";
 import { ContactForm } from "@/components/ContactForm";
@@ -28,7 +27,6 @@ import { lazy, Suspense } from "react";
 // Lazy load heavy components
 const LazyPortfolio = lazy(() => import("@/components/Portfolio").then(module => ({ default: module.Portfolio })));
 const LazyTeamProfiles = lazy(() => import("@/components/TeamProfiles").then(module => ({ default: module.TeamProfiles })));
-const LazyTestimonials = lazy(() => import("@/components/Testimonials").then(module => ({ default: module.Testimonials })));
 
 // Loading fallback component
 const SectionLoader = () => (
@@ -117,13 +115,6 @@ const Index = () => {
           </ScrollAnimationWrapper>
           */}
           
-          <ScrollAnimationWrapper animation="fade-in" threshold={0.15}>
-            <ParallaxSection speed={0.4} direction="down">
-              <Suspense fallback={<SectionLoader />}>
-                <LazyTestimonials />
-              </Suspense>
-            </ParallaxSection>
-          </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-up" threshold={0.2}>
             <ParallaxSection speed={0.3} direction="up">

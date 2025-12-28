@@ -36,7 +36,7 @@ const defaultSettings: SiteSettings = {
     name: "CWP Marketing",
     tagline: "We Help Brands Grow Strategically",
     description: "Full-service digital marketing agency specializing in performance marketing, SEO, and brand strategy.",
-    email: "hello@cwpmktng.com",
+    email: "support@consultwithprofessionals.com",
     phone: "+91 8610986622",
     address: "G2, Venkateswara Flat, No: 9A, 1st Main Rd, Venkateswara Nagar, Velachery, Chennai, Tamil Nadu 600042",
     logo: "",
