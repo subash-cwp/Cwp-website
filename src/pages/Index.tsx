@@ -40,7 +40,7 @@ const Index = () => {
     <>
       <SEOHead 
         title="CWP Marketing - Strategic Marketing & Growth Consulting"
-        description="We build, grow and help you scale. Strategic marketing, creative solutions, and growth consulting that aligns with your brand's vision. Trusted by 50+ brands."
+        description="We build, grow and help you scale. Strategic marketing, creative solutions, and growth consulting that aligns with your brand's vision. Trusted by 100+ brands."
         keywords="marketing agency, growth consulting, digital marketing, SEO, social media marketing, brand strategy, Chennai"
       />
       <JsonLd 
@@ -49,7 +49,7 @@ const Index = () => {
           name: "CWP Marketing",
           url: window.location.origin,
           logo: `${window.location.origin}/og-image.png`,
-          description: "Strategic marketing and growth consulting agency trusted by 50+ brands",
+          description: "Strategic marketing and growth consulting agency trusted by 100+ brands",
           contactPoint: {
             telephone: "+918610986622",
             contactType: "sales"
