@@ -52,26 +52,27 @@ export const ClientLogos = () => {
   ];
 
   return (
-    <section className="section-spacing bg-background/50 overflow-hidden">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 overflow-hidden">
       <div className="mb-12 text-center">
-        <h3 className="text-2xl font-semibold text-muted-foreground">
+        <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
           Trusted by 100+ Brands
         </h3>
+        <p className="text-slate-500 dark:text-slate-400 mt-2">Leading companies trust us with their growth</p>
       </div>
       
       {/* Row 1 - Right to Left */}
-      <div className="relative mb-6 overflow-hidden bg-background/30 py-8">
-        <div className="flex gap-16 animate-scroll-rtl items-center">
+      <div className="relative mb-4 overflow-hidden py-6">
+        <div className="flex gap-12 md:gap-20 animate-scroll-rtl items-center">
           {[...row1Logos, ...row1Logos, ...row1Logos, ...row1Logos].map((logo, index) => (
             <div
               key={index}
-              className="flex-shrink-0 flex items-center justify-center h-12"
+              className="flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700"
             >
               <img 
                 src={logo.src} 
                 alt={logo.alt} 
                 loading="lazy"
-                className="h-14 w-auto object-contain brightness-100 contrast-100 opacity-90 hover:opacity-100 transition-all duration-300"
+                className="h-10 md:h-12 w-auto max-w-[140px] object-contain"
               />
             </div>
           ))}
@@ -79,18 +80,18 @@ export const ClientLogos = () => {
       </div>
 
       {/* Row 2 - Left to Right */}
-      <div className="relative mb-6 overflow-hidden bg-muted/20 py-8">
-        <div className="flex gap-16 animate-scroll-ltr items-center">
+      <div className="relative mb-4 overflow-hidden py-6">
+        <div className="flex gap-12 md:gap-20 animate-scroll-ltr items-center">
           {[...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos].map((logo, index) => (
             <div
               key={index}
-              className="flex-shrink-0 flex items-center justify-center h-12"
+              className="flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700"
             >
               <img 
                 src={logo.src} 
                 alt={logo.alt}
                 loading="lazy"
-                className="h-14 w-auto object-contain brightness-100 contrast-100 opacity-90 hover:opacity-100 transition-all duration-300"
+                className="h-10 md:h-12 w-auto max-w-[140px] object-contain"
               />
             </div>
           ))}
@@ -98,18 +99,18 @@ export const ClientLogos = () => {
       </div>
 
       {/* Row 3 - Right to Left */}
-      <div className="relative overflow-hidden bg-background/30 py-8">
-        <div className="flex gap-16 animate-scroll-rtl items-center">
+      <div className="relative overflow-hidden py-6">
+        <div className="flex gap-12 md:gap-20 animate-scroll-rtl items-center">
           {[...row3Logos, ...row3Logos, ...row3Logos, ...row3Logos].map((logo, index) => (
             <div
               key={index}
-              className="flex-shrink-0 flex items-center justify-center h-12"
+              className="flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700"
             >
               <img 
                 src={logo.src} 
                 alt={logo.alt}
                 loading="lazy"
-                className="h-14 w-auto object-contain brightness-100 contrast-100 opacity-90 hover:opacity-100 transition-all duration-300"
+                className="h-10 md:h-12 w-auto max-w-[140px] object-contain"
               />
             </div>
           ))}
