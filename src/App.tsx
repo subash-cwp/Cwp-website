@@ -34,6 +34,7 @@ import MediaLibraryAdmin from "./pages/admin/MediaLibraryAdmin";
 import ABTestingAdmin from "./pages/admin/ABTestingAdmin";
 import SEOAnalyzerAdmin from "./pages/admin/SEOAnalyzerAdmin";
 import { Analytics } from "@/components/Analytics";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +45,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <ScrollToTop />
           <Analytics />
           <Routes>
             <Route path="/" element={<Index />} />
