@@ -35,6 +35,7 @@ import ABTestingAdmin from "./pages/admin/ABTestingAdmin";
 import SEOAnalyzerAdmin from "./pages/admin/SEOAnalyzerAdmin";
 import { Analytics } from "@/components/Analytics";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { PageWrapper } from "@/components/PageWrapper";
 
 const queryClient = new QueryClient();
 
@@ -47,37 +48,39 @@ const App = () => (
         <BrowserRouter>
           <ScrollToTop />
           <Analytics />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/portfolio" element={<Portfolio />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/case-studies" element={<CaseStudies />} />
-            <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/admin/analytics" element={<AnalyticsAdmin />} />
-            <Route path="/admin/blog" element={<BlogAdmin />} />
-            <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
-            <Route path="/admin/services" element={<ServicesAdmin />} />
-            <Route path="/admin/team" element={<TeamAdmin />} />
-            <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
-            <Route path="/admin/leads" element={<LeadsAdmin />} />
-            <Route path="/admin/leads-scoring" element={<LeadScoringAdmin />} />
-            <Route path="/admin/email-campaigns" element={<EmailCampaignsAdmin />} />
-            <Route path="/admin/media" element={<MediaLibraryAdmin />} />
-            <Route path="/admin/ab-testing" element={<ABTestingAdmin />} />
-            <Route path="/admin/seo" element={<SEOAnalyzerAdmin />} />
-            <Route path="/admin/activity-log" element={<ActivityLogAdmin />} />
-            <Route path="/admin/settings" element={<SiteSettingsAdmin />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <PageWrapper>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/portfolio" element={<Portfolio />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:id" element={<BlogPost />} />
+              <Route path="/case-studies" element={<CaseStudies />} />
+              <Route path="/case-studies/:id" element={<CaseStudyDetail />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/auth" element={<Auth />} />
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/analytics" element={<AnalyticsAdmin />} />
+              <Route path="/admin/blog" element={<BlogAdmin />} />
+              <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
+              <Route path="/admin/services" element={<ServicesAdmin />} />
+              <Route path="/admin/team" element={<TeamAdmin />} />
+              <Route path="/admin/testimonials" element={<TestimonialsAdmin />} />
+              <Route path="/admin/leads" element={<LeadsAdmin />} />
+              <Route path="/admin/leads-scoring" element={<LeadScoringAdmin />} />
+              <Route path="/admin/email-campaigns" element={<EmailCampaignsAdmin />} />
+              <Route path="/admin/media" element={<MediaLibraryAdmin />} />
+              <Route path="/admin/ab-testing" element={<ABTestingAdmin />} />
+              <Route path="/admin/seo" element={<SEOAnalyzerAdmin />} />
+              <Route path="/admin/activity-log" element={<ActivityLogAdmin />} />
+              <Route path="/admin/settings" element={<SiteSettingsAdmin />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </PageWrapper>
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
