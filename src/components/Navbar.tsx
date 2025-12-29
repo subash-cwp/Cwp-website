@@ -1,21 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MobileMenu } from "@/components/MobileMenu";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { SearchDialog } from "@/components/SearchDialog";
 import logo from "@/assets/logo.png";
 
 export const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const isHomePage = location.pathname === "/";
+
+  // Handle scroll to contact after navigation
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash === "#contact") {
+      setTimeout(() => {
+        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, [location]);
 
   const handleContactClick = () => {
     if (isHomePage) {
       document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      window.location.href = "/#contact";
+      navigate("/#contact");
     }
   };
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -13,6 +13,7 @@ import {
 export const MobileMenu = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
 
   const navItems = [
@@ -30,7 +31,7 @@ export const MobileMenu = () => {
         document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     } else {
-      window.location.href = "/#contact";
+      navigate("/#contact");
     }
   };
 
