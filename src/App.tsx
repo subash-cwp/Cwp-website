@@ -16,6 +16,7 @@ import CaseStudyDetail from "./pages/CaseStudyDetail";
 import Careers from "./pages/Careers";
 import Resources from "./pages/Resources";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -62,6 +63,7 @@ const App = () => (
               <Route path="/careers" element={<Careers />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/analytics" element={<AnalyticsAdmin />} />

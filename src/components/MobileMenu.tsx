@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -12,9 +12,6 @@ import {
 
 export const MobileMenu = () => {
   const [open, setOpen] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isHomePage = location.pathname === "/";
 
   const navItems = [
     { label: "Home", href: "/" },
@@ -22,18 +19,8 @@ export const MobileMenu = () => {
     { label: "About", href: "/about" },
     { label: "Services", href: "/services" },
     { label: "Portfolio", href: "/portfolio" },
+    { label: "Contact", href: "/contact" },
   ];
-
-  const handleContactClick = () => {
-    setOpen(false);
-    if (isHomePage) {
-      setTimeout(() => {
-        document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    } else {
-      navigate("/#contact");
-    }
-  };
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -62,17 +49,8 @@ export const MobileMenu = () => {
               {item.label}
             </Link>
           ))}
-          <button
-            onClick={handleContactClick}
-            className="text-left py-3 px-4 rounded-lg hover:bg-secondary transition-colors text-lg"
-          >
-            Contact
-          </button>
-          <Button
-            className="mt-4"
-            onClick={handleContactClick}
-          >
-            Contact Us
+          <Button className="mt-4" asChild>
+            <Link to="/contact" onClick={() => setOpen(false)}>Contact Us</Link>
           </Button>
         </nav>
       </SheetContent>
