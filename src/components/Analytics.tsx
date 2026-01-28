@@ -7,7 +7,7 @@ export const Analytics = () => {
   useEffect(() => {
     // Google Analytics
     if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('config', 'GA_MEASUREMENT_ID', {
+      (window as any).gtag('config', 'G-REQZRXP70S', {
         page_path: location.pathname + location.search,
       });
     }
