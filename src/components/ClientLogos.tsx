@@ -72,10 +72,7 @@ export const ClientLogos = () => {
       <div className="relative mb-4 overflow-hidden py-6">
         <div className="flex gap-12 md:gap-20 animate-scroll-rtl items-center">
           {[...row1Logos, ...row1Logos, ...row1Logos, ...row1Logos].map((logo, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700"
-            >
+            <div key={index} className={cardClass(logo.dark)}>
               <img 
                 src={logo.src} 
                 alt={logo.alt} 
@@ -91,10 +88,7 @@ export const ClientLogos = () => {
       <div className="relative mb-4 overflow-hidden py-6">
         <div className="flex gap-12 md:gap-20 animate-scroll-ltr items-center">
           {[...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos].map((logo, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700"
-            >
+            <div key={index} className={cardClass(logo.dark)}>
               <img 
                 src={logo.src} 
                 alt={logo.alt}
@@ -110,10 +104,7 @@ export const ClientLogos = () => {
       <div className="relative overflow-hidden py-6">
         <div className="flex gap-12 md:gap-20 animate-scroll-rtl items-center">
           {[...row3Logos, ...row3Logos, ...row3Logos, ...row3Logos].map((logo, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700"
-            >
+            <div key={index} className={cardClass(logo.dark)}>
               <img 
                 src={logo.src} 
                 alt={logo.alt}
