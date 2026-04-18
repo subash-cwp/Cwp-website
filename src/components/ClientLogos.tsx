@@ -37,7 +37,7 @@ export const ClientLogos = () => {
     { src: godeskLogo, alt: "Godesk" },
     { src: cognisLogo, alt: "Cognis" },
     { src: bdsoftLogo, alt: "BD Software" },
-    { src: leadratLogo, alt: "Leadrat" },
+    { src: leadratLogo, alt: "Leadrat", dark: true },
     { src: healthassLogo, alt: "Healthass", dark: true },
     { src: infodotLogo, alt: "Infodot Technologies" },
     { src: yoloLogo, alt: "Yolo" },
