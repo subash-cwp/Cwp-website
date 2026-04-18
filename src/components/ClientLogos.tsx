@@ -21,6 +21,7 @@ import leonstrideLogo from "@/assets/logos/leonstride.png";
 import wellversedLogo from "@/assets/logos/wellversed.png";
 
 export const ClientLogos = () => {
+  // Mark logos that are white/light-on-transparent with `dark: true` to render on a dark card
   const row1Logos = [
     { src: zeoniusLogo, alt: "Zeonius IT Services" },
     { src: aadicuraLogo, alt: "Aadicura" },
@@ -28,7 +29,7 @@ export const ClientLogos = () => {
     { src: cognisLogo, alt: "Cognis" },
     { src: bdsoftLogo, alt: "BD Software" },
     { src: leadratLogo, alt: "Leadrat" },
-    { src: healthassLogo, alt: "Healthass" },
+    { src: healthassLogo, alt: "Healthass", dark: true },
   ];
   
   const row2Logos = [
@@ -36,7 +37,7 @@ export const ClientLogos = () => {
     { src: ifutureLogo, alt: "iFuture" },
     { src: iqonicLogo, alt: "IQONIC Design" },
     { src: amanstraLogo, alt: "Amanstra Consulting" },
-    { src: groupLogo, alt: "Group" },
+    { src: groupLogo, alt: "Group", dark: true },
     { src: rocketnewsLogo, alt: "Rocket News" },
     { src: reinventLogo, alt: "Reinvent" },
   ];
@@ -48,8 +49,15 @@ export const ClientLogos = () => {
     { src: web3tixLogo, alt: "Web3Tix" },
     { src: xorecLogo, alt: "Xorec" },
     { src: leonstrideLogo, alt: "Leonstride Technologies" },
-    { src: wellversedLogo, alt: "Wellversed" },
+    { src: wellversedLogo, alt: "Wellversed", dark: true },
   ];
+
+  const cardClass = (dark?: boolean) =>
+    `flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl shadow-sm border ${
+      dark
+        ? "bg-slate-900 border-slate-800"
+        : "bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700"
+    }`;
 
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 overflow-hidden">
