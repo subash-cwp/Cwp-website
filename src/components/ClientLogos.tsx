@@ -19,6 +19,15 @@ import swiftcheckLogo from "@/assets/logos/swiftcheck.png";
 import xorecLogo from "@/assets/logos/xorec.png";
 import leonstrideLogo from "@/assets/logos/leonstride.png";
 import wellversedLogo from "@/assets/logos/wellversed.png";
+import infodotLogo from "@/assets/logos/infodot.webp";
+import yoloLogo from "@/assets/logos/yolo.png";
+import icrederityLogo from "@/assets/logos/icrederity.webp";
+import worcoorLogo from "@/assets/logos/worcoor.png";
+import privueLogo from "@/assets/logos/privue.webp";
+import settlrsLogo from "@/assets/logos/settlrs.png";
+import bokaapLogo from "@/assets/logos/bokaap.svg";
+import revassureLogo from "@/assets/logos/revassure.png";
+import qblueLogo from "@/assets/logos/qblue.webp";
 
 export const ClientLogos = () => {
   // Mark logos that are white/light-on-transparent with `dark: true` to render on a dark card
@@ -30,6 +39,9 @@ export const ClientLogos = () => {
     { src: bdsoftLogo, alt: "BD Software" },
     { src: leadratLogo, alt: "Leadrat" },
     { src: healthassLogo, alt: "Healthass", dark: true },
+    { src: infodotLogo, alt: "Infodot Technologies" },
+    { src: yoloLogo, alt: "Yolo" },
+    { src: icrederityLogo, alt: "iCrederity" },
   ];
   
   const row2Logos = [
@@ -40,6 +52,9 @@ export const ClientLogos = () => {
     { src: groupLogo, alt: "Group", dark: true },
     { src: rocketnewsLogo, alt: "Rocket News" },
     { src: reinventLogo, alt: "Reinvent" },
+    { src: worcoorLogo, alt: "WorCoor" },
+    { src: privueLogo, alt: "Privue" },
+    { src: settlrsLogo, alt: "Settlrs" },
   ];
   
   const row3Logos = [
@@ -50,6 +65,9 @@ export const ClientLogos = () => {
     { src: xorecLogo, alt: "Xorec" },
     { src: leonstrideLogo, alt: "Leonstride Technologies" },
     { src: wellversedLogo, alt: "Wellversed", dark: true },
+    { src: bokaapLogo, alt: "Bokaap" },
+    { src: revassureLogo, alt: "ReAssure" },
+    { src: qblueLogo, alt: "QBlue" },
   ];
 
   const cardClass = (dark?: boolean) =>
