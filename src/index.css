@@ -104,7 +104,7 @@ All colors MUST be HSL.
 
   /* Scroll Animations */
   .animate-scroll-rtl {
-    animation: scroll-rtl 40s linear infinite;
+    animation: scroll-rtl 25s linear infinite;
   }
 
   .animate-scroll-rtl:hover {
@@ -112,7 +112,7 @@ All colors MUST be HSL.
   }
 
   .animate-scroll-ltr {
-    animation: scroll-ltr 40s linear infinite;
+    animation: scroll-ltr 25s linear infinite;
   }
 
   .animate-scroll-ltr:hover {
