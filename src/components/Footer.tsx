@@ -88,19 +88,21 @@ export const Footer = () => {
             <h4 className="font-bold mb-6 text-primary">SERVICES</h4>
             <ul className="space-y-3">
               {[
-                "Growth Marketing",
-                "Performance Marketing",
-                "Full Stack Marketing",
-                "Startup Marketing",
-                "SEO & Organic Growth",
-                "Content Marketing",
+                { label: "Strategy & Planning", slug: "strategy-planning" },
+                { label: "Performance Marketing", slug: "performance-marketing" },
+                { label: "SEO & Organic Growth", slug: "seo-organic-growth" },
+                { label: "CRM & Marketing Automation", slug: "crm-marketing-automation" },
+                { label: "Content Marketing", slug: "content-marketing" },
+                { label: "Social Media Management", slug: "social-media-management" },
+                { label: "Creative & Branding", slug: "creative-branding" },
+                { label: "Outreach & Demand Gen", slug: "outreach-demand-generation" },
               ].map((service) => (
-                <li key={service}>
+                <li key={service.slug}>
                   <Link
-                    to="/services"
+                    to={`/services/${service.slug}`}
                     className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all inline-block"
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 </li>
               ))}
@@ -137,11 +139,11 @@ export const Footer = () => {
                 <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
                   <Mail className="w-4 h-4 text-primary" />
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <p className="text-xs text-muted-foreground mb-1">Email Us</p>
                   <a
                     href={`mailto:${settings.company.email}`}
-                    className="text-sm hover:text-primary transition-colors"
+                    className="text-sm hover:text-primary transition-colors break-all leading-snug block"
                   >
                     {settings.company.email}
                   </a>

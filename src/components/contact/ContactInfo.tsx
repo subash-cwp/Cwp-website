@@ -73,7 +73,7 @@ export const ContactInfo = () => {
               <p className="text-sm text-muted-foreground mb-3">
                 {card.description}
               </p>
-              <p className="font-medium text-foreground">
+              <p className="font-medium text-foreground text-sm break-all leading-snug">
                 {card.value}
               </p>
 
