@@ -127,6 +127,7 @@ const About = () => {
       {/* Mission & Vision */}
       <section className="py-20 bg-card/50">
         <div className="container-custom">
+          <h2 className="sr-only">Mission and Vision</h2>
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="p-8 bg-background border-border/50 hover:border-primary/50 transition-all group">
               <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
