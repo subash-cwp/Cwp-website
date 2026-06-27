@@ -16,6 +16,7 @@ import {
 import { Mail, Phone, MapPin, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useHoneypot } from "@/hooks/useHoneypot";
 
 const formSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
@@ -29,6 +30,8 @@ export const ContactForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { settings } = useSiteSettings();
+  const honeypot = useHoneypot();
+
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,7 +47,13 @@ export const ContactForm = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
+      if (honeypot.isBot()) {
+        toast({ title: "Message Sent!", description: "We'll get back to you soon." });
+        form.reset();
+        return;
+      }
       const { supabase } = await import("@/integrations/supabase/client");
+
       
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
@@ -139,6 +148,7 @@ export const ContactForm = () => {
             <div className="bg-card border border-border/50 rounded-2xl p-8">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <honeypot.HoneypotField />
                   <FormField
                     control={form.control}
                     name="name"

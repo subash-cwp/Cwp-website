@@ -17,6 +17,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useHoneypot } from "@/hooks/useHoneypot";
+
 
 const testimonialSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
@@ -33,6 +35,8 @@ export function TestimonialForm() {
   const [rating, setRating] = useState(5);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const honeypot = useHoneypot();
+
 
   const form = useForm<TestimonialFormData>({
     resolver: zodResolver(testimonialSchema),
@@ -52,6 +56,12 @@ export function TestimonialForm() {
   };
 
   const onSubmit = async (data: TestimonialFormData) => {
+    if (honeypot.isBot()) {
+      toast({ title: "Thank you!", description: "Your testimonial has been submitted for review." });
+      form.reset();
+      setRating(5);
+      return;
+    }
     setIsSubmitting(true);
 
     const { error } = await supabase.from("testimonial_submissions").insert({
@@ -92,6 +102,7 @@ export function TestimonialForm() {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+          <honeypot.HoneypotField />
           <div className="grid sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}

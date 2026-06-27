@@ -17,6 +17,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useHoneypot } from "@/hooks/useHoneypot";
+
 
 const applicationSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100, "Name is too long"),
@@ -39,6 +41,8 @@ export function CareerApplicationForm({ position, isOpen, onClose }: CareerAppli
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const honeypot = useHoneypot();
+
 
   const form = useForm<ApplicationFormData>({
     resolver: zodResolver(applicationSchema),
@@ -68,9 +72,17 @@ export function CareerApplicationForm({ position, isOpen, onClose }: CareerAppli
   };
 
   const onSubmit = async (data: ApplicationFormData) => {
+    if (honeypot.isBot()) {
+      toast({ title: "Application Submitted!", description: "We'll review your application and get back to you soon." });
+      form.reset();
+      setResumeFile(null);
+      onClose();
+      return;
+    }
     setIsSubmitting(true);
 
     let resumeUrl = null;
+
 
     if (resumeFile) {
       const fileExt = resumeFile.name.split(".").pop();
@@ -137,6 +149,7 @@ export function CareerApplicationForm({ position, isOpen, onClose }: CareerAppli
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6 mt-4">
+            <honeypot.HoneypotField />
             <div className="grid sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}

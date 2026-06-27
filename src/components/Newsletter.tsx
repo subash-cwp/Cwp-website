@@ -15,6 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+import { useHoneypot } from "@/hooks/useHoneypot";
+
 const newsletterSchema = z.object({
   email: z.string().trim().email("Please enter a valid email").max(255, "Email is too long"),
 });
@@ -24,6 +26,7 @@ type NewsletterFormData = z.infer<typeof newsletterSchema>;
 export const Newsletter = () => {
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const honeypot = useHoneypot();
 
   const form = useForm<NewsletterFormData>({
     resolver: zodResolver(newsletterSchema),
@@ -31,6 +34,12 @@ export const Newsletter = () => {
   });
 
   const onSubmit = async (data: NewsletterFormData) => {
+    if (honeypot.isBot()) {
+      // Silently accept to avoid signalling the bot.
+      toast({ title: "Subscribed!", description: "Thank you for subscribing to our newsletter." });
+      form.reset();
+      return;
+    }
     setLoading(true);
     const { error } = await supabase.from("newsletter_subscribers").insert({ email: data.email });
     setLoading(false);
@@ -59,6 +68,7 @@ export const Newsletter = () => {
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <honeypot.HoneypotField />
             <FormField
               control={form.control}
               name="email"
