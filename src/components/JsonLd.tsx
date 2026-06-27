@@ -33,7 +33,13 @@ interface FAQSchema {
   questions: { question: string; answer: string }[];
 }
 
-type SchemaType = OrganizationSchema | ArticleSchema | BreadcrumbSchema | FAQSchema;
+interface RawSchema {
+  type: "Raw";
+  id: string;
+  data: Record<string, unknown>;
+}
+
+type SchemaType = OrganizationSchema | ArticleSchema | BreadcrumbSchema | FAQSchema | RawSchema;
 
 interface JsonLdProps {
   schema: SchemaType;
