@@ -6,11 +6,14 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Gift, X } from "lucide-react";
 
+import { useHoneypot } from "@/hooks/useHoneypot";
+
 export const ExitIntentPopup = () => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const honeypot = useHoneypot();
 
   useEffect(() => {
     const hasSeenPopup = sessionStorage.getItem("exitPopupSeen");
@@ -38,6 +41,12 @@ export const ExitIntentPopup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    if (honeypot.isBot()) {
+      // Silently accept to avoid signalling the bot.
+      toast({ title: "Success!", description: "You're now subscribed to our newsletter." });
+      setOpen(false);
+      return;
+    }
 
     setLoading(true);
     const { error } = await supabase.from("newsletter_subscribers").insert({ email });
@@ -74,6 +83,7 @@ export const ExitIntentPopup = () => {
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+          <honeypot.HoneypotField />
           <Input
             type="email"
             placeholder="Enter your email"

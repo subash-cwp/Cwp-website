@@ -23,6 +23,7 @@ import {
 import { Send, Loader2, Sparkles, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useHoneypot } from "@/hooks/useHoneypot";
 
 const formSchema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
@@ -58,6 +59,8 @@ export const ContactFormSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const { settings } = useSiteSettings();
+  const honeypot = useHoneypot();
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -75,7 +78,15 @@ export const ContactFormSection = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     try {
+      if (honeypot.isBot()) {
+        setIsSuccess(true);
+        toast({ title: "Message Sent Successfully!", description: "We'll get back to you within 24 hours." });
+        form.reset();
+        setTimeout(() => setIsSuccess(false), 5000);
+        return;
+      }
       const { supabase } = await import("@/integrations/supabase/client");
+
 
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
@@ -157,6 +168,7 @@ export const ContactFormSection = () => {
             ) : (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
+                  <honeypot.HoneypotField />
                   <div className="grid md:grid-cols-2 gap-6">
                     <FormField
                       control={form.control}

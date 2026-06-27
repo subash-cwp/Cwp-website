@@ -13,9 +13,12 @@ const formSchema = z.object({
   message: z.string().trim().min(5, "Message required").max(500),
 });
 
+import { useHoneypot } from "@/hooks/useHoneypot";
+
 export const FooterContactForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const honeypot = useHoneypot();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -41,6 +44,15 @@ export const FooterContactForm = () => {
     }
 
     setIsSubmitting(true);
+
+    if (honeypot.isBot()) {
+      // Silently drop spam.
+      setIsSubmitting(false);
+      toast({ title: "Message Sent!", description: "We'll get back to you as soon as possible." });
+      setFormData({ name: "", email: "", message: "" });
+      return;
+    }
+
 
     try {
       // Save to database
@@ -74,6 +86,7 @@ export const FooterContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
+      <honeypot.HoneypotField />
       <div className="grid grid-cols-2 gap-3">
         <div>
           <Input

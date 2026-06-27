@@ -34,17 +34,14 @@ export const TeamProfiles = () => {
 
   useEffect(() => {
     const fetchTeam = async () => {
-      // Only select non-sensitive fields (excluding email)
+      // Use the public RPC that excludes the email column.
       const { data, error } = await supabase
-        .from("team_members")
-        .select("id, name, role, avatar, bio, linkedin, twitter")
-        .eq("published", true)
-        .order("sort_order", { ascending: true });
-      
+        .rpc("get_public_team_members");
+
       if (error || !data || data.length === 0) {
         setTeam(fallbackTeam);
       } else {
-        setTeam(data);
+        setTeam(data as TeamMember[]);
       }
       setLoading(false);
     };
