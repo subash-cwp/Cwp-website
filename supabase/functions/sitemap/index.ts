@@ -119,8 +119,8 @@ Deno.serve(async (req) => {
     })
   } catch (error) {
     console.error('Sitemap generation error:', error)
-    const message = error instanceof Error ? error.message : 'Unknown error'
-    return new Response(JSON.stringify({ error: message }), {
+    // Return a generic error message; keep details server-side only.
+    return new Response(JSON.stringify({ error: 'Failed to generate sitemap' }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
