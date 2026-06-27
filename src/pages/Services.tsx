@@ -209,7 +209,7 @@ const Services = () => {
                       <div className="lg:pl-8">
                         {service.features && service.features.length > 0 && (
                           <>
-                            <h4 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">What's Included</h4>
+                            <h3 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">What's Included</h3>
                             <div className="grid grid-cols-2 gap-3">
                               {service.features.map((feature, i) => (
                                 <div 
