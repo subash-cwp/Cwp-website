@@ -181,7 +181,7 @@ export const Footer = () => {
 
           {/* Quick Contact Form */}
           <div>
-            <h4 className="font-bold mb-6 text-primary">QUICK MESSAGE</h4>
+            <h4 className="font-bold mb-6 text-primary">{f.quickMessageTitle}</h4>
             <FooterContactForm />
           </div>
         </div>
@@ -190,7 +190,7 @@ export const Footer = () => {
         <div className="border-t border-border/50 mt-16 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              Copyright © {new Date().getFullYear()} CWP Marketing. All Rights Reserved.
+              {(f.copyright || FOOTER_DEFAULTS.copyright).replace("{year}", String(new Date().getFullYear()))}
             </p>
             <div className="flex gap-6">
               <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">
