@@ -148,7 +148,7 @@ export default function Pricing() {
 
           {/* FAQ Note */}
           <div className="text-center mt-16 p-8 bg-muted/30 rounded-2xl max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold mb-4">Not sure which plan is right for you?</h3>
+            <h2 className="text-2xl font-bold mb-4">Not sure which plan is right for you?</h2>
             <p className="text-muted-foreground mb-6">
               Book a free strategy call and we'll help you choose the perfect package for your business goals and budget.
             </p>
