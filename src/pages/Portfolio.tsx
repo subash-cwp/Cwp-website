@@ -139,6 +139,24 @@ const Portfolio = () => {
         description="Explore our portfolio of successful marketing campaigns. See how we've helped D2C, SaaS, and B2B brands achieve 10x ROAS, generate leads, and scale revenue."
         keywords="marketing portfolio, case studies, success stories, ROAS, lead generation, brand growth"
       />
+      <JsonLd
+        schema={{
+          type: "Raw",
+          id: "portfolio-collection",
+          data: {
+            "@type": "CollectionPage",
+            name: "CWP Marketing Portfolio & Case Studies",
+            url: "https://consultwithprofessionals.com/portfolio",
+            description: "Marketing case studies showing measurable growth for D2C, SaaS, and B2B brands.",
+            hasPart: filteredPortfolio.map((item) => ({
+              "@type": "CreativeWork",
+              name: item.title,
+              about: item.category,
+              description: item.description,
+            })),
+          },
+        }}
+      />
       <Navbar />
       
       {/* Hero Section */}
