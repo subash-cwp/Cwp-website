@@ -8,6 +8,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Target, Eye, Heart, Award, Users, Zap, Globe, TrendingUp } from "lucide-react";
 import teamNaren from "@/assets/team-naren.png";
+import { useSection } from "@/hooks/usePageContent";
 
 const values = [
   {
@@ -40,6 +41,38 @@ const stats = [
 ];
 
 const About = () => {
+  const hero = useSection<{ badge: string; headingHtml: string; subheading: string }>(
+    "about",
+    "hero",
+    {
+      badge: "About Us",
+      headingHtml: 'We Help Brands <span class="text-gradient-primary">Scale & Thrive</span>',
+      subheading:
+        "CWP is a full-stack growth partner for D2C, SaaS, and B2B brands. We combine strategic marketing expertise with creative excellence to deliver exceptional results.",
+    },
+  );
+  const story = useSection<{ headingHtml: string; paragraphs: string[]; quote: string; founderName: string; founderRole: string }>(
+    "about",
+    "story",
+    {
+      headingHtml: 'Our <span class="text-gradient-primary">Story</span>',
+      paragraphs: [
+        "Founded with a vision to bridge the gap between creative marketing and measurable growth, CWP has evolved into a trusted growth partner for businesses across industries.",
+        "We started with a simple belief: every brand deserves access to world' class marketing strategies that deliver real results. Today, we've helped 100+ brands generate over ₹50 Crores in revenue.",
+        "Our team of strategists, creatives, and growth experts work together to create comprehensive marketing solutions that drive sustainable business growth.",
+      ],
+      quote:
+        "Our mission is simple: help brands unlock their true potential through strategic, data' driven marketing that delivers measurable results.",
+      founderName: "Naren",
+      founderRole: "Founder & CEO",
+    },
+  );
+  const mission = useSection<{ mission: string; vision: string }>("about", "mission_vision", {
+    mission:
+      "To empower businesses with strategic marketing solutions that drive sustainable growth, increase brand visibility, and deliver exceptional ROI through data' driven methodologies.",
+    vision:
+      "To become the most trusted growth partner for ambitious brands, known for our innovative strategies, creative excellence, and unwavering commitment to client success.",
+  });
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
@@ -61,14 +94,13 @@ const About = () => {
           <Breadcrumbs />
           <div className="text-center max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-4 text-primary border-primary/30">
-              About Us
+              {hero.badge}
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              We Help Brands <span className="text-gradient-primary">Scale & Thrive</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              CWP is a full-stack growth partner for D2C, SaaS, and B2B brands. We combine strategic marketing expertise with creative excellence to deliver exceptional results.
-            </p>
+            <h1
+              className="text-4xl md:text-6xl font-bold mb-6"
+              dangerouslySetInnerHTML={{ __html: hero.headingHtml }}
+            />
+            <p className="text-xl text-muted-foreground mb-8">{hero.subheading}</p>
           </div>
         </div>
       </section>
@@ -92,32 +124,25 @@ const About = () => {
         <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Our <span className="text-gradient-primary">Story</span>
-              </h2>
-              <p className="text-muted-foreground mb-4">
-                Founded with a vision to bridge the gap between creative marketing and measurable growth, CWP has evolved into a trusted growth partner for businesses across industries.
-              </p>
-              <p className="text-muted-foreground mb-4">
-                We started with a simple belief: every brand deserves access to world' class marketing strategies that deliver real results. Today, we've helped 100+ brands generate over ₹50 Crores in revenue.
-              </p>
-              <p className="text-muted-foreground">
-                Our team of strategists, creatives, and growth experts work together to create comprehensive marketing solutions that drive sustainable business growth.
-              </p>
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-6"
+                dangerouslySetInnerHTML={{ __html: story.headingHtml }}
+              />
+              {story.paragraphs.map((p, i) => (
+                <p key={i} className="text-muted-foreground mb-4 last:mb-0">{p}</p>
+              ))}
             </div>
             <div className="relative">
               <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
               <Card className="relative p-8 bg-card border-border/50">
                 <div className="flex items-center gap-4 mb-6">
-                  <img src={teamNaren} alt="Naren, Founder and CEO of CWP Marketing" className="w-20 h-20 rounded-full object-cover" />
+                  <img src={teamNaren} alt={`${story.founderName}, ${story.founderRole} of CWP Marketing`} className="w-20 h-20 rounded-full object-cover" />
                   <div>
-                    <h3 className="text-xl font-bold">Naren</h3>
-                    <p className="text-primary">Founder & CEO</p>
+                    <h3 className="text-xl font-bold">{story.founderName}</h3>
+                    <p className="text-primary">{story.founderRole}</p>
                   </div>
                 </div>
-                <p className="text-muted-foreground italic">
-                  "Our mission is simple: help brands unlock their true potential through strategic, data' driven marketing that delivers measurable results."
-                </p>
+                <p className="text-muted-foreground italic">"{story.quote}"</p>
               </Card>
             </div>
           </div>
@@ -134,18 +159,14 @@ const About = () => {
                 <Target className="w-7 h-7 text-primary" />
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-muted-foreground">
-                To empower businesses with strategic marketing solutions that drive sustainable growth, increase brand visibility, and deliver exceptional ROI through data' driven methodologies.
-              </p>
+              <p className="text-muted-foreground">{mission.mission}</p>
             </Card>
             <Card className="p-8 bg-background border-border/50 hover:border-primary/50 transition-all group">
               <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
                 <Eye className="w-7 h-7 text-primary" />
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-muted-foreground">
-                To become the most trusted growth partner for ambitious brands, known for our innovative strategies, creative excellence, and unwavering commitment to client success.
-              </p>
+              <p className="text-muted-foreground">{mission.vision}</p>
             </Card>
           </div>
         </div>

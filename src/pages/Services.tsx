@@ -13,6 +13,7 @@ import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Sha
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { servicesData } from "@/data/services";
+import { useSection } from "@/hooks/usePageContent";
 
 const slugify = (title: string) => {
   const match = servicesData.find(
@@ -110,6 +111,27 @@ const Services = () => {
   const navigate = useNavigate();
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
+  const hero = useSection<{ badge: string; headingHtml: string; subheading: string; ctaLabel: string }>(
+    "services",
+    "hero",
+    {
+      badge: "Our Services",
+      headingHtml: 'Full\' Stack <span class="text-gradient-primary">Growth Solutions</span>',
+      subheading:
+        "We bring a unique blend of strategic marketing and creative services to help your brand stand out and scale effectively in today's competitive landscape.",
+      ctaLabel: "Get Started",
+    },
+  );
+  const cta = useSection<{ headingHtml: string; subheading: string; ctaLabel: string }>(
+    "services",
+    "cta",
+    {
+      headingHtml: 'Ready to <span class="text-gradient-primary">Transform</span> Your Brand?',
+      subheading:
+        "Let's discuss how we can help you achieve your growth goals with our comprehensive marketing solutions.",
+      ctaLabel: "Schedule a Consultation",
+    },
+  );
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -181,16 +203,15 @@ const Services = () => {
           <Breadcrumbs />
           <div className="text-center max-w-4xl mx-auto">
             <Badge variant="secondary" className="mb-4 text-primary border-primary/30">
-              Our Services
+              {hero.badge}
             </Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Full' Stack <span className="text-gradient-primary">Growth Solutions</span>
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              We bring a unique blend of strategic marketing and creative services to help your brand stand out and scale effectively in today's competitive landscape.
-            </p>
+            <h1
+              className="text-4xl md:text-6xl font-bold mb-6"
+              dangerouslySetInnerHTML={{ __html: hero.headingHtml }}
+            />
+            <p className="text-xl text-muted-foreground mb-8">{hero.subheading}</p>
             <Button size="lg" onClick={handleContactClick}>
-              Get Started <ArrowRight className="ml-2 w-4 h-4" />
+              {hero.ctaLabel} <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
         </div>
@@ -262,14 +283,13 @@ const Services = () => {
       {/* CTA Section */}
       <section className="py-20 bg-card/50">
         <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Ready to <span className="text-gradient-primary">Transform</span> Your Brand?
-          </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-            Let's discuss how we can help you achieve your growth goals with our comprehensive marketing solutions.
-          </p>
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-4"
+            dangerouslySetInnerHTML={{ __html: cta.headingHtml }}
+          />
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-8">{cta.subheading}</p>
           <Button size="lg" onClick={handleContactClick}>
-            Schedule a Consultation <ArrowRight className="ml-2 w-4 h-4" />
+            {cta.ctaLabel} <ArrowRight className="ml-2 w-4 h-4" />
           </Button>
         </div>
       </section>
