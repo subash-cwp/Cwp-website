@@ -222,7 +222,7 @@ export default function CustomPage() {
       <SEOHead
         title={`${page.title} | CWP Marketing`}
         description={page.meta_description || page.title}
-        image={page.og_image || undefined}
+        ogImage={page.og_image || undefined}
         canonical={`https://consultwithprofessionals.com/${page.slug}`}
       />
       <Navbar />
