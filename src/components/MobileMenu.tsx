@@ -25,8 +25,8 @@ export const MobileMenu = () => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="w-5 h-5" />
+        <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open navigation menu">
+          <Menu className="w-5 h-5" aria-hidden="true" />
         </Button>
       </SheetTrigger>
       <SheetContent side="right" className="w-[300px] sm:w-[400px]">
