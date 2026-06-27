@@ -104,6 +104,7 @@ export default function Pricing() {
           </div>
 
           {/* Pricing Cards */}
+          <h2 className="sr-only">Pricing Plans</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {plans.map((plan, index) => (
               <Card 
