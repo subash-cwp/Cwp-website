@@ -149,9 +149,12 @@ export default function BlogPost() {
       <BackToTop />
       
       <SEOHead 
-        title={post.title}
-        description={post.excerpt || `Read ${post.title} on CWP Marketing blog`}
+        title={`${post.title} — CWP Marketing Blog`}
+        description={post.excerpt || `Read ${post.title} on the CWP Marketing blog.`}
         keywords={post.tags?.join(", ")}
+        ogType="article"
+        ogImage={post.cover_image || undefined}
+        canonicalUrl={`https://consultwithprofessionals.com/blog/${post.slug || id}`}
       />
       
       <JsonLd 

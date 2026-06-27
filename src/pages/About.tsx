@@ -43,9 +43,10 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="About CWP Marketing - Our Story, Mission & Values"
-        description="Learn about CWP Marketing - a full-stack growth partner for D2C, SaaS, and B2B brands. Discover our mission, values, and the team behind 50+ successful brand transformations."
+        title="About CWP Marketing — Our Story, Mission & Values"
+        description="Learn about CWP Marketing — a full-stack growth partner for D2C, SaaS, and B2B brands. Discover our mission, values, and team."
         keywords="about CWP, marketing agency story, growth partner, brand transformation, marketing team"
+        canonicalUrl="https://consultwithprofessionals.com/about"
       />
       <Navbar />
       
@@ -108,7 +109,7 @@ const About = () => {
               <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
               <Card className="relative p-8 bg-card border-border/50">
                 <div className="flex items-center gap-4 mb-6">
-                  <img src={teamNaren} alt="Founder" className="w-20 h-20 rounded-full object-cover" />
+                  <img src={teamNaren} alt="Naren, Founder and CEO of CWP Marketing" className="w-20 h-20 rounded-full object-cover" />
                   <div>
                     <h3 className="text-xl font-bold">Naren</h3>
                     <p className="text-primary">Founder & CEO</p>

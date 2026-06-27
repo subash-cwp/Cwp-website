@@ -178,6 +178,8 @@ const Portfolio = () => {
             />
             {searchQuery && (
               <button
+                type="button"
+                aria-label="Clear search query"
                 onClick={() => setSearchQuery("")}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
               >
