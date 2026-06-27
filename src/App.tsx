@@ -36,6 +36,8 @@ import LeadScoringAdmin from "./pages/admin/LeadScoringAdmin";
 import MediaLibraryAdmin from "./pages/admin/MediaLibraryAdmin";
 import ABTestingAdmin from "./pages/admin/ABTestingAdmin";
 import SEOAnalyzerAdmin from "./pages/admin/SEOAnalyzerAdmin";
+import PageContentAdmin from "./pages/admin/PageContentAdmin";
+import CustomPagesAdmin from "./pages/admin/CustomPagesAdmin";
 import { Analytics } from "@/components/Analytics";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageWrapper } from "@/components/PageWrapper";
