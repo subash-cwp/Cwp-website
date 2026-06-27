@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
+import { JsonLd } from "@/components/JsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TrendingUp, Users, Target, ArrowRight, Quote, Search, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -138,6 +139,24 @@ const Portfolio = () => {
         description="Explore our portfolio of successful marketing campaigns. See how we've helped D2C, SaaS, and B2B brands achieve 10x ROAS, generate leads, and scale revenue."
         keywords="marketing portfolio, case studies, success stories, ROAS, lead generation, brand growth"
       />
+      <JsonLd
+        schema={{
+          type: "Raw",
+          id: "portfolio-collection",
+          data: {
+            "@type": "CollectionPage",
+            name: "CWP Marketing Portfolio & Case Studies",
+            url: "https://consultwithprofessionals.com/portfolio",
+            description: "Marketing case studies showing measurable growth for D2C, SaaS, and B2B brands.",
+            hasPart: filteredItems.map((item) => ({
+              "@type": "CreativeWork",
+              name: item.title,
+              about: item.category,
+              description: item.description,
+            })),
+          },
+        }}
+      />
       <Navbar />
       
       {/* Hero Section */}
@@ -258,11 +277,11 @@ const Portfolio = () => {
                     
                     <div className="grid md:grid-cols-2 gap-8 mb-8">
                       <div>
-                        <h4 className="font-semibold text-primary mb-2">The Challenge</h4>
+                        <h3 className="font-semibold text-primary mb-2">The Challenge</h3>
                         <p className="text-muted-foreground">{item.challenge}</p>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-primary mb-2">Our Solution</h4>
+                        <h3 className="font-semibold text-primary mb-2">Our Solution</h3>
                         <p className="text-muted-foreground">{item.solution}</p>
                       </div>
                     </div>

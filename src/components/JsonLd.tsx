@@ -33,7 +33,13 @@ interface FAQSchema {
   questions: { question: string; answer: string }[];
 }
 
-type SchemaType = OrganizationSchema | ArticleSchema | BreadcrumbSchema | FAQSchema;
+interface RawSchema {
+  type: "Raw";
+  id: string;
+  data: Record<string, unknown>;
+}
+
+type SchemaType = OrganizationSchema | ArticleSchema | BreadcrumbSchema | FAQSchema | RawSchema;
 
 interface JsonLdProps {
   schema: SchemaType;
@@ -43,7 +49,7 @@ export const JsonLd = ({ schema }: JsonLdProps) => {
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "application/ld+json";
-    script.id = `jsonld-${schema.type}`;
+    script.id = schema.type === "Raw" ? `jsonld-raw-${schema.id}` : `jsonld-${schema.type}`;
 
     let jsonLd: object;
 
@@ -109,6 +115,10 @@ export const JsonLd = ({ schema }: JsonLdProps) => {
             },
           })),
         };
+        break;
+
+      case "Raw":
+        jsonLd = { "@context": "https://schema.org", ...schema.data };
         break;
     }
 

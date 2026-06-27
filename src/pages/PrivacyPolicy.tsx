@@ -18,8 +18,8 @@ export default function PrivacyPolicy() {
       <BackToTop />
       
       <SEOHead 
-        title="Privacy Policy"
-        description="Read our privacy policy to understand how we collect, use, and protect your personal information."
+        title="Privacy Policy | CWP Marketing"
+        description="Read CWP Marketing's privacy policy to understand how we collect, use, and protect your personal information."
         keywords="privacy policy, data protection, personal information"
       />
 

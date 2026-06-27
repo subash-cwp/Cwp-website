@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/SEOHead";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { JsonLd } from "@/components/JsonLd";
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -146,6 +147,27 @@ const Services = () => {
         keywords="marketing services, performance marketing, SEO services, content marketing, social media management, brand identity"
         canonicalUrl="https://consultwithprofessionals.com/services"
       />
+      <JsonLd
+        schema={{
+          type: "Raw",
+          id: "services-itemlist",
+          data: {
+            "@type": "ItemList",
+            name: "CWP Marketing Services",
+            itemListElement: services.map((s, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "Service",
+                name: s.title,
+                description: s.description,
+                provider: { "@type": "Organization", name: "CWP Marketing" },
+                url: `https://consultwithprofessionals.com/services/${slugify(s.title)}`,
+              },
+            })),
+          },
+        }}
+      />
       <Navbar />
       
       {/* Hero Section */}
@@ -209,7 +231,7 @@ const Services = () => {
                       <div className="lg:pl-8">
                         {service.features && service.features.length > 0 && (
                           <>
-                            <h4 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">What's Included</h4>
+                            <h3 className="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">What's Included</h3>
                             <div className="grid grid-cols-2 gap-3">
                               {service.features.map((feature, i) => (
                                 <div 

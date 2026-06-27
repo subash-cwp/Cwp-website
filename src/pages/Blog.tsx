@@ -214,7 +214,8 @@ export default function Blog() {
                         {post.excerpt}
                       </p>
                       <div className="flex items-center gap-2 text-primary font-semibold">
-                        Read More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        <span>Read full article<span className="sr-only">: {post.title}</span></span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                       </div>
                     </div>
                   </Link>
