@@ -72,6 +72,21 @@ const ServiceDetail = () => {
   const canonical = `https://consultwithprofessionals.com/services/${service.slug}`;
   const related = servicesData.filter((s) => s.slug !== service.slug).slice(0, 3);
 
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    url: canonical,
+    serviceType: service.title,
+    provider: {
+      "@type": "Organization",
+      name: "CWP Marketing",
+      url: "https://consultwithprofessionals.com",
+    },
+    areaServed: "Global",
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
@@ -79,6 +94,10 @@ const ServiceDetail = () => {
         description={service.metaDescription}
         keywords={service.keywords}
         canonicalUrl={canonical}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
       />
       <Navbar />
 
