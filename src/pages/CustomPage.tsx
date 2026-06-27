@@ -223,7 +223,7 @@ export default function CustomPage() {
         title={`${page.title} | CWP Marketing`}
         description={page.meta_description || page.title}
         ogImage={page.og_image || undefined}
-        canonical={`https://consultwithprofessionals.com/${page.slug}`}
+        canonicalUrl={`https://consultwithprofessionals.com/${page.slug}`}
       />
       <Navbar />
       <main className="pt-20">
