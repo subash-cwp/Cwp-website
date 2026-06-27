@@ -19,6 +19,7 @@ import Resources from "./pages/Resources";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import CustomPage from "./pages/CustomPage";
 import Auth from "./pages/Auth";
 import AdminDashboard from "./pages/admin/Dashboard";
 import BlogAdmin from "./pages/admin/BlogAdmin";
@@ -35,6 +36,8 @@ import LeadScoringAdmin from "./pages/admin/LeadScoringAdmin";
 import MediaLibraryAdmin from "./pages/admin/MediaLibraryAdmin";
 import ABTestingAdmin from "./pages/admin/ABTestingAdmin";
 import SEOAnalyzerAdmin from "./pages/admin/SEOAnalyzerAdmin";
+import PageContentAdmin from "./pages/admin/PageContentAdmin";
+import CustomPagesAdmin from "./pages/admin/CustomPagesAdmin";
 import { Analytics } from "@/components/Analytics";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageWrapper } from "@/components/PageWrapper";
@@ -82,6 +85,9 @@ const App = () => (
               <Route path="/admin/seo" element={<SEOAnalyzerAdmin />} />
               <Route path="/admin/activity-log" element={<ActivityLogAdmin />} />
               <Route path="/admin/settings" element={<SiteSettingsAdmin />} />
+              <Route path="/admin/page-content" element={<PageContentAdmin />} />
+              <Route path="/admin/pages" element={<CustomPagesAdmin />} />
+              <Route path="/:slug" element={<CustomPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </PageWrapper>
