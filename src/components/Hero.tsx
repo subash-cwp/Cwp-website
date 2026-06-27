@@ -86,57 +86,63 @@ export const Hero = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors group">
             <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">Trusted by 100+ Brands</span>
+            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">{c.badge}</span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            We <span className="text-gradient-primary">build</span>, grow and
-            <br />
-            help you <span className="relative inline-block">
-              <span className="text-gradient-primary">scale</span>
-              <span className="absolute -inset-1 bg-primary/20 blur-xl -z-10 animate-pulse-glow" />
-            </span>
-          </h1>
+          <h1
+            className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-slide-up"
+            style={{ animationDelay: '0.1s' }}
+            dangerouslySetInnerHTML={{ __html: c.headingHtml }}
+          />
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            By bringing the best strategic marketing, creative and growth consulting that aligns with your brand&apos;s vision
+            {c.subheading}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
-            <span className="text-sm text-muted-foreground">For:</span>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {['Startups', 'D2C Brands', "Founders and Growth' focused Enterprises"].map((tag, i) => (
-                <span 
-                  key={tag} 
-                  className="px-4 py-1.5 bg-muted/30 rounded-full text-sm border border-border/30 hover:border-primary/50 hover:bg-muted/50 transition-all cursor-default hover-lift"
-                  style={{ animationDelay: `${0.4 + i * 0.1}s` }}
-                >
-                  {tag}
-                </span>
-              ))}
+          {c.tags?.length > 0 && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+              <span className="text-sm text-muted-foreground">{c.tagsLabel}</span>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {c.tags.map((tag, i) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-1.5 bg-muted/30 rounded-full text-sm border border-border/30 hover:border-primary/50 hover:bg-muted/50 transition-all cursor-default hover-lift"
+                    style={{ animationDelay: `${0.4 + i * 0.1}s` }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8 animate-slide-up" style={{ animationDelay: '0.5s' }}>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="gap-2 text-lg px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
-              onClick={() => window.open('https://calendly.com/narenethiraj', '_blank')}
+              onClick={() => window.open(c.primaryCtaHref, c.primaryCtaHref.startsWith('http') ? '_blank' : '_self')}
             >
-              <span className="relative z-10">Book a Strategy Call</span>
+              <span className="relative z-10">{c.primaryCtaLabel}</span>
               <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
               <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
+            <Button
+              size="lg"
+              variant="outline"
               className="text-lg px-8 py-6 hover-lift glow-border group"
-              onClick={() => document.querySelector('#portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => {
+                if (c.secondaryCtaHref.startsWith('#')) {
+                  document.querySelector(c.secondaryCtaHref)?.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                  window.open(c.secondaryCtaHref, c.secondaryCtaHref.startsWith('http') ? '_blank' : '_self');
+                }
+              }}
             >
-              View Our Work
+              {c.secondaryCtaLabel}
               <span className="ml-2 group-hover:translate-x-1 transition-transform inline-block">→</span>
             </Button>
           </div>
+
 
         </div>
       </div>
