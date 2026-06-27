@@ -51,24 +51,25 @@ const menuItems = [
 ];
 
 export const AdminLayout = ({ children }: AdminLayoutProps) => {
-  const { user, isAdmin, loading, signOut } = useAuth();
+  const { user, isAdmin, roleChecked, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   useIdleSignOut();
 
   useEffect(() => {
-    if (!loading) {
-      if (!user) {
-        navigate("/auth");
-      } else if (!isAdmin) {
-        // Authenticated but not an admin: deny access to the admin area.
-        navigate("/");
-      }
+    if (loading) return;
+    if (!user) {
+      navigate("/auth");
+      return;
     }
-  }, [user, isAdmin, loading, navigate]);
+    if (!roleChecked) return;
+    if (!isAdmin) {
+      navigate("/");
+    }
+  }, [user, isAdmin, roleChecked, loading, navigate]);
 
-  if (loading) {
+  if (loading || (user && !roleChecked)) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
