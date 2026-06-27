@@ -141,9 +141,10 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Marketing Services - CWP Full-Stack Growth Solutions"
-        description="Comprehensive marketing services including Performance Marketing, SEO, Content Marketing, Social Media Management, CRM Automation, and Creative Branding."
+        title="Marketing Services — CWP Full-Stack Growth Solutions"
+        description="Performance marketing, SEO, content, social, CRM automation, and creative branding services for ambitious D2C, SaaS, and B2B brands."
         keywords="marketing services, performance marketing, SEO services, content marketing, social media management, brand identity"
+        canonicalUrl="https://consultwithprofessionals.com/services"
       />
       <Navbar />
       
@@ -222,8 +223,8 @@ const Services = () => {
                           </>
                         )}
                         <Button variant="outline" className="mt-6 w-full" asChild>
-                          <Link to={`/services/${slugify(service.title)}`}>
-                            Learn More
+                          <Link to={`/services/${slugify(service.title)}`} aria-label={`View ${service.title} details`}>
+                            View {service.title} details
                           </Link>
                         </Button>
                       </div>

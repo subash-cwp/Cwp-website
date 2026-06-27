@@ -9,19 +9,32 @@ interface SEOHeadProps {
   canonicalUrl?: string;
 }
 
+const SITE_ORIGIN = "https://consultwithprofessionals.com";
+const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og-image.png`;
+
 export const SEOHead = ({
-  title = "CWP Marketing - Strategic Marketing & Growth Consulting",
-  description = "We build, grow and help you scale. Strategic marketing, creative solutions, and growth consulting that aligns with your brand's vision. Trusted by 100+ brands.",
+  title = "CWP Marketing — Growth, SEO & Performance Marketing Agency",
+  description = "Strategic marketing, SEO, paid ads, and growth consulting for D2C, SaaS, and B2B brands. 100+ brands served with 3x average growth.",
   keywords = "marketing agency, growth consulting, digital marketing, SEO, social media marketing, brand strategy, Chennai",
-  ogImage = "/og-image.png",
+  ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   canonicalUrl,
 }: SEOHeadProps) => {
   useEffect(() => {
-    // Update document title
     document.title = title;
 
-    // Update or create meta tags
+    // Resolve canonical: explicit prop > current pathname against canonical origin.
+    const resolvedCanonical =
+      canonicalUrl ||
+      (typeof window !== "undefined"
+        ? `${SITE_ORIGIN}${window.location.pathname}`
+        : SITE_ORIGIN);
+
+    // Ensure ogImage is absolute.
+    const resolvedOgImage = ogImage.startsWith("http")
+      ? ogImage
+      : `${SITE_ORIGIN}${ogImage.startsWith("/") ? "" : "/"}${ogImage}`;
+
     const updateMetaTag = (name: string, content: string, property?: boolean) => {
       const attr = property ? "property" : "name";
       let element = document.querySelector(`meta[${attr}="${name}"]`);
@@ -33,35 +46,28 @@ export const SEOHead = ({
       element.setAttribute("content", content);
     };
 
-    // Standard meta tags
     updateMetaTag("description", description);
     updateMetaTag("keywords", keywords);
 
-    // Open Graph tags
     updateMetaTag("og:title", title, true);
     updateMetaTag("og:description", description, true);
-    updateMetaTag("og:image", ogImage, true);
+    updateMetaTag("og:image", resolvedOgImage, true);
     updateMetaTag("og:type", ogType, true);
-    if (canonicalUrl) {
-      updateMetaTag("og:url", canonicalUrl, true);
-    }
+    updateMetaTag("og:url", resolvedCanonical, true);
 
-    // Twitter Card tags
     updateMetaTag("twitter:card", "summary_large_image");
     updateMetaTag("twitter:title", title);
     updateMetaTag("twitter:description", description);
-    updateMetaTag("twitter:image", ogImage);
+    updateMetaTag("twitter:image", resolvedOgImage);
+    updateMetaTag("twitter:url", resolvedCanonical);
 
-    // Canonical URL
-    if (canonicalUrl) {
-      let canonicalElement = document.querySelector('link[rel="canonical"]');
-      if (!canonicalElement) {
-        canonicalElement = document.createElement("link");
-        canonicalElement.setAttribute("rel", "canonical");
-        document.head.appendChild(canonicalElement);
-      }
-      canonicalElement.setAttribute("href", canonicalUrl);
+    let canonicalElement = document.querySelector('link[rel="canonical"]');
+    if (!canonicalElement) {
+      canonicalElement = document.createElement("link");
+      canonicalElement.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalElement);
     }
+    canonicalElement.setAttribute("href", resolvedCanonical);
   }, [title, description, keywords, ogImage, ogType, canonicalUrl]);
 
   return null;

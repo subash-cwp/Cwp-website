@@ -45,7 +45,7 @@ export const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" onClick={() => setSearchOpen(true)} className="hidden md:inline-flex">
+            <Button variant="ghost" size="icon" onClick={() => setSearchOpen(true)} className="hidden md:inline-flex" aria-label="Open search">
               <Search className="h-5 w-5" />
             </Button>
             <Button className="hidden md:inline-flex" asChild>

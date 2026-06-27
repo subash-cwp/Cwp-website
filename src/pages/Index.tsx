@@ -7,7 +7,7 @@ import { AnimatedStats } from "@/components/AnimatedStats";
 import { Process } from "@/components/Process";
 import { Portfolio } from "@/components/Portfolio";
 import { TeamProfiles } from "@/components/TeamProfiles";
-import { FAQ } from "@/components/FAQ";
+import { FAQ, faqs } from "@/components/FAQ";
 import { BookingSection } from "@/components/BookingSection";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
@@ -39,22 +39,29 @@ const Index = () => {
   return (
     <>
       <SEOHead 
-        title="CWP Marketing - Strategic Marketing & Growth Consulting"
-        description="We build, grow and help you scale. Strategic marketing, creative solutions, and growth consulting that aligns with your brand's vision. Trusted by 100+ brands."
+        title="CWP Marketing — Growth, SEO & Performance Marketing Agency"
+        description="Strategic marketing, SEO, paid ads, and growth consulting for D2C, SaaS, and B2B brands. 100+ brands served with 3x average growth."
         keywords="marketing agency, growth consulting, digital marketing, SEO, social media marketing, brand strategy, Chennai"
+        canonicalUrl="https://consultwithprofessionals.com/"
       />
       <JsonLd 
         schema={{
           type: "Organization",
           name: "CWP Marketing",
-          url: window.location.origin,
-          logo: `${window.location.origin}/og-image.png`,
+          url: "https://consultwithprofessionals.com",
+          logo: "https://consultwithprofessionals.com/og-image.png",
           description: "Strategic marketing and growth consulting agency trusted by 100+ brands",
           contactPoint: {
             telephone: "+918610986622",
             contactType: "sales"
           },
           sameAs: ["https://www.linkedin.com/in/naren-ethiraj-14834514b/"]
+        }}
+      />
+      <JsonLd
+        schema={{
+          type: "FAQPage",
+          questions: faqs.map((f) => ({ question: f.question, answer: f.answer })),
         }}
       />
       <ExitIntentPopup />

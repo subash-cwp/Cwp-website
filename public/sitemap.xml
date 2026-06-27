@@ -114,4 +114,66 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
+  <!-- Blog posts -->
+  <url>
+    <loc>https://consultwithprofessionals.com/blog/seo-guide-2025</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/blog/lead-generation-case-study</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/blog/email-marketing-roi</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/blog/content-marketing-strategy</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/blog/paid-advertising-2025</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/blog/10-important-strategies-to-3x-your-social-media-engagement-in-2024</loc>
+    <lastmod>2025-12-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Case studies -->
+  <url>
+    <loc>https://consultwithprofessionals.com/case-studies/2d9cf39f-743b-44fb-9d8c-7aaef0466e47</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/case-studies/29c44946-3c31-4d81-8660-3bb6f0d12fd1</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/case-studies/96d3f41f-6e40-48b4-85ec-1e4506b71ed1</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/case-studies/c8421ebc-2cae-49ff-b05f-e2ab94234d04</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>

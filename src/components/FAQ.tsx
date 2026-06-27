@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export const faqs = [
   {
     question: "What makes CWP different from other marketing agencies?",
     answer: "We combine strategic thinking with hands' on execution. Unlike agencies that just run campaigns, we become your growth partner - analyzing your market position, identifying bottlenecks, and building data' driven strategies that deliver measurable results. Plus, we specialize in both startups and D2C brands, understanding the unique challenges of scaling."
