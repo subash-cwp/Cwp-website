@@ -14,7 +14,7 @@ export const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center group cursor-pointer">
-            <img src={logo} alt="CWP Logo" className="w-10 h-10 object-contain rounded-[5%] group-hover:scale-110 transition-transform duration-300" />
+            <img src={logo} alt="CWP Marketing agency logo" className="w-10 h-10 object-contain rounded-[5%] group-hover:scale-110 transition-transform duration-300" />
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
