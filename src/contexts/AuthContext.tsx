@@ -33,25 +33,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setIsAdmin(!error && !!data);
     setRoleChecked(true);
   };
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  const checkAdminRole = async (userId: string) => {
-    const { data, error } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", userId)
-      .eq("role", "admin")
-      .maybeSingle();
-    
-    if (!error && data) {
-      setIsAdmin(true);
-    } else {
-      setIsAdmin(false);
-    }
-  };
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
