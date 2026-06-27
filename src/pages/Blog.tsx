@@ -207,9 +207,9 @@ export default function Blog() {
                           <span>{post.read_time || "5 min read"}</span>
                         </div>
                       </div>
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                      <h2 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors line-clamp-2">
                         {post.title}
-                      </h3>
+                      </h2>
                       <p className="text-muted-foreground mb-4 line-clamp-2">
                         {post.excerpt}
                       </p>

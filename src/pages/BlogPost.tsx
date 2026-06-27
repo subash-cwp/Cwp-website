@@ -149,7 +149,7 @@ export default function BlogPost() {
       <BackToTop />
       
       <SEOHead 
-        title={`${post.title} — CWP Marketing Blog`}
+        title={post.title.length > 50 ? post.title : `${post.title} | CWP Blog`}
         description={post.excerpt || `Read ${post.title} on the CWP Marketing blog.`}
         keywords={post.tags?.join(", ")}
         ogType="article"
