@@ -19,8 +19,10 @@ import {
   TestTube,
   Search,
   History,
-  Send
+  Send,
+  UserCog
 } from "lucide-react";
+import { useIdleSignOut } from "@/hooks/useIdleSignOut";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -30,6 +32,7 @@ interface AdminLayoutProps {
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
+  { icon: UserCog, label: "Users & Access", path: "/admin/users" },
   { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
   { icon: FileText, label: "Page Content", path: "/admin/page-content" },
   { icon: FileText, label: "Custom Pages", path: "/admin/pages" },
@@ -52,6 +55,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  useIdleSignOut();
 
   useEffect(() => {
     if (!loading) {

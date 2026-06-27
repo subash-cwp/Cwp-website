@@ -21,7 +21,10 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import CustomPage from "./pages/CustomPage";
 import Auth from "./pages/Auth";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 import AdminDashboard from "./pages/admin/Dashboard";
+import UsersAdmin from "./pages/admin/UsersAdmin";
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import CaseStudiesAdmin from "./pages/admin/CaseStudiesAdmin";
 import ServicesAdmin from "./pages/admin/ServicesAdmin";
@@ -70,7 +73,10 @@ const App = () => (
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/users" element={<UsersAdmin />} />
               <Route path="/admin/analytics" element={<AnalyticsAdmin />} />
               <Route path="/admin/blog" element={<BlogAdmin />} />
               <Route path="/admin/case-studies" element={<CaseStudiesAdmin />} />
