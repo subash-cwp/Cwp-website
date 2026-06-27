@@ -3,10 +3,52 @@ import { Link } from "react-router-dom";
 import { Newsletter } from "@/components/Newsletter";
 import { FooterContactForm } from "@/components/FooterContactForm";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSection } from "@/hooks/usePageContent";
 import logo from "@/assets/logo.png";
+
+interface FooterLink { label: string; href: string }
+interface FooterColumns {
+  usefulLinksTitle: string;
+  usefulLinks: FooterLink[];
+  servicesTitle: string;
+  serviceLinks: FooterLink[];
+  contactTitle: string;
+  quickMessageTitle: string;
+  copyright: string;
+}
+
+const FOOTER_DEFAULTS: FooterColumns = {
+  usefulLinksTitle: "USEFUL LINKS",
+  usefulLinks: [
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Blog", href: "/blog" },
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "Resources", href: "/resources" },
+    { label: "Careers", href: "/careers" },
+  ],
+  servicesTitle: "SERVICES",
+  serviceLinks: [
+    { label: "Strategy & Planning", href: "/services/strategy-planning" },
+    { label: "Performance Marketing", href: "/services/performance-marketing" },
+    { label: "SEO & Organic Growth", href: "/services/seo-organic-growth" },
+    { label: "CRM & Marketing Automation", href: "/services/crm-marketing-automation" },
+    { label: "Content Marketing", href: "/services/content-marketing" },
+    { label: "Social Media Management", href: "/services/social-media-management" },
+    { label: "Creative & Branding", href: "/services/creative-branding" },
+    { label: "Outreach & Demand Gen", href: "/services/outreach-demand-generation" },
+    { label: "Pricing", href: "/pricing" },
+  ],
+  contactTitle: "CONTACT",
+  quickMessageTitle: "QUICK MESSAGE",
+  copyright: "Copyright © {year} CWP Marketing. All Rights Reserved.",
+};
 
 export const Footer = () => {
   const { settings } = useSiteSettings();
+  const f = useSection<FooterColumns>("footer", "main", FOOTER_DEFAULTS);
 
   const socialLinks = [
     { icon: Linkedin, url: settings.social.linkedin, label: "LinkedIn" },
@@ -59,19 +101,10 @@ export const Footer = () => {
 
           {/* Useful Links */}
           <div>
-            <h4 className="font-bold mb-6 text-primary">USEFUL LINKS</h4>
+            <h4 className="font-bold mb-6 text-primary">{f.usefulLinksTitle}</h4>
             <ul className="space-y-3">
-              {[
-                { label: "Home", href: "/" },
-                { label: "About", href: "/about" },
-                { label: "Services", href: "/services" },
-                { label: "Portfolio", href: "/portfolio" },
-                { label: "Blog", href: "/blog" },
-                { label: "Case Studies", href: "/case-studies" },
-                { label: "Resources", href: "/resources" },
-                { label: "Careers", href: "/careers" },
-              ].map((link) => (
-                <li key={link.href}>
+              {(f.usefulLinks?.length ? f.usefulLinks : FOOTER_DEFAULTS.usefulLinks).map((link) => (
+                <li key={link.href + link.label}>
                   <Link
                     to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all inline-block"
@@ -85,41 +118,24 @@ export const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-bold mb-6 text-primary">SERVICES</h4>
+            <h4 className="font-bold mb-6 text-primary">{f.servicesTitle}</h4>
             <ul className="space-y-3">
-              {[
-                { label: "Strategy & Planning", slug: "strategy-planning" },
-                { label: "Performance Marketing", slug: "performance-marketing" },
-                { label: "SEO & Organic Growth", slug: "seo-organic-growth" },
-                { label: "CRM & Marketing Automation", slug: "crm-marketing-automation" },
-                { label: "Content Marketing", slug: "content-marketing" },
-                { label: "Social Media Management", slug: "social-media-management" },
-                { label: "Creative & Branding", slug: "creative-branding" },
-                { label: "Outreach & Demand Gen", slug: "outreach-demand-generation" },
-              ].map((service) => (
-                <li key={service.slug}>
+              {(f.serviceLinks?.length ? f.serviceLinks : FOOTER_DEFAULTS.serviceLinks).map((link) => (
+                <li key={link.href + link.label}>
                   <Link
-                    to={`/services/${service.slug}`}
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all inline-block"
                   >
-                    {service.label}
+                    {link.label}
                   </Link>
                 </li>
               ))}
-              <li>
-                <Link
-                  to="/pricing"
-                  className="text-sm text-muted-foreground hover:text-primary hover:translate-x-1 transition-all inline-block"
-                >
-                  Pricing
-                </Link>
-              </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="font-bold mb-6 text-primary">CONTACT</h4>
+            <h4 className="font-bold mb-6 text-primary">{f.contactTitle}</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3 group">
                 <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
@@ -165,7 +181,7 @@ export const Footer = () => {
 
           {/* Quick Contact Form */}
           <div>
-            <h4 className="font-bold mb-6 text-primary">QUICK MESSAGE</h4>
+            <h4 className="font-bold mb-6 text-primary">{f.quickMessageTitle}</h4>
             <FooterContactForm />
           </div>
         </div>
@@ -174,7 +190,7 @@ export const Footer = () => {
         <div className="border-t border-border/50 mt-16 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              Copyright © {new Date().getFullYear()} CWP Marketing. All Rights Reserved.
+              {(f.copyright || FOOTER_DEFAULTS.copyright).replace("{year}", String(new Date().getFullYear()))}
             </p>
             <div className="flex gap-6">
               <Link to="/privacy-policy" className="text-sm text-muted-foreground hover:text-primary transition-colors">

@@ -1,10 +1,26 @@
 import { Mail, Phone, MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSection } from "@/hooks/usePageContent";
 
 export const ContactHero = () => {
+  const c = useSection<{ badge: string; headingHtml: string; subheading: string; primaryLabel: string; phoneLabel: string; phoneHref: string }>(
+    "contact",
+    "hero",
+    {
+      badge: "Let's Start a Conversation",
+      headingHtml: 'Get in <span class="text-gradient-primary">Touch</span>',
+      subheading:
+        "Ready to transform your business? We're here to help you achieve your marketing goals with strategic solutions tailored to your needs.",
+      primaryLabel: "Send a Message",
+      phoneLabel: "Call Us Now",
+      phoneHref: "tel:+918610986622",
+    },
+  );
   const scrollToForm = () => {
     document.querySelector('#contact-form')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+
 
   return (
     <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-20">
@@ -27,28 +43,29 @@ export const ContactHero = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/30 mb-8 animate-fade-in">
             <MessageCircle className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Let's Start a Conversation</span>
+            <span className="text-sm font-medium text-primary">{c.badge}</span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up">
-            Get in <span className="text-gradient-primary">Touch</span>
-          </h1>
+          <h1
+            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up"
+            dangerouslySetInnerHTML={{ __html: c.headingHtml }}
+          />
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Ready to transform your business? We're here to help you achieve your marketing goals with strategic solutions tailored to your needs.
+            {c.subheading}
           </p>
 
           {/* Quick Contact Buttons */}
           <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             <Button size="lg" className="gap-2 hover-glow" onClick={scrollToForm}>
               <Mail className="w-5 h-5" />
-              Send a Message
+              {c.primaryLabel}
             </Button>
             <Button size="lg" variant="outline" className="gap-2 glow-border" asChild>
-              <a href="tel:+918610986622">
+              <a href={c.phoneHref}>
                 <Phone className="w-5 h-5" />
-                Call Us Now
+                {c.phoneLabel}
               </a>
             </Button>
           </div>
