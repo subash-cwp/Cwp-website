@@ -1,0 +1,33 @@
+# CWP Marketing (Consult With Professionals)
+
+> CWP Marketing is a strategic marketing and growth consulting agency based in Chennai, India. We help startups, D2C brands, and enterprises scale through performance marketing, SEO, content, creative branding, CRM automation, and demand generation.
+
+Website: https://consultwithprofessionals.com
+Contact: info@consultwithprofessionals.com
+Phone: +91-9962834800
+Location: SIDCO Electronics Complex, Guindy Industrial Estate, Chennai, Tamil Nadu 600032, India
+
+## Core Pages
+- [Home](https://consultwithprofessionals.com/): Overview of CWP Marketing services and value proposition.
+- [About](https://consultwithprofessionals.com/about): Our story, mission, team, and approach.
+- [Services](https://consultwithprofessionals.com/services): All marketing service offerings.
+- [Portfolio](https://consultwithprofessionals.com/portfolio): Client work and brand showcase.
+- [Case Studies](https://consultwithprofessionals.com/case-studies): Detailed growth case studies and results.
+- [Pricing](https://consultwithprofessionals.com/pricing): Engagement models and pricing tiers.
+- [Blog](https://consultwithprofessionals.com/blog): Marketing insights, guides, and thought leadership.
+- [Resources](https://consultwithprofessionals.com/resources): Downloadable templates and tools.
+- [Careers](https://consultwithprofessionals.com/careers): Open roles at CWP.
+- [Contact](https://consultwithprofessionals.com/contact): Get in touch.
+
+## Services
+- [Strategy & Planning](https://consultwithprofessionals.com/services/strategy-planning)
+- [CRM & Marketing Automation](https://consultwithprofessionals.com/services/crm-marketing-automation)
+- [Outreach & Demand Generation](https://consultwithprofessionals.com/services/outreach-demand-generation)
+- [Performance Marketing](https://consultwithprofessionals.com/services/performance-marketing)
+- [SEO & Organic Growth](https://consultwithprofessionals.com/services/seo-organic-growth)
+- [Creative & Full Branding](https://consultwithprofessionals.com/services/creative-branding)
+- [Content Marketing & Thought Leadership](https://consultwithprofessionals.com/services/content-marketing)
+- [Social Media Management](https://consultwithprofessionals.com/services/social-media-management)
+
+## Policies
+- [Privacy Policy](https://consultwithprofessionals.com/privacy-policy)
