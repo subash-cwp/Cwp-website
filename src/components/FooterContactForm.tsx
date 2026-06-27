@@ -89,8 +89,12 @@ export const FooterContactForm = () => {
       <honeypot.HoneypotField />
       <div className="grid grid-cols-2 gap-3">
         <div>
+          <label htmlFor="footer-contact-name" className="sr-only">Your name</label>
           <Input
+            id="footer-contact-name"
+            name="name"
             placeholder="Your Name"
+            aria-label="Your name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="bg-background/50 border-border/50 h-10 text-sm"
@@ -99,9 +103,13 @@ export const FooterContactForm = () => {
           {errors.name && <p className="text-xs text-destructive mt-1">{errors.name}</p>}
         </div>
         <div>
+          <label htmlFor="footer-contact-email" className="sr-only">Your email</label>
           <Input
+            id="footer-contact-email"
+            name="email"
             type="email"
             placeholder="Your Email"
+            aria-label="Your email"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             className="bg-background/50 border-border/50 h-10 text-sm"
@@ -111,8 +119,12 @@ export const FooterContactForm = () => {
         </div>
       </div>
       <div>
+        <label htmlFor="footer-contact-message" className="sr-only">Your message</label>
         <Textarea
+          id="footer-contact-message"
+          name="message"
           placeholder="Your Message"
+          aria-label="Your message"
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
           rows={3}
