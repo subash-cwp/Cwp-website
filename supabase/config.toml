@@ -5,3 +5,7 @@ project_id = "xztsijmsttkwmzcrjhlk"
     verify_jwt = false
   [functions.process-email-queue]
     verify_jwt = true
+  [functions.admin-create-user]
+    verify_jwt = true
+  [functions.admin-delete-user]
+    verify_jwt = true
