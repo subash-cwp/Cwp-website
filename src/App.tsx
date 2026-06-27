@@ -85,6 +85,9 @@ const App = () => (
               <Route path="/admin/seo" element={<SEOAnalyzerAdmin />} />
               <Route path="/admin/activity-log" element={<ActivityLogAdmin />} />
               <Route path="/admin/settings" element={<SiteSettingsAdmin />} />
+              <Route path="/admin/page-content" element={<PageContentAdmin />} />
+              <Route path="/admin/pages" element={<CustomPagesAdmin />} />
+              <Route path="/:slug" element={<CustomPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </PageWrapper>
