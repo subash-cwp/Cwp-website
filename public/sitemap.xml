@@ -151,6 +151,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://consultwithprofessionals.com/blog/d2c-marketing-strategy</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Case studies -->
   <url>
     <loc>https://consultwithprofessionals.com/case-studies/2d9cf39f-743b-44fb-9d8c-7aaef0466e47</loc>
