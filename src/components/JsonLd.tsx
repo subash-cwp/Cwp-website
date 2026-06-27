@@ -49,7 +49,7 @@ export const JsonLd = ({ schema }: JsonLdProps) => {
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "application/ld+json";
-    script.id = `jsonld-${schema.type}`;
+    script.id = schema.type === "Raw" ? `jsonld-raw-${schema.id}` : `jsonld-${schema.type}`;
 
     let jsonLd: object;
 
@@ -115,6 +115,10 @@ export const JsonLd = ({ schema }: JsonLdProps) => {
             },
           })),
         };
+        break;
+
+      case "Raw":
+        jsonLd = { "@context": "https://schema.org", ...schema.data };
         break;
     }
 
