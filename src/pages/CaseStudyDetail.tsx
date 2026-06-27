@@ -139,9 +139,12 @@ export default function CaseStudyDetail() {
       <BackToTop />
       
       <SEOHead 
-        title={`${study.client || study.title} - Case Study`}
-        description={study.description || `See how we helped ${study.client} achieve remarkable results`}
+        title={`${study.client || study.title} — Case Study | CWP`}
+        description={study.description || `See how CWP Marketing helped ${study.client} achieve remarkable results.`}
         keywords={study.technologies?.join(", ")}
+        ogType="article"
+        ogImage={study.cover_image || undefined}
+        canonicalUrl={`https://consultwithprofessionals.com/case-studies/${study.slug || id}`}
       />
       
       <JsonLd 
