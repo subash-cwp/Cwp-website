@@ -31,6 +31,8 @@ interface AdminLayoutProps {
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
   { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
+  { icon: FileText, label: "Page Content", path: "/admin/page-content" },
+  { icon: FileText, label: "Custom Pages", path: "/admin/pages" },
   { icon: FileText, label: "Blog Posts", path: "/admin/blog" },
   { icon: Briefcase, label: "Case Studies", path: "/admin/case-studies" },
   { icon: Settings, label: "Services", path: "/admin/services" },
