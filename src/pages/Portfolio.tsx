@@ -148,7 +148,7 @@ const Portfolio = () => {
             name: "CWP Marketing Portfolio & Case Studies",
             url: "https://consultwithprofessionals.com/portfolio",
             description: "Marketing case studies showing measurable growth for D2C, SaaS, and B2B brands.",
-            hasPart: filteredPortfolio.map((item) => ({
+            hasPart: filteredItems.map((item) => ({
               "@type": "CreativeWork",
               name: item.title,
               about: item.category,
