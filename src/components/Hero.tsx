@@ -1,7 +1,35 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useSection } from "@/hooks/usePageContent";
+
+interface HeroContent {
+  badge: string;
+  headingHtml: string;
+  subheading: string;
+  tagsLabel: string;
+  tags: string[];
+  primaryCtaLabel: string;
+  primaryCtaHref: string;
+  secondaryCtaLabel: string;
+  secondaryCtaHref: string;
+}
+
+const DEFAULTS: HeroContent = {
+  badge: "Trusted by 100+ Brands",
+  headingHtml:
+    'We <span class="text-gradient-primary">build</span>, grow and<br/>help you <span class="text-gradient-primary">scale</span>',
+  subheading:
+    "By bringing the best strategic marketing, creative and growth consulting that aligns with your brand's vision",
+  tagsLabel: "For:",
+  tags: ["Startups", "D2C Brands", "Founders and Growth' focused Enterprises"],
+  primaryCtaLabel: "Book a Strategy Call",
+  primaryCtaHref: "https://calendly.com/narenethiraj",
+  secondaryCtaLabel: "View Our Work",
+  secondaryCtaHref: "#portfolio",
+};
 
 export const Hero = () => {
+  const c = useSection<HeroContent>("home", "hero", DEFAULTS);
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated grid background */}
