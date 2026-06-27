@@ -106,6 +106,11 @@ export default function Auth() {
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               Sign In
             </Button>
+            <div className="text-center">
+              <a href="/forgot-password" className="text-xs text-primary hover:underline">
+                Forgot your password?
+              </a>
+            </div>
             <p className="text-xs text-muted-foreground text-center pt-2">
               Access is invitation-only. Contact the site owner for an account.
             </p>
