@@ -258,11 +258,11 @@ const Portfolio = () => {
                     
                     <div className="grid md:grid-cols-2 gap-8 mb-8">
                       <div>
-                        <h4 className="font-semibold text-primary mb-2">The Challenge</h4>
+                        <h3 className="font-semibold text-primary mb-2">The Challenge</h3>
                         <p className="text-muted-foreground">{item.challenge}</p>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-primary mb-2">Our Solution</h4>
+                        <h3 className="font-semibold text-primary mb-2">Our Solution</h3>
                         <p className="text-muted-foreground">{item.solution}</p>
                       </div>
                     </div>
