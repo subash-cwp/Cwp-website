@@ -147,6 +147,27 @@ const Services = () => {
         keywords="marketing services, performance marketing, SEO services, content marketing, social media management, brand identity"
         canonicalUrl="https://consultwithprofessionals.com/services"
       />
+      <JsonLd
+        schema={{
+          type: "Raw",
+          id: "services-itemlist",
+          data: {
+            "@type": "ItemList",
+            name: "CWP Marketing Services",
+            itemListElement: services.map((s, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "Service",
+                name: s.title,
+                description: s.description,
+                provider: { "@type": "Organization", name: "CWP Marketing" },
+                url: `https://consultwithprofessionals.com/services/${slugify(s.title)}`,
+              },
+            })),
+          },
+        }}
+      />
       <Navbar />
       
       {/* Hero Section */}
