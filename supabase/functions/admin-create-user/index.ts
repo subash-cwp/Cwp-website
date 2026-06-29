@@ -74,8 +74,8 @@ Deno.serve(async (req) => {
       });
     }
 
-    if (makeAdmin) {
-      await admin.from("user_roles").insert({ user_id: created.user.id, role: "admin" });
+    if (role === "admin" || role === "content_manager") {
+      await admin.from("user_roles").insert({ user_id: created.user.id, role });
     }
 
     return new Response(JSON.stringify({ ok: true, user_id: created.user.id }), {
