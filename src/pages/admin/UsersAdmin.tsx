@@ -201,6 +201,7 @@ export default function UsersAdmin() {
                     {users.map((u) => {
                       const isMasterRow = u.email.toLowerCase() === MASTER_EMAIL;
                       const isAdmin = u.roles.includes("admin");
+                      const isCM = u.roles.includes("content_manager");
                       const busy = busyId === u.id;
                       return (
                         <tr key={u.id} className="border-b last:border-0">
@@ -208,10 +209,11 @@ export default function UsersAdmin() {
                             <div className="font-medium break-all">{u.email}</div>
                             {!u.email_confirmed_at && <Badge variant="outline" className="mt-1">unverified</Badge>}
                           </td>
-                          <td className="py-3 pr-4">
-                            {isMasterRow && <Badge className="mr-1">master</Badge>}
+                          <td className="py-3 pr-4 space-x-1">
+                            {isMasterRow && <Badge>master</Badge>}
                             {isAdmin && !isMasterRow && <Badge variant="secondary">admin</Badge>}
-                            {!isAdmin && !isMasterRow && <span className="text-muted-foreground">user</span>}
+                            {isCM && !isMasterRow && <Badge variant="outline">content manager</Badge>}
+                            {!isAdmin && !isCM && !isMasterRow && <span className="text-muted-foreground">user</span>}
                           </td>
                           <td className="py-3 pr-4 text-muted-foreground">
                             {u.last_sign_in_at ? new Date(u.last_sign_in_at).toLocaleString() : "never"}
@@ -221,12 +223,21 @@ export default function UsersAdmin() {
                           </td>
                           <td className="py-3 pr-4 text-right space-x-2 whitespace-nowrap">
                             {!isMasterRow && (isAdmin ? (
-                              <Button size="sm" variant="outline" disabled={busy} onClick={() => revoke(u.id)}>
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => revoke(u.id, "admin")}>
                                 Revoke admin
                               </Button>
                             ) : (
-                              <Button size="sm" variant="outline" disabled={busy} onClick={() => grant(u.id)}>
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => grant(u.id, "admin")}>
                                 Make admin
+                              </Button>
+                            ))}
+                            {!isMasterRow && (isCM ? (
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => revoke(u.id, "content_manager")}>
+                                Revoke CM
+                              </Button>
+                            ) : (
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => grant(u.id, "content_manager")}>
+                                Make CM
                               </Button>
                             ))}
                             {!isMasterRow && (
