@@ -132,9 +132,9 @@ export default function Resources() {
                   </span>
                 </div>
 
-                <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
+                <h2 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors">
                   {resource.title}
-                </h3>
+                </h2>
                 <p className="text-muted-foreground text-sm mb-4">
                   {resource.description}
                 </p>
