@@ -82,20 +82,20 @@ export default function UsersAdmin() {
     load();
   };
 
-  const grant = async (userId: string) => {
+  const grant = async (userId: string, role: "admin" | "content_manager" = "admin") => {
     setBusyId(userId);
-    const { error } = await supabase.rpc("admin_grant_role", { _user_id: userId, _role: "admin" });
+    const { error } = await supabase.rpc("admin_grant_role", { _user_id: userId, _role: role as any });
     setBusyId(null);
     if (error) toast({ variant: "destructive", title: "Failed", description: error.message });
-    else { toast({ title: "Admin granted" }); load(); }
+    else { toast({ title: "Role granted" }); load(); }
   };
 
-  const revoke = async (userId: string) => {
+  const revoke = async (userId: string, role: "admin" | "content_manager" = "admin") => {
     setBusyId(userId);
-    const { error } = await supabase.rpc("admin_revoke_role", { _user_id: userId, _role: "admin" });
+    const { error } = await supabase.rpc("admin_revoke_role", { _user_id: userId, _role: role as any });
     setBusyId(null);
     if (error) toast({ variant: "destructive", title: "Failed", description: error.message });
-    else { toast({ title: "Admin revoked" }); load(); }
+    else { toast({ title: "Role revoked" }); load(); }
   };
 
   const remove = async (userId: string) => {
