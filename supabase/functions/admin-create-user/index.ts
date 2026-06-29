@@ -13,6 +13,7 @@ interface CreateBody {
   password?: string;
   full_name?: string;
   make_admin?: boolean;
+  role?: "admin" | "content_manager" | "user";
 }
 
 Deno.serve(async (req) => {
@@ -50,7 +51,7 @@ Deno.serve(async (req) => {
     const email = (body.email ?? "").trim().toLowerCase();
     const password = body.password ?? "";
     const fullName = body.full_name ?? "";
-    const makeAdmin = !!body.make_admin;
+    const role = body.role ?? (body.make_admin ? "admin" : "user");
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return new Response(JSON.stringify({ error: "invalid_email" }), {
@@ -73,8 +74,8 @@ Deno.serve(async (req) => {
       });
     }
 
-    if (makeAdmin) {
-      await admin.from("user_roles").insert({ user_id: created.user.id, role: "admin" });
+    if (role === "admin" || role === "content_manager") {
+      await admin.from("user_roles").insert({ user_id: created.user.id, role });
     }
 
     return new Response(JSON.stringify({ ok: true, user_id: created.user.id }), {

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2, Shield, Trash2, UserPlus } from "lucide-react";
@@ -39,7 +39,7 @@ export default function UsersAdmin() {
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newFullName, setNewFullName] = useState("");
-  const [newIsAdmin, setNewIsAdmin] = useState(false);
+  const [newRole, setNewRole] = useState<"user" | "content_manager" | "admin">("user");
   const [creating, setCreating] = useState(false);
 
   const load = async () => {
@@ -66,7 +66,7 @@ export default function UsersAdmin() {
     }
     setCreating(true);
     const { data, error } = await supabase.functions.invoke("admin-create-user", {
-      body: { email: newEmail, password: newPassword, full_name: newFullName, make_admin: newIsAdmin },
+      body: { email: newEmail, password: newPassword, full_name: newFullName, role: newRole },
     });
     setCreating(false);
     if (error || (data as any)?.error) {
@@ -78,24 +78,24 @@ export default function UsersAdmin() {
       return;
     }
     toast({ title: "User created", description: `${newEmail} can now sign in.` });
-    setNewEmail(""); setNewPassword(""); setNewFullName(""); setNewIsAdmin(false);
+    setNewEmail(""); setNewPassword(""); setNewFullName(""); setNewRole("user");
     load();
   };
 
-  const grant = async (userId: string) => {
+  const grant = async (userId: string, role: "admin" | "content_manager" = "admin") => {
     setBusyId(userId);
-    const { error } = await supabase.rpc("admin_grant_role", { _user_id: userId, _role: "admin" });
+    const { error } = await supabase.rpc("admin_grant_role", { _user_id: userId, _role: role as any });
     setBusyId(null);
     if (error) toast({ variant: "destructive", title: "Failed", description: error.message });
-    else { toast({ title: "Admin granted" }); load(); }
+    else { toast({ title: "Role granted" }); load(); }
   };
 
-  const revoke = async (userId: string) => {
+  const revoke = async (userId: string, role: "admin" | "content_manager" = "admin") => {
     setBusyId(userId);
-    const { error } = await supabase.rpc("admin_revoke_role", { _user_id: userId, _role: "admin" });
+    const { error } = await supabase.rpc("admin_revoke_role", { _user_id: userId, _role: role as any });
     setBusyId(null);
     if (error) toast({ variant: "destructive", title: "Failed", description: error.message });
-    else { toast({ title: "Admin revoked" }); load(); }
+    else { toast({ title: "Role revoked" }); load(); }
   };
 
   const remove = async (userId: string) => {
@@ -157,11 +157,16 @@ export default function UsersAdmin() {
                 <Label htmlFor="nu-pw">Temporary password (min 10 chars)</Label>
                 <Input id="nu-pw" type="text" required value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
               </div>
-              <div className="flex items-end gap-3">
-                <div className="flex items-center gap-2">
-                  <Checkbox id="nu-admin" checked={newIsAdmin} onCheckedChange={(v) => setNewIsAdmin(!!v)} />
-                  <Label htmlFor="nu-admin" className="cursor-pointer">Grant admin access</Label>
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="nu-role">Role</Label>
+                <Select value={newRole} onValueChange={(v) => setNewRole(v as any)}>
+                  <SelectTrigger id="nu-role"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="user">User (no admin panel)</SelectItem>
+                    <SelectItem value="content_manager">Content Manager (pages, blog, case studies)</SelectItem>
+                    <SelectItem value="admin">Admin (full access except Users & Access)</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="md:col-span-2">
                 <Button type="submit" disabled={creating}>
@@ -196,6 +201,7 @@ export default function UsersAdmin() {
                     {users.map((u) => {
                       const isMasterRow = u.email.toLowerCase() === MASTER_EMAIL;
                       const isAdmin = u.roles.includes("admin");
+                      const isCM = u.roles.includes("content_manager");
                       const busy = busyId === u.id;
                       return (
                         <tr key={u.id} className="border-b last:border-0">
@@ -203,10 +209,11 @@ export default function UsersAdmin() {
                             <div className="font-medium break-all">{u.email}</div>
                             {!u.email_confirmed_at && <Badge variant="outline" className="mt-1">unverified</Badge>}
                           </td>
-                          <td className="py-3 pr-4">
-                            {isMasterRow && <Badge className="mr-1">master</Badge>}
+                          <td className="py-3 pr-4 space-x-1">
+                            {isMasterRow && <Badge>master</Badge>}
                             {isAdmin && !isMasterRow && <Badge variant="secondary">admin</Badge>}
-                            {!isAdmin && !isMasterRow && <span className="text-muted-foreground">user</span>}
+                            {isCM && !isMasterRow && <Badge variant="outline">content manager</Badge>}
+                            {!isAdmin && !isCM && !isMasterRow && <span className="text-muted-foreground">user</span>}
                           </td>
                           <td className="py-3 pr-4 text-muted-foreground">
                             {u.last_sign_in_at ? new Date(u.last_sign_in_at).toLocaleString() : "never"}
@@ -216,12 +223,21 @@ export default function UsersAdmin() {
                           </td>
                           <td className="py-3 pr-4 text-right space-x-2 whitespace-nowrap">
                             {!isMasterRow && (isAdmin ? (
-                              <Button size="sm" variant="outline" disabled={busy} onClick={() => revoke(u.id)}>
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => revoke(u.id, "admin")}>
                                 Revoke admin
                               </Button>
                             ) : (
-                              <Button size="sm" variant="outline" disabled={busy} onClick={() => grant(u.id)}>
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => grant(u.id, "admin")}>
                                 Make admin
+                              </Button>
+                            ))}
+                            {!isMasterRow && (isCM ? (
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => revoke(u.id, "content_manager")}>
+                                Revoke CM
+                              </Button>
+                            ) : (
+                              <Button size="sm" variant="outline" disabled={busy} onClick={() => grant(u.id, "content_manager")}>
+                                Make CM
                               </Button>
                             ))}
                             {!isMasterRow && (

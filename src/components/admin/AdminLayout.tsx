@@ -1,13 +1,13 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Briefcase, 
-  Settings, 
-  Users, 
+import {
+  LayoutDashboard,
+  FileText,
+  Briefcase,
+  Settings,
+  Users,
   MessageSquare,
   Mail,
   LogOut,
@@ -20,7 +20,7 @@ import {
   Search,
   History,
   Send,
-  UserCog
+  UserCog,
 } from "lucide-react";
 import { useIdleSignOut } from "@/hooks/useIdleSignOut";
 import { useState } from "react";
@@ -30,32 +30,55 @@ interface AdminLayoutProps {
   children: ReactNode;
 }
 
-const menuItems = [
-  { icon: LayoutDashboard, label: "Dashboard", path: "/admin" },
-  { icon: UserCog, label: "Users & Access", path: "/admin/users" },
-  { icon: BarChart3, label: "Analytics", path: "/admin/analytics" },
-  { icon: FileText, label: "Page Content", path: "/admin/page-content" },
-  { icon: FileText, label: "Custom Pages", path: "/admin/pages" },
-  { icon: FileText, label: "Blog Posts", path: "/admin/blog" },
-  { icon: Briefcase, label: "Case Studies", path: "/admin/case-studies" },
-  { icon: Settings, label: "Services", path: "/admin/services" },
-  { icon: Users, label: "Team", path: "/admin/team" },
-  { icon: MessageSquare, label: "Testimonials", path: "/admin/testimonials" },
-  { icon: Mail, label: "Lead Scoring", path: "/admin/leads-scoring" },
-  { icon: Send, label: "Email Campaigns", path: "/admin/email-campaigns" },
-  { icon: Image, label: "Media Library", path: "/admin/media" },
-  { icon: TestTube, label: "A/B Testing", path: "/admin/ab-testing" },
-  { icon: Search, label: "SEO Analyzer", path: "/admin/seo" },
-  { icon: History, label: "Activity Log", path: "/admin/activity-log" },
-  { icon: Settings, label: "Site Settings", path: "/admin/settings" },
+type MenuItem = {
+  icon: any;
+  label: string;
+  path: string;
+  // who can see this item
+  roles: Array<"master" | "admin" | "content_manager">;
+};
+
+const menuItems: MenuItem[] = [
+  { icon: LayoutDashboard, label: "Dashboard", path: "/admin", roles: ["master", "admin", "content_manager"] },
+  { icon: UserCog, label: "Users & Access", path: "/admin/users", roles: ["master"] },
+  { icon: BarChart3, label: "Analytics", path: "/admin/analytics", roles: ["master", "admin"] },
+  { icon: FileText, label: "Page Content", path: "/admin/page-content", roles: ["master", "admin", "content_manager"] },
+  { icon: FileText, label: "Custom Pages", path: "/admin/pages", roles: ["master", "admin", "content_manager"] },
+  { icon: FileText, label: "Blog Posts", path: "/admin/blog", roles: ["master", "admin", "content_manager"] },
+  { icon: Briefcase, label: "Case Studies", path: "/admin/case-studies", roles: ["master", "admin", "content_manager"] },
+  { icon: Settings, label: "Services", path: "/admin/services", roles: ["master", "admin"] },
+  { icon: Users, label: "Team", path: "/admin/team", roles: ["master", "admin"] },
+  { icon: MessageSquare, label: "Testimonials", path: "/admin/testimonials", roles: ["master", "admin"] },
+  { icon: Mail, label: "Lead Scoring", path: "/admin/leads-scoring", roles: ["master", "admin"] },
+  { icon: Send, label: "Email Campaigns", path: "/admin/email-campaigns", roles: ["master", "admin"] },
+  { icon: Image, label: "Media Library", path: "/admin/media", roles: ["master", "admin"] },
+  { icon: TestTube, label: "A/B Testing", path: "/admin/ab-testing", roles: ["master", "admin"] },
+  { icon: Search, label: "SEO Analyzer", path: "/admin/seo", roles: ["master", "admin"] },
+  { icon: History, label: "Activity Log", path: "/admin/activity-log", roles: ["master", "admin"] },
+  { icon: Settings, label: "Site Settings", path: "/admin/settings", roles: ["master", "admin"] },
 ];
 
 export const AdminLayout = ({ children }: AdminLayoutProps) => {
-  const { user, isAdmin, roleChecked, loading, signOut } = useAuth();
+  const { user, isAdmin, isContentManager, isMasterAdmin, roleChecked, loading, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   useIdleSignOut();
+
+  const hasAdminPanelAccess = isMasterAdmin || isAdmin || isContentManager;
+
+  const currentRole: "master" | "admin" | "content_manager" | null = isMasterAdmin
+    ? "master"
+    : isAdmin
+    ? "admin"
+    : isContentManager
+    ? "content_manager"
+    : null;
+
+  const visibleMenu = useMemo(
+    () => (currentRole ? menuItems.filter((m) => m.roles.includes(currentRole)) : []),
+    [currentRole]
+  );
 
   useEffect(() => {
     if (loading) return;
@@ -64,10 +87,16 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
       return;
     }
     if (!roleChecked) return;
-    if (!isAdmin) {
+    if (!hasAdminPanelAccess) {
       navigate("/");
+      return;
     }
-  }, [user, isAdmin, roleChecked, loading, navigate]);
+    // Block direct URL access to routes the role isn't allowed to see
+    const allowed = visibleMenu.some((m) => m.path === location.pathname);
+    if (!allowed && location.pathname.startsWith("/admin")) {
+      navigate("/admin");
+    }
+  }, [user, hasAdminPanelAccess, roleChecked, loading, navigate, location.pathname, visibleMenu]);
 
   if (loading || (user && !roleChecked)) {
     return (
@@ -77,9 +106,9 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
     );
   }
 
-  if (!user || !isAdmin) {
-    return null;
-  }
+  if (!user || !hasAdminPanelAccess) return null;
+
+  const roleBadge = isMasterAdmin ? "Master" : isAdmin ? "Admin" : "Content Manager";
 
   return (
     <div className="min-h-screen bg-background">
@@ -95,10 +124,12 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
       </div>
 
       {/* Sidebar */}
-      <aside className={cn(
-        "fixed left-0 top-0 h-full w-64 bg-card border-r border-border z-40 transition-transform duration-300 lg:translate-x-0 flex flex-col",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      )}>
+      <aside
+        className={cn(
+          "fixed left-0 top-0 h-full w-64 bg-card border-r border-border z-40 transition-transform duration-300 lg:translate-x-0 flex flex-col",
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
         <div className="p-6 shrink-0">
           <Link to="/" className="flex items-center gap-2">
             <span className="text-xl font-bold text-primary">CWP</span>
@@ -107,7 +138,7 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
         </div>
 
         <nav className="px-4 space-y-1 flex-1 overflow-y-auto pb-4">
-          {menuItems.map((item) => (
+          {visibleMenu.map((item) => (
             <Link
               key={item.path}
               to={item.path}
@@ -128,13 +159,11 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
         <div className="shrink-0 p-4 border-t border-border">
           <div className="flex items-center gap-3 mb-4 px-4">
             <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-              <span className="text-primary font-semibold">
-                {user.email?.[0]?.toUpperCase()}
-              </span>
+              <span className="text-primary font-semibold">{user.email?.[0]?.toUpperCase()}</span>
             </div>
             <div className="overflow-hidden">
               <p className="text-sm font-medium truncate">{user.email}</p>
-              <p className="text-xs text-muted-foreground">{isAdmin ? "Admin" : "User"}</p>
+              <p className="text-xs text-muted-foreground">{roleBadge}</p>
             </div>
           </div>
           <Button variant="outline" className="w-full" onClick={signOut}>
@@ -146,17 +175,15 @@ export const AdminLayout = ({ children }: AdminLayoutProps) => {
 
       {/* Overlay for mobile */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-background/80 backdrop-blur-sm z-30 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
-      {/* Main Content */}
-      <main className="lg:ml-64 pt-16 lg:pt-0 min-h-screen">
-        <div className="p-6 lg:p-8">
-          {children}
-        </div>
+      {/* Main Content — independently scrollable on desktop */}
+      <main className="lg:ml-64 pt-16 lg:pt-0 lg:h-screen lg:overflow-y-auto">
+        <div className="p-6 lg:p-8">{children}</div>
       </main>
     </div>
   );
