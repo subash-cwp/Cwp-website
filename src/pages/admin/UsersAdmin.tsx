@@ -157,11 +157,16 @@ export default function UsersAdmin() {
                 <Label htmlFor="nu-pw">Temporary password (min 10 chars)</Label>
                 <Input id="nu-pw" type="text" required value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
               </div>
-              <div className="flex items-end gap-3">
-                <div className="flex items-center gap-2">
-                  <Checkbox id="nu-admin" checked={newIsAdmin} onCheckedChange={(v) => setNewIsAdmin(!!v)} />
-                  <Label htmlFor="nu-admin" className="cursor-pointer">Grant admin access</Label>
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="nu-role">Role</Label>
+                <Select value={newRole} onValueChange={(v) => setNewRole(v as any)}>
+                  <SelectTrigger id="nu-role"><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="user">User (no admin panel)</SelectItem>
+                    <SelectItem value="content_manager">Content Manager (pages, blog, case studies)</SelectItem>
+                    <SelectItem value="admin">Admin (full access except Users & Access)</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
               <div className="md:col-span-2">
                 <Button type="submit" disabled={creating}>
