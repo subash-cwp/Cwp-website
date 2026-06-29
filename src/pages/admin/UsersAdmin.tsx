@@ -78,7 +78,7 @@ export default function UsersAdmin() {
       return;
     }
     toast({ title: "User created", description: `${newEmail} can now sign in.` });
-    setNewEmail(""); setNewPassword(""); setNewFullName(""); setNewIsAdmin(false);
+    setNewEmail(""); setNewPassword(""); setNewFullName(""); setNewRole("user");
     load();
   };
 
