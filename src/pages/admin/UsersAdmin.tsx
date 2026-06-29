@@ -39,7 +39,7 @@ export default function UsersAdmin() {
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newFullName, setNewFullName] = useState("");
-  const [newIsAdmin, setNewIsAdmin] = useState(false);
+  const [newRole, setNewRole] = useState<"user" | "content_manager" | "admin">("user");
   const [creating, setCreating] = useState(false);
 
   const load = async () => {
