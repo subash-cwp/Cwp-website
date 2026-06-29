@@ -66,7 +66,7 @@ export default function UsersAdmin() {
     }
     setCreating(true);
     const { data, error } = await supabase.functions.invoke("admin-create-user", {
-      body: { email: newEmail, password: newPassword, full_name: newFullName, make_admin: newIsAdmin },
+      body: { email: newEmail, password: newPassword, full_name: newFullName, role: newRole },
     });
     setCreating(false);
     if (error || (data as any)?.error) {
