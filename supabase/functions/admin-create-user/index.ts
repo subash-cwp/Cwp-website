@@ -13,6 +13,7 @@ interface CreateBody {
   password?: string;
   full_name?: string;
   make_admin?: boolean;
+  role?: "admin" | "content_manager" | "user";
 }
 
 Deno.serve(async (req) => {
