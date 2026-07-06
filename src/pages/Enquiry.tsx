@@ -40,7 +40,7 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const services = [
-  { icon: Target, title: "Performance Marketing", desc: "Google & Meta Ads tuned for ROAS, not vanity metrics." },
+  { icon: Target, title: "Performance Marketing", desc: "Google & Meta Ads tuned for real business results, not vanity metrics." },
   { icon: TrendingUp, title: "SEO & Content", desc: "Rank higher and build durable, compounding organic traffic." },
   { icon: BarChart3, title: "Growth Analytics", desc: "Attribution, tracking, and dashboards that drive decisions." },
   { icon: Users, title: "Social Media", desc: "Communities and creatives that convert followers to buyers." },
@@ -52,7 +52,7 @@ const stats = [
   { n: "100+", l: "Brands scaled" },
   { n: "3x", l: "Avg. growth" },
   { n: "10+", l: "Years experience" },
-  { n: "₹50Cr+", l: "Ad spend managed" },
+  { n: "200+", l: "Campaigns managed" },
 ];
 
 const why = [
