@@ -7,6 +7,17 @@ const corsHeaders = {
 
 const SITE_URL = 'https://cwpmktng.com'
 
+function escapeXml(s: string): string {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders })
@@ -72,7 +83,7 @@ Deno.serve(async (req) => {
         const lastmod = post.updated_at?.split('T')[0] || today
         xml += `
   <url>
-    <loc>${SITE_URL}/blog/${post.slug}</loc>
+    <loc>${SITE_URL}/blog/${escapeXml(post.slug)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -86,7 +97,7 @@ Deno.serve(async (req) => {
         const lastmod = study.updated_at?.split('T')[0] || today
         xml += `
   <url>
-    <loc>${SITE_URL}/case-studies/${study.slug}</loc>
+    <loc>${SITE_URL}/case-studies/${escapeXml(study.slug)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -100,7 +111,7 @@ Deno.serve(async (req) => {
         const lastmod = service.updated_at?.split('T')[0] || today
         xml += `
   <url>
-    <loc>${SITE_URL}/services/${service.slug}</loc>
+    <loc>${SITE_URL}/services/${escapeXml(service.slug)}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
