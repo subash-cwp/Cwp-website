@@ -35,7 +35,8 @@ const schema = z.object({
   email: z.string().trim().email("Enter a valid business email").max(255),
   phone: z.string().trim().min(10, "Enter a valid phone number").max(15),
   company: z.string().trim().min(2, "Company name required").max(100),
-  budget: z.string().min(1, "Select your monthly marketing budget"),
+  service: z.string().min(1, "Select a marketing service"),
+  message: z.string().trim().max(2000).optional(),
 });
 type FormValues = z.infer<typeof schema>;
 
