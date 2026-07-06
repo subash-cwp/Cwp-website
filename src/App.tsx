@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import CustomPage from "./pages/CustomPage";
 import Auth from "./pages/Auth";
 import Enquiry from "./pages/Enquiry";
+import Unsubscribe from "./pages/Unsubscribe";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -74,6 +75,7 @@ const App = () => (
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/enquiry" element={<Enquiry />} />
+              <Route path="/unsubscribe" element={<Unsubscribe />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/reset-password" element={<ResetPassword />} />
