@@ -32,13 +32,25 @@ import logo from "@/assets/logo.png";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
+  email: z.string().trim().email("Enter a valid business email").max(255),
   phone: z.string().trim().min(10, "Enter a valid phone number").max(15),
   company: z.string().trim().min(2, "Company name required").max(100),
-  service: z.string().min(1, "Select a service"),
-  message: z.string().trim().max(1000).optional(),
+  budget: z.string().min(1, "Select your monthly marketing budget"),
 });
 type FormValues = z.infer<typeof schema>;
+
+const benefits = [
+  "Increase Qualified Leads",
+  "Improve Conversion Rates",
+  "Lower Customer Acquisition Cost",
+  "Transparent Monthly Reporting",
+];
+
+const socialProof = [
+  { icon: Award, text: "Trusted by 100+ Businesses" },
+  { icon: TrendingUp, text: "10+ Years of Growth Marketing Experience" },
+  { icon: Users, text: "Dedicated Team of Marketing Specialists" },
+];
 
 const services = [
   { icon: Target, title: "Performance Marketing", desc: "Google & Meta Ads tuned for real business results, not vanity metrics." },
@@ -49,11 +61,12 @@ const services = [
   { icon: Award, title: "Brand Strategy", desc: "Positioning and identity that scale with your business." },
 ];
 
-const stats = [
-  { n: "100+", l: "Brands scaled" },
-  { n: "3x", l: "Avg. growth" },
-  { n: "10+", l: "Years experience" },
-  { n: "200+", l: "Campaigns managed" },
+const industries = ["D2C & E-commerce", "SaaS", "B2B Services", "Healthcare", "Education", "Real Estate", "Fintech", "Hospitality"];
+
+const results = [
+  { brand: "D2C skincare brand", before: "1.4x ROAS", after: "4.6x ROAS", note: "in 90 days" },
+  { brand: "B2B SaaS", before: "38 MQLs/mo", after: "212 MQLs/mo", note: "in 6 months" },
+  { brand: "Healthcare clinic chain", before: "₹820 CPL", after: "₹190 CPL", note: "in 120 days" },
 ];
 
 const why = [
@@ -79,7 +92,7 @@ const Enquiry = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: "onTouched",
-    defaultValues: { name: "", email: "", phone: "", company: "", service: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", company: "", budget: "" },
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -92,7 +105,7 @@ const Enquiry = () => {
         email: values.email.trim(),
         phone: values.phone.trim(),
         company: values.company.trim(),
-        message: `Service: ${values.service}\n\n${values.message || ""}`.trim(),
+        message: `Monthly Marketing Budget: ${values.budget}`,
         source: "enquiry_landing",
       });
       if (error) throw error;
@@ -108,8 +121,8 @@ const Enquiry = () => {
               email: values.email.trim(),
               phone: values.phone.trim(),
               company: values.company.trim(),
-              service: values.service,
-              message: values.message?.trim() || "",
+              service: values.budget,
+              message: `Monthly Marketing Budget: ${values.budget}`,
               submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
             },
           },
@@ -124,7 +137,7 @@ const Enquiry = () => {
             email: values.email.trim(),
             phone: values.phone.trim(),
             company: values.company.trim(),
-            message: `Service: ${values.service}\n\n${values.message || ""}`.trim(),
+            message: `Monthly Marketing Budget: ${values.budget}`,
             source: "enquiry_landing",
           },
         })
@@ -213,60 +226,54 @@ const Enquiry = () => {
               <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-                  <span className="text-sm text-muted-foreground">Now booking Q3 growth engagements</span>
+                  <span className="text-sm text-muted-foreground">Free Growth Strategy Session — limited slots</span>
                 </div>
 
                 <h1
                   className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  End-to-end marketing that{" "}
-                  <span className="text-gradient-primary">builds</span>
-                  <br />
-                  and <span className="text-gradient-primary">scales</span> your brand.
+                  Struggling to Generate{" "}
+                  <span className="text-gradient-primary">Qualified Leads?</span>
                 </h1>
 
                 <p className="text-lg text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-                  We help D2C, SaaS, and B2B brands unlock predictable growth through strategy, creative, SEO, paid media, and full-funnel campaigns — with transparent reporting and senior strategists on every account.
+                  We help businesses generate more leads, more sales, and higher ROI with <span className="text-foreground font-medium">data-driven marketing</span>.
                 </p>
 
-                <ul className="space-y-3 mb-10 animate-slide-up" style={{ animationDelay: "0.3s" }}>
-                  {[
-                    "Free 30-min growth audit — no obligation",
-                    "Custom strategy for your industry & funnel",
-                    "Senior team, live dashboards, weekly reviews",
-                  ].map((b) => (
-                    <li key={b} className="flex items-start gap-3">
-                      <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                <ul className="space-y-3 mb-8 animate-slide-up" style={{ animationDelay: "0.25s" }}>
+                  {socialProof.map(({ icon: Icon, text }) => (
+                    <li key={text} className="flex items-center gap-3">
+                      <span className="w-6 h-6 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center shrink-0">
+                        <Icon className="h-3.5 w-3.5 text-primary" />
                       </span>
-                      <span className="text-foreground/90">{b}</span>
+                      <span className="text-foreground/90 text-sm md:text-base">{text}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-slide-up" style={{ animationDelay: "0.4s" }}>
+                <div className="grid sm:grid-cols-2 gap-3 mb-10 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+                  {benefits.map((b) => (
+                    <div key={b} className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-card/40 border border-border/50">
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                      <span className="text-sm text-foreground/90">{b}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
                   <Button
                     size="lg"
                     onClick={scrollToForm}
-                    className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+                    className="gap-2 text-base px-6 py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">Get my free audit</span>
+                    <span className="relative z-10">Get a FREE Growth Strategy Session</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
-                  <Button size="lg" variant="outline" className="text-base px-8 py-6 hover-lift glow-border" asChild>
-                    <a href="tel:+918610986622"><Phone className="mr-2 h-4 w-4" /> Talk to a strategist</a>
+                  <Button size="lg" variant="outline" className="text-base px-6 py-6 hover-lift glow-border" onClick={scrollToForm}>
+                    Get a FREE Marketing Audit
                   </Button>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-border/50 animate-slide-up" style={{ animationDelay: "0.5s" }}>
-                  {stats.map((s) => (
-                    <div key={s.l}>
-                      <div className="text-2xl md:text-3xl font-bold text-gradient-primary">{s.n}</div>
-                      <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
-                    </div>
-                  ))}
                 </div>
               </div>
 
@@ -282,28 +289,28 @@ const Enquiry = () => {
 
                       <div className="flex items-center gap-2 mb-1">
                         <Sparkles className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free growth audit</span>
+                        <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free Strategy Session</span>
                       </div>
-                      <h2 className="text-2xl font-bold mb-1">Let's talk growth.</h2>
-                      <p className="text-sm text-muted-foreground mb-6">We respond within 24 hours.</p>
+                      <h2 className="text-2xl font-bold mb-1">Book your free strategy call.</h2>
+                      <p className="text-sm text-muted-foreground mb-6">No obligation. We respond within 24 hours.</p>
                       <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
                           <honeypot.HoneypotField />
                           <FormField control={form.control} name="name" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Full name</FormLabel>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Name</FormLabel>
                               <FormControl><Input placeholder="Jane Doe" {...field} /></FormControl>
                               <FormMessage />
                             </FormItem>
                           )} />
+                          <FormField control={form.control} name="email" render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Business Email</FormLabel>
+                              <FormControl><Input type="email" placeholder="jane@brand.com" {...field} /></FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )} />
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <FormField control={form.control} name="email" render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Work email</FormLabel>
-                                <FormControl><Input type="email" placeholder="jane@brand.com" {...field} /></FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )} />
                             <FormField control={form.control} name="phone" render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Phone</FormLabel>
@@ -311,35 +318,28 @@ const Enquiry = () => {
                                 <FormMessage />
                               </FormItem>
                             )} />
+                            <FormField control={form.control} name="company" render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Company</FormLabel>
+                                <FormControl><Input placeholder="Your brand" {...field} /></FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )} />
                           </div>
-                          <FormField control={form.control} name="company" render={({ field }) => (
+                          <FormField control={form.control} name="budget" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Company</FormLabel>
-                              <FormControl><Input placeholder="Your brand" {...field} /></FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-                          <FormField control={form.control} name="service" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">I need help with</FormLabel>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Monthly Marketing Budget</FormLabel>
                               <FormControl>
                                 <select {...field} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                                  <option value="">Select a service</option>
-                                  <option>Performance Marketing (Google/Meta Ads)</option>
-                                  <option>SEO & Content</option>
-                                  <option>Full-funnel Growth</option>
-                                  <option>Analytics & Attribution</option>
-                                  <option>Brand Strategy</option>
+                                  <option value="">Select a range</option>
+                                  <option>Under ₹50,000 / mo</option>
+                                  <option>₹50,000 – ₹2,00,000 / mo</option>
+                                  <option>₹2,00,000 – ₹5,00,000 / mo</option>
+                                  <option>₹5,00,000 – ₹10,00,000 / mo</option>
+                                  <option>₹10,00,000+ / mo</option>
                                   <option>Not sure yet</option>
                                 </select>
                               </FormControl><FormMessage />
-                            </FormItem>
-                          )} />
-                          <FormField control={form.control} name="message" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Your goals (optional)</FormLabel>
-                              <FormControl><Textarea rows={3} placeholder="What are you trying to achieve?" {...field} /></FormControl>
-                              <FormMessage />
                             </FormItem>
                           )} />
                           <Button
@@ -352,7 +352,7 @@ const Enquiry = () => {
                               <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
                             ) : (
                               <>
-                                <span className="relative z-10">Get my free audit</span>
+                                <span className="relative z-10">Get My Free Strategy</span>
                                 <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                                 <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                               </>
@@ -410,6 +410,68 @@ const Enquiry = () => {
                 </div>
               </section>
             </ParallaxSection>
+          </ScrollAnimationWrapper>
+
+          {/* RESULTS — Before vs After */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <section className="relative py-16 md:py-20 border-t border-border/50">
+              <div className="container-custom">
+                <div className="max-w-2xl mb-12 text-center mx-auto">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Real Results</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Before vs. <span className="text-gradient-primary">After</span>
+                  </h2>
+                  <p className="text-muted-foreground mt-3">A snapshot of measurable growth we've delivered for our clients.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-5">
+                  {results.map((r) => (
+                    <div key={r.brand} className="relative bg-card/60 backdrop-blur-sm border border-border/60 rounded-2xl p-6 hover-lift transition-all">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">{r.brand}</p>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex-1">
+                          <div className="text-xs text-muted-foreground mb-1">Before</div>
+                          <div className="text-lg font-semibold text-foreground/70 line-through decoration-muted-foreground/50">{r.before}</div>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-primary shrink-0" />
+                        <div className="flex-1 text-right">
+                          <div className="text-xs text-primary mb-1">After</div>
+                          <div className="text-lg font-bold text-gradient-primary">{r.after}</div>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-4">{r.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
+          {/* INDUSTRIES SERVED */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <section className="relative py-16 md:py-20 border-t border-border/50">
+              <div className="container-custom">
+                <div className="max-w-2xl mb-10 text-center mx-auto">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Industries Served</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Growth playbooks for <span className="text-gradient-primary">every industry</span>
+                  </h2>
+                </div>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {industries.map((ind) => (
+                    <span
+                      key={ind}
+                      className="px-4 py-2 rounded-full bg-card/60 backdrop-blur-sm border border-border/60 text-sm text-foreground/90 hover:border-primary/50 transition-colors"
+                    >
+                      {ind}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </section>
           </ScrollAnimationWrapper>
 
           {/* SERVICES */}
