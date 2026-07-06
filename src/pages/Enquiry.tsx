@@ -34,7 +34,6 @@ const schema = z.object({
   email: z.string().trim().email("Enter a valid email").max(255),
   phone: z.string().trim().min(10, "Enter a valid phone number").max(15),
   company: z.string().trim().min(2, "Company name required").max(100),
-  budget: z.string().min(1, "Select a budget"),
   service: z.string().min(1, "Select a service"),
   message: z.string().trim().max(1000).optional(),
 });
