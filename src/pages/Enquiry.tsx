@@ -93,7 +93,7 @@ const Enquiry = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: "onTouched",
-    defaultValues: { name: "", email: "", phone: "", company: "", budget: "" },
+    defaultValues: { name: "", email: "", phone: "", company: "", service: "", message: "" },
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -101,12 +101,15 @@ const Enquiry = () => {
     try {
       if (honeypot.isBot()) { navigate("/thank-you"); return; }
       const { supabase } = await import("@/integrations/supabase/client");
+      const composedMessage = values.message?.trim()
+        ? `Service: ${values.service}\n\nRequirements: ${values.message.trim()}`
+        : `Service: ${values.service}`;
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
         email: values.email.trim(),
         phone: values.phone.trim(),
         company: values.company.trim(),
-        message: `Monthly Marketing Budget: ${values.budget}`,
+        message: composedMessage,
         source: "enquiry_landing",
       });
       if (error) throw error;
@@ -122,8 +125,8 @@ const Enquiry = () => {
               email: values.email.trim(),
               phone: values.phone.trim(),
               company: values.company.trim(),
-              service: values.budget,
-              message: `Monthly Marketing Budget: ${values.budget}`,
+              service: values.service,
+              message: composedMessage,
               submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
             },
           },
@@ -138,7 +141,7 @@ const Enquiry = () => {
             email: values.email.trim(),
             phone: values.phone.trim(),
             company: values.company.trim(),
-            message: `Monthly Marketing Budget: ${values.budget}`,
+            message: composedMessage,
             source: "enquiry_landing",
           },
         })
@@ -238,7 +241,7 @@ const Enquiry = () => {
                   <span className="text-gradient-primary">Qualified Leads?</span>
                 </h1>
 
-                <p className="text-lg text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+                <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
                   We help businesses generate more leads, more sales, and higher ROI with <span className="text-foreground font-medium">data-driven marketing</span>.
                 </p>
 
