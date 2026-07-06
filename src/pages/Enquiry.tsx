@@ -85,7 +85,7 @@ const Enquiry = () => {
   const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
     try {
-      if (honeypot.isBot()) { setSubmitted(true); return; }
+      if (honeypot.isBot()) { navigate("/thank-you"); return; }
       const { supabase } = await import("@/integrations/supabase/client");
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
