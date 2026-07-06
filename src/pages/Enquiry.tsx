@@ -352,7 +352,7 @@ const Enquiry = () => {
                               <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
                             ) : (
                               <>
-                                <span className="relative z-10">Get my free audit</span>
+                                <span className="relative z-10">Get My Free Strategy</span>
                                 <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                                 <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                               </>
