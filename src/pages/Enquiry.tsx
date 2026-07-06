@@ -35,7 +35,8 @@ const schema = z.object({
   email: z.string().trim().email("Enter a valid business email").max(255),
   phone: z.string().trim().min(10, "Enter a valid phone number").max(15),
   company: z.string().trim().min(2, "Company name required").max(100),
-  budget: z.string().min(1, "Select your monthly marketing budget"),
+  service: z.string().min(1, "Select a marketing service"),
+  message: z.string().trim().max(2000).optional(),
 });
 type FormValues = z.infer<typeof schema>;
 
@@ -92,7 +93,7 @@ const Enquiry = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: "onTouched",
-    defaultValues: { name: "", email: "", phone: "", company: "", budget: "" },
+    defaultValues: { name: "", email: "", phone: "", company: "", service: "", message: "" },
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -100,12 +101,15 @@ const Enquiry = () => {
     try {
       if (honeypot.isBot()) { navigate("/thank-you"); return; }
       const { supabase } = await import("@/integrations/supabase/client");
+      const composedMessage = values.message?.trim()
+        ? `Service: ${values.service}\n\nRequirements: ${values.message.trim()}`
+        : `Service: ${values.service}`;
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
         email: values.email.trim(),
         phone: values.phone.trim(),
         company: values.company.trim(),
-        message: `Monthly Marketing Budget: ${values.budget}`,
+        message: composedMessage,
         source: "enquiry_landing",
       });
       if (error) throw error;
@@ -121,8 +125,8 @@ const Enquiry = () => {
               email: values.email.trim(),
               phone: values.phone.trim(),
               company: values.company.trim(),
-              service: values.budget,
-              message: `Monthly Marketing Budget: ${values.budget}`,
+              service: values.service,
+              message: composedMessage,
               submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
             },
           },
@@ -137,7 +141,7 @@ const Enquiry = () => {
             email: values.email.trim(),
             phone: values.phone.trim(),
             company: values.company.trim(),
-            message: `Monthly Marketing Budget: ${values.budget}`,
+            message: composedMessage,
             source: "enquiry_landing",
           },
         })
@@ -237,7 +241,7 @@ const Enquiry = () => {
                   <span className="text-gradient-primary">Qualified Leads?</span>
                 </h1>
 
-                <p className="text-lg text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+                <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
                   We help businesses generate more leads, more sales, and higher ROI with <span className="text-foreground font-medium">data-driven marketing</span>.
                 </p>
 
@@ -326,20 +330,29 @@ const Enquiry = () => {
                               </FormItem>
                             )} />
                           </div>
-                          <FormField control={form.control} name="budget" render={({ field }) => (
+                          <FormField control={form.control} name="service" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Monthly Marketing Budget</FormLabel>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Marketing Service</FormLabel>
                               <FormControl>
                                 <select {...field} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                                  <option value="">Select a range</option>
-                                  <option>Under ₹50,000 / mo</option>
-                                  <option>₹50,000 – ₹2,00,000 / mo</option>
-                                  <option>₹2,00,000 – ₹5,00,000 / mo</option>
-                                  <option>₹5,00,000 – ₹10,00,000 / mo</option>
-                                  <option>₹10,00,000+ / mo</option>
-                                  <option>Not sure yet</option>
+                                  <option value="">Select a service</option>
+                                  <option>Performance Marketing</option>
+                                  <option>SEO & Content</option>
+                                  <option>Growth Analytics</option>
+                                  <option>Social Media</option>
+                                  <option>Conversion Optimization</option>
+                                  <option>Brand Strategy</option>
                                 </select>
                               </FormControl><FormMessage />
+                            </FormItem>
+                          )} />
+                          <FormField control={form.control} name="message" render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Tell us about your requirement</FormLabel>
+                              <FormControl>
+                                <Textarea placeholder="What are you looking to achieve? Share your goals, challenges, or any specific requirements..." {...field} className="min-h-[100px] resize-y" />
+                              </FormControl>
+                              <FormMessage />
                             </FormItem>
                           )} />
                           <Button
