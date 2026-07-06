@@ -345,6 +345,48 @@ const Enquiry = () => {
             </div>
           </section>
 
+          {/* BRANDS */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <ParallaxSection speed={0.3} direction="up">
+              <section className="relative py-16 md:py-20 border-t border-border/50 overflow-hidden">
+                <div className="container-custom">
+                  <div className="max-w-2xl mb-12 text-center mx-auto">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                      <span className="text-xs font-semibold tracking-widest uppercase text-primary">Trusted by</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold">
+                      100+ brands we've helped <span className="text-gradient-primary">grow</span>
+                    </h2>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {[row1Logos, row2Logos, row3Logos].map((row, i) => (
+                    <div key={i} className="relative overflow-hidden py-4">
+                      <div className={`flex gap-8 md:gap-12 ${i % 2 === 0 ? "animate-scroll-rtl" : "animate-scroll-ltr"} items-center`}>
+                        {[...row, ...row, ...row, ...row].map((logo, index) => (
+                          <div
+                            key={index}
+                            className={`flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl border ${
+                              logo.dark ? "bg-black/60 border-border/60" : "bg-card/60 backdrop-blur-sm border-border/60"
+                            }`}
+                          >
+                            <img
+                              src={logo.src}
+                              alt={logo.alt}
+                              loading="lazy"
+                              className="h-8 md:h-10 w-auto max-w-[120px] object-contain"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </ParallaxSection>
+          </ScrollAnimationWrapper>
+
           {/* SERVICES */}
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
             <ParallaxSection speed={0.3} direction="up">
