@@ -23,7 +23,6 @@ const ThankYou = () => {
         title="Thank You — CWP Marketing"
         description="Thanks for reaching out. A senior strategist will be in touch within 24 hours."
         canonicalUrl="https://consultwithprofessionals.com/thank-you"
-        noindex
       />
 
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
