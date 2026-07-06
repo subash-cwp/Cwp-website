@@ -26,6 +26,7 @@ import { SEOHead } from "@/components/SEOHead";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { InteractiveParticles } from "@/components/InteractiveParticles";
+import { row1Logos, row2Logos, row3Logos } from "@/components/ClientLogos";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
