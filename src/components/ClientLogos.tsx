@@ -29,46 +29,47 @@ import bokaapLogo from "@/assets/logos/bokaap.svg";
 import revassureLogo from "@/assets/logos/revassure.png";
 import qblueLogo from "@/assets/logos/qblue.webp";
 
+export const row1Logos = [
+  { src: zeoniusLogo, alt: "Zeonius IT Services" },
+  { src: aadicuraLogo, alt: "Aadicura" },
+  { src: godeskLogo, alt: "Godesk" },
+  { src: cognisLogo, alt: "Cognis" },
+  { src: bdsoftLogo, alt: "BD Software" },
+  { src: leadratLogo, alt: "Leadrat", dark: true },
+  { src: healthassLogo, alt: "Healthass", dark: true },
+  { src: infodotLogo, alt: "Infodot Technologies" },
+  { src: yoloLogo, alt: "Yolo" },
+  { src: icrederityLogo, alt: "iCrederity" },
+];
+
+export const row2Logos = [
+  { src: ustigersLogo, alt: "US Tigers" },
+  { src: ifutureLogo, alt: "iFuture" },
+  { src: iqonicLogo, alt: "IQONIC Design" },
+  { src: amanstraLogo, alt: "Amanstra Consulting" },
+  { src: groupLogo, alt: "Group", dark: true },
+  { src: rocketnewsLogo, alt: "Rocket News" },
+  { src: reinventLogo, alt: "Reinvent" },
+  { src: worcoorLogo, alt: "WorCoor" },
+  { src: privueLogo, alt: "Privue" },
+  { src: settlrsLogo, alt: "Settlrs" },
+];
+
+export const row3Logos = [
+  { src: kingswayLogo, alt: "Kingsway" },
+  { src: swiftcheckLogo, alt: "Swift Check AI" },
+  { src: eaglyticsLogo, alt: "Eaglytics Co" },
+  { src: web3tixLogo, alt: "Web3Tix" },
+  { src: xorecLogo, alt: "Xorec" },
+  { src: leonstrideLogo, alt: "Leonstride Technologies" },
+  { src: wellversedLogo, alt: "Wellversed", dark: true },
+  { src: bokaapLogo, alt: "Bokaap" },
+  { src: revassureLogo, alt: "ReAssure" },
+  { src: qblueLogo, alt: "QBlue" },
+];
+
 export const ClientLogos = () => {
   // Mark logos that are white/light-on-transparent with `dark: true` to render on a dark card
-  const row1Logos = [
-    { src: zeoniusLogo, alt: "Zeonius IT Services" },
-    { src: aadicuraLogo, alt: "Aadicura" },
-    { src: godeskLogo, alt: "Godesk" },
-    { src: cognisLogo, alt: "Cognis" },
-    { src: bdsoftLogo, alt: "BD Software" },
-    { src: leadratLogo, alt: "Leadrat", dark: true },
-    { src: healthassLogo, alt: "Healthass", dark: true },
-    { src: infodotLogo, alt: "Infodot Technologies" },
-    { src: yoloLogo, alt: "Yolo" },
-    { src: icrederityLogo, alt: "iCrederity" },
-  ];
-  
-  const row2Logos = [
-    { src: ustigersLogo, alt: "US Tigers" },
-    { src: ifutureLogo, alt: "iFuture" },
-    { src: iqonicLogo, alt: "IQONIC Design" },
-    { src: amanstraLogo, alt: "Amanstra Consulting" },
-    { src: groupLogo, alt: "Group", dark: true },
-    { src: rocketnewsLogo, alt: "Rocket News" },
-    { src: reinventLogo, alt: "Reinvent" },
-    { src: worcoorLogo, alt: "WorCoor" },
-    { src: privueLogo, alt: "Privue" },
-    { src: settlrsLogo, alt: "Settlrs" },
-  ];
-  
-  const row3Logos = [
-    { src: kingswayLogo, alt: "Kingsway" },
-    { src: swiftcheckLogo, alt: "Swift Check AI" },
-    { src: eaglyticsLogo, alt: "Eaglytics Co" },
-    { src: web3tixLogo, alt: "Web3Tix" },
-    { src: xorecLogo, alt: "Xorec" },
-    { src: leonstrideLogo, alt: "Leonstride Technologies" },
-    { src: wellversedLogo, alt: "Wellversed", dark: true },
-    { src: bokaapLogo, alt: "Bokaap" },
-    { src: revassureLogo, alt: "ReAssure" },
-    { src: qblueLogo, alt: "QBlue" },
-  ];
 
   const cardClass = (dark?: boolean) =>
     `flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl shadow-sm border ${
