@@ -17,9 +17,9 @@ interface HeroContent {
 const DEFAULTS: HeroContent = {
   badge: "Trusted by 100+ Brands",
   headingHtml:
-    'We <span class="text-gradient-primary">build</span>, grow and<br/>help you <span class="text-gradient-primary">scale</span>',
+    'We turn <span class="text-gradient-primary">ad spend</span><br/>into <span class="text-gradient-primary">scalable revenue</span>',
   subheading:
-    "By bringing the best strategic marketing, creative and growth consulting that aligns with your brand's vision",
+    "Data-driven performance marketing for D2C, SaaS and B2B brands that demand measurable growth, not vanity metrics.",
   tagsLabel: "For:",
   tags: ["Startups", "D2C Brands", "Founders and Growth' focused Enterprises"],
   primaryCtaLabel: "Book a Strategy Call",
