@@ -70,70 +70,52 @@ export const row3Logos = [
 
 export const ClientLogos = () => {
   // Mark logos that are white/light-on-transparent with `dark: true` to render on a dark card
-
   const cardClass = (dark?: boolean) =>
-    `flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl shadow-sm border ${
+    `flex-shrink-0 flex items-center justify-center h-14 md:h-16 px-4 md:px-5 py-2.5 md:py-3 rounded-xl shadow-sm border ${
       dark
         ? "bg-slate-900 border-slate-800"
         : "bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700"
     }`;
 
+  const edgeMask =
+    "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]";
+
+  const renderRow = (logos: typeof row1Logos, direction: "rtl" | "ltr", key: string) => (
+    <div className={`relative overflow-hidden py-4 md:py-6 group/marquee ${edgeMask}`}>
+      <div
+        className={`flex w-max gap-6 sm:gap-10 md:gap-16 items-center ${
+          direction === "rtl" ? "animate-scroll-rtl" : "animate-scroll-ltr"
+        }`}
+      >
+        {[...logos, ...logos].map((logo, index) => (
+          <div key={`${key}-${index}`} className={cardClass(logo.dark)} aria-hidden={index >= logos.length}>
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              loading="lazy"
+              className="h-8 md:h-10 lg:h-12 w-auto max-w-[110px] md:max-w-[140px] object-contain"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <section className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 overflow-hidden">
-      <div className="mb-12 text-center">
+      <div className="mb-10 md:mb-12 text-center px-4">
         <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
           Trusted by 100+ Brands
         </h3>
         <p className="text-slate-500 dark:text-slate-400 mt-2">Leading companies trust us with their growth</p>
       </div>
-      
-      {/* Row 1 - Right to Left */}
-      <div className="relative mb-4 overflow-hidden py-6">
-        <div className="flex gap-12 md:gap-20 animate-scroll-rtl items-center">
-          {[...row1Logos, ...row1Logos, ...row1Logos, ...row1Logos].map((logo, index) => (
-            <div key={index} className={cardClass(logo.dark)}>
-              <img 
-                src={logo.src} 
-                alt={logo.alt} 
-                loading="lazy"
-                className="h-10 md:h-12 w-auto max-w-[140px] object-contain"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Row 2 - Left to Right */}
-      <div className="relative mb-4 overflow-hidden py-6">
-        <div className="flex gap-12 md:gap-20 animate-scroll-ltr items-center">
-          {[...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos].map((logo, index) => (
-            <div key={index} className={cardClass(logo.dark)}>
-              <img 
-                src={logo.src} 
-                alt={logo.alt}
-                loading="lazy"
-                className="h-10 md:h-12 w-auto max-w-[140px] object-contain"
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Row 3 - Right to Left */}
-      <div className="relative overflow-hidden py-6">
-        <div className="flex gap-12 md:gap-20 animate-scroll-rtl items-center">
-          {[...row3Logos, ...row3Logos, ...row3Logos, ...row3Logos].map((logo, index) => (
-            <div key={index} className={cardClass(logo.dark)}>
-              <img 
-                src={logo.src} 
-                alt={logo.alt}
-                loading="lazy"
-                className="h-10 md:h-12 w-auto max-w-[140px] object-contain"
-              />
-            </div>
-          ))}
-        </div>
+      <div className="space-y-2 md:space-y-3">
+        {renderRow(row1Logos, "rtl", "r1")}
+        {renderRow(row2Logos, "ltr", "r2")}
+        {renderRow(row3Logos, "rtl", "r3")}
       </div>
     </section>
   );
 };
+
