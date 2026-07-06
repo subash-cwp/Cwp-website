@@ -77,7 +77,7 @@ const Enquiry = () => {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", email: "", phone: "", company: "", budget: "", service: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", company: "", service: "", message: "" },
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -90,7 +90,7 @@ const Enquiry = () => {
         email: values.email.trim(),
         phone: values.phone.trim(),
         company: values.company.trim(),
-        message: `Service: ${values.service}\nMonthly budget: ${values.budget}\n\n${values.message || ""}`.trim(),
+        message: `Service: ${values.service}\n\n${values.message || ""}`.trim(),
         source: "enquiry_landing",
       });
       if (error) throw error;
