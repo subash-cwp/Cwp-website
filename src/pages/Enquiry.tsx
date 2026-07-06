@@ -364,7 +364,7 @@ const Enquiry = () => {
                         </form>
                       </Form>
                     </>
-                  )}
+
                 </div>
               </div>
             </div>
