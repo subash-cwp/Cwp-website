@@ -72,8 +72,8 @@ const faqs = [
 
 const Enquiry = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const honeypot = useHoneypot();
 
   const form = useForm<FormValues>({
