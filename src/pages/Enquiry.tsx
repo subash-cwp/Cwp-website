@@ -412,6 +412,68 @@ const Enquiry = () => {
             </ParallaxSection>
           </ScrollAnimationWrapper>
 
+          {/* RESULTS — Before vs After */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <section className="relative py-16 md:py-20 border-t border-border/50">
+              <div className="container-custom">
+                <div className="max-w-2xl mb-12 text-center mx-auto">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Real Results</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Before vs. <span className="text-gradient-primary">After</span>
+                  </h2>
+                  <p className="text-muted-foreground mt-3">A snapshot of measurable growth we've delivered for our clients.</p>
+                </div>
+                <div className="grid md:grid-cols-3 gap-5">
+                  {results.map((r) => (
+                    <div key={r.brand} className="relative bg-card/60 backdrop-blur-sm border border-border/60 rounded-2xl p-6 hover-lift transition-all">
+                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">{r.brand}</p>
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="flex-1">
+                          <div className="text-xs text-muted-foreground mb-1">Before</div>
+                          <div className="text-lg font-semibold text-foreground/70 line-through decoration-muted-foreground/50">{r.before}</div>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-primary shrink-0" />
+                        <div className="flex-1 text-right">
+                          <div className="text-xs text-primary mb-1">After</div>
+                          <div className="text-lg font-bold text-gradient-primary">{r.after}</div>
+                        </div>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-4">{r.note}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
+          {/* INDUSTRIES SERVED */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <section className="relative py-16 md:py-20 border-t border-border/50">
+              <div className="container-custom">
+                <div className="max-w-2xl mb-10 text-center mx-auto">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Industries Served</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Growth playbooks for <span className="text-gradient-primary">every industry</span>
+                  </h2>
+                </div>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {industries.map((ind) => (
+                    <span
+                      key={ind}
+                      className="px-4 py-2 rounded-full bg-card/60 backdrop-blur-sm border border-border/60 text-sm text-foreground/90 hover:border-primary/50 transition-colors"
+                    >
+                      {ind}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
           {/* SERVICES */}
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
             <ParallaxSection speed={0.3} direction="up">
