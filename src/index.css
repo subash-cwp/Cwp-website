@@ -102,22 +102,36 @@ All colors MUST be HSL.
     @apply container mx-auto px-4 md:px-6 lg:px-8;
   }
 
-  /* Scroll Animations */
+  /* Scroll Animations - marquee */
   .animate-scroll-rtl {
-    animation: scroll-rtl 25s linear infinite;
-  }
-
-  .animate-scroll-rtl:hover {
-    animation-play-state: paused;
+    animation: scroll-rtl 40s linear infinite;
+    will-change: transform;
   }
 
   .animate-scroll-ltr {
-    animation: scroll-ltr 25s linear infinite;
+    animation: scroll-ltr 40s linear infinite;
+    will-change: transform;
   }
 
-  .animate-scroll-ltr:hover {
+  @media (min-width: 768px) {
+    .animate-scroll-rtl,
+    .animate-scroll-ltr {
+      animation-duration: 55s;
+    }
+  }
+
+  .group\/marquee:hover .animate-scroll-rtl,
+  .group\/marquee:hover .animate-scroll-ltr {
     animation-play-state: paused;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-scroll-rtl,
+    .animate-scroll-ltr {
+      animation: none;
+    }
+  }
+
 
   /* Tech-Forward Animations */
   .animate-float {
