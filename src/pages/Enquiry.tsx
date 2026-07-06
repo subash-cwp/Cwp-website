@@ -289,28 +289,28 @@ const Enquiry = () => {
 
                       <div className="flex items-center gap-2 mb-1">
                         <Sparkles className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free growth audit</span>
+                        <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free Strategy Session</span>
                       </div>
-                      <h2 className="text-2xl font-bold mb-1">Let's talk growth.</h2>
-                      <p className="text-sm text-muted-foreground mb-6">We respond within 24 hours.</p>
+                      <h2 className="text-2xl font-bold mb-1">Book your free strategy call.</h2>
+                      <p className="text-sm text-muted-foreground mb-6">No obligation. We respond within 24 hours.</p>
                       <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
                           <honeypot.HoneypotField />
                           <FormField control={form.control} name="name" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Full name</FormLabel>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Name</FormLabel>
                               <FormControl><Input placeholder="Jane Doe" {...field} /></FormControl>
                               <FormMessage />
                             </FormItem>
                           )} />
+                          <FormField control={form.control} name="email" render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Business Email</FormLabel>
+                              <FormControl><Input type="email" placeholder="jane@brand.com" {...field} /></FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )} />
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <FormField control={form.control} name="email" render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Work email</FormLabel>
-                                <FormControl><Input type="email" placeholder="jane@brand.com" {...field} /></FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )} />
                             <FormField control={form.control} name="phone" render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Phone</FormLabel>
@@ -318,35 +318,28 @@ const Enquiry = () => {
                                 <FormMessage />
                               </FormItem>
                             )} />
+                            <FormField control={form.control} name="company" render={({ field }) => (
+                              <FormItem>
+                                <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Company</FormLabel>
+                                <FormControl><Input placeholder="Your brand" {...field} /></FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )} />
                           </div>
-                          <FormField control={form.control} name="company" render={({ field }) => (
+                          <FormField control={form.control} name="budget" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Company</FormLabel>
-                              <FormControl><Input placeholder="Your brand" {...field} /></FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-                          <FormField control={form.control} name="service" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">I need help with</FormLabel>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Monthly Marketing Budget</FormLabel>
                               <FormControl>
                                 <select {...field} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                                  <option value="">Select a service</option>
-                                  <option>Performance Marketing (Google/Meta Ads)</option>
-                                  <option>SEO & Content</option>
-                                  <option>Full-funnel Growth</option>
-                                  <option>Analytics & Attribution</option>
-                                  <option>Brand Strategy</option>
+                                  <option value="">Select a range</option>
+                                  <option>Under ₹50,000 / mo</option>
+                                  <option>₹50,000 – ₹2,00,000 / mo</option>
+                                  <option>₹2,00,000 – ₹5,00,000 / mo</option>
+                                  <option>₹5,00,000 – ₹10,00,000 / mo</option>
+                                  <option>₹10,00,000+ / mo</option>
                                   <option>Not sure yet</option>
                                 </select>
                               </FormControl><FormMessage />
-                            </FormItem>
-                          )} />
-                          <FormField control={form.control} name="message" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Your goals (optional)</FormLabel>
-                              <FormControl><Textarea rows={3} placeholder="What are you trying to achieve?" {...field} /></FormControl>
-                              <FormMessage />
                             </FormItem>
                           )} />
                           <Button
