@@ -105,7 +105,7 @@ const Enquiry = () => {
         email: values.email.trim(),
         phone: values.phone.trim(),
         company: values.company.trim(),
-        message: `Service: ${values.service}\n\n${values.message || ""}`.trim(),
+        message: `Monthly Marketing Budget: ${values.budget}`,
         source: "enquiry_landing",
       });
       if (error) throw error;
@@ -121,8 +121,8 @@ const Enquiry = () => {
               email: values.email.trim(),
               phone: values.phone.trim(),
               company: values.company.trim(),
-              service: values.service,
-              message: values.message?.trim() || "",
+              service: values.budget,
+              message: `Monthly Marketing Budget: ${values.budget}`,
               submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
             },
           },
@@ -137,7 +137,7 @@ const Enquiry = () => {
             email: values.email.trim(),
             phone: values.phone.trim(),
             company: values.company.trim(),
-            message: `Service: ${values.service}\n\n${values.message || ""}`.trim(),
+            message: `Monthly Marketing Budget: ${values.budget}`,
             source: "enquiry_landing",
           },
         })
