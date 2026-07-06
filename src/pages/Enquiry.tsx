@@ -64,7 +64,7 @@ const why = [
 
 const faqs = [
   { q: "How quickly can we get started?", a: "Onboarding takes 3–5 business days. Most campaigns go live in week 2." },
-  { q: "What's your minimum engagement?", a: "We work with brands spending ₹1L+/month on ads. Month-to-month after the first 90 days." },
+  { q: "What's your minimum engagement?", a: "We start with a 90-day growth sprint, then continue month-to-month." },
   { q: "Do you work with international brands?", a: "Yes — clients across India, US, UK, Middle East and Southeast Asia." },
   { q: "What industries do you specialize in?", a: "D2C, SaaS, B2B services, healthcare, education, and real estate." },
 ];
@@ -305,20 +305,6 @@ const Enquiry = () => {
                                   <option>Analytics & Attribution</option>
                                   <option>Brand Strategy</option>
                                   <option>Not sure yet</option>
-                                </select>
-                              </FormControl><FormMessage />
-                            </FormItem>
-                          )} />
-                          <FormField control={form.control} name="budget" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Monthly marketing budget</FormLabel>
-                              <FormControl>
-                                <select {...field} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                                  <option value="">Select a range</option>
-                                  <option>Under ₹1L / month</option>
-                                  <option>₹1L – ₹5L / month</option>
-                                  <option>₹5L – ₹15L / month</option>
-                                  <option>₹15L+ / month</option>
                                 </select>
                               </FormControl><FormMessage />
                             </FormItem>
