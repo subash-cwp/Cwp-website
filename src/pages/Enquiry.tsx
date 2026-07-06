@@ -27,7 +27,7 @@ import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { InteractiveParticles } from "@/components/InteractiveParticles";
 import { row1Logos, row2Logos, row3Logos } from "@/components/ClientLogos";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const schema = z.object({
@@ -72,8 +72,8 @@ const faqs = [
 
 const Enquiry = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const honeypot = useHoneypot();
 
   const form = useForm<FormValues>({
@@ -85,7 +85,7 @@ const Enquiry = () => {
   const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
     try {
-      if (honeypot.isBot()) { setSubmitted(true); return; }
+      if (honeypot.isBot()) { navigate("/thank-you"); return; }
       const { supabase } = await import("@/integrations/supabase/client");
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
@@ -130,10 +130,8 @@ const Enquiry = () => {
         })
         .catch((err) => console.error("Sheet append failed", err));
 
-      setSubmitted(true);
       form.reset();
-      // Scroll the success card into view on mobile
-      setTimeout(() => document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
+      navigate("/thank-you");
     } catch (e) {
       console.error(e);
       toast({ variant: "destructive", title: "Something went wrong", description: "Please try again or call us directly." });
@@ -280,48 +278,8 @@ const Enquiry = () => {
               >
                 <div className="absolute -inset-1 bg-gradient-to-br from-primary/30 via-neon-cyan/20 to-neon-purple/30 rounded-2xl blur-xl opacity-60" />
                 <div className="relative bg-card/80 backdrop-blur-xl border border-border/60 rounded-2xl p-6 md:p-8 shadow-2xl">
-                  {submitted ? (
-                    <div className="text-center py-8 animate-fade-in">
-                      <div className="w-20 h-20 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center mx-auto mb-5 animate-pulse-glow">
-                        <CheckCircle2 className="h-10 w-10 text-primary" />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2">You're in. 🎉</h3>
-                      <p className="text-muted-foreground text-sm mb-6">
-                        Thanks for reaching out. A senior strategist will be in touch within <span className="text-foreground font-semibold">24 hours</span>.
-                      </p>
+                  <>
 
-                      <div className="text-left bg-secondary/40 border border-border/60 rounded-xl p-5 mb-6">
-                        <p className="text-xs font-semibold tracking-wider text-primary uppercase mb-3">What happens next</p>
-                        <ol className="space-y-3 text-sm">
-                          {[
-                            "We review your enquiry and pull together a quick baseline audit.",
-                            "A strategist emails you to schedule a 30-min discovery call.",
-                            "On the call, you'll get 3 specific growth opportunities — free.",
-                          ].map((step, i) => (
-                            <li key={i} className="flex items-start gap-3">
-                              <span className="w-6 h-6 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center text-xs font-bold text-primary shrink-0">{i + 1}</span>
-                              <span className="text-foreground/90 leading-relaxed">{step}</span>
-                            </li>
-                          ))}
-                        </ol>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row gap-2 mb-4">
-                        <Button asChild size="lg" className="flex-1 gap-2 hover-lift">
-                          <a href="tel:+918610986622"><Phone className="h-4 w-4" /> Call us now</a>
-                        </Button>
-                        <Button asChild size="lg" variant="outline" className="flex-1 gap-2">
-                          <a href="https://wa.me/918610986622" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-                        </Button>
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row gap-3 justify-center text-sm">
-                        <Link to="/case-studies" className="text-primary hover:underline">Browse case studies →</Link>
-                        <Link to="/" className="text-muted-foreground hover:text-primary transition-colors">Back to home</Link>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
                       <div className="flex items-center gap-2 mb-1">
                         <Sparkles className="h-4 w-4 text-primary" />
                         <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free growth audit</span>
@@ -406,7 +364,7 @@ const Enquiry = () => {
                         </form>
                       </Form>
                     </>
-                  )}
+
                 </div>
               </div>
             </div>
