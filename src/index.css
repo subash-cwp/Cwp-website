@@ -225,13 +225,14 @@ All colors MUST be HSL.
   /* Keyframes */
   @keyframes scroll-rtl {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-33.333%); }
+    100% { transform: translateX(-50%); }
   }
 
   @keyframes scroll-ltr {
-    0% { transform: translateX(-33.333%); }
+    0% { transform: translateX(-50%); }
     100% { transform: translateX(0); }
   }
+
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
