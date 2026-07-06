@@ -226,60 +226,54 @@ const Enquiry = () => {
               <div>
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-                  <span className="text-sm text-muted-foreground">Now booking Q3 growth engagements</span>
+                  <span className="text-sm text-muted-foreground">Free Growth Strategy Session — limited slots</span>
                 </div>
 
                 <h1
                   className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  End-to-end marketing that{" "}
-                  <span className="text-gradient-primary">builds</span>
-                  <br />
-                  and <span className="text-gradient-primary">scales</span> your brand.
+                  Struggling to Generate{" "}
+                  <span className="text-gradient-primary">Qualified Leads?</span>
                 </h1>
 
                 <p className="text-lg text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-                  We help D2C, SaaS, and B2B brands unlock predictable growth through strategy, creative, SEO, paid media, and full-funnel campaigns — with transparent reporting and senior strategists on every account.
+                  We help businesses generate more leads, more sales, and higher ROI with <span className="text-foreground font-medium">data-driven marketing</span>.
                 </p>
 
-                <ul className="space-y-3 mb-10 animate-slide-up" style={{ animationDelay: "0.3s" }}>
-                  {[
-                    "Free 30-min growth audit — no obligation",
-                    "Custom strategy for your industry & funnel",
-                    "Senior team, live dashboards, weekly reviews",
-                  ].map((b) => (
-                    <li key={b} className="flex items-start gap-3">
-                      <span className="mt-0.5 w-5 h-5 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center shrink-0">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-primary" />
+                <ul className="space-y-3 mb-8 animate-slide-up" style={{ animationDelay: "0.25s" }}>
+                  {socialProof.map(({ icon: Icon, text }) => (
+                    <li key={text} className="flex items-center gap-3">
+                      <span className="w-6 h-6 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center shrink-0">
+                        <Icon className="h-3.5 w-3.5 text-primary" />
                       </span>
-                      <span className="text-foreground/90">{b}</span>
+                      <span className="text-foreground/90 text-sm md:text-base">{text}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-slide-up" style={{ animationDelay: "0.4s" }}>
+                <div className="grid sm:grid-cols-2 gap-3 mb-10 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+                  {benefits.map((b) => (
+                    <div key={b} className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-card/40 border border-border/50">
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                      <span className="text-sm text-foreground/90">{b}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
                   <Button
                     size="lg"
                     onClick={scrollToForm}
-                    className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+                    className="gap-2 text-base px-6 py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">Get my free audit</span>
+                    <span className="relative z-10">Get a FREE Growth Strategy Session</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
-                  <Button size="lg" variant="outline" className="text-base px-8 py-6 hover-lift glow-border" asChild>
-                    <a href="tel:+918610986622"><Phone className="mr-2 h-4 w-4" /> Talk to a strategist</a>
+                  <Button size="lg" variant="outline" className="text-base px-6 py-6 hover-lift glow-border" onClick={scrollToForm}>
+                    Get a FREE Marketing Audit
                   </Button>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-border/50 animate-slide-up" style={{ animationDelay: "0.5s" }}>
-                  {stats.map((s) => (
-                    <div key={s.l}>
-                      <div className="text-2xl md:text-3xl font-bold text-gradient-primary">{s.n}</div>
-                      <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
-                    </div>
-                  ))}
                 </div>
               </div>
 
