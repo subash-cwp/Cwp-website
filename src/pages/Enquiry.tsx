@@ -130,10 +130,8 @@ const Enquiry = () => {
         })
         .catch((err) => console.error("Sheet append failed", err));
 
-      setSubmitted(true);
       form.reset();
-      // Scroll the success card into view on mobile
-      setTimeout(() => document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
+      navigate("/thank-you");
     } catch (e) {
       console.error(e);
       toast({ variant: "destructive", title: "Something went wrong", description: "Please try again or call us directly." });
