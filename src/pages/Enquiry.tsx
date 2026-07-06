@@ -330,20 +330,29 @@ const Enquiry = () => {
                               </FormItem>
                             )} />
                           </div>
-                          <FormField control={form.control} name="budget" render={({ field }) => (
+                          <FormField control={form.control} name="service" render={({ field }) => (
                             <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Monthly Marketing Budget</FormLabel>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Marketing Service</FormLabel>
                               <FormControl>
                                 <select {...field} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-                                  <option value="">Select a range</option>
-                                  <option>Under ₹50,000 / mo</option>
-                                  <option>₹50,000 – ₹2,00,000 / mo</option>
-                                  <option>₹2,00,000 – ₹5,00,000 / mo</option>
-                                  <option>₹5,00,000 – ₹10,00,000 / mo</option>
-                                  <option>₹10,00,000+ / mo</option>
-                                  <option>Not sure yet</option>
+                                  <option value="">Select a service</option>
+                                  <option>Performance Marketing</option>
+                                  <option>SEO & Content</option>
+                                  <option>Growth Analytics</option>
+                                  <option>Social Media</option>
+                                  <option>Conversion Optimization</option>
+                                  <option>Brand Strategy</option>
                                 </select>
                               </FormControl><FormMessage />
+                            </FormItem>
+                          )} />
+                          <FormField control={form.control} name="message" render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Tell us about your requirement</FormLabel>
+                              <FormControl>
+                                <Textarea placeholder="What are you looking to achieve? Share your goals, challenges, or any specific requirements..." {...field} className="min-h-[100px] resize-y" />
+                              </FormControl>
+                              <FormMessage />
                             </FormItem>
                           )} />
                           <Button
