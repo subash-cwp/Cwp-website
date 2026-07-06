@@ -222,14 +222,14 @@ const Enquiry = () => {
                   className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Scale your brand with{" "}
-                  <span className="text-gradient-primary">performance marketing</span>
+                  End-to-end marketing that{" "}
+                  <span className="text-gradient-primary">builds</span>
                   <br />
-                  that pays for itself.
+                  and <span className="text-gradient-primary">scales</span> your brand.
                 </h1>
 
                 <p className="text-lg text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-                  We help D2C, SaaS, and B2B brands unlock predictable growth through Google Ads, SEO, and full-funnel campaigns — with transparent reporting and senior strategists on every account.
+                  We help D2C, SaaS, and B2B brands unlock predictable growth through strategy, creative, SEO, paid media, and full-funnel campaigns — with transparent reporting and senior strategists on every account.
                 </p>
 
                 <ul className="space-y-3 mb-10 animate-slide-up" style={{ animationDelay: "0.3s" }}>
