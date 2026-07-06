@@ -92,7 +92,7 @@ const Enquiry = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: "onTouched",
-    defaultValues: { name: "", email: "", phone: "", company: "", service: "", message: "" },
+    defaultValues: { name: "", email: "", phone: "", company: "", budget: "" },
   });
 
   const onSubmit = async (values: FormValues) => {
