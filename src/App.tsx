@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import CustomPage from "./pages/CustomPage";
 import Auth from "./pages/Auth";
 import Enquiry from "./pages/Enquiry";
+import ThankYou from "./pages/ThankYou";
 import Unsubscribe from "./pages/Unsubscribe";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
