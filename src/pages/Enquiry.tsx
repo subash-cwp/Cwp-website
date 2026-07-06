@@ -116,6 +116,20 @@ const Enquiry = () => {
         })
         .catch((err) => console.error("Team notification failed", err));
 
+      // Fire-and-forget append to Google Sheet
+      supabase.functions
+        .invoke("append-lead-to-sheet", {
+          body: {
+            name: values.name.trim(),
+            email: values.email.trim(),
+            phone: values.phone.trim(),
+            company: values.company.trim(),
+            message: `Service: ${values.service}\n\n${values.message || ""}`.trim(),
+            source: "enquiry_landing",
+          },
+        })
+        .catch((err) => console.error("Sheet append failed", err));
+
       setSubmitted(true);
       form.reset();
       // Scroll the success card into view on mobile
