@@ -81,42 +81,60 @@ export const ClientLogos = () => {
   const edgeMask =
     "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]";
 
-  const renderRow = (logos: typeof row1Logos, direction: "rtl" | "ltr", key: string) => (
-    <div className={`relative overflow-hidden py-4 md:py-6 group/marquee ${edgeMask}`}>
-      <div
-        className={`flex w-max gap-6 sm:gap-10 md:gap-16 items-center ${
+  const renderRow = (logos: typeof row1Logos, direction: "rtl" | "ltr", key: string, rowLabel: string) => (
+    <div
+      className={`relative overflow-hidden py-4 md:py-6 group/marquee ${edgeMask}`}
+      role="group"
+      aria-label={rowLabel}
+    >
+      <ul
+        className={`flex w-max gap-6 sm:gap-10 md:gap-16 items-center list-none m-0 p-0 ${
           direction === "rtl" ? "animate-scroll-rtl" : "animate-scroll-ltr"
         }`}
       >
-        {[...logos, ...logos].map((logo, index) => (
-          <div key={`${key}-${index}`} className={cardClass(logo.dark)} aria-hidden={index >= logos.length}>
-            <img
-              src={logo.src}
-              alt={logo.alt}
-              loading="lazy"
-              className="h-8 md:h-10 lg:h-12 w-auto max-w-[110px] md:max-w-[140px] object-contain"
-            />
-          </div>
-        ))}
-      </div>
+        {[...logos, ...logos].map((logo, index) => {
+          const isClone = index >= logos.length;
+          return (
+            <li
+              key={`${key}-${index}`}
+              className={cardClass(logo.dark)}
+              aria-hidden={isClone || undefined}
+            >
+              <img
+                src={logo.src}
+                alt={isClone ? "" : logo.alt}
+                aria-label={isClone ? undefined : logo.alt}
+                role="img"
+                loading="lazy"
+                decoding="async"
+                className="h-8 md:h-10 lg:h-12 w-auto max-w-[110px] md:max-w-[140px] object-contain"
+              />
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 overflow-hidden">
+    <section
+      className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 overflow-hidden"
+      aria-labelledby="client-logos-heading"
+    >
       <div className="mb-10 md:mb-12 text-center px-4">
-        <h3 className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
+        <h3 id="client-logos-heading" className="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
           Trusted by 100+ Brands
         </h3>
         <p className="text-slate-500 dark:text-slate-400 mt-2">Leading companies trust us with their growth</p>
       </div>
 
       <div className="space-y-2 md:space-y-3">
-        {renderRow(row1Logos, "rtl", "r1")}
-        {renderRow(row2Logos, "ltr", "r2")}
-        {renderRow(row3Logos, "rtl", "r3")}
+        {renderRow(row1Logos, "rtl", "r1", "Client logos, row 1")}
+        {renderRow(row2Logos, "ltr", "r2", "Client logos, row 2")}
+        {renderRow(row3Logos, "rtl", "r3", "Client logos, row 3")}
       </div>
     </section>
   );
 };
+
 
