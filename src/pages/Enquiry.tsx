@@ -32,13 +32,25 @@ import logo from "@/assets/logo.png";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
-  email: z.string().trim().email("Enter a valid email").max(255),
+  email: z.string().trim().email("Enter a valid business email").max(255),
   phone: z.string().trim().min(10, "Enter a valid phone number").max(15),
   company: z.string().trim().min(2, "Company name required").max(100),
-  service: z.string().min(1, "Select a service"),
-  message: z.string().trim().max(1000).optional(),
+  budget: z.string().min(1, "Select your monthly marketing budget"),
 });
 type FormValues = z.infer<typeof schema>;
+
+const benefits = [
+  "Increase Qualified Leads",
+  "Improve Conversion Rates",
+  "Lower Customer Acquisition Cost",
+  "Transparent Monthly Reporting",
+];
+
+const socialProof = [
+  { icon: Award, text: "Trusted by 100+ Businesses" },
+  { icon: TrendingUp, text: "10+ Years of Growth Marketing Experience" },
+  { icon: Users, text: "Dedicated Team of Marketing Specialists" },
+];
 
 const services = [
   { icon: Target, title: "Performance Marketing", desc: "Google & Meta Ads tuned for real business results, not vanity metrics." },
@@ -49,11 +61,12 @@ const services = [
   { icon: Award, title: "Brand Strategy", desc: "Positioning and identity that scale with your business." },
 ];
 
-const stats = [
-  { n: "100+", l: "Brands scaled" },
-  { n: "3x", l: "Avg. growth" },
-  { n: "10+", l: "Years experience" },
-  { n: "200+", l: "Campaigns managed" },
+const industries = ["D2C & E-commerce", "SaaS", "B2B Services", "Healthcare", "Education", "Real Estate", "Fintech", "Hospitality"];
+
+const results = [
+  { brand: "D2C skincare brand", before: "1.4x ROAS", after: "4.6x ROAS", note: "in 90 days" },
+  { brand: "B2B SaaS", before: "38 MQLs/mo", after: "212 MQLs/mo", note: "in 6 months" },
+  { brand: "Healthcare clinic chain", before: "₹820 CPL", after: "₹190 CPL", note: "in 120 days" },
 ];
 
 const why = [
