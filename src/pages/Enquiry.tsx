@@ -78,6 +78,7 @@ const Enquiry = () => {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
+    mode: "onTouched",
     defaultValues: { name: "", email: "", phone: "", company: "", service: "", message: "" },
   });
 
@@ -95,9 +96,30 @@ const Enquiry = () => {
         source: "enquiry_landing",
       });
       if (error) throw error;
+
+      // Fire-and-forget team notification email
+      supabase.functions
+        .invoke("send-transactional-email", {
+          body: {
+            templateName: "enquiry-notification",
+            idempotencyKey: `enquiry-${values.email.trim().toLowerCase()}-${Date.now()}`,
+            templateData: {
+              name: values.name.trim(),
+              email: values.email.trim(),
+              phone: values.phone.trim(),
+              company: values.company.trim(),
+              service: values.service,
+              message: values.message?.trim() || "",
+              submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+            },
+          },
+        })
+        .catch((err) => console.error("Team notification failed", err));
+
       setSubmitted(true);
-      toast({ title: "Thanks! We'll be in touch.", description: "A strategist will reach out within 24 hours." });
       form.reset();
+      // Scroll the success card into view on mobile
+      setTimeout(() => document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "center" }), 50);
     } catch (e) {
       console.error(e);
       toast({ variant: "destructive", title: "Something went wrong", description: "Please try again or call us directly." });
