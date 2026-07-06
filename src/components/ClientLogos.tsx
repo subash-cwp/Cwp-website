@@ -30,43 +30,44 @@ import revassureLogo from "@/assets/logos/revassure.png";
 import qblueLogo from "@/assets/logos/qblue.webp";
 
 export const row1Logos = [
-  { src: zeoniusLogo, alt: "Zeonius IT Services" },
-  { src: aadicuraLogo, alt: "Aadicura" },
-  { src: godeskLogo, alt: "Godesk" },
-  { src: cognisLogo, alt: "Cognis" },
-  { src: bdsoftLogo, alt: "BD Software" },
-  { src: leadratLogo, alt: "Leadrat", dark: true },
-  { src: healthassLogo, alt: "Healthass", dark: true },
-  { src: infodotLogo, alt: "Infodot Technologies" },
-  { src: yoloLogo, alt: "Yolo" },
-  { src: icrederityLogo, alt: "iCrederity" },
+  { src: zeoniusLogo, alt: "Zeonius IT Services logo" },
+  { src: aadicuraLogo, alt: "Aadicura logo" },
+  { src: godeskLogo, alt: "Godesk logo" },
+  { src: cognisLogo, alt: "Cognis logo", dark: true },
+  { src: bdsoftLogo, alt: "BD Software logo" },
+  { src: leadratLogo, alt: "Leadrat logo", dark: true },
+  { src: healthassLogo, alt: "Healthass logo", dark: true },
+  { src: infodotLogo, alt: "Infodot Technologies logo" },
+  { src: yoloLogo, alt: "Yolo logo" },
+  { src: icrederityLogo, alt: "iCrederity logo" },
 ];
 
 export const row2Logos = [
-  { src: ustigersLogo, alt: "US Tigers" },
-  { src: ifutureLogo, alt: "iFuture" },
-  { src: iqonicLogo, alt: "IQONIC Design" },
-  { src: amanstraLogo, alt: "Amanstra Consulting" },
-  { src: groupLogo, alt: "Group", dark: true },
-  { src: rocketnewsLogo, alt: "Rocket News" },
-  { src: reinventLogo, alt: "Reinvent" },
-  { src: worcoorLogo, alt: "WorCoor" },
-  { src: privueLogo, alt: "Privue" },
-  { src: settlrsLogo, alt: "Settlrs" },
+  { src: ustigersLogo, alt: "US Tigers logo" },
+  { src: ifutureLogo, alt: "iFuture logo" },
+  { src: iqonicLogo, alt: "IQONIC Design logo" },
+  { src: amanstraLogo, alt: "Amanstra Consulting logo" },
+  { src: groupLogo, alt: "Group logo", dark: true },
+  { src: rocketnewsLogo, alt: "Rocket News logo" },
+  { src: reinventLogo, alt: "Reinvent logo" },
+  { src: worcoorLogo, alt: "WorCoor logo" },
+  { src: privueLogo, alt: "Privue logo" },
+  { src: settlrsLogo, alt: "Settlrs logo" },
 ];
 
 export const row3Logos = [
-  { src: kingswayLogo, alt: "Kingsway" },
-  { src: swiftcheckLogo, alt: "Swift Check AI" },
-  { src: eaglyticsLogo, alt: "Eaglytics Co" },
-  { src: web3tixLogo, alt: "Web3Tix" },
-  { src: xorecLogo, alt: "Xorec" },
-  { src: leonstrideLogo, alt: "Leonstride Technologies" },
-  { src: wellversedLogo, alt: "Wellversed", dark: true },
-  { src: bokaapLogo, alt: "Bokaap" },
-  { src: revassureLogo, alt: "ReAssure" },
-  { src: qblueLogo, alt: "QBlue" },
+  { src: kingswayLogo, alt: "Kingsway logo" },
+  { src: swiftcheckLogo, alt: "Swift Check AI logo" },
+  { src: eaglyticsLogo, alt: "Eaglytics Co logo" },
+  { src: web3tixLogo, alt: "Web3Tix logo" },
+  { src: xorecLogo, alt: "Xorec logo" },
+  { src: leonstrideLogo, alt: "Leonstride Technologies logo" },
+  { src: wellversedLogo, alt: "Wellversed logo", dark: true },
+  { src: bokaapLogo, alt: "Bokaap logo" },
+  { src: revassureLogo, alt: "ReAssure logo" },
+  { src: qblueLogo, alt: "QBlue logo", dark: true },
 ];
+
 
 export const ClientLogos = () => {
   // Mark logos that are white/light-on-transparent with `dark: true` to render on a dark card
