@@ -146,9 +146,8 @@ const Enquiry = () => {
           {/* Minimal top bar */}
           <header className="border-b border-border/50 bg-background/70 backdrop-blur-lg sticky top-0 z-40 animate-slide-up">
             <div className="container-custom flex items-center justify-between h-16">
-              <Link to="/" className="flex items-center gap-2 group">
-                <img src={logo} alt="CWP Marketing" className="w-9 h-9 rounded-[5%] group-hover:scale-110 transition-transform" />
-                <span className="font-semibold hidden sm:inline">CWP Marketing</span>
+              <Link to="/" className="flex items-center group">
+                <img src={logo} alt="CWP" className="w-9 h-9 rounded-[5%] group-hover:scale-110 transition-transform" />
               </Link>
               <a href="tel:+918610986622" className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2">
                 <Phone className="h-4 w-4" /> <span className="hidden sm:inline">+91 86109 86622</span>
