@@ -26,13 +26,20 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Prevent CSV/formula injection: prefix any value that Google Sheets could
+    // interpret as a formula (=, +, -, @, tab, CR) with a single quote.
+    const sanitizeForSheet = (value: string): string => {
+      if (!value) return value;
+      return /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
+    };
+
     const body = (await req.json()) as LeadPayload;
-    const name = (body.name ?? '').toString().slice(0, 200);
-    const email = (body.email ?? '').toString().slice(0, 200);
-    const phone = (body.phone ?? '').toString().slice(0, 60);
-    const company = (body.company ?? '').toString().slice(0, 200);
-    const message = (body.message ?? '').toString().slice(0, 5000);
-    const source = (body.source ?? '').toString().slice(0, 200);
+    const name = sanitizeForSheet((body.name ?? '').toString().slice(0, 200));
+    const email = sanitizeForSheet((body.email ?? '').toString().slice(0, 200));
+    const phone = sanitizeForSheet((body.phone ?? '').toString().slice(0, 60));
+    const company = sanitizeForSheet((body.company ?? '').toString().slice(0, 200));
+    const message = sanitizeForSheet((body.message ?? '').toString().slice(0, 5000));
+    const source = sanitizeForSheet((body.source ?? '').toString().slice(0, 200));
 
     if (!name || !email) {
       return new Response(
