@@ -89,6 +89,25 @@ const Enquiry = () => {
   const [submitting, setSubmitting] = useState(false);
   const honeypot = useHoneypot();
 
+  useEffect(() => {
+    const existing = document.querySelector('script[src*="AW-18303056513"]');
+    if (existing) return;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=AW-18303056513";
+    document.head.appendChild(script);
+
+    const inline = document.createElement("script");
+    inline.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18303056513');
+    `;
+    document.head.appendChild(inline);
+  }, []);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: "onTouched",
