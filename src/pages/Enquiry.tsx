@@ -108,6 +108,29 @@ const Enquiry = () => {
     document.head.appendChild(inline);
   }, []);
 
+  useEffect(() => {
+    const existing = document.querySelector('script[src*="clarity.ms/tag/xlp1trzywp"]');
+    if (existing) return;
+
+    const clarityScript = document.createElement("script");
+    clarityScript.type = "text/javascript";
+    clarityScript.async = true;
+    clarityScript.src = "https://www.clarity.ms/tag/xlp1trzywp";
+
+    const inline = document.createElement("script");
+    inline.type = "text/javascript";
+    inline.innerHTML = `
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "xlp1trzywp");
+    `;
+
+    document.head.appendChild(clarityScript);
+    document.head.appendChild(inline);
+  }, []);
+
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     mode: "onTouched",
