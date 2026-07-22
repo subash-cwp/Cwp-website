@@ -343,14 +343,14 @@ const Enquiry = () => {
                           <FormField control={form.control} name="name" render={({ field }) => (
                             <FormItem>
                               <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Name</FormLabel>
-                              <FormControl><Input placeholder="Jane Doe" {...field} /></FormControl>
+                              <FormControl><Input placeholder="Jane Doe" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
                               <FormMessage />
                             </FormItem>
                           )} />
                           <FormField control={form.control} name="email" render={({ field }) => (
                             <FormItem>
                               <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Business Email</FormLabel>
-                              <FormControl><Input type="email" placeholder="jane@brand.com" {...field} /></FormControl>
+                              <FormControl><Input type="email" placeholder="jane@brand.com" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
                               <FormMessage />
                             </FormItem>
                           )} />
@@ -358,14 +358,14 @@ const Enquiry = () => {
                             <FormField control={form.control} name="phone" render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Phone</FormLabel>
-                                <FormControl><Input type="tel" placeholder="+91 98765 43210" {...field} /></FormControl>
+                                <FormControl><Input type="tel" placeholder="+91 98765 43210" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
                                 <FormMessage />
                               </FormItem>
                             )} />
                             <FormField control={form.control} name="company" render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Company</FormLabel>
-                                <FormControl><Input placeholder="Your brand" {...field} /></FormControl>
+                                <FormControl><Input placeholder="Your brand" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
                                 <FormMessage />
                               </FormItem>
                             )} />
@@ -374,7 +374,7 @@ const Enquiry = () => {
                             <FormItem>
                               <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Tell us about your requirement</FormLabel>
                               <FormControl>
-                                <Textarea placeholder="What are you looking to achieve? Share your goals, challenges, or any specific requirements..." {...field} className="min-h-[100px] resize-y" />
+                                <Textarea placeholder="What are you looking to achieve? Share your goals, challenges, or any specific requirements..." {...field} className="min-h-[100px] resize-y bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
