@@ -400,8 +400,6 @@ const Enquiry = () => {
                           </p>
                         </form>
                       </Form>
-                    </>
-
                 </div>
               </div>
             </div>
