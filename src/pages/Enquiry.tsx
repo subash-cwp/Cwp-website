@@ -266,7 +266,7 @@ const Enquiry = () => {
 
             <div className="container-custom relative z-10 grid lg:grid-cols-[1fr_460px] gap-12 items-start">
               {/* LEFT COPY */}
-              <div>
+              <div className="order-2 lg:order-1">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
                   <span className="text-sm text-muted-foreground">Free Growth Strategy Session — limited slots</span>
@@ -323,12 +323,13 @@ const Enquiry = () => {
               {/* RIGHT FORM */}
               <div
                 id="lead-form"
-                className="relative lg:sticky lg:top-24 animate-scale-in"
+                className="relative order-1 lg:order-2 lg:sticky lg:top-24 animate-scale-in"
                 style={{ animationDelay: "0.3s" }}
               >
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary/30 via-neon-cyan/20 to-neon-purple/30 rounded-2xl blur-xl opacity-60" />
-                <div className="relative bg-card/80 backdrop-blur-xl border border-border/60 rounded-2xl p-6 md:p-8 shadow-2xl">
-                  <>
+                <div className="absolute -inset-1 bg-gradient-to-br from-primary/60 via-neon-cyan/40 to-neon-purple/60 rounded-2xl blur-2xl opacity-80 animate-pulse-glow" />
+                <div className="absolute -inset-[2px] bg-gradient-to-br from-primary via-neon-cyan to-neon-purple rounded-2xl opacity-70" />
+                <div className="relative bg-card/95 backdrop-blur-xl border-2 border-primary/40 rounded-2xl p-6 md:p-8 shadow-[0_0_60px_rgba(255,199,0,0.18)]">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full" />
 
                       <div className="flex items-center gap-2 mb-1">
                         <Sparkles className="h-4 w-4 text-primary" />
@@ -399,8 +400,6 @@ const Enquiry = () => {
                           </p>
                         </form>
                       </Form>
-                    </>
-
                 </div>
               </div>
             </div>
