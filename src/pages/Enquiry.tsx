@@ -33,7 +33,7 @@ import logo from "@/assets/logo.png";
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
   email: z.string().trim().email("Enter a valid business email").max(255),
-  phone: z.string().trim().min(10, "Enter a valid phone number").max(15),
+  phone: z.string().trim().regex(/^[0-9]{10}$/, "Enter a valid 10-digit mobile number"),
   company: z.string().trim().min(2, "Company name required").max(100),
   message: z.string().trim().max(2000).optional(),
 });
@@ -358,7 +358,20 @@ const Enquiry = () => {
                             <FormField control={form.control} name="phone" render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Phone</FormLabel>
-                                <FormControl><Input type="tel" placeholder="+91 98765 43210" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
+                                <FormControl>
+                                  <Input
+                                    type="tel"
+                                    inputMode="numeric"
+                                    maxLength={10}
+                                    placeholder="98765 43210"
+                                    {...field}
+                                    onChange={(e) => {
+                                      const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                                      field.onChange(digits);
+                                    }}
+                                    className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all"
+                                  />
+                                </FormControl>
                                 <FormMessage />
                               </FormItem>
                             )} />
