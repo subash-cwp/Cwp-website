@@ -128,62 +128,95 @@ export type Database = {
         Row: {
           author_avatar: string | null
           author_name: string | null
+          canonical_url: string | null
           category: string | null
           content: string | null
           cover_image: string | null
           created_at: string | null
           excerpt: string | null
           featured: boolean | null
+          focus_keyword: string | null
           id: string
+          meta_description: string | null
+          meta_title: string | null
+          noindex: boolean
+          og_description: string | null
+          og_image: string | null
+          og_title: string | null
           published: boolean | null
           read_time: string | null
           scheduled_publish_at: string | null
+          secondary_keywords: string[] | null
           seo_score: number | null
           seo_suggestions: Json | null
           slug: string
+          status: string
           tags: string[] | null
           title: string
           updated_at: string | null
+          word_count: number | null
         }
         Insert: {
           author_avatar?: string | null
           author_name?: string | null
+          canonical_url?: string | null
           category?: string | null
           content?: string | null
           cover_image?: string | null
           created_at?: string | null
           excerpt?: string | null
           featured?: boolean | null
+          focus_keyword?: string | null
           id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
           published?: boolean | null
           read_time?: string | null
           scheduled_publish_at?: string | null
+          secondary_keywords?: string[] | null
           seo_score?: number | null
           seo_suggestions?: Json | null
           slug: string
+          status?: string
           tags?: string[] | null
           title: string
           updated_at?: string | null
+          word_count?: number | null
         }
         Update: {
           author_avatar?: string | null
           author_name?: string | null
+          canonical_url?: string | null
           category?: string | null
           content?: string | null
           cover_image?: string | null
           created_at?: string | null
           excerpt?: string | null
           featured?: boolean | null
+          focus_keyword?: string | null
           id?: string
+          meta_description?: string | null
+          meta_title?: string | null
+          noindex?: boolean
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
           published?: boolean | null
           read_time?: string | null
           scheduled_publish_at?: string | null
+          secondary_keywords?: string[] | null
           seo_score?: number | null
           seo_suggestions?: Json | null
           slug?: string
+          status?: string
           tags?: string[] | null
           title?: string
           updated_at?: string | null
+          word_count?: number | null
         }
         Relationships: []
       }
