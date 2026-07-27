@@ -29,16 +29,6 @@ interface BlogPost {
   tags: string[] | null;
 }
 
-// Fallback static posts for when DB is empty
-const staticPosts: BlogPost[] = [
-  { id: "1", title: "10 Proven Strategies to 3X Your Social Media Engagement in 2024", excerpt: "Discover the latest tactics that top brands are using to dramatically increase their social media reach and engagement rates.", category: "Social Media", slug: "social-media-strategies-2024", created_at: "2025-12-01", read_time: "8 min read", cover_image: "https://images.unsplash.com/photo-611162617474-5b21e879e113?w=800&q=80", tags: ["social media", "engagement"] },
-  { id: "2", title: "The Ultimate Guide to SEO in 2025: What's Changed and What Still Works", excerpt: "Learn how Google's latest algorithm updates are reshaping SEO strategy and what you need to do to stay ahead of the competition.", category: "SEO", slug: "seo-guide-2025", created_at: "2025-11-28", read_time: "12 min read", cover_image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&q=80", tags: ["SEO", "google"] },
-  { id: "3", title: "How We Generated 500+ Qualified Leads in 90 Days: A Case Study", excerpt: "A deep dive into the exact strategies and tactics we used to help a B2B SaaS company transform their lead generation.", category: "Case Study", slug: "lead-generation-case-study", created_at: "2025-11-25", read_time: "10 min read", cover_image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80", tags: ["lead generation", "B2B"] },
-  { id: "4", title: "Email Marketing ROI: Why It Still Beats Every Other Channel", excerpt: "Email marketing delivers an average ROI of 4200%. Here's how to maximize your email campaigns for maximum revenue.", category: "Email Marketing", slug: "email-marketing-roi", created_at: "2025-11-22", read_time: "7 min read", cover_image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80", tags: ["email", "ROI"] },
-  { id: "5", title: "Content Marketing Strategy: Creating Content That Actually Converts", excerpt: "Stop creating content that gets ignored. Learn the framework for developing content that drives real business results.", category: "Content Marketing", slug: "content-marketing-strategy", created_at: "2025-11-19", read_time: "9 min read", cover_image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80", tags: ["content", "strategy"] },
-  { id: "6", title: "Paid Advertising in 2025: Platform-by-Platform Breakdown", excerpt: "Compare ROI across Google Ads, Facebook, LinkedIn, and emerging platforms. Know where to invest your ad budget.", category: "Paid Advertising", slug: "paid-advertising-2025", created_at: "2025-11-15", read_time: "11 min read", cover_image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80", tags: ["paid ads", "PPC"] },
-];
-
 export default function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -59,11 +49,7 @@ export default function Blog() {
       .eq("published", true)
       .order("created_at", { ascending: false });
 
-    if (!error && data && data.length > 0) {
-      setPosts(data);
-    } else {
-      setPosts(staticPosts);
-    }
+    if (!error && data) setPosts(data);
     setLoading(false);
   };
 
