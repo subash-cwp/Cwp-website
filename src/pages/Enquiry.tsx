@@ -33,7 +33,7 @@ import logo from "@/assets/logo.png";
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
   email: z.string().trim().email("Enter a valid business email").max(255),
-  phone: z.string().trim().min(10, "Enter a valid phone number").max(15),
+  phone: z.string().trim().regex(/^[0-9]{10}$/, "Enter a valid 10-digit mobile number"),
   company: z.string().trim().min(2, "Company name required").max(100),
   message: z.string().trim().max(2000).optional(),
 });
