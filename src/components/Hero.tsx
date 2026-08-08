@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useSection } from "@/hooks/usePageContent";
+import { sanitizeHeading } from "@/lib/sanitizeHtml";
 
 interface HeroContent {
   badge: string;
@@ -92,7 +93,7 @@ export const Hero = () => {
           <h1
             className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-slide-up"
             style={{ animationDelay: '0.1s' }}
-            dangerouslySetInnerHTML={{ __html: c.headingHtml }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHeading(c.headingHtml) }}
           />
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>

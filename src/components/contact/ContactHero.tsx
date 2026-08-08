@@ -1,6 +1,7 @@
 import { Mail, Phone, MessageCircle, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSection } from "@/hooks/usePageContent";
+import { sanitizeHeading } from "@/lib/sanitizeHtml";
 
 export const ContactHero = () => {
   const c = useSection<{ badge: string; headingHtml: string; subheading: string; primaryLabel: string; phoneLabel: string; phoneHref: string }>(
@@ -49,7 +50,7 @@ export const ContactHero = () => {
           {/* Main Heading */}
           <h1
             className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-slide-up"
-            dangerouslySetInnerHTML={{ __html: c.headingHtml }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHeading(c.headingHtml) }}
           />
 
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
