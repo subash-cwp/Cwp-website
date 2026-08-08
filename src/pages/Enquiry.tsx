@@ -559,9 +559,9 @@ const Enquiry = () => {
 
           {/* WHY US */}
           <ScrollAnimationWrapper animation="slide-in-left" threshold={0.15}>
-            <section className="relative py-20 border-t border-border/50 overflow-hidden">
-              <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          <section className="relative py-20 border-t border-border/50 overflow-hidden">
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
               <div className="container-custom relative">
                 <div className="max-w-2xl mb-14 mx-auto text-center">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
