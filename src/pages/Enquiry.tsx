@@ -28,6 +28,7 @@ import { ParallaxSection } from "@/components/ParallaxSection";
 import { row1Logos, row2Logos, row3Logos } from "@/components/ClientLogos";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
@@ -85,6 +86,7 @@ const faqs = [
 const Enquiry = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [submitting, setSubmitting] = useState(false);
   const honeypot = useHoneypot();
 
@@ -225,40 +227,44 @@ const Enquiry = () => {
             {/* Light background with subtle CWP accents */}
             <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/60 to-background">
               <div className="absolute inset-0 grid-pattern opacity-60" />
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" style={{ animationDelay: "1s" }} />
-              <div className="absolute inset-0 opacity-10">
-                {[...Array(5)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute h-px bg-gradient-to-r from-transparent via-primary to-transparent"
-                    style={{ top: `${20 + i * 15}%`, left: "-10%", right: "-10%", transform: "rotate(-15deg)" }}
-                  />
-                ))}
-              </div>
-              {/* Floating shapes */}
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(12)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute animate-float"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                      animationDelay: `${Math.random() * 5}s`,
-                      animationDuration: `${5 + Math.random() * 5}s`,
-                    }}
-                  >
-                    {i % 3 === 0 ? (
-                      <div className="w-2 h-2 bg-primary/40 rounded-full" />
-                    ) : i % 3 === 1 ? (
-                      <div className="w-3 h-3 border border-primary/40 rotate-45" />
-                    ) : (
-                      <div className="w-2 h-2 bg-primary/40" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
-                    )}
+              {!isMobile && (
+                <>
+                  <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+                  <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+                  <div className="absolute inset-0 opacity-10">
+                    {[...Array(5)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute h-px bg-gradient-to-r from-transparent via-primary to-transparent"
+                        style={{ top: `${20 + i * 15}%`, left: "-10%", right: "-10%", transform: "rotate(-15deg)" }}
+                      />
+                    ))}
                   </div>
-                ))}
-              </div>
+                  {/* Floating shapes */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    {[...Array(12)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute animate-float"
+                        style={{
+                          left: `${(i * 37) % 100}%`,
+                          top: `${(i * 53) % 100}%`,
+                          animationDelay: `${(i % 5) * 0.8}s`,
+                          animationDuration: `${5 + (i % 5)}s`,
+                        }}
+                      >
+                        {i % 3 === 0 ? (
+                          <div className="w-2 h-2 bg-primary/40 rounded-full" />
+                        ) : i % 3 === 1 ? (
+                          <div className="w-3 h-3 border border-primary/40 rotate-45" />
+                        ) : (
+                          <div className="w-2 h-2 bg-primary/40" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="container-custom relative z-10 grid lg:grid-cols-[1fr_460px] gap-12 items-start">
@@ -434,7 +440,7 @@ const Enquiry = () => {
                   {[row1Logos, row2Logos, row3Logos].map((row, i) => (
                     <div key={i} className="relative overflow-hidden py-4">
                       <div className={`flex gap-8 md:gap-12 ${i % 2 === 0 ? "animate-scroll-rtl" : "animate-scroll-ltr"} items-center`}>
-                        {[...row, ...row, ...row, ...row].map((logo, index) => (
+                        {(isMobile ? [...row, ...row] : [...row, ...row, ...row, ...row]).map((logo, index) => (
                           <div
                             key={index}
                             className={`flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl border ${
@@ -445,6 +451,9 @@ const Enquiry = () => {
                               src={logo.src}
                               alt={logo.alt}
                               loading="lazy"
+                              decoding="async"
+                              width={120}
+                              height={40}
                               className="h-8 md:h-10 w-auto max-w-[120px] object-contain"
                             />
                           </div>
