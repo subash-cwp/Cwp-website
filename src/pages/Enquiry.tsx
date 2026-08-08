@@ -440,7 +440,7 @@ const Enquiry = () => {
                   {[row1Logos, row2Logos, row3Logos].map((row, i) => (
                     <div key={i} className="relative overflow-hidden py-4">
                       <div className={`flex gap-8 md:gap-12 ${i % 2 === 0 ? "animate-scroll-rtl" : "animate-scroll-ltr"} items-center`}>
-                        {[...row, ...row, ...row, ...row].map((logo, index) => (
+                        {(isMobile ? [...row, ...row] : [...row, ...row, ...row, ...row]).map((logo, index) => (
                           <div
                             key={index}
                             className={`flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl border ${
