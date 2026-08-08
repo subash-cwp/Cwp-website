@@ -25,7 +25,6 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { SEOHead } from "@/components/SEOHead";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxSection } from "@/components/ParallaxSection";
-import { InteractiveParticles } from "@/components/InteractiveParticles";
 import { row1Logos, row2Logos, row3Logos } from "@/components/ClientLogos";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
@@ -207,12 +206,10 @@ const Enquiry = () => {
         canonicalUrl="https://consultwithprofessionals.com/enquiry"
       />
 
-      <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-        <InteractiveParticles />
-
+      <div className="min-h-screen bg-background text-foreground relative overflow-hidden enquiry-light">
         <div className="relative z-10">
           {/* Minimal top bar */}
-          <header className="border-b border-border/50 bg-background/70 backdrop-blur-lg sticky top-0 z-40 animate-slide-up">
+          <header className="border-b border-border/60 bg-background/80 backdrop-blur-lg sticky top-0 z-40 animate-slide-up">
             <div className="container-custom flex items-center justify-between h-16">
               <Link to="/" className="flex items-center group">
                 <img src={logo} alt="CWP" className="w-9 h-9 rounded-[5%] group-hover:scale-110 transition-transform" />
@@ -225,12 +222,12 @@ const Enquiry = () => {
 
           {/* HERO */}
           <section className="relative overflow-hidden py-16 md:py-24">
-            {/* Animated background — matches home hero */}
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary to-background">
-              <div className="absolute inset-0 grid-pattern opacity-40" />
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
-              <div className="absolute inset-0 opacity-20">
+            {/* Light background with subtle CWP accents */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/60 to-background">
+              <div className="absolute inset-0 grid-pattern opacity-60" />
+              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" style={{ animationDelay: "1s" }} />
+              <div className="absolute inset-0 opacity-10">
                 {[...Array(5)].map((_, i) => (
                   <div
                     key={i}
@@ -255,9 +252,9 @@ const Enquiry = () => {
                     {i % 3 === 0 ? (
                       <div className="w-2 h-2 bg-primary/40 rounded-full" />
                     ) : i % 3 === 1 ? (
-                      <div className="w-3 h-3 border border-neon-cyan/40 rotate-45" />
+                      <div className="w-3 h-3 border border-primary/40 rotate-45" />
                     ) : (
-                      <div className="w-2 h-2 bg-neon-purple/40" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
+                      <div className="w-2 h-2 bg-primary/40" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
                     )}
                   </div>
                 ))}
@@ -441,7 +438,7 @@ const Enquiry = () => {
                           <div
                             key={index}
                             className={`flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl border ${
-                              logo.dark ? "bg-black/60 border-border/60" : "bg-card/60 backdrop-blur-sm border-border/60"
+                              logo.dark ? "bg-slate-950 border-slate-800" : "bg-card/80 backdrop-blur-sm border-border/60"
                             }`}
                           >
                             <img
@@ -562,9 +559,9 @@ const Enquiry = () => {
 
           {/* WHY US */}
           <ScrollAnimationWrapper animation="slide-in-left" threshold={0.15}>
-            <section className="relative py-20 border-t border-border/50 overflow-hidden">
-              <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[500px] h-[500px] bg-neon-purple/10 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+          <section className="relative py-20 border-t border-border/50 overflow-hidden">
+            <div className="absolute top-1/2 -translate-y-1/2 left-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl pointer-events-none" />
               <div className="container-custom relative">
                 <div className="max-w-2xl mb-14 mx-auto text-center">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
@@ -630,10 +627,10 @@ const Enquiry = () => {
           {/* FINAL CTA */}
           <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
             <section className="relative py-24 border-t border-border/50 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/50 to-background">
-                <div className="absolute inset-0 grid-pattern opacity-30" />
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-primary/15 blur-3xl animate-pulse-glow" />
-                <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full bg-neon-cyan/10 blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
+              <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/70 to-background">
+                <div className="absolute inset-0 grid-pattern opacity-40" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-primary/15 blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full bg-primary/10 blur-3xl" style={{ animationDelay: "1s" }} />
               </div>
               <div className="container-custom relative z-10 text-center max-w-2xl">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
