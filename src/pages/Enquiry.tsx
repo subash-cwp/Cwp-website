@@ -209,7 +209,7 @@ const Enquiry = () => {
       <div className="min-h-screen bg-background text-foreground relative overflow-hidden enquiry-light">
         <div className="relative z-10">
           {/* Minimal top bar */}
-          <header className="border-b border-border/50 bg-background/70 backdrop-blur-lg sticky top-0 z-40 animate-slide-up">
+          <header className="border-b border-border/60 bg-background/80 backdrop-blur-lg sticky top-0 z-40 animate-slide-up">
             <div className="container-custom flex items-center justify-between h-16">
               <Link to="/" className="flex items-center group">
                 <img src={logo} alt="CWP" className="w-9 h-9 rounded-[5%] group-hover:scale-110 transition-transform" />
@@ -222,12 +222,12 @@ const Enquiry = () => {
 
           {/* HERO */}
           <section className="relative overflow-hidden py-16 md:py-24">
-            {/* Animated background — matches home hero */}
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary to-background">
-              <div className="absolute inset-0 grid-pattern opacity-40" />
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-cyan/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
-              <div className="absolute inset-0 opacity-20">
+            {/* Light background with subtle CWP accents */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/60 to-background">
+              <div className="absolute inset-0 grid-pattern opacity-60" />
+              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" style={{ animationDelay: "1s" }} />
+              <div className="absolute inset-0 opacity-10">
                 {[...Array(5)].map((_, i) => (
                   <div
                     key={i}
@@ -252,9 +252,9 @@ const Enquiry = () => {
                     {i % 3 === 0 ? (
                       <div className="w-2 h-2 bg-primary/40 rounded-full" />
                     ) : i % 3 === 1 ? (
-                      <div className="w-3 h-3 border border-neon-cyan/40 rotate-45" />
+                      <div className="w-3 h-3 border border-primary/40 rotate-45" />
                     ) : (
-                      <div className="w-2 h-2 bg-neon-purple/40" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
+                      <div className="w-2 h-2 bg-primary/40" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
                     )}
                   </div>
                 ))}
