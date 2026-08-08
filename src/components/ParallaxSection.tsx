@@ -18,6 +18,14 @@ export const ParallaxSection = ({
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
+    // Skip parallax on small screens / reduced motion — scroll listeners are costly on mobile
+    const isSmall = window.matchMedia('(max-width: 767px)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isSmall || reduced) {
+      setOffset(0);
+      return;
+    }
+
     const handleScroll = () => {
       if (!ref.current) return;
 
@@ -30,7 +38,7 @@ export const ParallaxSection = ({
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial call
 
     return () => window.removeEventListener('scroll', handleScroll);
