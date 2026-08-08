@@ -206,9 +206,7 @@ const Enquiry = () => {
         canonicalUrl="https://consultwithprofessionals.com/enquiry"
       />
 
-      <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
-        <InteractiveParticles />
-
+      <div className="min-h-screen bg-background text-foreground relative overflow-hidden enquiry-light">
         <div className="relative z-10">
           {/* Minimal top bar */}
           <header className="border-b border-border/50 bg-background/70 backdrop-blur-lg sticky top-0 z-40 animate-slide-up">
