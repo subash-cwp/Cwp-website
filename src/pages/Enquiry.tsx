@@ -451,6 +451,9 @@ const Enquiry = () => {
                               src={logo.src}
                               alt={logo.alt}
                               loading="lazy"
+                              decoding="async"
+                              width={120}
+                              height={40}
                               className="h-8 md:h-10 w-auto max-w-[120px] object-contain"
                             />
                           </div>
