@@ -86,6 +86,7 @@ const faqs = [
 const Enquiry = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [submitting, setSubmitting] = useState(false);
   const honeypot = useHoneypot();
 
