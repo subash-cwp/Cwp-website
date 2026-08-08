@@ -438,7 +438,7 @@ const Enquiry = () => {
                           <div
                             key={index}
                             className={`flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl border ${
-                              logo.dark ? "bg-black/60 border-border/60" : "bg-card/60 backdrop-blur-sm border-border/60"
+                              logo.dark ? "bg-slate-950 border-slate-800" : "bg-card/80 backdrop-blur-sm border-border/60"
                             }`}
                           >
                             <img
@@ -627,10 +627,10 @@ const Enquiry = () => {
           {/* FINAL CTA */}
           <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
             <section className="relative py-24 border-t border-border/50 overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/50 to-background">
-                <div className="absolute inset-0 grid-pattern opacity-30" />
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-primary/15 blur-3xl animate-pulse-glow" />
-                <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full bg-neon-cyan/10 blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
+              <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/70 to-background">
+                <div className="absolute inset-0 grid-pattern opacity-40" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-primary/15 blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full bg-primary/10 blur-3xl" style={{ animationDelay: "1s" }} />
               </div>
               <div className="container-custom relative z-10 text-center max-w-2xl">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
