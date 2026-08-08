@@ -336,3 +336,26 @@ All colors MUST be HSL.
   --shadow-card-hover: 0 20px 60px hsl(43 98% 46% / 0.18);
 }
 
+
+/* Mobile performance: drop expensive compositing on the enquiry landing page */
+@media (max-width: 767px) {
+  .enquiry-light [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .enquiry-light [class*="blur-3xl"],
+  .enquiry-light [class*="blur-2xl"] {
+    filter: blur(24px) !important;
+  }
+
+  .enquiry-light .animate-pulse-glow,
+  .enquiry-light .animate-float {
+    animation: none !important;
+  }
+
+  .enquiry-light section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+  }
+}
