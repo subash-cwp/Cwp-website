@@ -9,6 +9,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Target, Eye, Heart, Award, Users, Zap, Globe, TrendingUp } from "lucide-react";
 import teamNaren from "@/assets/team-naren.png";
 import { useSection } from "@/hooks/usePageContent";
+import { sanitizeHeading } from "@/lib/sanitizeHtml";
 
 const values = [
   {
@@ -98,7 +99,7 @@ const About = () => {
             </Badge>
             <h1
               className="text-4xl md:text-6xl font-bold mb-6"
-              dangerouslySetInnerHTML={{ __html: hero.headingHtml }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHeading(hero.headingHtml) }}
             />
             <p className="text-xl text-muted-foreground mb-8">{hero.subheading}</p>
           </div>
@@ -126,7 +127,7 @@ const About = () => {
             <div>
               <h2
                 className="text-3xl md:text-4xl font-bold mb-6"
-                dangerouslySetInnerHTML={{ __html: story.headingHtml }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHeading(story.headingHtml) }}
               />
               {story.paragraphs.map((p, i) => (
                 <p key={i} className="text-muted-foreground mb-4 last:mb-0">{p}</p>

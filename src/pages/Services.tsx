@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { servicesData } from "@/data/services";
 import { useSection } from "@/hooks/usePageContent";
+import { sanitizeHeading } from "@/lib/sanitizeHtml";
 
 const slugify = (title: string) => {
   const match = servicesData.find(
@@ -207,7 +208,7 @@ const Services = () => {
             </Badge>
             <h1
               className="text-4xl md:text-6xl font-bold mb-6"
-              dangerouslySetInnerHTML={{ __html: hero.headingHtml }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHeading(hero.headingHtml) }}
             />
             <p className="text-xl text-muted-foreground mb-8">{hero.subheading}</p>
             <Button size="lg" onClick={handleContactClick}>
@@ -285,7 +286,7 @@ const Services = () => {
         <div className="container-custom text-center">
           <h2
             className="text-3xl md:text-4xl font-bold mb-4"
-            dangerouslySetInnerHTML={{ __html: cta.headingHtml }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHeading(cta.headingHtml) }}
           />
           <p className="text-muted-foreground max-w-2xl mx-auto mb-8">{cta.subheading}</p>
           <Button size="lg" onClick={handleContactClick}>
