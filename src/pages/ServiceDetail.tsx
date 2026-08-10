@@ -224,8 +224,6 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      {/* Related */}
-      </section>
 
       {detail && (
         <>
