@@ -232,6 +232,23 @@ const Enquiry = () => {
   const scrollToForm = () =>
     document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
 
+  const foldCta = (label = "Get your free 30-min audit call") => (
+    <div className="mt-10 flex flex-col items-center gap-3 text-center">
+      <Button
+        size="lg"
+        onClick={scrollToForm}
+        className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+      >
+        <span className="relative z-10">{label}</span>
+        <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+      </Button>
+      <span className="text-sm text-muted-foreground">
+        30 minutes. One call. A marketing plan built for your business.
+      </span>
+    </div>
+  );
+
   return (
     <>
       <SEOHead
