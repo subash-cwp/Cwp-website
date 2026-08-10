@@ -102,6 +102,24 @@ const Enquiry = () => {
   const isMobile = useIsMobile();
   const [submitting, setSubmitting] = useState(false);
   const honeypot = useHoneypot();
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [serviceError, setServiceError] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
+
+  const toggleService = (option: string) => {
+    setServiceError(false);
+    setSelectedServices((prev) =>
+      prev.includes(option) ? prev.filter((s) => s !== option) : [...prev, option]
+    );
+  };
+
+  const openForm = () => {
+    if (selectedServices.length === 0) {
+      setServiceError(true);
+      return;
+    }
+    setFormOpen(true);
+  };
 
   useEffect(() => {
     const existing = document.querySelector('script[src*="AW-18303056513"]');
