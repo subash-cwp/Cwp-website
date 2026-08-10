@@ -31,6 +31,7 @@ import { row1Logos, row2Logos, row3Logos } from "@/components/ClientLogos";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(100),
@@ -809,6 +810,8 @@ const Enquiry = () => {
             <Link to="/privacy-policy" className="hover:text-primary transition-colors">Privacy</Link>
           </footer>
         </div>
+
+        <WhatsAppButton />
       </div>
     </>
   );
