@@ -668,6 +668,7 @@ const Enquiry = () => {
                       </div>
                     ))}
                   </div>
+                  {foldCta()}
                 </div>
               </section>
             </ParallaxSection>
