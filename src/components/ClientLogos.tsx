@@ -28,6 +28,12 @@ import settlrsLogo from "@/assets/logos/settlrs.png";
 import bokaapLogo from "@/assets/logos/bokaap.svg";
 import revassureLogo from "@/assets/logos/revassure.png";
 import qblueLogo from "@/assets/logos/qblue.webp";
+import yourspaceLogo from "@/assets/logos/yourspace.png";
+import ooruLogo from "@/assets/logos/ooru.png";
+import cryptoknowledgeLogo from "@/assets/logos/cryptoknowledge.png";
+import beverlysLogo from "@/assets/logos/beverlys.jpg";
+import augiesLogo from "@/assets/logos/augies.jpg";
+import navfabLogo from "@/assets/logos/navfab.svg";
 
 export const row1Logos = [
   { src: zeoniusLogo, alt: "Zeonius IT Services logo" },
@@ -40,6 +46,8 @@ export const row1Logos = [
   { src: infodotLogo, alt: "Infodot Technologies logo" },
   { src: yoloLogo, alt: "Yolo logo" },
   { src: icrederityLogo, alt: "iCrederity logo" },
+  { src: yourspaceLogo, alt: "Your Space logo" },
+  { src: ooruLogo, alt: "Ooru logo" },
 ];
 
 export const row2Logos = [
@@ -53,6 +61,8 @@ export const row2Logos = [
   { src: worcoorLogo, alt: "WorCoor logo" },
   { src: privueLogo, alt: "Privue logo" },
   { src: settlrsLogo, alt: "Settlrs logo" },
+  { src: cryptoknowledgeLogo, alt: "CryptoKnowledge logo" },
+  { src: beverlysLogo, alt: "Beverly's logo" },
 ];
 
 export const row3Logos = [
@@ -66,6 +76,8 @@ export const row3Logos = [
   { src: bokaapLogo, alt: "Bokaap logo" },
   { src: revassureLogo, alt: "ReAssure logo" },
   { src: qblueLogo, alt: "QBlue logo", dark: true },
+  { src: augiesLogo, alt: "Augies Building Services logo" },
+  { src: navfabLogo, alt: "Nav Fab logo" },
 ];
 
 
