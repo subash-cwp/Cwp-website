@@ -437,7 +437,7 @@ const Enquiry = () => {
 
           {/* STEP 2 — DETAILS MODAL */}
           <Dialog open={formOpen} onOpenChange={setFormOpen}>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-2xl w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto rounded-xl">
               <DialogHeader>
                 <DialogTitle className="text-2xl md:text-3xl font-bold">
                   Let's talk about your brand needs.
