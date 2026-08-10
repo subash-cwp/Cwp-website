@@ -323,103 +323,156 @@ const Enquiry = () => {
                 </div>
               </div>
 
-              {/* RIGHT FORM */}
+              {/* RIGHT: SERVICE SELECTOR */}
               <div
                 id="lead-form"
                 className="relative order-1 lg:order-2 lg:sticky lg:top-24 animate-scale-in"
                 style={{ animationDelay: "0.3s" }}
               >
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary/60 via-neon-cyan/40 to-neon-purple/60 rounded-2xl blur-2xl opacity-80 animate-pulse-glow" />
+                <div className="absolute -inset-1 bg-gradient-to-br from-primary/60 via-neon-cyan/40 to-neon-purple/60 rounded-2xl blur-2xl opacity-80" />
                 <div className="absolute -inset-[2px] bg-gradient-to-br from-primary via-neon-cyan to-neon-purple rounded-2xl opacity-70" />
                 <div className="relative bg-card/95 backdrop-blur-xl border-2 border-primary/40 rounded-2xl p-6 md:p-8 shadow-[0_0_60px_rgba(255,199,0,0.18)]">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full" />
 
-                      <div className="flex items-center gap-2 mb-1">
-                        <Sparkles className="h-4 w-4 text-primary" />
-                        <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free Strategy Session</span>
-                      </div>
-                      <h2 className="text-2xl font-bold mb-1">Book your free strategy call.</h2>
-                      <p className="text-sm text-muted-foreground mb-6">No obligation. We respond within 24 hours.</p>
-                      <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-                          <honeypot.HoneypotField />
-                          <FormField control={form.control} name="name" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Name</FormLabel>
-                              <FormControl><Input placeholder="Jane Doe" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-                          <FormField control={form.control} name="email" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Business Email</FormLabel>
-                              <FormControl><Input type="email" placeholder="jane@brand.com" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <FormField control={form.control} name="phone" render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Phone</FormLabel>
-                                <FormControl>
-                                  <Input
-                                    type="tel"
-                                    inputMode="numeric"
-                                    maxLength={10}
-                                    placeholder="98765 43210"
-                                    {...field}
-                                    onChange={(e) => {
-                                      const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
-                                      field.onChange(digits);
-                                    }}
-                                    className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all"
-                                  />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )} />
-                            <FormField control={form.control} name="company" render={({ field }) => (
-                              <FormItem>
-                                <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Company</FormLabel>
-                                <FormControl><Input placeholder="Your brand" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" /></FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )} />
-                          </div>
-                          <FormField control={form.control} name="message" render={({ field }) => (
-                            <FormItem>
-                              <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Tell us about your requirement</FormLabel>
-                              <FormControl>
-                                <Textarea placeholder="What are you looking to achieve? Share your goals, challenges, or any specific requirements..." {...field} className="min-h-[100px] resize-y bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30 focus:bg-background shadow-inner transition-all" />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )} />
-                          <Button
-                            type="submit"
-                            disabled={submitting}
-                            size="lg"
-                            className="w-full gap-2 hover-lift hover-glow group relative overflow-hidden mt-2"
-                          >
-                            {submitting ? (
-                              <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
-                            ) : (
-                              <>
-                                <span className="relative z-10">Get My Free Strategy</span>
-                                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-                                <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                              </>
-                            )}
-                          </Button>
-                          <p className="text-xs text-muted-foreground text-center pt-1">
-                            By submitting, you agree to be contacted about your enquiry.
-                          </p>
-                        </form>
-                      </Form>
+                  <div className="flex items-center gap-2 mb-1">
+                    <Sparkles className="h-4 w-4 text-primary" />
+                    <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free Strategy Session</span>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold mb-1">How can we help?</h2>
+                  <p className="text-sm text-muted-foreground mb-6">Select what you need — then tell us about your brand.</p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 mb-6">
+                    {serviceOptions.map((option) => {
+                      const checked = selectedServices.includes(option);
+                      return (
+                        <label
+                          key={option}
+                          className="flex items-center gap-2.5 cursor-pointer group text-sm"
+                        >
+                          <Checkbox
+                            checked={checked}
+                            onCheckedChange={() => toggleService(option)}
+                            aria-label={option}
+                          />
+                          <span className={`transition-colors ${checked ? "text-foreground font-medium" : "text-muted-foreground group-hover:text-foreground"}`}>
+                            {option}
+                          </span>
+                        </label>
+                      );
+                    })}
+                  </div>
+
+                  {serviceError && (
+                    <p className="text-sm text-destructive mb-4">Please select at least one service.</p>
+                  )}
+
+                  <Button
+                    size="lg"
+                    onClick={openForm}
+                    className="w-full gap-2 hover-lift hover-glow group relative overflow-hidden"
+                  >
+                    <span className="relative z-10">Get Started</span>
+                    <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Button>
+                  <p className="text-xs text-muted-foreground text-center pt-3">
+                    No obligation. We respond within 24 hours.
+                  </p>
                 </div>
               </div>
             </div>
           </section>
+
+          {/* STEP 2 — DETAILS MODAL */}
+          <Dialog open={formOpen} onOpenChange={setFormOpen}>
+            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="text-2xl md:text-3xl font-bold">
+                  Let's talk about your brand needs.
+                </DialogTitle>
+                <DialogDescription>
+                  {selectedServices.length > 0
+                    ? `You selected: ${selectedServices.join(", ")}`
+                    : "Tell us a bit about you and we'll take it from there."}
+                </DialogDescription>
+              </DialogHeader>
+
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-2">
+                  <honeypot.HoneypotField />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <FormField control={form.control} name="name" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Name</FormLabel>
+                        <FormControl><Input placeholder="Jane Doe" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30" /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="phone" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Phone</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="tel"
+                            inputMode="numeric"
+                            maxLength={10}
+                            placeholder="98765 43210"
+                            {...field}
+                            onChange={(e) => field.onChange(e.target.value.replace(/\D/g, "").slice(0, 10))}
+                            className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="email" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Business Email</FormLabel>
+                        <FormControl><Input type="email" placeholder="jane@brand.com" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30" /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                    <FormField control={form.control} name="company" render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Brand / Business Name</FormLabel>
+                        <FormControl><Input placeholder="Your brand" {...field} className="bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30" /></FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )} />
+                  </div>
+                  <FormField control={form.control} name="message" render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">Your message (optional)</FormLabel>
+                      <FormControl>
+                        <Textarea placeholder="What are you looking to achieve? Share your goals, challenges, or any specific requirements..." {...field} className="min-h-[100px] resize-y bg-background/70 border-primary/40 focus:border-primary focus:ring-2 focus:ring-primary/30" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )} />
+                  <Button
+                    type="submit"
+                    disabled={submitting}
+                    size="lg"
+                    className="w-full gap-2 hover-lift hover-glow group relative overflow-hidden"
+                  >
+                    {submitting ? (
+                      <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</>
+                    ) : (
+                      <>
+                        <span className="relative z-10">Let's Talk</span>
+                        <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </>
+                    )}
+                  </Button>
+                  <p className="text-xs text-muted-foreground text-center">
+                    By submitting, you agree to be contacted about your enquiry.
+                  </p>
+                </form>
+              </Form>
+            </DialogContent>
+          </Dialog>
+
 
           {/* BRANDS */}
           <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
