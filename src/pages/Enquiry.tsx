@@ -229,8 +229,7 @@ const Enquiry = () => {
     }
   };
 
-  const scrollToForm = () =>
-    document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  const scrollToForm = () => setFormOpen(true);
 
   const foldCta = (label = "Get your free 30-min audit call") => (
     <div className="mt-10 flex flex-col items-center gap-3 text-center">
