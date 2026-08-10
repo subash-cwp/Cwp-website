@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import aadicuraLogo from "@/assets/logos/aadicura.png";
 import zeoniusLogo from "@/assets/logos/zeonius.png";
 import cognisLogo from "@/assets/logos/cognis.png";
@@ -80,53 +81,75 @@ export const row3Logos = [
   { src: navfabLogo, alt: "Nav Fab logo" },
 ];
 
+export function useMarqueeCopies(itemCount: number, itemWidth: number, minCopies = 2) {
+  const calculate = (vw: number) => {
+    const baseWidth = itemCount * itemWidth;
+    let needed = Math.max(minCopies, Math.ceil((2.5 * vw) / baseWidth));
+    if (needed % 2 !== 0) needed += 1;
+    return needed;
+  };
+  const [copies, setCopies] = useState(() =>
+    typeof window !== "undefined" ? calculate(window.innerWidth) : minCopies
+  );
+  useEffect(() => {
+    const update = () => setCopies(calculate(window.innerWidth));
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [itemCount, itemWidth, minCopies]);
+  return copies;
+}
 
 export const ClientLogos = () => {
   // Mark logos that are white/light-on-transparent with `dark: true` to render on a dark card
   const cardClass = (dark?: boolean) =>
-    `flex-shrink-0 flex items-center justify-center h-14 md:h-16 px-4 md:px-5 py-2.5 md:py-3 rounded-xl shadow-sm border ${
+    `flex-shrink-0 flex items-center justify-center h-11 sm:h-14 md:h-16 px-2 md:px-3 lg:px-4 py-1.5 md:py-2.5 rounded-lg md:rounded-xl shadow-sm border ${
       dark
         ? "bg-slate-900 border-slate-800"
         : "bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700"
     }`;
 
   const edgeMask =
-    "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]";
+    "[mask-image:linear-gradient(to_right,transparent,black_2%,black_98%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_2%,black_98%,transparent)]";
 
-  const renderRow = (logos: typeof row1Logos, direction: "rtl" | "ltr", key: string, rowLabel: string) => (
-    <div
-      className={`relative overflow-hidden py-4 md:py-6 group/marquee ${edgeMask}`}
-      role="group"
-      aria-label={rowLabel}
-    >
-      <ul
-        className={`flex w-max gap-6 sm:gap-10 md:gap-16 items-center list-none m-0 p-0 ${
-          direction === "rtl" ? "animate-scroll-rtl" : "animate-scroll-ltr"
-        }`}
+  const renderRow = (logos: typeof row1Logos, direction: "rtl" | "ltr", key: string, rowLabel: string) => {
+    const copies = useMarqueeCopies(logos.length, 220);
+    const track = Array.from({ length: logos.length * copies }).map((_, i) => logos[i % logos.length]);
+    return (
+      <div
+        className={`relative overflow-hidden py-4 md:py-6 group/marquee ${edgeMask}`}
+        role="group"
+        aria-label={rowLabel}
       >
-        {[...logos, ...logos].map((logo, index) => {
-          const isClone = index >= logos.length;
-          return (
-            <li
-              key={`${key}-${index}`}
-              className={cardClass(logo.dark)}
-              aria-hidden={isClone || undefined}
-            >
-              <img
-                src={logo.src}
-                alt={isClone ? "" : logo.alt}
-                aria-label={isClone ? undefined : logo.alt}
-                role="img"
-                loading="lazy"
-                decoding="async"
-                className="h-8 md:h-10 lg:h-12 w-auto max-w-[110px] md:max-w-[140px] object-contain"
-              />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+        <ul
+          className={`flex w-max gap-3 sm:gap-4 md:gap-8 items-center list-none m-0 p-0 ${
+            direction === "rtl" ? "animate-scroll-rtl" : "animate-scroll-ltr"
+          }`}
+        >
+          {track.map((logo, index) => {
+            const isClone = index >= logos.length;
+            return (
+              <li
+                key={`${key}-${index}`}
+                className={cardClass(logo.dark)}
+                aria-hidden={isClone || undefined}
+              >
+                <img
+                  src={logo.src}
+                  alt={isClone ? "" : logo.alt}
+                  aria-label={isClone ? undefined : logo.alt}
+                  role="img"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-6 sm:h-8 md:h-10 w-auto max-w-[70px] sm:max-w-[90px] md:max-w-[120px] object-contain"
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  };
 
   return (
     <section
