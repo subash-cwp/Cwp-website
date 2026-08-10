@@ -82,6 +82,16 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes shake-attention {
+  0%, 86%, 100% { transform: translateX(0); }
+  88%, 92%, 96% { transform: translateX(-5px); }
+  90%, 94%, 98% { transform: translateX(5px); }
+}
+
+.animate-shake-attention {
+  animation: shake-attention 5s ease-in-out infinite;
+}
+
 @layer utilities {
   .text-gradient {
     @apply bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent;
