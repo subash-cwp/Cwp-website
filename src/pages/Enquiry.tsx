@@ -386,7 +386,8 @@ const Enquiry = () => {
 
                   <div className="flex items-center gap-2 mb-1">
                     <Sparkles className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free Strategy Session</span>
+                    <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free 30-Min Audit Call</span>
+
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-1">How can we help?</h2>
                   <p className="text-sm text-muted-foreground mb-6">Select what you need — then tell us about your brand.</p>
