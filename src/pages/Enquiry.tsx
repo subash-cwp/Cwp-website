@@ -738,6 +738,7 @@ const Enquiry = () => {
                     </details>
                   ))}
                 </div>
+                {foldCta()}
               </div>
             </section>
           </ScrollAnimationWrapper>
