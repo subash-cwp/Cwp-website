@@ -65,6 +65,17 @@ const services = [
 
 const industries = ["D2C & E-commerce", "SaaS", "B2B Services", "Healthcare", "Education", "Real Estate", "Fintech", "Hospitality"];
 
+const serviceOptions = [
+  "Performance Marketing",
+  "SEO & Organic Growth",
+  "Social Media",
+  "Content Marketing",
+  "Brand Strategy",
+  "Website Design",
+  "Marketing Automation",
+  "Other",
+];
+
 const results = [
   { brand: "D2C skincare brand", before: "1.4x ROAS", after: "4.6x ROAS", note: "in 90 days" },
   { brand: "B2B SaaS", before: "38 MQLs/mo", after: "212 MQLs/mo", note: "in 6 months" },
