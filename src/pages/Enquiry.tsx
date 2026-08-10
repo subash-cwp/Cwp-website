@@ -197,7 +197,7 @@ const Enquiry = () => {
               email: values.email.trim(),
               phone: values.phone.trim(),
               company: values.company.trim(),
-              service: "Not specified",
+              service: servicesLine,
               message: composedMessage,
               submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
             },
