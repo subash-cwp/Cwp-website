@@ -28,6 +28,12 @@ import settlrsLogo from "@/assets/logos/settlrs.png";
 import bokaapLogo from "@/assets/logos/bokaap.svg";
 import revassureLogo from "@/assets/logos/revassure.png";
 import qblueLogo from "@/assets/logos/qblue.webp";
+import yourspaceLogo from "@/assets/logos/yourspace.png";
+import ooruLogo from "@/assets/logos/ooru.png";
+import cryptoknowledgeLogo from "@/assets/logos/cryptoknowledge.png";
+import beverlysLogo from "@/assets/logos/beverlys.jpg";
+import augiesLogo from "@/assets/logos/augies.jpg";
+import navfabLogo from "@/assets/logos/navfab.svg";
 
 export const row1Logos = [
   { src: zeoniusLogo, alt: "Zeonius IT Services logo" },
