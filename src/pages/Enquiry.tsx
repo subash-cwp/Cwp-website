@@ -603,6 +603,7 @@ const Enquiry = () => {
                     </div>
                   ))}
                 </div>
+                {foldCta()}
               </div>
             </section>
           </ScrollAnimationWrapper>
