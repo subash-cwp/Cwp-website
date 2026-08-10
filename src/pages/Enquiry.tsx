@@ -174,7 +174,8 @@ const Enquiry = () => {
     try {
       if (honeypot.isBot()) { navigate("/thank-you"); return; }
       const { supabase } = await import("@/integrations/supabase/client");
-      const composedMessage = values.message?.trim() || "No additional requirements provided.";
+      const servicesLine = selectedServices.length ? selectedServices.join(", ") : "Not specified";
+      const composedMessage = `Services needed: ${servicesLine}\n\n${values.message?.trim() || "No additional requirements provided."}`;
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
         email: values.email.trim(),
