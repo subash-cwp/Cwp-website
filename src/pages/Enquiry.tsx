@@ -551,7 +551,7 @@ const Enquiry = () => {
                             <div
                               key={index}
                               className={`flex-shrink-0 flex items-center justify-center h-11 px-2 py-1.5 md:h-16 md:px-4 md:py-3 rounded-lg md:rounded-xl border ${
-                                logo.dark ? "bg-slate-950 border-slate-800" : "bg-card/80 backdrop-blur-sm border-border/60"
+                                logo.dark ? "bg-slate-950 border-slate-800" : "bg-white border-slate-100"
                               }`}
                             >
                               <img
