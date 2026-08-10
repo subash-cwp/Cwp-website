@@ -78,6 +78,7 @@ const ServiceDetail = () => {
   const Icon = iconMap[service.icon] || Target;
   const canonical = `https://consultwithprofessionals.com/services/${service.slug}`;
   const related = servicesData.filter((s) => s.slug !== service.slug).slice(0, 3);
+  const detail = getServiceDetail(service.slug);
 
   const serviceJsonLd = {
     "@context": "https://schema.org",
@@ -92,7 +93,32 @@ const ServiceDetail = () => {
       url: "https://consultwithprofessionals.com",
     },
     areaServed: "Global",
+    ...(detail
+      ? {
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: `${service.title} deliverables`,
+            itemListElement: detail.deliverables.map((d) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: d.title, description: d.description },
+            })),
+          },
+        }
+      : {}),
   };
+
+  const faqJsonLd = detail
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: detail.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      }
+    : null;
+
 
   return (
     <div className="min-h-screen bg-background">
