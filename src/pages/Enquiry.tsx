@@ -421,7 +421,7 @@ const Enquiry = () => {
                   <Button
                     size="lg"
                     onClick={openForm}
-                    className="w-full gap-2 hover-lift hover-glow group relative overflow-hidden"
+                    className="w-full gap-2 hover-lift hover-glow group relative overflow-hidden animate-shake-attention"
                   >
                     <span className="relative z-10">Get Started</span>
                     <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
