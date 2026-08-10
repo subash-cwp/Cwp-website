@@ -234,11 +234,11 @@ const Enquiry = () => {
   const scrollToForm = () => setFormOpen(true);
 
   const foldCta = (label = "Get your free 30-min audit call") => (
-    <div className="mt-10 flex flex-col items-center gap-3 text-center">
+    <div className="mt-10 flex flex-col items-center gap-3 text-center px-4">
       <Button
         size="lg"
         onClick={scrollToForm}
-        className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+        className="w-full sm:w-auto gap-2 text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
       >
         <span className="relative z-10">{label}</span>
         <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
