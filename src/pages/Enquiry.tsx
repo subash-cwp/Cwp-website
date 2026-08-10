@@ -566,6 +566,7 @@ const Enquiry = () => {
                     </div>
                   ))}
                 </div>
+                <div className="container-custom">{foldCta()}</div>
               </section>
             </ParallaxSection>
           </ScrollAnimationWrapper>
