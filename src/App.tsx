@@ -46,6 +46,7 @@ import PageContentAdmin from "./pages/admin/PageContentAdmin";
 import CustomPagesAdmin from "./pages/admin/CustomPagesAdmin";
 import { Analytics } from "@/components/Analytics";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { BackToTop } from "@/components/BackToTop";
 import { PageWrapper } from "@/components/PageWrapper";
 
 const queryClient = new QueryClient();
