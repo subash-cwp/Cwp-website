@@ -183,9 +183,12 @@ const ServiceDetail = () => {
         <div className="container-custom grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Overview</h2>
-            <p className="text-muted-foreground text-lg leading-relaxed mb-8">
+            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
               {service.description}
             </p>
+            {detail && (
+              <p className="text-muted-foreground leading-relaxed mb-8">{detail.intro}</p>
+            )}
 
             <h3 className="text-xl font-bold mb-4">Key Benefits</h3>
             <ul className="space-y-3 mb-10">
