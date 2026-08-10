@@ -345,12 +345,13 @@ const Enquiry = () => {
                     onClick={scrollToForm}
                     className="gap-2 text-base px-6 py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">Get a FREE Growth Strategy Session</span>
+                    <span className="relative z-10">30 minutes. One call.</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
                   <Button size="lg" variant="outline" className="text-base px-6 py-6 hover-lift glow-border" onClick={scrollToForm}>
-                    Get a FREE Marketing Audit
+                    A marketing plan built for your business.
+
                   </Button>
                 </div>
               </div>
