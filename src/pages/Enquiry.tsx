@@ -232,6 +232,23 @@ const Enquiry = () => {
   const scrollToForm = () =>
     document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
 
+  const foldCta = (label = "Get your free 30-min audit call") => (
+    <div className="mt-10 flex flex-col items-center gap-3 text-center">
+      <Button
+        size="lg"
+        onClick={scrollToForm}
+        className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+      >
+        <span className="relative z-10">{label}</span>
+        <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+      </Button>
+      <span className="text-sm text-muted-foreground">
+        30 minutes. One call. A marketing plan built for your business.
+      </span>
+    </div>
+  );
+
   return (
     <>
       <SEOHead
@@ -369,7 +386,8 @@ const Enquiry = () => {
 
                   <div className="flex items-center gap-2 mb-1">
                     <Sparkles className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free Strategy Session</span>
+                    <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free 30-Min Audit Call</span>
+
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-1">How can we help?</h2>
                   <p className="text-sm text-muted-foreground mb-6">Select what you need — then tell us about your brand.</p>
@@ -548,6 +566,7 @@ const Enquiry = () => {
                     </div>
                   ))}
                 </div>
+                <div className="container-custom">{foldCta()}</div>
               </section>
             </ParallaxSection>
           </ScrollAnimationWrapper>
@@ -584,6 +603,7 @@ const Enquiry = () => {
                     </div>
                   ))}
                 </div>
+                {foldCta()}
               </div>
             </section>
           </ScrollAnimationWrapper>
@@ -610,6 +630,7 @@ const Enquiry = () => {
                     </span>
                   ))}
                 </div>
+                {foldCta()}
               </div>
             </section>
           </ScrollAnimationWrapper>
@@ -647,6 +668,7 @@ const Enquiry = () => {
                       </div>
                     ))}
                   </div>
+                  {foldCta()}
                 </div>
               </section>
             </ParallaxSection>
@@ -685,6 +707,7 @@ const Enquiry = () => {
                     </div>
                   ))}
                 </div>
+                {foldCta()}
               </div>
             </section>
           </ScrollAnimationWrapper>
@@ -715,6 +738,7 @@ const Enquiry = () => {
                     </details>
                   ))}
                 </div>
+                {foldCta()}
               </div>
             </section>
           </ScrollAnimationWrapper>
