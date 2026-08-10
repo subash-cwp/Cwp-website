@@ -23,6 +23,13 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { servicesData, getServiceBySlug, type ServiceItem } from "@/data/services";
+import { getServiceDetail } from "@/data/serviceDetails";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Target,
