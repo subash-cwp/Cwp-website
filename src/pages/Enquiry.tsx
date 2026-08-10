@@ -229,8 +229,7 @@ const Enquiry = () => {
     }
   };
 
-  const scrollToForm = () =>
-    document.getElementById("lead-form")?.scrollIntoView({ behavior: "smooth", block: "center" });
+  const scrollToForm = () => setFormOpen(true);
 
   const foldCta = (label = "Get your free 30-min audit call") => (
     <div className="mt-10 flex flex-col items-center gap-3 text-center">
@@ -584,22 +583,46 @@ const Enquiry = () => {
                   </h2>
                   <p className="text-muted-foreground mt-3">A snapshot of measurable growth we've delivered for our clients.</p>
                 </div>
-                <div className="grid md:grid-cols-3 gap-5">
-                  {results.map((r) => (
-                    <div key={r.brand} className="relative bg-card/60 backdrop-blur-sm border border-border/60 rounded-2xl p-6 hover-lift transition-all">
-                      <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">{r.brand}</p>
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="flex-1">
-                          <div className="text-xs text-muted-foreground mb-1">Before</div>
-                          <div className="text-lg font-semibold text-foreground/70 line-through decoration-muted-foreground/50">{r.before}</div>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {results.map((r, i) => (
+                    <div
+                      key={r.brand}
+                      className="group relative rounded-3xl p-[1px] bg-gradient-to-br from-primary/40 via-border/60 to-transparent hover-lift animate-slide-up"
+                      style={{ animationDelay: `${i * 0.1}s` }}
+                    >
+                      <div className="relative h-full rounded-3xl bg-card/80 backdrop-blur-sm p-6 overflow-hidden">
+                        <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full bg-primary/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                        <div className="relative flex items-center justify-between gap-3 mb-6">
+                          <p className="text-xs uppercase tracking-widest font-semibold text-muted-foreground">{r.brand}</p>
+                          <span className="w-9 h-9 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center shrink-0">
+                            <TrendingUp className="w-4 h-4 text-primary" />
+                          </span>
                         </div>
-                        <ArrowRight className="w-5 h-5 text-primary shrink-0" />
-                        <div className="flex-1 text-right">
-                          <div className="text-xs text-primary mb-1">After</div>
-                          <div className="text-lg font-bold text-gradient-primary">{r.after}</div>
+
+                        <div className="relative flex items-stretch gap-3">
+                          <div className="flex-1 rounded-2xl bg-muted/40 border border-border/50 px-4 py-3">
+                            <div className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">Before</div>
+                            <div className="text-lg font-semibold text-muted-foreground line-through decoration-muted-foreground/40">
+                              {r.before}
+                            </div>
+                          </div>
+                          <div className="flex items-center">
+                            <span className="w-8 h-8 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center">
+                              <ArrowRight className="w-4 h-4 text-primary" />
+                            </span>
+                          </div>
+                          <div className="flex-1 rounded-2xl bg-primary/10 border border-primary/30 px-4 py-3">
+                            <div className="text-[10px] uppercase tracking-widest text-primary mb-1">After</div>
+                            <div className="text-xl font-bold text-gradient-primary">{r.after}</div>
+                          </div>
+                        </div>
+
+                        <div className="relative mt-5 pt-4 border-t border-border/50 flex items-center gap-2">
+                          <Zap className="w-3.5 h-3.5 text-primary shrink-0" />
+                          <span className="text-xs font-medium text-muted-foreground">{r.note}</span>
                         </div>
                       </div>
-                      <p className="text-xs text-muted-foreground mt-4">{r.note}</p>
                     </div>
                   ))}
                 </div>
