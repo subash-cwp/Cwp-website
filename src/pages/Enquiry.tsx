@@ -27,7 +27,7 @@ import { useHoneypot } from "@/hooks/useHoneypot";
 import { SEOHead } from "@/components/SEOHead";
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxSection } from "@/components/ParallaxSection";
-import { row1Logos, row2Logos, row3Logos } from "@/components/ClientLogos";
+import { row1Logos, row2Logos, row3Logos, useMarqueeCopies } from "@/components/ClientLogos";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -101,6 +101,7 @@ const Enquiry = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const isMobile = useIsMobile();
+  const logoCopies = useMarqueeCopies(row1Logos.length, 180);
   const [submitting, setSubmitting] = useState(false);
   const honeypot = useHoneypot();
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
@@ -541,30 +542,33 @@ const Enquiry = () => {
                 </div>
 
                 <div className="space-y-4">
-                  {[row1Logos, row2Logos, row3Logos].map((row, i) => (
-                    <div key={i} className="relative overflow-hidden py-4">
-                      <div className={`flex gap-8 md:gap-12 ${i % 2 === 0 ? "animate-scroll-rtl" : "animate-scroll-ltr"} items-center`}>
-                        {(isMobile ? [...row, ...row] : [...row, ...row, ...row, ...row]).map((logo, index) => (
-                          <div
-                            key={index}
-                            className={`flex-shrink-0 flex items-center justify-center h-16 px-4 py-3 rounded-xl border ${
-                              logo.dark ? "bg-slate-950 border-slate-800" : "bg-card/80 backdrop-blur-sm border-border/60"
-                            }`}
-                          >
-                            <img
-                              src={logo.src}
-                              alt={logo.alt}
-                              loading="lazy"
-                              decoding="async"
-                              width={120}
-                              height={40}
-                              className="h-8 md:h-10 w-auto max-w-[120px] object-contain"
-                            />
-                          </div>
-                        ))}
+                  {[row1Logos, row2Logos, row3Logos].map((row, i) => {
+                    const track = Array.from({ length: row.length * logoCopies }).map((_, idx) => row[idx % row.length]);
+                    return (
+                      <div key={i} className="relative overflow-hidden py-4">
+                        <div className={`flex gap-3 md:gap-8 ${i % 2 === 0 ? "animate-scroll-rtl" : "animate-scroll-ltr"} items-center`}>
+                          {track.map((logo, index) => (
+                            <div
+                              key={index}
+                              className={`flex-shrink-0 flex items-center justify-center h-11 px-2 py-1.5 md:h-16 md:px-4 md:py-3 rounded-lg md:rounded-xl border ${
+                                logo.dark ? "bg-slate-950 border-slate-800" : "bg-card/80 backdrop-blur-sm border-border/60"
+                              }`}
+                            >
+                              <img
+                                src={logo.src}
+                                alt={logo.alt}
+                                loading="lazy"
+                                decoding="async"
+                                width={120}
+                                height={40}
+                                className="h-6 md:h-10 w-auto max-w-[70px] md:max-w-[120px] object-contain"
+                              />
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
                 <div className="container-custom">{foldCta()}</div>
               </section>
