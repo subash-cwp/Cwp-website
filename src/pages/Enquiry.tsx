@@ -234,11 +234,11 @@ const Enquiry = () => {
   const scrollToForm = () => setFormOpen(true);
 
   const foldCta = (label = "Get your free 30-min audit call") => (
-    <div className="mt-10 flex flex-col items-center gap-3 text-center">
+    <div className="mt-10 flex flex-col items-center gap-3 text-center px-4">
       <Button
         size="lg"
         onClick={scrollToForm}
-        className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+        className="w-full sm:w-auto gap-2 text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
       >
         <span className="relative z-10">{label}</span>
         <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
@@ -258,7 +258,7 @@ const Enquiry = () => {
         canonicalUrl="https://consultwithprofessionals.com/enquiry"
       />
 
-      <div className="min-h-screen bg-background text-foreground relative overflow-hidden enquiry-light">
+      <div className="min-h-screen bg-background text-foreground relative overflow-hidden enquiry-page">
         <div className="relative z-10">
           {/* Minimal top bar */}
           <header className="border-b border-border/60 bg-background/80 backdrop-blur-lg sticky top-0 z-40 animate-slide-up">
@@ -361,13 +361,13 @@ const Enquiry = () => {
                   <Button
                     size="lg"
                     onClick={scrollToForm}
-                    className="gap-2 text-base px-6 py-6 hover-lift hover-glow group relative overflow-hidden"
+                    className="gap-2 text-sm sm:text-base px-5 sm:px-6 py-5 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
                     <span className="relative z-10">30 minutes. One call.</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
-                  <Button size="lg" variant="outline" className="text-base px-6 py-6 hover-lift glow-border" onClick={scrollToForm}>
+                  <Button size="lg" variant="outline" className="text-sm sm:text-base px-5 sm:px-6 py-5 sm:py-6 hover-lift glow-border" onClick={scrollToForm}>
                     A marketing plan built for your business.
 
                   </Button>
@@ -437,7 +437,7 @@ const Enquiry = () => {
 
           {/* STEP 2 — DETAILS MODAL */}
           <Dialog open={formOpen} onOpenChange={setFormOpen}>
-            <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+            <DialogContent className="max-w-2xl w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto rounded-xl">
               <DialogHeader>
                 <DialogTitle className="text-2xl md:text-3xl font-bold">
                   Let's talk about your brand needs.
@@ -551,7 +551,7 @@ const Enquiry = () => {
                             <div
                               key={index}
                               className={`flex-shrink-0 flex items-center justify-center h-11 px-2 py-1.5 md:h-16 md:px-4 md:py-3 rounded-lg md:rounded-xl border ${
-                                logo.dark ? "bg-slate-950 border-slate-800" : "bg-card/80 backdrop-blur-sm border-border/60"
+                                logo.dark ? "bg-slate-950 border-slate-800" : "bg-white border-slate-100"
                               }`}
                             >
                               <img

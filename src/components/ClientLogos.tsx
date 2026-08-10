@@ -106,7 +106,7 @@ export const ClientLogos = () => {
     `flex-shrink-0 flex items-center justify-center h-11 sm:h-14 md:h-16 px-2 md:px-3 lg:px-4 py-1.5 md:py-2.5 rounded-lg md:rounded-xl shadow-sm border ${
       dark
         ? "bg-slate-900 border-slate-800"
-        : "bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700"
+        : "bg-white border-slate-100"
     }`;
 
   const edgeMask =

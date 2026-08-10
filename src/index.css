@@ -300,61 +300,24 @@ All colors MUST be HSL.
   }
 }
 
-/* Light theme scoped for the enquiry landing page */
-.enquiry-light {
-  --background: 0 0% 100%;
-  --foreground: 220 14% 9%;
-
-  --card: 0 0% 100%;
-  --card-foreground: 220 14% 9%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 220 14% 9%;
-
-  --primary: 43 98% 46%;
-  --primary-foreground: 0 0% 100%;
-  --primary-glow: 43 98% 56%;
-
-  --secondary: 40 20% 96%;
-  --secondary-foreground: 220 14% 9%;
-
-  --muted: 40 20% 96%;
-  --muted-foreground: 220 9% 46%;
-
-  --accent: 43 98% 46%;
-  --accent-foreground: 0 0% 100%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 100%;
-
-  --border: 40 10% 88%;
-  --input: 40 10% 88%;
-  --ring: 43 98% 46%;
-
-  --grid-color: hsl(var(--muted-foreground) / 0.12);
-  --shadow-card: 0 10px 40px hsl(220 14% 9% / 0.08);
-  --shadow-card-hover: 0 20px 60px hsl(43 98% 46% / 0.18);
-}
-
-
 /* Mobile performance: drop expensive compositing on the enquiry landing page */
 @media (max-width: 767px) {
-  .enquiry-light [class*="backdrop-blur"] {
+  .enquiry-page [class*="backdrop-blur"] {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
 
-  .enquiry-light [class*="blur-3xl"],
-  .enquiry-light [class*="blur-2xl"] {
+  .enquiry-page [class*="blur-3xl"],
+  .enquiry-page [class*="blur-2xl"] {
     filter: blur(24px) !important;
   }
 
-  .enquiry-light .animate-pulse-glow,
-  .enquiry-light .animate-float {
+  .enquiry-page .animate-pulse-glow,
+  .enquiry-page .animate-float {
     animation: none !important;
   }
 
-  .enquiry-light section {
+  .enquiry-page section {
     content-visibility: auto;
     contain-intrinsic-size: auto 700px;
   }
