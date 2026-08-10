@@ -810,6 +810,8 @@ const Enquiry = () => {
             <Link to="/privacy-policy" className="hover:text-primary transition-colors">Privacy</Link>
           </footer>
         </div>
+
+        <WhatsAppButton />
       </div>
     </>
   );
