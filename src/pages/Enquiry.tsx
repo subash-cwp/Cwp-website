@@ -255,7 +255,7 @@ const Enquiry = () => {
           </header>
 
           {/* HERO */}
-          <section className="relative overflow-hidden py-16 md:py-24">
+          <section className="relative overflow-hidden pt-6 pb-14 md:pt-8 md:pb-20">
             {/* Light background with subtle CWP accents */}
             <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/60 to-background">
               <div className="absolute inset-0 grid-pattern opacity-60" />
