@@ -39,7 +39,6 @@ const FOOTER_DEFAULTS: FooterColumns = {
     { label: "Social Media Management", href: "/services/social-media-management" },
     { label: "Creative & Branding", href: "/services/creative-branding" },
     { label: "Outreach & Demand Gen", href: "/services/outreach-demand-generation" },
-    { label: "Pricing", href: "/pricing" },
   ],
   contactTitle: "CONTACT",
   quickMessageTitle: "QUICK MESSAGE",

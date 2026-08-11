@@ -26,7 +26,6 @@ const PAGES = [
   { key: "about", label: "About" },
   { key: "services", label: "Services" },
   { key: "portfolio", label: "Portfolio" },
-  { key: "pricing", label: "Pricing" },
   { key: "careers", label: "Careers" },
   { key: "resources", label: "Resources" },
   { key: "blog", label: "Blog Index" },
@@ -68,11 +67,6 @@ const SECTION_TEMPLATES: Record<string, Record<string, any>> = {
   "portfolio:intro": { heading: "", body: "" },
   "portfolio:cta": { heading: "", body: "", ctaLabel: "", ctaHref: "" },
 
-  // pricing
-  "pricing:hero": { heading: "", subheading: "" },
-  "pricing:plans": { heading: "", items: [{ name: "", price: "", period: "", description: "", popular: false, features: [""] }] },
-  "pricing:faq": { heading: "", items: [{ q: "", a: "" }] },
-  "pricing:cta": { heading: "", body: "", ctaLabel: "", ctaHref: "" },
 
   // careers
   "careers:hero": { heading: "", subheading: "" },
@@ -121,7 +115,6 @@ const SUGGESTED_SECTIONS: Record<string, string[]> = {
   about: ["hero", "story", "mission", "vision", "values", "team_intro"],
   services: ["hero", "intro", "cta"],
   portfolio: ["hero", "intro", "cta"],
-  pricing: ["hero", "plans", "faq", "cta"],
   careers: ["hero", "culture", "benefits", "positions_intro"],
   resources: ["hero", "intro", "items"],
   blog: ["hero", "intro"],
