@@ -7,6 +7,7 @@ interface SEOHeadProps {
   ogImage?: string;
   ogType?: string;
   canonicalUrl?: string;
+  noIndex?: boolean;
 }
 
 const SITE_ORIGIN = "https://consultwithprofessionals.com";
@@ -19,6 +20,7 @@ export const SEOHead = ({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   canonicalUrl,
+  noIndex = false,
 }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
@@ -48,6 +50,7 @@ export const SEOHead = ({
 
     updateMetaTag("description", description);
     updateMetaTag("keywords", keywords);
+    updateMetaTag("robots", noIndex ? "noindex, follow" : "index, follow");
 
     updateMetaTag("og:title", title, true);
     updateMetaTag("og:description", description, true);
@@ -68,7 +71,7 @@ export const SEOHead = ({
       document.head.appendChild(canonicalElement);
     }
     canonicalElement.setAttribute("href", resolvedCanonical);
-  }, [title, description, keywords, ogImage, ogType, canonicalUrl]);
+  }, [title, description, keywords, ogImage, ogType, canonicalUrl, noIndex]);
 
   return null;
 };

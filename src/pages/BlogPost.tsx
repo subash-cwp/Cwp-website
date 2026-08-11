@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import DOMPurify from "dompurify";
 import { Calendar, Clock, ArrowLeft, User, Loader2 } from "lucide-react";
@@ -31,8 +31,21 @@ interface BlogPost {
   tags: string[] | null;
 }
 
+// Old blog URLs kept alive so historic links / search results still resolve.
+const LEGACY_BLOG_SLUGS: Record<string, string> = {
+  "seo-guide-2025":
+    "the-ultimate-guide-to-seo-in-2026-what-s-changed-and-what-still-works",
+  "paid-advertising-2025":
+    "paid-advertising-in-2025-platform-by-platform-breakdown",
+  "ai-marketing-growth":
+    "ai-marketing-strategy-how-to-scale-business-growth-with-artificial-intelligence",
+  "marketing-strategy-guide":
+    "marketing-strategy-a-complete-guide-for-business-growth-in-2026",
+};
+
 export default function BlogPost() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
   const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,6 +68,11 @@ export default function BlogPost() {
       const { data, error } = await query.maybeSingle();
       
       if (error || !data) {
+        const legacy = id ? LEGACY_BLOG_SLUGS[id] : undefined;
+        if (legacy) {
+          navigate(`/blog/${legacy}`, { replace: true });
+          return;
+        }
         setPost(null);
       } else {
         setPost(data);
@@ -96,7 +114,7 @@ export default function BlogPost() {
     };
 
     fetchPost();
-  }, [id]);
+  }, [id, navigate]);
 
   const formatDate = (dateString: string | null) => {
     if (!dateString) return "";
@@ -124,8 +142,9 @@ export default function BlogPost() {
       <div className="min-h-screen bg-background">
         <Navbar />
         <SEOHead 
-          title="Post Not Found"
+          title="Post Not Found — CWP Marketing"
           description="The blog post you're looking for doesn't exist."
+          noIndex
         />
         <div className="container-custom py-32 text-center">
           <h1 className="text-4xl font-bold mb-4">Post Not Found</h1>
