@@ -111,7 +111,8 @@ export default function CaseStudyDetail() {
       <div className="min-h-screen bg-background">
         <Navbar />
         <SEOHead 
-          title="Case Study Not Found"
+          noIndex
+          title="Case Study Not Found — CWP Marketing"
           description="The case study you're looking for doesn't exist."
         />
         <div className="container-custom py-32 text-center">
