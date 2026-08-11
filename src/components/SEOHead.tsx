@@ -7,6 +7,7 @@ interface SEOHeadProps {
   ogImage?: string;
   ogType?: string;
   canonicalUrl?: string;
+  noIndex?: boolean;
 }
 
 const SITE_ORIGIN = "https://consultwithprofessionals.com";
@@ -19,6 +20,7 @@ export const SEOHead = ({
   ogImage = DEFAULT_OG_IMAGE,
   ogType = "website",
   canonicalUrl,
+  noIndex = false,
 }: SEOHeadProps) => {
   useEffect(() => {
     document.title = title;
