@@ -50,6 +50,7 @@ export const SEOHead = ({
 
     updateMetaTag("description", description);
     updateMetaTag("keywords", keywords);
+    updateMetaTag("robots", noIndex ? "noindex, follow" : "index, follow");
 
     updateMetaTag("og:title", title, true);
     updateMetaTag("og:description", description, true);
@@ -70,7 +71,7 @@ export const SEOHead = ({
       document.head.appendChild(canonicalElement);
     }
     canonicalElement.setAttribute("href", resolvedCanonical);
-  }, [title, description, keywords, ogImage, ogType, canonicalUrl]);
+  }, [title, description, keywords, ogImage, ogType, canonicalUrl, noIndex]);
 
   return null;
 };
