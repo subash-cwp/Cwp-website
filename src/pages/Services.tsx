@@ -12,21 +12,11 @@ import { JsonLd } from "@/components/JsonLd";
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { servicesData } from "@/data/services";
+import { servicesData, resolveServiceSlug } from "@/data/services";
 import { useSection } from "@/hooks/usePageContent";
 import { sanitizeHeading } from "@/lib/sanitizeHtml";
 
-const slugify = (title: string) => {
-  const match = servicesData.find(
-    (s) => s.title.toLowerCase() === title.toLowerCase()
-  );
-  if (match) return match.slug;
-  return title
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-};
+const slugify = (title: string) => resolveServiceSlug(title);
 
 // Icon mapping for database services
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {

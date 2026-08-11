@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { servicesData, getServiceBySlug, type ServiceItem } from "@/data/services";
 import { getServiceDetail } from "@/data/serviceDetails";
+import { resolveServiceSlug } from "@/data/services";
 import {
   Accordion,
   AccordionContent,
@@ -50,13 +51,28 @@ const ServiceDetail = () => {
   );
 
   useEffect(() => {
-    setService(slug ? getServiceBySlug(slug) : undefined);
-  }, [slug]);
+    if (!slug) {
+      setService(undefined);
+      return;
+    }
+    const resolved = resolveServiceSlug(slug);
+    // Redirect legacy / database slug variants to the canonical service URL.
+    if (resolved !== slug && getServiceBySlug(resolved)) {
+      navigate(`/services/${resolved}`, { replace: true });
+      return;
+    }
+    setService(getServiceBySlug(slug));
+  }, [slug, navigate]);
 
   if (!service) {
     return (
       <div className="min-h-screen bg-background">
         <Navbar />
+        <SEOHead
+          title="Service Not Found — CWP Marketing"
+          description="This service page is no longer available. Explore our full range of marketing services."
+          noIndex
+        />
         <section className="pt-32 pb-16">
           <div className="container-custom text-center">
             <h1 className="text-3xl font-bold mb-4">Service not found</h1>
