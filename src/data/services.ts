@@ -182,5 +182,55 @@ export const servicesData: ServiceItem[] = [
   },
 ];
 
-export const getServiceBySlug = (slug: string) =>
-  servicesData.find((s) => s.slug === slug);
+export const getServiceBySlug = (slug: string) => {
+  const direct = servicesData.find((s) => s.slug === slug);
+  if (direct) return direct;
+  const resolved = resolveServiceSlug(slug);
+  return servicesData.find((s) => s.slug === resolved);
+};
+
+// Normalises any title or legacy slug into a canonical service slug.
+const normalise = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+// Legacy / database slug + title variants mapped to canonical slugs.
+export const serviceSlugAliases: Record<string, string> = {
+  "seo-content-marketing": "seo-organic-growth",
+  "seo-and-content-marketing": "seo-organic-growth",
+  "seo-and-organic-growth": "seo-organic-growth",
+  "seo-services": "seo-organic-growth",
+  "social-media-marketing": "social-media-management",
+  "brand-strategy": "creative-branding",
+  "brand-strategy-and-identity": "creative-branding",
+  "creative-and-branding": "creative-branding",
+  "email-marketing": "crm-marketing-automation",
+  "email-marketing-automation": "crm-marketing-automation",
+  "crm-and-marketing-automation": "crm-marketing-automation",
+  "marketing-automation": "crm-marketing-automation",
+  "web-design": "creative-branding",
+  "web-design-and-development": "creative-branding",
+  "strategy-and-planning": "strategy-planning",
+  "outreach-and-demand-generation": "outreach-demand-generation",
+  "demand-generation": "outreach-demand-generation",
+  "paid-ads": "performance-marketing",
+  "ppc": "performance-marketing",
+};
+
+/** Resolves a slug or service title to a canonical service slug (falls back to normalised input). */
+export const resolveServiceSlug = (input: string) => {
+  const key = normalise(input);
+  const direct = servicesData.find((s) => s.slug === key);
+  if (direct) return direct.slug;
+  if (serviceSlugAliases[key]) return serviceSlugAliases[key];
+  const byTitle = servicesData.find((s) => normalise(s.title) === key);
+  if (byTitle) return byTitle.slug;
+  // Loose keyword match as a final safety net.
+  const loose = servicesData.find(
+    (s) => key.includes(s.slug.split("-")[0]) || s.slug.split("-")[0].includes(key.split("-")[0])
+  );
+  return loose ? loose.slug : key;
+};
