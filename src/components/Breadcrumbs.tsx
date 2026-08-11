@@ -9,7 +9,6 @@ const routeNames: Record<string, string> = {
   portfolio: "Portfolio",
   blog: "Blog",
   "case-studies": "Case Studies",
-  pricing: "Pricing",
   careers: "Careers",
   resources: "Resources",
   "privacy-policy": "Privacy Policy",

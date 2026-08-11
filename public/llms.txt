@@ -13,7 +13,6 @@ Location: SIDCO Electronics Complex, Guindy Industrial Estate, Chennai, Tamil Na
 - [Services](https://consultwithprofessionals.com/services): All marketing service offerings.
 - [Portfolio](https://consultwithprofessionals.com/portfolio): Client work and brand showcase.
 - [Case Studies](https://consultwithprofessionals.com/case-studies): Detailed growth case studies and results.
-- [Pricing](https://consultwithprofessionals.com/pricing): Engagement models and pricing tiers.
 - [Blog](https://consultwithprofessionals.com/blog): Marketing insights, guides, and thought leadership.
 - [Resources](https://consultwithprofessionals.com/resources): Downloadable templates and tools.
 - [Careers](https://consultwithprofessionals.com/careers): Open roles at CWP.

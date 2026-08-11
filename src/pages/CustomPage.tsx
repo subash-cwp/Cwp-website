@@ -26,7 +26,7 @@ interface Section {
 }
 
 const RESERVED = new Set([
-  "about", "services", "portfolio", "pricing", "blog", "case-studies",
+  "about", "services", "portfolio", "blog", "case-studies",
   "careers", "resources", "privacy-policy", "contact", "auth", "admin",
 ]);
 
