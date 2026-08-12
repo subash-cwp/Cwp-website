@@ -379,9 +379,9 @@ const Enquiry = () => {
               )}
             </div>
 
-            <div className="container-custom relative z-10 grid gap-8 lg:gap-12 md:grid-cols-[minmax(0,1fr)_minmax(320px,400px)] items-start">
+            <div className="container-custom relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
               {/* LEFT COPY */}
-              <div className="order-2 md:order-1 min-w-0">
+              <div className="order-2 md:order-1 min-w-0 md:col-span-7">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
                   <span className="text-sm text-muted-foreground">Free Growth &amp; Revenue Strategy Session</span>
@@ -438,7 +438,7 @@ const Enquiry = () => {
               {/* RIGHT: SERVICE SELECTOR */}
               <div
                 id="lead-form"
-                className="relative order-1 md:order-2 min-w-0 w-full max-w-md mx-auto md:max-w-none lg:sticky lg:top-24 animate-scale-in"
+                className="relative order-1 md:order-2 md:col-span-5 min-w-0 w-full max-w-md mx-auto md:max-w-none lg:sticky lg:top-24 animate-scale-in"
                 style={{ animationDelay: "0.3s" }}
               >
                 <div className="absolute -inset-1 bg-gradient-to-br from-primary/60 via-neon-cyan/40 to-neon-purple/60 rounded-2xl blur-2xl opacity-80" />
