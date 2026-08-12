@@ -379,7 +379,7 @@ const Enquiry = () => {
               )}
             </div>
 
-            <div className="container-custom relative z-10 grid lg:grid-cols-[1fr_460px] gap-12 items-start">
+            <div className="container-custom relative z-10 grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(340px,420px)] items-start">
               {/* LEFT COPY */}
               <div className="order-2 lg:order-1">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
