@@ -511,8 +511,6 @@ const Enquiry = () => {
                 </div>
               </div>
             </div>
-
-            </div>
           </section>
 
           {/* STEP 2 — DETAILS MODAL */}
