@@ -12,7 +12,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { servicesData, resolveServiceSlug } from "@/data/services";
+import { servicesData, resolveServiceSlug, withSalesServices } from "@/data/services";
+import { ServiceCatalog } from "@/components/ServiceCatalog";
 import { useSection } from "@/hooks/usePageContent";
 import { sanitizeHeading } from "@/lib/sanitizeHtml";
 
