@@ -85,6 +85,10 @@ const Index = () => {
               <Services />
             </ParallaxSection>
           </ScrollAnimationWrapper>
+
+          <ScrollAnimationWrapper animation="fade-in" threshold={0.05}>
+            <ServiceCatalog />
+          </ScrollAnimationWrapper>
           
           <ScrollAnimationWrapper animation="slide-in-left" threshold={0.15}>
             <ParallaxSection speed={0.3} direction="up">
