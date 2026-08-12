@@ -297,3 +297,36 @@ export const resolveServiceSlug = (input: string) => {
   );
   return loose ? loose.slug : key;
 };
+
+/** Slugs of the sales-side services that must always appear alongside marketing services. */
+export const salesServiceSlugs = [
+  "b2b-lead-generation",
+  "sales-development-closing",
+  "crm-revenue-operations",
+];
+
+interface ListedService {
+  id: string;
+  title: string;
+  description: string | null;
+  icon: string | null;
+  features: string[] | null;
+}
+
+/**
+ * Appends the sales services to a (usually database-driven) service list,
+ * skipping any that are already present.
+ */
+export const withSalesServices = <T extends ListedService>(list: T[]): ListedService[] => {
+  const existing = new Set(list.map((s) => resolveServiceSlug(s.title)));
+  const extras = servicesData
+    .filter((s) => salesServiceSlugs.includes(s.slug) && !existing.has(s.slug))
+    .map((s) => ({
+      id: s.slug,
+      title: s.title,
+      description: s.description,
+      icon: s.icon,
+      features: s.features,
+    }));
+  return [...list, ...extras];
+};
