@@ -298,7 +298,7 @@ export const resolveServiceSlug = (input: string) => {
   return loose ? loose.slug : key;
 };
 
-/** Slugs of the sales-side services that must always appear alongside marketing services. */
+/** Slugs of the sales-side services that must always appear first in any service list. */
 export const salesServiceSlugs = [
   "b2b-lead-generation",
   "sales-development-closing",
@@ -314,13 +314,14 @@ interface ListedService {
 }
 
 /**
- * Appends the sales services to a (usually database-driven) service list,
- * skipping any that are already present.
+ * Ensures the sales services are present in the list and pinned to the top,
+ * preserving the order of any remaining services.
  */
 export const withSalesServices = <T extends ListedService>(list: T[]): ListedService[] => {
-  const existing = new Set(list.map((s) => resolveServiceSlug(s.title)));
+  const existingSlugs = new Set(list.map((s) => resolveServiceSlug(s.title)));
+
   const extras = servicesData
-    .filter((s) => salesServiceSlugs.includes(s.slug) && !existing.has(s.slug))
+    .filter((s) => salesServiceSlugs.includes(s.slug) && !existingSlugs.has(s.slug))
     .map((s) => ({
       id: s.slug,
       title: s.title,
@@ -328,5 +329,21 @@ export const withSalesServices = <T extends ListedService>(list: T[]): ListedSer
       icon: s.icon,
       features: s.features,
     }));
-  return [...list, ...extras];
+
+  const combined = [...extras, ...list];
+
+  const salesSet = new Set(salesServiceSlugs);
+  return combined.sort((a, b) => {
+    const aSlug = resolveServiceSlug(a.title);
+    const bSlug = resolveServiceSlug(b.title);
+    const aIndex = salesServiceSlugs.indexOf(aSlug);
+    const bIndex = salesServiceSlugs.indexOf(bSlug);
+    const aIsSales = aIndex !== -1;
+    const bIsSales = bIndex !== -1;
+
+    if (aIsSales && !bIsSales) return -1;
+    if (!aIsSales && bIsSales) return 1;
+    if (aIsSales && bIsSales) return aIndex - bIndex;
+    return 0;
+  });
 };
