@@ -99,7 +99,7 @@ export const ContactForm = () => {
               Get in <span className="text-primary">Touch</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Ready to scale your business? Let's discuss how we can help you achieve your marketing goals.
+              Want more qualified leads and more closed deals? Book a free 30-minute audit call and we'll map the fastest path to revenue.
             </p>
           </div>
 
