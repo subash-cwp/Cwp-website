@@ -379,105 +379,100 @@ const Enquiry = () => {
               )}
             </div>
 
-            <div className="container-custom relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="container-custom relative z-10 grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-10 lg:gap-16 items-center">
               {/* LEFT COPY */}
               <div className="order-2 md:order-1 min-w-0 md:col-span-7">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
-                  <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-                  <span className="text-sm text-muted-foreground">Free Growth &amp; Revenue Strategy Session</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/40 rounded-full border border-primary/25 backdrop-blur-sm animate-slide-up mb-7">
+                  <Sparkles className="w-4 h-4 text-primary" />
+                  <span className="text-xs sm:text-sm text-muted-foreground">Free Growth &amp; Revenue Strategy Session</span>
                 </div>
 
                 <h1
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up break-words"
+                  className="text-[2rem] leading-[1.1] sm:text-5xl lg:text-[3.75rem] font-bold tracking-tight mb-6 animate-slide-up"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Generate More Leads.{" "}
-                  <span className="text-gradient-primary">Close More Sales.</span>
+                  Generate More Leads.
+                  <span className="block text-gradient-primary">Close More Sales.</span>
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+                <p className="text-base sm:text-lg text-muted-foreground max-w-lg mb-9 leading-relaxed animate-slide-up" style={{ animationDelay: "0.2s" }}>
                   CWP helps businesses build demand, create qualified sales pipelines and close more customers — with an <span className="text-foreground font-medium">experienced team working alongside you</span>.
                 </p>
 
-                <ul className="space-y-3 mb-8 animate-slide-up" style={{ animationDelay: "0.25s" }}>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-10 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+                  <Button
+                    size="lg"
+                    onClick={scrollToForm}
+                    className="h-auto w-full sm:w-auto whitespace-normal gap-2 px-7 py-4 text-base hover-lift hover-glow group"
+                  >
+                    <span>Book your free 30-min call</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  <p className="text-sm text-muted-foreground">
+                    One call. A growth plan built for your business.
+                  </p>
+                </div>
+
+                <div className="h-px w-full max-w-lg bg-gradient-to-r from-primary/40 via-border to-transparent mb-8" />
+
+                <ul className="flex flex-wrap gap-x-8 gap-y-4 animate-slide-up" style={{ animationDelay: "0.35s" }}>
                   {socialProof.map(({ icon: Icon, text }) => (
-                    <li key={text} className="flex items-center gap-3">
-                      <span className="w-6 h-6 rounded-full bg-primary/15 border border-primary/40 flex items-center justify-center shrink-0">
-                        <Icon className="h-3.5 w-3.5 text-primary" />
-                      </span>
-                      <span className="text-foreground/90 text-sm md:text-base">{text}</span>
+                    <li key={text} className="flex items-center gap-2.5">
+                      <Icon className="h-4 w-4 text-primary shrink-0" />
+                      <span className="text-sm text-foreground/80">{text}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="grid sm:grid-cols-2 gap-3 mb-10 animate-slide-up" style={{ animationDelay: "0.3s" }}>
+                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-3 mt-8 max-w-xl animate-slide-up" style={{ animationDelay: "0.4s" }}>
                   {benefits.map((b) => (
-                    <div key={b} className="flex items-center gap-2.5 px-3 py-2 rounded-lg bg-card/40 border border-border/50">
-                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
-                      <span className="text-sm text-foreground/90">{b}</span>
+                    <div key={b} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                      <span className="text-sm text-muted-foreground">{b}</span>
                     </div>
                   ))}
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: "0.4s" }}>
-                  <Button
-                    size="lg"
-                    onClick={scrollToForm}
-                    className="w-full sm:w-auto h-auto whitespace-normal gap-2 text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
-                  >
-                    <span className="relative z-10 text-left">30 minutes. One growth conversation.</span>
-                    <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Button>
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto h-auto whitespace-normal text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift glow-border" onClick={scrollToForm}>
-                    A growth &amp; revenue plan built for your business.
-                  </Button>
                 </div>
               </div>
 
               {/* RIGHT: SERVICE SELECTOR */}
               <div
                 id="lead-form"
-                className="relative order-1 md:order-2 md:col-span-5 min-w-0 w-full max-w-md mx-auto md:max-w-none lg:sticky lg:top-24 animate-scale-in"
+                className="relative order-1 md:order-2 md:col-span-5 min-w-0 w-full max-w-md mx-auto md:max-w-none animate-scale-in"
                 style={{ animationDelay: "0.3s" }}
               >
-                <div className="absolute -inset-1 bg-gradient-to-br from-primary/60 via-neon-cyan/40 to-neon-purple/60 rounded-2xl blur-2xl opacity-80" />
-                <div className="absolute -inset-[2px] bg-gradient-to-br from-primary via-neon-cyan to-neon-purple rounded-2xl opacity-70" />
-                <div className="relative bg-card/95 backdrop-blur-xl border-2 border-primary/40 rounded-2xl p-5 sm:p-6 shadow-[0_0_60px_rgba(255,199,0,0.18)]">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full" />
-
-                  <div className="flex items-center gap-2 mb-1">
-                    <Sparkles className="h-4 w-4 text-primary" />
-                    <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free 30-Min Audit Call</span>
-
+                <div className="absolute -inset-6 bg-primary/10 rounded-[2rem] blur-3xl" />
+                <div className="relative bg-card/90 backdrop-blur-xl border border-primary/25 rounded-3xl p-6 sm:p-8 shadow-[0_24px_70px_-30px_rgba(0,0,0,0.8)]">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="h-3.5 w-3.5 text-primary" />
+                    <span className="text-[11px] font-semibold tracking-[0.15em] text-primary uppercase">Free 30-Min Audit Call</span>
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-bold mb-1">How can we help?</h2>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-5">Select what you need — then tell us about your business.</p>
+                  <h2 className="text-2xl font-bold mb-2">How can we help?</h2>
+                  <p className="text-sm text-muted-foreground mb-8">Select what you need — then tell us about your business.</p>
 
-                  <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">What do you need help with?</p>
-                  <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-4 gap-y-2.5 mb-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">What do you need help with?</p>
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {serviceOptions.map((option) => {
                       const checked = selectedServices.includes(option);
                       return (
-                        <label
+                        <button
                           key={option}
-                          className="flex items-center gap-2.5 cursor-pointer group text-[13px] sm:text-sm"
+                          type="button"
+                          onClick={() => toggleService(option)}
+                          aria-pressed={checked}
+                          className={`px-3.5 py-2 rounded-full text-[13px] border transition-all ${
+                            checked
+                              ? "bg-primary text-primary-foreground border-primary font-medium"
+                              : "bg-secondary/30 border-border/60 text-muted-foreground hover:border-primary/50 hover:text-foreground"
+                          }`}
                         >
-                          <Checkbox
-                            checked={checked}
-                            onCheckedChange={() => toggleService(option)}
-                            aria-label={option}
-                          />
-                          <span className={`transition-colors ${checked ? "text-foreground font-medium" : "text-muted-foreground group-hover:text-foreground"}`}>
-                            {option}
-                          </span>
-                        </label>
+                          {option}
+                        </button>
                       );
                     })}
                   </div>
 
-                  <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">Where is your biggest challenge today?</p>
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground mb-3">Where is your biggest challenge today?</p>
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {challengeOptions.map((option) => {
                       const active = challenge === option;
                       return (
@@ -486,10 +481,10 @@ const Enquiry = () => {
                           type="button"
                           onClick={() => setChallenge(active ? "" : option)}
                           aria-pressed={active}
-                          className={`px-3 py-1.5 rounded-full text-xs border transition-colors ${
+                          className={`px-3.5 py-2 rounded-full text-[13px] border transition-all ${
                             active
                               ? "bg-primary/15 border-primary text-foreground font-medium"
-                              : "bg-card/40 border-border/60 text-muted-foreground hover:border-primary/50"
+                              : "bg-secondary/30 border-border/60 text-muted-foreground hover:border-primary/50 hover:text-foreground"
                           }`}
                         >
                           {option}
@@ -505,13 +500,12 @@ const Enquiry = () => {
                   <Button
                     size="lg"
                     onClick={openForm}
-                    className="w-full gap-2 hover-lift hover-glow group relative overflow-hidden animate-shake-attention"
+                    className="w-full gap-2 py-6 hover-glow group animate-shake-attention"
                   >
-                    <span className="relative z-10">Get Started</span>
-                    <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span>Get Started</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Button>
-                  <p className="text-xs text-muted-foreground text-center pt-3">
+                  <p className="text-xs text-muted-foreground text-center pt-4">
                     No obligation. We respond within 24 hours.
                   </p>
                 </div>
