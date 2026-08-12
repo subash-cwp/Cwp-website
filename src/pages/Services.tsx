@@ -12,7 +12,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, CheckCircle2, ArrowRight, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { servicesData, resolveServiceSlug } from "@/data/services";
+import { servicesData, resolveServiceSlug, withSalesServices } from "@/data/services";
+import { ServiceCatalog } from "@/components/ServiceCatalog";
 import { useSection } from "@/hooks/usePageContent";
 import { sanitizeHeading } from "@/lib/sanitizeHtml";
 
@@ -132,11 +133,8 @@ const Services = () => {
         .eq("published", true)
         .order("sort_order", { ascending: true });
 
-      if (error || !data || data.length === 0) {
-        setServices(fallbackServices);
-      } else {
-        setServices(data);
-      }
+      const base = error || !data || data.length === 0 ? fallbackServices : data;
+      setServices(withSalesServices(base));
       setLoading(false);
     };
 
@@ -270,6 +268,9 @@ const Services = () => {
           )}
         </div>
       </section>
+
+      {/* Full service catalogue */}
+      <ServiceCatalog />
 
       {/* CTA Section */}
       <section className="py-20 bg-card/50">

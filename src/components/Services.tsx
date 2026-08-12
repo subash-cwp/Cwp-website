@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
+import { withSalesServices } from "@/data/services";
 
 interface Service {
   id: string;
@@ -126,11 +127,8 @@ export const Services = () => {
         .eq("published", true)
         .order("sort_order", { ascending: true });
       
-      if (error || !data || data.length === 0) {
-        setServices(fallbackServices);
-      } else {
-        setServices(data);
-      }
+      const base = error || !data || data.length === 0 ? fallbackServices : data;
+      setServices(withSalesServices(base) as Service[]);
       setLoading(false);
     };
 

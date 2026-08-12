@@ -180,6 +180,69 @@ export const servicesData: ServiceItem[] = [
     keywords:
       "social media management, social media agency, instagram marketing, influencer marketing",
   },
+  {
+    slug: "b2b-lead-generation",
+    icon: "Users",
+    title: "B2B Lead Generation & Appointment Setting",
+    shortDescription:
+      "Qualified leads researched, contacted and booked straight onto your sales calendar.",
+    description:
+      "We build your ICP, research target accounts, run multi-channel outreach across email, LinkedIn, phone and WhatsApp, qualify every reply, and hand your team discovery calls that are ready to close.",
+    features: ["ICP & Lead Research", "Lead List Building", "Lead Qualification", "Appointment Setting"],
+    benefits: [
+      "Verified, intent-based lead lists built for your ICP",
+      "Multi-channel sequences across email, LinkedIn, phone and WhatsApp",
+      "MQL to SQL qualification before anything hits your calendar",
+      "Booked discovery calls with reminder and no-show follow-up",
+    ],
+    metaTitle: "B2B Lead Generation & Appointment Setting | CWP",
+    metaDescription:
+      "ICP development, lead list building, multi-channel outreach, lead qualification and appointment setting for B2B sales teams.",
+    keywords:
+      "B2B lead generation, appointment setting, sales development, lead qualification, account based marketing",
+  },
+  {
+    slug: "sales-development-closing",
+    icon: "LineChart",
+    title: "Sales Development & Closing Support",
+    shortDescription:
+      "An extension of your sales team — pipeline management, follow-ups and closing support.",
+    description:
+      "Sales is not an afterthought at CWP. We own pipeline hygiene, follow-up cadences, nurture sequences and closing support so the leads marketing generates actually turn into revenue.",
+    features: ["Sales Pipeline Management", "Follow-Up Automation", "Lead Nurturing", "Sales Reporting"],
+    benefits: [
+      "A documented sales process with clear stages and owners",
+      "Follow-up cadences that stop leads going cold",
+      "Sales and marketing alignment on one definition of a qualified lead",
+      "Forecasting, KPI tracking and conversion reporting",
+    ],
+    metaTitle: "Sales Development & Closing Support Services | CWP",
+    metaDescription:
+      "Sales pipeline design, follow-up automation, lead nurturing and closing support that turns marketing leads into closed deals.",
+    keywords:
+      "sales development, sales support, closing support, sales pipeline management, sales enablement",
+  },
+  {
+    slug: "crm-revenue-operations",
+    icon: "Megaphone",
+    title: "CRM Development & Revenue Operations",
+    shortDescription:
+      "CRM builds, automation and dashboards that make your revenue predictable.",
+    description:
+      "HubSpot, Salesforce, Zoho, Pipedrive or a custom build — we set up the CRM, migrate your data, automate lead capture, scoring and routing, and give leadership dashboards they can trust.",
+    features: ["CRM Setup & Migration", "Lead Scoring & Routing", "Sales Automation", "Revenue Dashboards"],
+    benefits: [
+      "Clean CRM with migrated, deduplicated data",
+      "Automated lead capture, scoring, assignment and follow-up",
+      "Sales and marketing automation connected end to end",
+      "Dashboards for pipeline, forecast, CAC and conversion",
+    ],
+    metaTitle: "CRM Development & Revenue Operations Services | CWP",
+    metaDescription:
+      "CRM setup, migration, automation and revenue operations across HubSpot, Salesforce, Zoho, Pipedrive and custom builds.",
+    keywords:
+      "CRM development, revenue operations, hubspot setup, salesforce setup, marketing automation, lead scoring",
+  },
 ];
 
 export const getServiceBySlug = (slug: string) => {
@@ -233,4 +296,37 @@ export const resolveServiceSlug = (input: string) => {
     (s) => key.includes(s.slug.split("-")[0]) || s.slug.split("-")[0].includes(key.split("-")[0])
   );
   return loose ? loose.slug : key;
+};
+
+/** Slugs of the sales-side services that must always appear alongside marketing services. */
+export const salesServiceSlugs = [
+  "b2b-lead-generation",
+  "sales-development-closing",
+  "crm-revenue-operations",
+];
+
+interface ListedService {
+  id: string;
+  title: string;
+  description: string | null;
+  icon: string | null;
+  features: string[] | null;
+}
+
+/**
+ * Appends the sales services to a (usually database-driven) service list,
+ * skipping any that are already present.
+ */
+export const withSalesServices = <T extends ListedService>(list: T[]): ListedService[] => {
+  const existing = new Set(list.map((s) => resolveServiceSlug(s.title)));
+  const extras = servicesData
+    .filter((s) => salesServiceSlugs.includes(s.slug) && !existing.has(s.slug))
+    .map((s) => ({
+      id: s.slug,
+      title: s.title,
+      description: s.description,
+      icon: s.icon,
+      features: s.features,
+    }));
+  return [...list, ...extras];
 };
