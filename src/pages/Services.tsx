@@ -269,6 +269,9 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Full service catalogue */}
+      <ServiceCatalog />
+
       {/* CTA Section */}
       <section className="py-20 bg-card/50">
         <div className="container-custom text-center">
