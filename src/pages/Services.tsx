@@ -155,8 +155,8 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="Marketing Services — CWP Full-Stack Growth Solutions"
-        description="Performance marketing, SEO, content, social, CRM automation, and creative branding services for ambitious D2C, SaaS, and B2B brands."
+        title="Marketing & Sales Services — Leads, Pipeline, Closed Deals"
+        description="Demand generation, performance marketing, SEO, sales development, appointment setting and closing support for startups, SaaS, B2B and professional services."
         keywords="marketing services, performance marketing, SEO services, content marketing, social media management, brand identity"
         canonicalUrl="https://consultwithprofessionals.com/services"
       />
