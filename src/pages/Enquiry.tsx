@@ -15,6 +15,7 @@ import {
   Mail,
   Sparkles,
   ArrowRight,
+  Handshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,38 +44,98 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const benefits = [
-  "Increase Qualified Leads",
-  "Improve Conversion Rates",
-  "Lower Customer Acquisition Cost",
-  "Transparent Monthly Reporting",
+  "Generate Qualified Leads",
+  "Build a Strong Sales Pipeline",
+  "Improve Lead-to-Customer Conversion",
+  "Close More Opportunities",
 ];
 
 const socialProof = [
   { icon: Award, text: "Trusted by 100+ Businesses" },
-  { icon: TrendingUp, text: "10+ Years of Growth Marketing Experience" },
-  { icon: Users, text: "Dedicated Team of Marketing Specialists" },
+  { icon: TrendingUp, text: "Marketing + Sales Expertise" },
+  { icon: Users, text: "Dedicated Growth & Revenue Team" },
 ];
 
 const services = [
-  { icon: Target, title: "Performance Marketing", desc: "Google & Meta Ads tuned for real business results, not vanity metrics." },
-  { icon: TrendingUp, title: "SEO & Content", desc: "Rank higher and build durable, compounding organic traffic." },
-  { icon: BarChart3, title: "Growth Analytics", desc: "Attribution, tracking, and dashboards that drive decisions." },
-  { icon: Users, title: "Social Media", desc: "Communities and creatives that convert followers to buyers." },
-  { icon: Zap, title: "Conversion Optimization", desc: "Landing pages and funnels engineered to convert traffic." },
-  { icon: Award, title: "Brand Strategy", desc: "Positioning and identity that scale with your business." },
+  { num: "01", icon: Target, title: "Demand Generation", desc: "Build awareness, attract the right audience and create a consistent flow of qualified opportunities." },
+  { num: "02", icon: BarChart3, title: "Performance Marketing", desc: "Google, Meta and paid campaigns focused on qualified leads, pipeline and measurable ROI." },
+  { num: "03", icon: Users, title: "Sales Development", desc: "Prospecting, LinkedIn outreach, email outreach and appointment setting to build your sales pipeline." },
+  { num: "04", icon: Handshake, title: "Sales Conversion & Closing", desc: "Follow-ups, opportunity management and sales support to move qualified prospects toward closed deals." },
+  { num: "05", icon: Zap, title: "Conversion Optimization", desc: "Landing pages, funnels and conversion journeys designed to turn traffic and prospects into customers." },
+  { num: "06", icon: TrendingUp, title: "Growth Analytics", desc: "Track marketing, pipeline and sales performance so you know what is working and where revenue is being lost." },
 ];
 
-const industries = ["D2C & E-commerce", "SaaS", "B2B Services", "Healthcare", "Education", "Real Estate", "Fintech", "Hospitality"];
+const industries = [
+  "Startups",
+  "SaaS & Technology",
+  "B2B Businesses",
+  "Professional Services",
+  "Real Estate",
+  "MSMEs",
+  "Growing Businesses",
+];
 
 const serviceOptions = [
+  "Lead Generation",
+  "Sales Outreach",
+  "Appointment Setting",
+  "Sales Pipeline Management",
+  "Deal Closing Support",
   "Performance Marketing",
   "SEO & Organic Growth",
+  "Content & Social Media",
+  "Marketing + Sales",
+  "Full Growth Support",
+];
+
+const challengeOptions = [
+  "We need more qualified leads",
+  "We have leads but low conversions",
+  "Our sales pipeline is weak",
+  "Sales follow-ups are inconsistent",
+  "Deals are getting stuck",
+  "We need help closing deals",
+  "We need both marketing and sales support",
+  "We need a complete growth team",
+];
+
+const processSteps = ["Attract", "Qualify", "Engage", "Convert", "Close"];
+
+const revenueFunnel = [
+  "Traffic",
+  "Qualified Leads",
+  "Sales Conversations",
+  "Opportunities",
+  "Negotiation",
+  "Closed Deals",
+  "Revenue",
+];
+
+const ownMatrix = {
+  marketing: ["Strategy", "Content", "SEO", "Paid Ads", "Social Media", "Branding", "CRO", "Analytics"],
+  sales: ["Prospecting", "Outreach", "Qualification", "Appointment Setting", "Follow-ups", "Pipeline Management", "Closing Support", "Sales Reporting"],
+};
+
+const marketingCapabilities = [
+  "Performance Marketing",
+  "SEO",
+  "Content",
   "Social Media",
-  "Content Marketing",
   "Brand Strategy",
-  "Website Design",
+  "Website / Landing Pages",
   "Marketing Automation",
-  "Other",
+];
+
+const salesCapabilities = [
+  "Lead Generation",
+  "Prospecting",
+  "LinkedIn Outreach",
+  "Email Outreach",
+  "Appointment Setting",
+  "Lead Qualification",
+  "Sales Follow-ups",
+  "Pipeline Management",
+  "Closing Support",
 ];
 
 const results = [
@@ -84,17 +145,17 @@ const results = [
 ];
 
 const why = [
-  { t: "Data-driven from day one", d: "Every campaign starts with tracking, attribution, and KPIs — not guesses." },
-  { t: "Senior team, no hand-offs", d: "You work directly with strategists who've run 8-figure campaigns." },
-  { t: "Transparent reporting", d: "Live dashboards. Weekly calls. No jargon, no hidden fees." },
-  { t: "Full-funnel expertise", d: "Awareness to retention — we own the whole growth loop, not just clicks." },
+  { t: "An extended growth & revenue team", d: "Marketing and sales expertise under one team, working alongside yours." },
+  { t: "Senior team, no hand-offs", d: "You work directly with strategists and sales specialists who have built pipelines at scale." },
+  { t: "Transparent reporting", d: "Live dashboards across marketing, pipeline and sales. Weekly calls, no jargon." },
+  { t: "One partner, full journey", d: "From demand generation to qualification, follow-ups and closing support." },
 ];
 
 const faqs = [
-  { q: "How quickly can we get started?", a: "Onboarding takes 3–5 business days. Most campaigns go live in week 2." },
+  { q: "How quickly can we get started?", a: "Onboarding takes 3–5 business days. Most campaigns and outreach sequences go live in week 2." },
   { q: "What's your minimum engagement?", a: "We start with a 90-day growth sprint, then continue month-to-month." },
-  { q: "Do you work with international brands?", a: "Yes — clients across India, US, UK, Middle East and Southeast Asia." },
-  { q: "What industries do you specialize in?", a: "D2C, SaaS, B2B services, healthcare, education, and real estate." },
+  { q: "Can you support sales, not just marketing?", a: "Yes. We can support prospecting, qualification, appointment setting, follow-ups, pipeline management and closing support." },
+  { q: "Who do you work with?", a: "Startups, SaaS and technology, B2B businesses, professional services, real estate and MSMEs." },
 ];
 
 const Enquiry = () => {
@@ -105,6 +166,7 @@ const Enquiry = () => {
   const [submitting, setSubmitting] = useState(false);
   const honeypot = useHoneypot();
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [challenge, setChallenge] = useState<string>("");
   const [serviceError, setServiceError] = useState(false);
   const [formOpen, setFormOpen] = useState(false);
 
@@ -177,7 +239,7 @@ const Enquiry = () => {
       if (honeypot.isBot()) { navigate("/thank-you"); return; }
       const { supabase } = await import("@/integrations/supabase/client");
       const servicesLine = selectedServices.length ? selectedServices.join(", ") : "Not specified";
-      const composedMessage = `Services needed: ${servicesLine}\n\n${values.message?.trim() || "No additional requirements provided."}`;
+      const composedMessage = `Services needed: ${servicesLine}\nBiggest challenge: ${challenge || "Not specified"}\n\n${values.message?.trim() || "No additional requirements provided."}`;
       const { error } = await supabase.from("contact_submissions").insert({
         name: values.name.trim(),
         email: values.email.trim(),
@@ -245,7 +307,7 @@ const Enquiry = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
       </Button>
       <span className="text-sm text-muted-foreground">
-        30 minutes. One call. A marketing plan built for your business.
+        30 minutes. One growth conversation. A growth &amp; revenue plan built for your business.
       </span>
     </div>
   );
@@ -253,8 +315,8 @@ const Enquiry = () => {
   return (
     <>
       <SEOHead
-        title="Get a Free Marketing Growth Audit — CWP Marketing"
-        description="Book a free 30-minute strategy call with CWP Marketing. Performance ads, SEO, and growth consulting for brands ready to scale."
+        title="Generate More Leads. Close More Sales. — CWP"
+        description="CWP is your extended growth & revenue team — demand generation, sales development, pipeline management and closing support. Book a free 30-min session."
         canonicalUrl="https://consultwithprofessionals.com/enquiry"
       />
 
@@ -322,19 +384,19 @@ const Enquiry = () => {
               <div className="order-2 lg:order-1">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-                  <span className="text-sm text-muted-foreground">Free Growth Strategy Session — limited slots</span>
+                  <span className="text-sm text-muted-foreground">Free Growth &amp; Revenue Strategy Session</span>
                 </div>
 
                 <h1
                   className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Struggling to Generate{" "}
-                  <span className="text-gradient-primary">Qualified Leads?</span>
+                  Generate More Leads.{" "}
+                  <span className="text-gradient-primary">Close More Sales.</span>
                 </h1>
 
                 <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-                  We help businesses generate more leads, more sales, and higher ROI with <span className="text-foreground font-medium">data-driven marketing</span>.
+                  CWP helps businesses build demand, create qualified sales pipelines and close more customers — with an <span className="text-foreground font-medium">experienced team working alongside you</span>.
                 </p>
 
                 <ul className="space-y-3 mb-8 animate-slide-up" style={{ animationDelay: "0.25s" }}>
@@ -363,13 +425,12 @@ const Enquiry = () => {
                     onClick={scrollToForm}
                     className="gap-2 text-sm sm:text-base px-5 sm:px-6 py-5 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">30 minutes. One call.</span>
+                    <span className="relative z-10">30 minutes. One growth conversation.</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
                   <Button size="lg" variant="outline" className="text-sm sm:text-base px-5 sm:px-6 py-5 sm:py-6 hover-lift glow-border" onClick={scrollToForm}>
-                    A marketing plan built for your business.
-
+                    A growth &amp; revenue plan built for your business.
                   </Button>
                 </div>
               </div>
@@ -391,8 +452,9 @@ const Enquiry = () => {
 
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold mb-1">How can we help?</h2>
-                  <p className="text-sm text-muted-foreground mb-6">Select what you need — then tell us about your brand.</p>
+                  <p className="text-sm text-muted-foreground mb-6">Select what you need — then tell us about your business.</p>
 
+                  <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">What do you need help with?</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 mb-6">
                     {serviceOptions.map((option) => {
                       const checked = selectedServices.includes(option);
@@ -414,8 +476,30 @@ const Enquiry = () => {
                     })}
                   </div>
 
+                  <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">Where is your biggest challenge today?</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {challengeOptions.map((option) => {
+                      const active = challenge === option;
+                      return (
+                        <button
+                          key={option}
+                          type="button"
+                          onClick={() => setChallenge(active ? "" : option)}
+                          aria-pressed={active}
+                          className={`px-3 py-1.5 rounded-full text-xs border transition-colors ${
+                            active
+                              ? "bg-primary/15 border-primary text-foreground font-medium"
+                              : "bg-card/40 border-border/60 text-muted-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          {option}
+                        </button>
+                      );
+                    })}
+                  </div>
+
                   {serviceError && (
-                    <p className="text-sm text-destructive mb-4">Please select at least one service.</p>
+                    <p className="text-sm text-destructive mb-4">Please select at least one option.</p>
                   )}
 
                   <Button
@@ -440,7 +524,7 @@ const Enquiry = () => {
             <DialogContent className="max-w-2xl w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto rounded-xl">
               <DialogHeader>
                 <DialogTitle className="text-2xl md:text-3xl font-bold">
-                  Let's talk about your brand needs.
+                  Let's talk about your growth &amp; revenue goals.
                 </DialogTitle>
                 <DialogDescription>
                   {selectedServices.length > 0
@@ -642,11 +726,14 @@ const Enquiry = () => {
               <div className="container-custom">
                 <div className="max-w-2xl mb-10 text-center mx-auto">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
-                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Industries Served</span>
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Who We Help</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    Growth playbooks for <span className="text-gradient-primary">every industry</span>
+                    Built for businesses that want to <span className="text-gradient-primary">grow</span> — not just market.
                   </h2>
+                  <p className="text-muted-foreground mt-3">
+                    Whether you need your first predictable pipeline or want to scale an existing sales engine, we build the team around your growth stage.
+                  </p>
                 </div>
                 <div className="flex flex-wrap justify-center gap-3">
                   {industries.map((ind) => (
@@ -674,22 +761,25 @@ const Enquiry = () => {
                       <span className="text-xs font-semibold tracking-widest uppercase text-primary">What we do</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                      Full-stack <span className="text-gradient-primary">growth marketing</span>, under one roof.
+                      Full-stack <span className="text-gradient-primary">growth &amp; revenue</span>, under one roof.
                     </h2>
                     <p className="text-muted-foreground">
-                      Six connected services, run by a senior team that treats your brand like a portfolio company.
+                      From creating demand to closing deals, our team works across marketing and sales to help turn growth opportunities into revenue.
                     </p>
                   </div>
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {services.map(({ icon: Icon, title, desc }, i) => (
+                    {services.map(({ icon: Icon, title, desc, num }, i) => (
                       <div
                         key={title}
                         className="group relative bg-card/60 backdrop-blur-sm border border-border/60 rounded-2xl p-6 hover-lift hover:border-primary/40 transition-all animate-slide-up"
                         style={{ animationDelay: `${i * 0.08}s` }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
-                        <div className="relative w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 group-hover:animate-pulse-glow">
-                          <Icon className="h-5 w-5 text-primary" />
+                        <div className="relative flex items-center justify-between mb-4">
+                          <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center group-hover:animate-pulse-glow">
+                            <Icon className="h-5 w-5 text-primary" />
+                          </div>
+                          <span className="text-xs font-bold tracking-widest text-primary/70">{num}</span>
                         </div>
                         <h3 className="font-semibold mb-2 relative">{title}</h3>
                         <p className="text-sm text-muted-foreground leading-relaxed relative">{desc}</p>
@@ -702,6 +792,127 @@ const Enquiry = () => {
             </ParallaxSection>
           </ScrollAnimationWrapper>
 
+          {/* MARKETING + SALES */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <section className="relative py-16 md:py-20 border-t border-border/50">
+              <div className="container-custom">
+                <div className="max-w-2xl mb-10 text-center mx-auto">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Marketing + Sales</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Marketing generates demand. <span className="text-gradient-primary">Sales turns demand into revenue.</span>
+                  </h2>
+                  <p className="text-muted-foreground mt-3">
+                    Most businesses don't have a lead problem alone. They have a gap between marketing and sales. CWP brings both sides together so opportunities don't stop at the lead stage.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 mb-12">
+                  {processSteps.map((step, i) => (
+                    <div key={step} className="flex items-center gap-2 md:gap-3">
+                      <span className="px-4 py-2 rounded-xl bg-card/70 border border-primary/30 text-sm font-semibold uppercase tracking-wider">
+                        {step}
+                      </span>
+                      {i < processSteps.length - 1 && <ArrowRight className="w-4 h-4 text-primary shrink-0" />}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-5">
+                  <div className="rounded-2xl bg-card/60 backdrop-blur-sm border border-border/60 p-6">
+                    <h3 className="font-semibold mb-4">Marketing capabilities</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {marketingCapabilities.map((c) => (
+                        <span key={c} className="px-3 py-1.5 rounded-full bg-muted/40 border border-border/50 text-xs text-foreground/90">{c}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="rounded-2xl bg-card/60 backdrop-blur-sm border border-primary/30 p-6">
+                    <h3 className="font-semibold mb-4">Sales capabilities</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {salesCapabilities.map((c) => (
+                        <span key={c} className="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-xs text-foreground/90">{c}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {foldCta()}
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
+          {/* WE DON'T STOP AT LEADS + REVENUE FUNNEL */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <section className="relative py-16 md:py-20 border-t border-border/50">
+              <div className="container-custom grid lg:grid-cols-2 gap-10 items-center">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    We don't stop at <span className="text-gradient-primary">generating leads.</span>
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    A lead is only the beginning. CWP can support the journey from prospecting and qualification to sales conversations, follow-ups, pipeline management and closing — helping businesses turn opportunities into customers.
+                  </p>
+                  <p className="mt-6 text-sm font-medium text-primary">One team supporting the entire growth journey.</p>
+                </div>
+                <div className="space-y-2">
+                  {revenueFunnel.map((stage, i) => (
+                    <div
+                      key={stage}
+                      className="mx-auto rounded-xl border border-primary/25 bg-card/70 backdrop-blur-sm px-4 py-3 text-center text-sm font-medium"
+                      style={{ width: `${100 - i * 7}%` }}
+                    >
+                      {stage}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
+          {/* WHAT CWP CAN OWN */}
+          <ScrollAnimationWrapper animation="slide-up" threshold={0.1}>
+            <section className="relative py-16 md:py-20 border-t border-border/50">
+              <div className="container-custom max-w-4xl">
+                <div className="text-center mb-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">What CWP Can Own</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    One extended team across <span className="text-gradient-primary">growth &amp; revenue</span>
+                  </h2>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="rounded-2xl border border-border/60 bg-card/60 p-5">
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">Marketing</h3>
+                    <ul className="space-y-2.5">
+                      {ownMatrix.marketing.map((m) => (
+                        <li key={m} className="flex items-center gap-2 text-sm">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" /> {m}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="rounded-2xl border border-primary/30 bg-card/60 p-5">
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">Sales</h3>
+                    <ul className="space-y-2.5">
+                      {ownMatrix.sales.map((s) => (
+                        <li key={s} className="flex items-center gap-2 text-sm">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" /> {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <p className="text-center text-muted-foreground mt-8">
+                  Instead of coordinating multiple vendors, work with one extended team across your growth and revenue functions.
+                </p>
+                {foldCta()}
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
+
           {/* WHY US */}
           <ScrollAnimationWrapper animation="slide-in-left" threshold={0.15}>
           <section className="relative py-20 border-t border-border/50 overflow-hidden">
@@ -713,7 +924,7 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Why CWP</span>
                   </div>
                   <h2 className="text-3xl md:text-5xl font-bold">
-                    Not just another agency. A <span className="text-gradient-primary">growth partner.</span>
+                    Not just another agency. Your <span className="text-gradient-primary">extended growth &amp; revenue team.</span>
                   </h2>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -781,10 +992,10 @@ const Enquiry = () => {
               </div>
               <div className="container-custom relative z-10 text-center max-w-2xl">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                  Ready to <span className="text-gradient-primary">grow?</span>
+                  Need More Leads — or More Sales From the <span className="text-gradient-primary">Leads You Already Have?</span>
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Book a free 30-minute strategy call — we'll audit your current setup and share three specific opportunities to unlock growth.
+                  Let's identify where your growth is getting stuck and build a practical plan around it.
                 </p>
                 <div className="flex flex-wrap justify-center gap-3">
                   <Button
@@ -792,7 +1003,7 @@ const Enquiry = () => {
                     onClick={scrollToForm}
                     className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">Get my free audit</span>
+                    <span className="relative z-10">Talk to CWP</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
