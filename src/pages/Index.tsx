@@ -50,7 +50,7 @@ const Index = () => {
           name: "CWP Marketing",
           url: "https://consultwithprofessionals.com",
           logo: "https://consultwithprofessionals.com/og-image.png",
-          description: "Strategic marketing and growth consulting agency trusted by 100+ brands",
+          description: "Growth and revenue partner combining marketing and sales — trusted by 100+ businesses",
           contactPoint: {
             telephone: "+918610986622",
             contactType: "sales"
