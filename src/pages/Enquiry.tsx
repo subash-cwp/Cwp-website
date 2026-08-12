@@ -379,23 +379,23 @@ const Enquiry = () => {
               )}
             </div>
 
-            <div className="container-custom relative z-10 grid lg:grid-cols-[1fr_460px] gap-12 items-start">
+            <div className="container-custom relative z-10 grid gap-8 lg:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(340px,420px)] items-start">
               {/* LEFT COPY */}
-              <div className="order-2 lg:order-1">
+              <div className="order-2 lg:order-1 min-w-0">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
                   <span className="text-sm text-muted-foreground">Free Growth &amp; Revenue Strategy Session</span>
                 </div>
 
                 <h1
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up break-words"
                   style={{ animationDelay: "0.1s" }}
                 >
                   Generate More Leads.{" "}
                   <span className="text-gradient-primary">Close More Sales.</span>
                 </h1>
 
-                <p className="text-xl md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+                <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
                   CWP helps businesses build demand, create qualified sales pipelines and close more customers — with an <span className="text-foreground font-medium">experienced team working alongside you</span>.
                 </p>
 
@@ -423,13 +423,13 @@ const Enquiry = () => {
                   <Button
                     size="lg"
                     onClick={scrollToForm}
-                    className="gap-2 text-sm sm:text-base px-5 sm:px-6 py-5 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
+                    className="w-full sm:w-auto h-auto whitespace-normal gap-2 text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">30 minutes. One growth conversation.</span>
+                    <span className="relative z-10 text-left">30 minutes. One growth conversation.</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
-                  <Button size="lg" variant="outline" className="text-sm sm:text-base px-5 sm:px-6 py-5 sm:py-6 hover-lift glow-border" onClick={scrollToForm}>
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto h-auto whitespace-normal text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift glow-border" onClick={scrollToForm}>
                     A growth &amp; revenue plan built for your business.
                   </Button>
                 </div>
@@ -438,12 +438,12 @@ const Enquiry = () => {
               {/* RIGHT: SERVICE SELECTOR */}
               <div
                 id="lead-form"
-                className="relative order-1 lg:order-2 lg:sticky lg:top-24 animate-scale-in"
+                className="relative order-1 lg:order-2 min-w-0 lg:sticky lg:top-24 animate-scale-in"
                 style={{ animationDelay: "0.3s" }}
               >
                 <div className="absolute -inset-1 bg-gradient-to-br from-primary/60 via-neon-cyan/40 to-neon-purple/60 rounded-2xl blur-2xl opacity-80" />
                 <div className="absolute -inset-[2px] bg-gradient-to-br from-primary via-neon-cyan to-neon-purple rounded-2xl opacity-70" />
-                <div className="relative bg-card/95 backdrop-blur-xl border-2 border-primary/40 rounded-2xl p-6 md:p-8 shadow-[0_0_60px_rgba(255,199,0,0.18)]">
+                <div className="relative bg-card/95 backdrop-blur-xl border-2 border-primary/40 rounded-2xl p-5 sm:p-6 md:p-8 shadow-[0_0_60px_rgba(255,199,0,0.18)]">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full" />
 
                   <div className="flex items-center gap-2 mb-1">
@@ -455,7 +455,7 @@ const Enquiry = () => {
                   <p className="text-sm text-muted-foreground mb-6">Select what you need — then tell us about your business.</p>
 
                   <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">What do you need help with?</p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3 mb-6">
+                  <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-4 gap-y-3 mb-6">
                     {serviceOptions.map((option) => {
                       const checked = selectedServices.includes(option);
                       return (
