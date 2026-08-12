@@ -8,35 +8,35 @@ import {
 export const faqs = [
   {
     question: "What makes CWP different from other marketing agencies?",
-    answer: "We combine strategic thinking with hands' on execution. Unlike agencies that just run campaigns, we become your growth partner - analyzing your market position, identifying bottlenecks, and building data' driven strategies that deliver measurable results. Plus, we specialize in both startups and D2C brands, understanding the unique challenges of scaling."
+    answer: "Most agencies stop at generating leads. We own the full revenue journey — demand generation and performance marketing to create qualified opportunities, plus sales development, qualification, follow-ups, pipeline management and closing support to convert them. One team, accountable for pipeline and closed deals, not just clicks."
   },
   {
-    question: "How long does it take to see results?",
-    answer: "Timeline varies by service: Performance marketing campaigns show initial results in 2' 4 weeks, with optimization reaching peak performance in 2' 3 months. SEO typically takes 3' 6 months for significant organic growth. Email marketing and automation show results within the first month. We provide weekly reports so you can track progress at every stage."
+    question: "How quickly can we get started, and when do we see results?",
+    answer: "Onboarding takes 3–5 business days and most campaigns and outreach sequences go live in week 2. Paid campaigns and outreach typically show qualified leads within 2–4 weeks, sales pipeline improvements within 30–60 days, and SEO compounds over 3–6 months. You get weekly reporting throughout."
   },
   {
-    question: "Do you work with startups or only established businesses?",
-    answer: "We specialize in both! We've helped early-stage startups go from 0 to their first 1000 customers, and scaled established D2C brands to 10x revenue. Our strategies are tailored to your current stage - whether you need validation, rapid growth, or market domination."
+    question: "Can you support sales, not just marketing?",
+    answer: "Yes. We can handle prospecting, LinkedIn and email outreach, lead qualification, appointment setting, sales follow-ups, pipeline management and closing support — working as an extension of your sales team or as the team itself."
   },
   {
-    question: "What's included in the free strategy call?",
-    answer: "Our complimentary 45-minute strategy call includes: comprehensive audit of your current marketing efforts, identification of key growth opportunities, bottleneck analysis, preliminary roadmap for scaling, and honest recommendations on what will work best for your business. No AI fluff, no sales pressure - just actionable insights."
+    question: "Who do you work with?",
+    answer: "Startups, SaaS and technology companies, B2B businesses, professional services, real estate, healthcare and growing MSMEs. If you need more qualified leads and better conversion to closed deals, we can help."
   },
   {
-    question: "Can you work with our existing marketing team?",
-    answer: "Absolutely! We can either be your full' stack marketing team or seamlessly integrate with your existing resources. We've successfully collaborated with in' house teams, providing strategic direction, specialized expertise, or handling specific channels while your team focuses on others."
+    question: "What's included in the free 30-minute audit call?",
+    answer: "A review of your current marketing and sales motion, where qualified leads are leaking, gaps in follow-up and pipeline management, and a preliminary plan for lifting lead-to-customer conversion. No fluff, no pressure — just actionable insights."
   },
   {
-    question: "What industries do you specialize in?",
-    answer: "Our core expertise spans D2C e' commerce, B2B SaaS, tech startups, consumer goods, and healthcare. However, our strategic frameworks and performance marketing expertise translate across industries. We focus on understanding your specific market dynamics and customer behavior rather than applying cookie' cutter solutions."
+    question: "Can you work with our existing marketing or sales team?",
+    answer: "Absolutely. We plug into your team — taking over specific channels, owning outreach and follow-ups, or providing strategic direction — while your team focuses on the rest."
   },
   {
     question: "How do you measure success?",
-    answer: "We define success based on your business goals - whether that's revenue growth, lead generation, brand awareness, or customer acquisition cost. Every campaign includes clear KPIs, tracking dashboards, and regular reporting. We're obsessed with data and continuously optimize based on what's actually moving the needle for your business."
+    answer: "By qualified leads, pipeline created, lead-to-customer conversion rate, cost per qualified lead and revenue closed. Every engagement has clear KPIs, live dashboards and regular reporting."
   },
   {
-    question: "What's your pricing structure?",
-    answer: "Our pricing is customized based on scope, channels, and your business stage. We offer project' based engagements for specific campaigns, monthly retainers for ongoing growth partnerships, and performance' based models for established businesses. Book a strategy call to discuss what works best for your needs and budget."
+    question: "What's your minimum engagement and pricing?",
+    answer: "We start with a 90-day growth sprint and then continue month-to-month. Pricing depends on scope, channels and whether you need marketing, sales support, or both. Book the free audit call and we'll scope it with you."
   }
 ];
 

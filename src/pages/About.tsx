@@ -47,9 +47,9 @@ const About = () => {
     "hero",
     {
       badge: "About Us",
-      headingHtml: 'We Help Brands <span class="text-gradient-primary">Scale & Thrive</span>',
+      headingHtml: 'We Help Businesses <span class="text-gradient-primary">Generate Leads & Close Sales</span>',
       subheading:
-        "CWP is a full-stack growth partner for D2C, SaaS, and B2B brands. We combine strategic marketing expertise with creative excellence to deliver exceptional results.",
+        "CWP is a growth and revenue partner for startups, SaaS, B2B and professional services businesses. We bring marketing and sales together — demand generation, qualification, follow-ups and closing support under one team.",
     },
   );
   const story = useSection<{ headingHtml: string; paragraphs: string[]; quote: string; founderName: string; founderRole: string }>(
@@ -58,27 +58,27 @@ const About = () => {
     {
       headingHtml: 'Our <span class="text-gradient-primary">Story</span>',
       paragraphs: [
-        "Founded with a vision to bridge the gap between creative marketing and measurable growth, CWP has evolved into a trusted growth partner for businesses across industries.",
-        "We started with a simple belief: every brand deserves access to world' class marketing strategies that deliver real results. Today, we've helped 100+ brands generate over ₹50 Crores in revenue.",
-        "Our team of strategists, creatives, and growth experts work together to create comprehensive marketing solutions that drive sustainable business growth.",
+        "We started CWP after seeing the same pattern again and again: businesses spending on marketing, collecting leads, and still not seeing revenue — because nobody owned what happened after the form was filled.",
+        "So we built a team that owns the full journey. Demand generation and performance marketing to create qualified opportunities, and sales development, follow-ups and closing support to convert them into customers.",
+        "Today our strategists, marketers and sales specialists work as an extended growth and revenue team for 100+ businesses, focused on pipeline and closed deals rather than vanity metrics.",
       ],
       quote:
-        "Our mission is simple: help brands unlock their true potential through strategic, data' driven marketing that delivers measurable results.",
+        "Leads are not the goal. Revenue is. Our job is to close the gap between marketing and sales so every opportunity gets a real chance to convert.",
       founderName: "Naren",
       founderRole: "Founder & CEO",
     },
   );
   const mission = useSection<{ mission: string; vision: string }>("about", "mission_vision", {
     mission:
-      "To empower businesses with strategic marketing solutions that drive sustainable growth, increase brand visibility, and deliver exceptional ROI through data' driven methodologies.",
+      "To help businesses grow revenue by connecting marketing and sales — generating qualified demand, qualifying it properly, and supporting the team all the way to closed deals.",
     vision:
-      "To become the most trusted growth partner for ambitious brands, known for our innovative strategies, creative excellence, and unwavering commitment to client success.",
+      "To become the most trusted growth and revenue partner for ambitious businesses, known for owning outcomes across the entire lead-to-customer journey.",
   });
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="About CWP Marketing — Our Story, Mission & Values"
-        description="Learn about CWP Marketing — a full-stack growth partner for D2C, SaaS, and B2B brands. Discover our mission, values, and team."
+        title="About CWP — Lead Generation & Sales Growth Partner"
+        description="CWP brings marketing and sales together for startups, SaaS, B2B and professional services — demand generation, qualification, follow-ups and closing support."
         keywords="about CWP, marketing agency story, growth partner, brand transformation, marketing team"
         canonicalUrl="https://consultwithprofessionals.com/about"
       />

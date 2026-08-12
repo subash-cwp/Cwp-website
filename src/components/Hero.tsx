@@ -16,15 +16,15 @@ interface HeroContent {
 }
 
 const DEFAULTS: HeroContent = {
-  badge: "Trusted by 100+ Brands",
+  badge: "Trusted by 100+ Businesses",
   headingHtml:
-    'End-to-end marketing that <span class="text-gradient-primary">builds</span><br/>and <span class="text-gradient-primary">scales</span> your brand',
+    'Generate <span class="text-gradient-primary">More Leads</span>.<br/>Close <span class="text-gradient-primary">More Sales</span>.',
   subheading:
-    "Strategy, creative, performance, and retention — everything ambitious D2C, SaaS and B2B brands need to grow.",
+    "Marketing and sales under one team — demand generation, performance marketing, sales development and closing support that turn interest into revenue.",
   tagsLabel: "For:",
-  tags: ["Startups", "D2C Brands", "Founders and Growth' focused Enterprises"],
-  primaryCtaLabel: "Book a Strategy Call",
-  primaryCtaHref: "https://calendly.com/narenethiraj",
+  tags: ["Startups", "SaaS & Technology", "B2B Businesses", "Professional Services", "Growing Businesses"],
+  primaryCtaLabel: "Get Your Free 30-Min Audit Call",
+  primaryCtaHref: "/enquiry",
   secondaryCtaLabel: "View Our Work",
   secondaryCtaHref: "#portfolio",
 };

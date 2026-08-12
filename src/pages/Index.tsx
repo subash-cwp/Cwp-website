@@ -39,9 +39,9 @@ const Index = () => {
   return (
     <>
       <SEOHead 
-        title="CWP Marketing — Growth, SEO & Performance Marketing Agency"
-        description="Strategic marketing, SEO, paid ads, and growth consulting for D2C, SaaS, and B2B brands. 100+ brands served with 3x average growth."
-        keywords="marketing agency, growth consulting, digital marketing, SEO, social media marketing, brand strategy, Chennai"
+        title="CWP — Generate More Leads. Close More Sales."
+        description="Marketing and sales under one team: demand generation, performance marketing, sales development and closing support. Trusted by 100+ businesses."
+        keywords="lead generation, sales development, performance marketing, demand generation, appointment setting, growth agency, Chennai"
         canonicalUrl="https://consultwithprofessionals.com/"
       />
       <JsonLd 
@@ -50,7 +50,7 @@ const Index = () => {
           name: "CWP Marketing",
           url: "https://consultwithprofessionals.com",
           logo: "https://consultwithprofessionals.com/og-image.png",
-          description: "Strategic marketing and growth consulting agency trusted by 100+ brands",
+          description: "Growth and revenue partner combining marketing and sales — trusted by 100+ businesses",
           contactPoint: {
             telephone: "+918610986622",
             contactType: "sales"

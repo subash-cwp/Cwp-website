@@ -8,10 +8,10 @@ export const ContactHero = () => {
     "contact",
     "hero",
     {
-      badge: "Let's Start a Conversation",
-      headingHtml: 'Get in <span class="text-gradient-primary">Touch</span>',
+      badge: "Free 30-Min Audit Call",
+      headingHtml: 'Let\'s Talk <span class="text-gradient-primary">Leads & Revenue</span>',
       subheading:
-        "Ready to transform your business? We're here to help you achieve your marketing goals with strategic solutions tailored to your needs.",
+        "Tell us where growth is stuck — weak pipeline, low conversions, inconsistent follow-ups — and we'll show you what it takes to generate more leads and close more sales.",
       primaryLabel: "Send a Message",
       phoneLabel: "Call Us Now",
       phoneHref: "tel:+918610986622",

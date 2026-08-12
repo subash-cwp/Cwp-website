@@ -3,23 +3,23 @@ import { CheckCircle2, Users, Target, TrendingUp } from "lucide-react";
 const benefits = [
   {
     icon: CheckCircle2,
-    title: "Revenue' Centric Mindset",
-    description: "Every marketing dollar spent is designed to give you more and help you generate in return"
+    title: "Marketing + Sales Under One Team",
+    description: "From demand generation to qualification, follow-ups and closing support — one partner for the full revenue journey"
   },
   {
     icon: Users,
-    title: "Multi' Channel Expertise",
-    description: "We lead you across SEO, paid ads, email, social media, and much more"
+    title: "An Extended Growth & Revenue Team",
+    description: "Senior strategists and sales specialists working alongside your team, with no hand-offs to junior staff"
   },
   {
     icon: Target,
-    title: "Founder' Friendly Systems",
-    description: "Easy, flexible processes so you can focus on scaling - not on tech stack confusion"
+    title: "Qualified Leads, Not Just Traffic",
+    description: "We optimise for pipeline and closed deals, so every rupee spent is measured against revenue"
   },
   {
     icon: TrendingUp,
-    title: "Sustainable & Scalable Results",
-    description: "We bring profitable growth not just the traffic - real ROI, not vanity metrics"
+    title: "Transparent, Revenue-Level Reporting",
+    description: "Live dashboards across marketing, pipeline and sales performance — weekly calls, no jargon"
   }
 ];
 
@@ -65,7 +65,7 @@ export const WhyChoose = () => {
 
         <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            CWP doesn't do one' size' fits' all. We tailor every strategy - from messaging to media channels - so it reflects your brand's unique strengths and aligns with your business goals. The whole point: Strategic alignment. Real results. And a partner that's got your back as you scale up.
+            Most businesses do not have a lead problem or a sales problem — they have a gap between the two. CWP closes that gap: we generate qualified demand, qualify it properly, follow up consistently and support your team all the way to closed deals. Strategic alignment. Real revenue. A partner that stays accountable as you scale.
           </p>
         </div>
       </div>
