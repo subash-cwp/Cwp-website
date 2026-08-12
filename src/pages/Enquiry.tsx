@@ -315,8 +315,8 @@ const Enquiry = () => {
   return (
     <>
       <SEOHead
-        title="Get a Free Marketing Growth Audit — CWP Marketing"
-        description="Book a free 30-minute strategy call with CWP Marketing. Performance ads, SEO, and growth consulting for brands ready to scale."
+        title="Generate More Leads. Close More Sales. — CWP"
+        description="CWP is your extended growth & revenue team — demand generation, sales development, pipeline management and closing support. Book a free 30-min session."
         canonicalUrl="https://consultwithprofessionals.com/enquiry"
       />
 
@@ -524,7 +524,7 @@ const Enquiry = () => {
             <DialogContent className="max-w-2xl w-[calc(100%-2rem)] max-h-[90vh] overflow-y-auto rounded-xl">
               <DialogHeader>
                 <DialogTitle className="text-2xl md:text-3xl font-bold">
-                  Let's talk about your brand needs.
+                  Let's talk about your growth &amp; revenue goals.
                 </DialogTitle>
                 <DialogDescription>
                   {selectedServices.length > 0
