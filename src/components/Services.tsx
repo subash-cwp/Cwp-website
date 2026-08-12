@@ -127,11 +127,8 @@ export const Services = () => {
         .eq("published", true)
         .order("sort_order", { ascending: true });
       
-      if (error || !data || data.length === 0) {
-        setServices(fallbackServices);
-      } else {
-        setServices(data);
-      }
+      const base = error || !data || data.length === 0 ? fallbackServices : data;
+      setServices(withSalesServices(base) as Service[]);
       setLoading(false);
     };
 
