@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Target, Megaphone, LineChart, TrendingUp, Users, Palette, FileText, Share2, Loader2 } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
+import { withSalesServices } from "@/data/services";
 
 interface Service {
   id: string;
