@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ClientLogos } from "@/components/ClientLogos";
 import { Services } from "@/components/Services";
+import { ServiceCatalog } from "@/components/ServiceCatalog";
 import { WhyChoose } from "@/components/WhyChoose";
 import { AnimatedStats } from "@/components/AnimatedStats";
 import { Process } from "@/components/Process";
