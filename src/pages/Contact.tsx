@@ -14,8 +14,8 @@ const Contact = () => {
   return (
     <>
       <SEOHead
-        title="Contact CWP Marketing — Get in Touch"
-        description="Talk to CWP Marketing about growing your business with strategic marketing, SEO, and paid media. Call, email, or send us a message."
+        title="Contact CWP — Talk About Leads, Pipeline & Sales"
+        description="Talk to CWP about generating qualified leads and closing more sales — demand generation, performance marketing and sales support. Call, email or message us."
         keywords="contact, marketing agency, get in touch, consultation, Chennai, digital marketing"
         canonicalUrl="https://consultwithprofessionals.com/contact"
       />
