@@ -77,8 +77,8 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead 
-        title="About CWP Marketing — Our Story, Mission & Values"
-        description="Learn about CWP Marketing — a full-stack growth partner for D2C, SaaS, and B2B brands. Discover our mission, values, and team."
+        title="About CWP — Lead Generation & Sales Growth Partner"
+        description="CWP brings marketing and sales together for startups, SaaS, B2B and professional services — demand generation, qualification, follow-ups and closing support."
         keywords="about CWP, marketing agency story, growth partner, brand transformation, marketing team"
         canonicalUrl="https://consultwithprofessionals.com/about"
       />
