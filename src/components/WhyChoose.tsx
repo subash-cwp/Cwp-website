@@ -65,7 +65,7 @@ export const WhyChoose = () => {
 
         <div className="mt-16 text-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
           <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto">
-            CWP doesn't do one' size' fits' all. We tailor every strategy - from messaging to media channels - so it reflects your brand's unique strengths and aligns with your business goals. The whole point: Strategic alignment. Real results. And a partner that's got your back as you scale up.
+            Most businesses do not have a lead problem or a sales problem — they have a gap between the two. CWP closes that gap: we generate qualified demand, qualify it properly, follow up consistently and support your team all the way to closed deals. Strategic alignment. Real revenue. A partner that stays accountable as you scale.
           </p>
         </div>
       </div>
