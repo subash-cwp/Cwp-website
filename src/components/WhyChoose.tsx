@@ -3,23 +3,23 @@ import { CheckCircle2, Users, Target, TrendingUp } from "lucide-react";
 const benefits = [
   {
     icon: CheckCircle2,
-    title: "Revenue' Centric Mindset",
-    description: "Every marketing dollar spent is designed to give you more and help you generate in return"
+    title: "Marketing + Sales Under One Team",
+    description: "From demand generation to qualification, follow-ups and closing support — one partner for the full revenue journey"
   },
   {
     icon: Users,
-    title: "Multi' Channel Expertise",
-    description: "We lead you across SEO, paid ads, email, social media, and much more"
+    title: "An Extended Growth & Revenue Team",
+    description: "Senior strategists and sales specialists working alongside your team, with no hand-offs to junior staff"
   },
   {
     icon: Target,
-    title: "Founder' Friendly Systems",
-    description: "Easy, flexible processes so you can focus on scaling - not on tech stack confusion"
+    title: "Qualified Leads, Not Just Traffic",
+    description: "We optimise for pipeline and closed deals, so every rupee spent is measured against revenue"
   },
   {
     icon: TrendingUp,
-    title: "Sustainable & Scalable Results",
-    description: "We bring profitable growth not just the traffic - real ROI, not vanity metrics"
+    title: "Transparent, Revenue-Level Reporting",
+    description: "Live dashboards across marketing, pipeline and sales performance — weekly calls, no jargon"
   }
 ];
 
