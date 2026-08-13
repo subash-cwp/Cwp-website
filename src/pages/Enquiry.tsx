@@ -76,27 +76,19 @@ const industries = [
 ];
 
 const serviceOptions = [
-  "Lead Generation",
-  "Sales Outreach",
-  "Appointment Setting",
-  "Sales Pipeline Management",
-  "Deal Closing Support",
-  "Performance Marketing",
-  "SEO & Organic Growth",
+  "Complete Marketing + Sales Support",
+  "Lead Generation & Outreach",
+  "Sales & Pipeline Management",
+  "Performance & Organic Marketing",
   "Content & Social Media",
-  "Marketing + Sales",
-  "Full Growth Support",
 ];
 
 const challengeOptions = [
   "We need more qualified leads",
-  "We have leads but low conversions",
-  "Our sales pipeline is weak",
-  "Sales follow-ups are inconsistent",
-  "Deals are getting stuck",
-  "We need help closing deals",
-  "We need both marketing and sales support",
-  "We need a complete growth team",
+  "We’re not converting enough leads into customers",
+  "Our sales pipeline and follow-ups need improvement",
+  "Deals are getting stuck or taking too long to close",
+  "We need a complete marketing and sales growth team",
 ];
 
 const processSteps = ["Attract", "Qualify", "Engage", "Convert", "Close"];
