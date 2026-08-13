@@ -15,7 +15,7 @@ import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { BackToTop } from "@/components/BackToTop";
 import { InteractiveParticles } from "@/components/InteractiveParticles";
-import { PageTransition } from "@/components/PageTransition";
+
 import { ScrollAnimationWrapper } from "@/components/ScrollAnimationWrapper";
 import { ParallaxSection } from "@/components/ParallaxSection";
 import { ScrollProgressBar } from "@/components/ScrollProgressBar";
@@ -67,7 +67,6 @@ const Index = () => {
       />
       <ExitIntentPopup />
       <CookieConsent />
-      <PageTransition />
       <ScrollProgressBar />
       <div className="min-h-screen relative">
         <InteractiveParticles />
