@@ -44,25 +44,31 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const benefits = [
-  "Generate Qualified Leads",
-  "Build a Strong Sales Pipeline",
+  "Generate Quality Leads",
+  "Convert More Leads Into Customers",
   "Improve Lead-to-Customer Conversion",
-  "Close More Opportunities",
+  "Build Predictable Growth",
 ];
 
 const socialProof = [
-  { icon: Award, text: "Trusted by 100+ Businesses" },
+  { icon: Award, text: "10+ Years of Growth Marketing Experience" },
   { icon: TrendingUp, text: "Marketing + Sales Expertise" },
   { icon: Users, text: "Dedicated Growth & Revenue Team" },
 ];
 
 const services = [
-  { num: "01", icon: Target, title: "Demand Generation", desc: "Build awareness, attract the right audience and create a consistent flow of qualified opportunities." },
-  { num: "02", icon: BarChart3, title: "Performance Marketing", desc: "Google, Meta and paid campaigns focused on qualified leads, pipeline and measurable ROI." },
-  { num: "03", icon: Users, title: "Sales Development", desc: "Prospecting, LinkedIn outreach, email outreach and appointment setting to build your sales pipeline." },
-  { num: "04", icon: Handshake, title: "Sales Conversion & Closing", desc: "Follow-ups, opportunity management and sales support to move qualified prospects toward closed deals." },
-  { num: "05", icon: Zap, title: "Conversion Optimization", desc: "Landing pages, funnels and conversion journeys designed to turn traffic and prospects into customers." },
-  { num: "06", icon: TrendingUp, title: "Growth Analytics", desc: "Track marketing, pipeline and sales performance so you know what is working and where revenue is being lost." },
+  { num: "01", icon: Target, title: "Digital Marketing Strategy", desc: "Build a growth strategy around your business goals, audience, market and revenue targets." },
+  { num: "02", icon: BarChart3, title: "Performance Marketing", desc: "Run Google Ads, Meta Ads and paid campaigns focused on qualified leads, customer acquisition and measurable ROI." },
+  { num: "03", icon: TrendingUp, title: "SEO & Organic Growth", desc: "Improve search visibility, attract relevant organic traffic and create sustainable growth through search engine optimization." },
+  { num: "04", icon: Users, title: "Social Media Marketing", desc: "Build your brand, engage your audience and create social strategies that support awareness, leads and sales." },
+  { num: "05", icon: Zap, title: "Content Marketing", desc: "Create content that builds trust, attracts the right audience and supports the customer journey." },
+  { num: "06", icon: Award, title: "Personal Branding", desc: "Build a stronger professional presence and position founders, executives and experts as trusted voices in their market." },
+  { num: "07", icon: Sparkles, title: "Influencer Marketing", desc: "Connect your brand with relevant creators and influencers to reach targeted audiences and build credibility." },
+  { num: "08", icon: Phone, title: "Lead Generation & Outreach", desc: "Generate qualified prospects through targeted campaigns, prospecting, LinkedIn outreach and email outreach." },
+  { num: "09", icon: Handshake, title: "Sales Development", desc: "Qualify leads, set appointments, manage follow-ups and help build a consistent sales pipeline." },
+  { num: "10", icon: CheckCircle2, title: "Sales Conversion & Closing", desc: "Support opportunity management, follow-ups and sales conversations to help move qualified prospects toward closed deals." },
+  { num: "11", icon: Target, title: "Conversion Optimization", desc: "Improve landing pages, forms, funnels and conversion journeys so more of your traffic becomes leads and customers." },
+  { num: "12", icon: BarChart3, title: "Growth Analytics", desc: "Track marketing, pipeline and sales performance so you know what is working and where revenue opportunities are being lost." },
 ];
 
 const industries = [
@@ -71,23 +77,40 @@ const industries = [
   "B2B Businesses",
   "Professional Services",
   "Real Estate",
-  "MSMEs",
-  "Growing Businesses",
+  "MSMEs & Growing Businesses",
+  "E-Commerce & D2C Brands",
+  "Healthcare & Clinics",
+  "Education & EdTech",
+  "Finance & FinTech",
+  "IT & Software Companies",
+  "Manufacturing & Industrial",
+  "Consulting & Agencies",
+  "Hospitality & Travel",
+  "Retail & Consumer Brands",
+  "Construction & Infrastructure",
+  "Legal & Business Services",
+  "Recruitment & HR Services",
 ];
 
 const serviceOptions = [
   "Complete Marketing + Sales Support",
   "Lead Generation & Outreach",
   "Sales & Pipeline Management",
-  "Performance & Organic Marketing",
-  "Content & Social Media",
+  "Performance Marketing",
+  "SEO & Organic Growth",
+  "Social Media Marketing",
+  "Content & Brand Growth",
+  "Personal Branding",
+  "Influencer Marketing",
 ];
 
 const challengeOptions = [
   "We need more qualified leads",
-  "We’re not converting enough leads into customers",
-  "Our sales pipeline and follow-ups need improvement",
-  "Deals are getting stuck or taking too long to close",
+  "We are not converting enough leads into customers",
+  "Our sales pipeline needs improvement",
+  "Our follow-ups are not working",
+  "Deals are taking too long to close",
+  "Our marketing is not generating enough ROI",
   "We need a complete marketing and sales growth team",
 ];
 
@@ -104,8 +127,34 @@ const revenueFunnel = [
 ];
 
 const ownMatrix = {
-  marketing: ["Strategy", "Content", "SEO", "Paid Ads", "Social Media", "Branding", "CRO", "Analytics"],
-  sales: ["Prospecting", "Outreach", "Qualification", "Appointment Setting", "Follow-ups", "Pipeline Management", "Closing Support", "Sales Reporting"],
+  marketing: [
+    "Growth Strategy",
+    "Performance Marketing",
+    "SEO",
+    "Google Ads",
+    "Meta Ads",
+    "Social Media Marketing",
+    "Content Marketing",
+    "Personal Branding",
+    "Influencer Marketing",
+    "Landing Pages",
+    "CRO",
+    "Analytics",
+    "Marketing Automation",
+  ],
+  sales: [
+    "Lead Generation",
+    "Prospecting",
+    "LinkedIn Outreach",
+    "Email Outreach",
+    "Lead Qualification",
+    "Appointment Setting",
+    "Sales Follow-ups",
+    "Pipeline Management",
+    "Opportunity Management",
+    "Closing Support",
+    "Sales Reporting",
+  ],
 };
 
 const marketingCapabilities = [
@@ -131,23 +180,26 @@ const salesCapabilities = [
 ];
 
 const results = [
-  { brand: "D2C skincare brand", before: "1.4x ROAS", after: "4.6x ROAS", note: "in 90 days" },
-  { brand: "B2B SaaS", before: "38 MQLs/mo", after: "212 MQLs/mo", note: "in 6 months" },
-  { brand: "Healthcare clinic chain", before: "₹820 CPL", after: "₹190 CPL", note: "in 120 days" },
+  { brand: "D2C Skincare Brand", before: "1.4x ROAS", after: "4.6x ROAS", note: "in 90 days" },
+  { brand: "B2B SaaS", before: "38 MQLs/month", after: "212 MQLs/month", note: "in 6 months" },
+  { brand: "Healthcare Clinic Chain", before: "₹820 CPL", after: "₹190 CPL", note: "in 120 days" },
 ];
 
 const why = [
-  { t: "An extended growth & revenue team", d: "Marketing and sales expertise under one team, working alongside yours." },
-  { t: "Senior team, no hand-offs", d: "You work directly with strategists and sales specialists who have built pipelines at scale." },
-  { t: "Transparent reporting", d: "Live dashboards across marketing, pipeline and sales. Weekly calls, no jargon." },
-  { t: "One partner, full journey", d: "From demand generation to qualification, follow-ups and closing support." },
+  { t: "Marketing + Sales Expertise", d: "We combine digital marketing and sales expertise to help businesses move from traffic and leads toward measurable revenue." },
+  { t: "Trusted By 100+ Businesses", d: "Businesses across industries trust CWP to support their growth, lead generation and marketing performance." },
+  { t: "10+ Years Of Growth Marketing Experience", d: "Our team brings years of experience across performance marketing, SEO, lead generation, conversion and sales growth." },
+  { t: "Senior Team, No Unnecessary Hand-Offs", d: "Work directly with experienced strategists and specialists focused on your business goals." },
+  { t: "Transparent Reporting", d: "Track marketing, leads, pipeline and performance through clear reporting and regular reviews." },
+  { t: "One Partner. Full Growth Journey.", d: "From generating demand to converting opportunities, one team supports the journey." },
 ];
 
 const faqs = [
-  { q: "How quickly can we get started?", a: "Onboarding takes 3–5 business days. Most campaigns and outreach sequences go live in week 2." },
-  { q: "What's your minimum engagement?", a: "We start with a 90-day growth sprint, then continue month-to-month." },
-  { q: "Can you support sales, not just marketing?", a: "Yes. We can support prospecting, qualification, appointment setting, follow-ups, pipeline management and closing support." },
-  { q: "Who do you work with?", a: "Startups, SaaS and technology, B2B businesses, professional services, real estate and MSMEs." },
+  { q: "How quickly can we get started?", a: "After the initial consultation, we review your current marketing and sales setup and recommend the most practical next steps." },
+  { q: "What's your minimum engagement?", a: "We recommend a plan based on your goals, current stage, services required and expected growth opportunity." },
+  { q: "Can you support sales, not just marketing?", a: "Yes. CWP combines marketing, lead generation, sales development, follow-ups, pipeline management and conversion support." },
+  { q: "Who do you work with?", a: "We work with startups, SaaS and technology companies, B2B businesses, professional services, real estate brands, MSMEs and growing businesses." },
+  { q: "Do you provide performance marketing?", a: "Yes. We manage Google Ads, Meta Ads and other performance campaigns focused on qualified leads, customer acquisition and measurable ROI." },
 ];
 
 const Enquiry = () => {
@@ -307,8 +359,8 @@ const Enquiry = () => {
   return (
     <>
       <SEOHead
-        title="Generate More Leads. Close More Sales. — CWP"
-        description="CWP is your extended growth & revenue team — demand generation, sales development, pipeline management and closing support. Book a free 30-min session."
+        title="We Generate Quality Leads & Convert Them Into Sales — CWP"
+        description="CWP is a digital marketing agency in Chennai helping businesses generate qualified leads through smart marketing and convert them into real customers and sales. Book a free 30-min growth audit."
         canonicalUrl="https://consultwithprofessionals.com/enquiry"
       />
 
@@ -376,19 +428,19 @@ const Enquiry = () => {
               <div className="order-2 md:order-1 min-w-0 md:col-span-7">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-                  <span className="text-sm text-muted-foreground">Free Growth &amp; Revenue Strategy Session</span>
+                  <span className="text-sm text-muted-foreground">Free 30-Min Growth Audit</span>
                 </div>
 
                 <h1
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up break-words"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Generate More Leads.{" "}
-                  <span className="text-gradient-primary">Close More Sales.</span>
+                  We Generate Quality Leads &amp; Convert{" "}
+                  <span className="text-gradient-primary">Them Into Sales</span>
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-                  CWP helps businesses build demand, create qualified sales pipelines and close more customers — with an <span className="text-foreground font-medium">experienced team working alongside you</span>.
+                <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+                  CWP is a digital marketing agency in Chennai helping businesses generate qualified leads through smart marketing and turn those opportunities into real customers and sales. We handle both marketing and sales for your business, bringing the entire growth journey together under one team.
                 </p>
 
                 <ul className="space-y-3 mb-8 animate-slide-up" style={{ animationDelay: "0.25s" }}>
@@ -417,12 +469,9 @@ const Enquiry = () => {
                     onClick={scrollToForm}
                     className="w-full sm:w-auto h-auto whitespace-normal gap-2 text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10 text-left">30 minutes. One growth conversation.</span>
+                    <span className="relative z-10 text-left">Book My Free Audit Call</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Button>
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto h-auto whitespace-normal text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift glow-border" onClick={scrollToForm}>
-                    A growth &amp; revenue plan built for your business.
                   </Button>
                 </div>
               </div>
@@ -443,8 +492,8 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free 30-Min Audit Call</span>
 
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-bold mb-1">How can we help?</h2>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-5">Select what you need — then tell us about your business.</p>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-1">How Can We Help?</h2>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-5">Tell us where your business needs growth support.</p>
 
                   <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">What do you need help with?</p>
                   <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-4 gap-y-2.5 mb-5">
@@ -608,12 +657,13 @@ const Enquiry = () => {
               <section className="relative py-16 md:py-20 border-t border-border/50 overflow-hidden">
                 <div className="container-custom">
                   <div className="max-w-2xl mb-12 text-center mx-auto">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
-                      <span className="text-xs font-semibold tracking-widest uppercase text-primary">Trusted by</span>
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-bold">
-                      100+ brands we've helped <span className="text-gradient-primary">grow</span>
-                    </h2>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Trusted by 100+ Businesses</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Businesses We've Helped <span className="text-gradient-primary">Grow</span>
+                  </h2>
+                  <p className="text-muted-foreground mt-3">Trusted by startups, growing businesses, B2B companies, professional services, real estate brands and established businesses.</p>
                   </div>
                 </div>
 
@@ -660,9 +710,9 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Real Results</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    Before vs. <span className="text-gradient-primary">After</span>
+                    Marketing That Drives <span className="text-gradient-primary">Measurable Growth</span>
                   </h2>
-                  <p className="text-muted-foreground mt-3">A snapshot of measurable growth we've delivered for our clients.</p>
+                  <p className="text-muted-foreground mt-3">See how we have helped businesses improve leads, acquisition efficiency and marketing performance.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-6">
                   {results.map((r, i) => (
@@ -721,10 +771,10 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Who We Help</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    Built for businesses that want to <span className="text-gradient-primary">grow</span> — not just market.
+                    Helping Businesses Generate <span className="text-gradient-primary">Leads &amp; Sales</span>
                   </h2>
                   <p className="text-muted-foreground mt-3">
-                    Whether you need your first predictable pipeline or want to scale an existing sales engine, we build the team around your growth stage.
+                    CWP combines marketing, lead generation and sales expertise to help businesses attract the right customers and close more opportunities.
                   </p>
                 </div>
                 <div className="flex flex-wrap justify-center gap-3">
@@ -748,15 +798,15 @@ const Enquiry = () => {
               <section className="relative py-20 border-t border-border/50">
                 <div className="container-custom">
                   <div className="max-w-2xl mb-14 text-center mx-auto">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
                       <Sparkles className="w-3.5 h-3.5 text-primary" />
-                      <span className="text-xs font-semibold tracking-widest uppercase text-primary">What we do</span>
+                      <span className="text-xs font-semibold tracking-widest uppercase text-primary">What We Do</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                      Full-stack <span className="text-gradient-primary">growth &amp; revenue</span>, under one roof.
+                      Our End-to-End Marketing <span className="text-gradient-primary">Services That Deliver Leads &amp; Sales</span>
                     </h2>
                     <p className="text-muted-foreground">
-                      From creating demand to closing deals, our team works across marketing and sales to help turn growth opportunities into revenue.
+                      From attracting the right audience to converting opportunities into customers, CWP combines digital marketing services, performance marketing and sales support under one team.
                     </p>
                   </div>
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -793,10 +843,10 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Marketing + Sales</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    Marketing generates demand. <span className="text-gradient-primary">Sales turns demand into revenue.</span>
+                    Marketing Creates Demand. <span className="text-gradient-primary">Sales Converts It Into Revenue.</span>
                   </h2>
                   <p className="text-muted-foreground mt-3">
-                    Most businesses don't have a lead problem alone. They have a gap between marketing and sales. CWP brings both sides together so opportunities don't stop at the lead stage.
+                    Many businesses invest heavily in marketing but still struggle to turn leads into customers. CWP brings marketing and sales together so your growth does not stop at lead generation.
                   </p>
                 </div>
 
@@ -840,10 +890,10 @@ const Enquiry = () => {
               <div className="container-custom grid lg:grid-cols-2 gap-10 items-center">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    We don't stop at <span className="text-gradient-primary">generating leads.</span>
+                    We Don't Stop At Generating <span className="text-gradient-primary">Leads</span>
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    A lead is only the beginning. CWP can support the journey from prospecting and qualification to sales conversations, follow-ups, pipeline management and closing — helping businesses turn opportunities into customers.
+                    A lead is only valuable when it creates a business opportunity. CWP supports the journey from the first marketing interaction through qualification, sales conversations, follow-ups and closing.
                   </p>
                   <p className="mt-6 text-sm font-medium text-primary">One team supporting the entire growth journey.</p>
                 </div>
@@ -871,7 +921,7 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">What CWP Can Own</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    One extended team across <span className="text-gradient-primary">growth &amp; revenue</span>
+                    One Extended Team Across <span className="text-gradient-primary">Marketing, Sales &amp; Revenue</span>
                   </h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -916,7 +966,7 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Why CWP</span>
                   </div>
                   <h2 className="text-3xl md:text-5xl font-bold">
-                    Not just another agency. Your <span className="text-gradient-primary">extended growth &amp; revenue team.</span>
+                    More Than A Digital Marketing Agency. <span className="text-gradient-primary">Your Growth &amp; Revenue Partner.</span>
                   </h2>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -974,6 +1024,44 @@ const Enquiry = () => {
             </section>
           </ScrollAnimationWrapper>
 
+          {/* READY TO GROW? */}
+          <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
+            <section className="relative py-24 border-t border-border/50 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/70 to-background">
+                <div className="absolute inset-0 grid-pattern opacity-40" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-primary/15 blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full bg-primary/10 blur-3xl" style={{ animationDelay: "1s" }} />
+              </div>
+              <div className="container-custom relative z-10 text-center max-w-2xl">
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                  Ready To Grow Your Business?
+                </h2>
+                <p className="text-muted-foreground mb-8">
+                  Need More Quality Leads — Or More Sales From The Leads You Already Have?
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <Button
+                    size="lg"
+                    onClick={scrollToForm}
+                    className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+                  >
+                    <span className="relative z-10">Talk To CWP</span>
+                    <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Button>
+                  <Button size="lg" variant="outline" className="text-base px-8 py-6 hover-lift glow-border" asChild>
+                    <a href="tel:+918610986622"><Phone className="mr-2 h-4 w-4" /> +91 86109 98622</a>
+                  </Button>
+                </div>
+                <div className="mt-10 text-sm text-muted-foreground flex items-center justify-center gap-6 flex-wrap">
+                  <a href="mailto:hello@consultwithprofessionals.com" className="hover:text-primary transition-colors flex items-center gap-2">
+                    <Mail className="h-4 w-4" /> hello@consultwithprofessionals.com
+                  </a>
+                </div>
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
           {/* FINAL CTA */}
           <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
             <section className="relative py-24 border-t border-border/50 overflow-hidden">
@@ -984,10 +1072,10 @@ const Enquiry = () => {
               </div>
               <div className="container-custom relative z-10 text-center max-w-2xl">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                  Need More Leads — or More Sales From the <span className="text-gradient-primary">Leads You Already Have?</span>
+                  Generate Quality Leads. Convert More Opportunities. <span className="text-gradient-primary">Grow Revenue.</span>
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Let's identify where your growth is getting stuck and build a practical plan around it.
+                  CWP combines digital marketing and sales expertise to help businesses attract the right customers and turn opportunities into revenue.
                 </p>
                 <div className="flex flex-wrap justify-center gap-3">
                   <Button
@@ -995,18 +1083,10 @@ const Enquiry = () => {
                     onClick={scrollToForm}
                     className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">Talk to CWP</span>
+                    <span className="relative z-10">Book My Free 30-Min Audit</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
-                  <Button size="lg" variant="outline" className="text-base px-8 py-6 hover-lift glow-border" asChild>
-                    <a href="tel:+918610986622"><Phone className="mr-2 h-4 w-4" /> Call us</a>
-                  </Button>
-                </div>
-                <div className="mt-10 text-sm text-muted-foreground flex items-center justify-center gap-6 flex-wrap">
-                  <a href="mailto:hello@consultwithprofessionals.com" className="hover:text-primary transition-colors flex items-center gap-2">
-                    <Mail className="h-4 w-4" /> hello@consultwithprofessionals.com
-                  </a>
                 </div>
               </div>
             </section>
