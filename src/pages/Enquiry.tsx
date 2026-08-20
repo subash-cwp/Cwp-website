@@ -710,9 +710,9 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Real Results</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    Before vs. <span className="text-gradient-primary">After</span>
+                    Marketing That Drives <span className="text-gradient-primary">Measurable Growth</span>
                   </h2>
-                  <p className="text-muted-foreground mt-3">A snapshot of measurable growth we've delivered for our clients.</p>
+                  <p className="text-muted-foreground mt-3">See how we have helped businesses improve leads, acquisition efficiency and marketing performance.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-6">
                   {results.map((r, i) => (
