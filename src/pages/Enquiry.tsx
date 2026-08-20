@@ -921,7 +921,7 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">What CWP Can Own</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    One extended team across <span className="text-gradient-primary">growth &amp; revenue</span>
+                    One Extended Team Across <span className="text-gradient-primary">Marketing, Sales &amp; Revenue</span>
                   </h2>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
