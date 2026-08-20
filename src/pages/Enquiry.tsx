@@ -657,12 +657,13 @@ const Enquiry = () => {
               <section className="relative py-16 md:py-20 border-t border-border/50 overflow-hidden">
                 <div className="container-custom">
                   <div className="max-w-2xl mb-12 text-center mx-auto">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
-                      <span className="text-xs font-semibold tracking-widest uppercase text-primary">Trusted by</span>
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-bold">
-                      100+ brands we've helped <span className="text-gradient-primary">grow</span>
-                    </h2>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-primary">Trusted by 100+ Businesses</span>
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-bold">
+                    Businesses We've Helped <span className="text-gradient-primary">Grow</span>
+                  </h2>
+                  <p className="text-muted-foreground mt-3">Trusted by startups, growing businesses, B2B companies, professional services, real estate brands and established businesses.</p>
                   </div>
                 </div>
 
