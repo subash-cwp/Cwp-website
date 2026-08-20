@@ -843,10 +843,10 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Marketing + Sales</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    Marketing generates demand. <span className="text-gradient-primary">Sales turns demand into revenue.</span>
+                    Marketing Creates Demand. <span className="text-gradient-primary">Sales Converts It Into Revenue.</span>
                   </h2>
                   <p className="text-muted-foreground mt-3">
-                    Most businesses don't have a lead problem alone. They have a gap between marketing and sales. CWP brings both sides together so opportunities don't stop at the lead stage.
+                    Many businesses invest heavily in marketing but still struggle to turn leads into customers. CWP brings marketing and sales together so your growth does not stop at lead generation.
                   </p>
                 </div>
 
