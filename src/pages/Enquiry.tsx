@@ -428,19 +428,19 @@ const Enquiry = () => {
               <div className="order-2 md:order-1 min-w-0 md:col-span-7">
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary/50 rounded-full border border-primary/30 backdrop-blur-sm animate-slide-up hover:border-primary/50 transition-colors mb-6">
                   <Sparkles className="w-4 h-4 text-primary animate-pulse-glow" />
-                  <span className="text-sm text-muted-foreground">Free Growth &amp; Revenue Strategy Session</span>
+                  <span className="text-sm text-muted-foreground">Free 30-Min Growth Audit</span>
                 </div>
 
                 <h1
                   className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 animate-slide-up break-words"
                   style={{ animationDelay: "0.1s" }}
                 >
-                  Generate More Leads.{" "}
-                  <span className="text-gradient-primary">Close More Sales.</span>
+                  We Generate Quality Leads &amp; Convert{" "}
+                  <span className="text-gradient-primary">Them Into Sales</span>
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
-                  CWP helps businesses build demand, create qualified sales pipelines and close more customers — with an <span className="text-foreground font-medium">experienced team working alongside you</span>.
+                <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xl mb-8 animate-slide-up" style={{ animationDelay: "0.2s" }}>
+                  CWP is a digital marketing agency in Chennai helping businesses generate qualified leads through smart marketing and turn those opportunities into real customers and sales. We handle both marketing and sales for your business, bringing the entire growth journey together under one team.
                 </p>
 
                 <ul className="space-y-3 mb-8 animate-slide-up" style={{ animationDelay: "0.25s" }}>
@@ -469,12 +469,9 @@ const Enquiry = () => {
                     onClick={scrollToForm}
                     className="w-full sm:w-auto h-auto whitespace-normal gap-2 text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10 text-left">30 minutes. One growth conversation.</span>
+                    <span className="relative z-10 text-left">Book My Free Audit Call</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </Button>
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto h-auto whitespace-normal text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-6 hover-lift glow-border" onClick={scrollToForm}>
-                    A growth &amp; revenue plan built for your business.
                   </Button>
                 </div>
               </div>
