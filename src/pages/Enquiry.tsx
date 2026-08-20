@@ -890,10 +890,10 @@ const Enquiry = () => {
               <div className="container-custom grid lg:grid-cols-2 gap-10 items-center">
                 <div>
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    We don't stop at <span className="text-gradient-primary">generating leads.</span>
+                    We Don't Stop At Generating <span className="text-gradient-primary">Leads</span>
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    A lead is only the beginning. CWP can support the journey from prospecting and qualification to sales conversations, follow-ups, pipeline management and closing — helping businesses turn opportunities into customers.
+                    A lead is only valuable when it creates a business opportunity. CWP supports the journey from the first marketing interaction through qualification, sales conversations, follow-ups and closing.
                   </p>
                   <p className="mt-6 text-sm font-medium text-primary">One team supporting the entire growth journey.</p>
                 </div>
