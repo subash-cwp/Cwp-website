@@ -359,8 +359,8 @@ const Enquiry = () => {
   return (
     <>
       <SEOHead
-        title="Generate More Leads. Close More Sales. — CWP"
-        description="CWP is your extended growth & revenue team — demand generation, sales development, pipeline management and closing support. Book a free 30-min session."
+        title="We Generate Quality Leads & Convert Them Into Sales — CWP"
+        description="CWP is a digital marketing agency in Chennai helping businesses generate qualified leads through smart marketing and convert them into real customers and sales. Book a free 30-min growth audit."
         canonicalUrl="https://consultwithprofessionals.com/enquiry"
       />
 
