@@ -1024,6 +1024,44 @@ const Enquiry = () => {
             </section>
           </ScrollAnimationWrapper>
 
+          {/* READY TO GROW? */}
+          <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
+            <section className="relative py-24 border-t border-border/50 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/70 to-background">
+                <div className="absolute inset-0 grid-pattern opacity-40" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-primary/15 blur-3xl" />
+                <div className="absolute bottom-0 right-1/4 w-[400px] h-[300px] rounded-full bg-primary/10 blur-3xl" style={{ animationDelay: "1s" }} />
+              </div>
+              <div className="container-custom relative z-10 text-center max-w-2xl">
+                <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                  Ready To Grow Your Business?
+                </h2>
+                <p className="text-muted-foreground mb-8">
+                  Need More Quality Leads — Or More Sales From The Leads You Already Have?
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <Button
+                    size="lg"
+                    onClick={scrollToForm}
+                    className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
+                  >
+                    <span className="relative z-10">Talk To CWP</span>
+                    <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </Button>
+                  <Button size="lg" variant="outline" className="text-base px-8 py-6 hover-lift glow-border" asChild>
+                    <a href="tel:+918610986622"><Phone className="mr-2 h-4 w-4" /> +91 86109 98622</a>
+                  </Button>
+                </div>
+                <div className="mt-10 text-sm text-muted-foreground flex items-center justify-center gap-6 flex-wrap">
+                  <a href="mailto:hello@consultwithprofessionals.com" className="hover:text-primary transition-colors flex items-center gap-2">
+                    <Mail className="h-4 w-4" /> hello@consultwithprofessionals.com
+                  </a>
+                </div>
+              </div>
+            </section>
+          </ScrollAnimationWrapper>
+
           {/* FINAL CTA */}
           <ScrollAnimationWrapper animation="scale-in" threshold={0.2}>
             <section className="relative py-24 border-t border-border/50 overflow-hidden">
@@ -1034,10 +1072,10 @@ const Enquiry = () => {
               </div>
               <div className="container-custom relative z-10 text-center max-w-2xl">
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                  Need More Leads — or More Sales From the <span className="text-gradient-primary">Leads You Already Have?</span>
+                  Generate Quality Leads. Convert More Opportunities. <span className="text-gradient-primary">Grow Revenue.</span>
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Let's identify where your growth is getting stuck and build a practical plan around it.
+                  CWP combines digital marketing and sales expertise to help businesses attract the right customers and turn opportunities into revenue.
                 </p>
                 <div className="flex flex-wrap justify-center gap-3">
                   <Button
@@ -1045,18 +1083,10 @@ const Enquiry = () => {
                     onClick={scrollToForm}
                     className="gap-2 text-base px-8 py-6 hover-lift hover-glow group relative overflow-hidden"
                   >
-                    <span className="relative z-10">Talk to CWP</span>
+                    <span className="relative z-10">Book My Free 30-Min Audit</span>
                     <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-glow to-primary opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Button>
-                  <Button size="lg" variant="outline" className="text-base px-8 py-6 hover-lift glow-border" asChild>
-                    <a href="tel:+918610986622"><Phone className="mr-2 h-4 w-4" /> Call us</a>
-                  </Button>
-                </div>
-                <div className="mt-10 text-sm text-muted-foreground flex items-center justify-center gap-6 flex-wrap">
-                  <a href="mailto:hello@consultwithprofessionals.com" className="hover:text-primary transition-colors flex items-center gap-2">
-                    <Mail className="h-4 w-4" /> hello@consultwithprofessionals.com
-                  </a>
                 </div>
               </div>
             </section>
