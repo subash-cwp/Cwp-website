@@ -966,7 +966,7 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Why CWP</span>
                   </div>
                   <h2 className="text-3xl md:text-5xl font-bold">
-                    Not just another agency. Your <span className="text-gradient-primary">extended growth &amp; revenue team.</span>
+                    More Than A Digital Marketing Agency. <span className="text-gradient-primary">Your Growth &amp; Revenue Partner.</span>
                   </h2>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
