@@ -798,15 +798,15 @@ const Enquiry = () => {
               <section className="relative py-20 border-t border-border/50">
                 <div className="container-custom">
                   <div className="max-w-2xl mb-14 text-center mx-auto">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/30 mb-4">
                       <Sparkles className="w-3.5 h-3.5 text-primary" />
-                      <span className="text-xs font-semibold tracking-widest uppercase text-primary">What we do</span>
+                      <span className="text-xs font-semibold tracking-widest uppercase text-primary">What We Do</span>
                     </div>
                     <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                      Full-stack <span className="text-gradient-primary">growth &amp; revenue</span>, under one roof.
+                      Our End-to-End Marketing <span className="text-gradient-primary">Services That Deliver Leads &amp; Sales</span>
                     </h2>
                     <p className="text-muted-foreground">
-                      From creating demand to closing deals, our team works across marketing and sales to help turn growth opportunities into revenue.
+                      From attracting the right audience to converting opportunities into customers, CWP combines digital marketing services, performance marketing and sales support under one team.
                     </p>
                   </div>
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
