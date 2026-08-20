@@ -492,8 +492,8 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-wider text-primary uppercase">Free 30-Min Audit Call</span>
 
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-bold mb-1">How can we help?</h2>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-5">Select what you need — then tell us about your business.</p>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-1">How Can We Help?</h2>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-5">Tell us where your business needs growth support.</p>
 
                   <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">What do you need help with?</p>
                   <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-4 gap-y-2.5 mb-5">
