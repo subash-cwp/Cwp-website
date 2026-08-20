@@ -44,25 +44,31 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 const benefits = [
-  "Generate Qualified Leads",
-  "Build a Strong Sales Pipeline",
+  "Generate Quality Leads",
+  "Convert More Leads Into Customers",
   "Improve Lead-to-Customer Conversion",
-  "Close More Opportunities",
+  "Build Predictable Growth",
 ];
 
 const socialProof = [
-  { icon: Award, text: "Trusted by 100+ Businesses" },
+  { icon: Award, text: "10+ Years of Growth Marketing Experience" },
   { icon: TrendingUp, text: "Marketing + Sales Expertise" },
   { icon: Users, text: "Dedicated Growth & Revenue Team" },
 ];
 
 const services = [
-  { num: "01", icon: Target, title: "Demand Generation", desc: "Build awareness, attract the right audience and create a consistent flow of qualified opportunities." },
-  { num: "02", icon: BarChart3, title: "Performance Marketing", desc: "Google, Meta and paid campaigns focused on qualified leads, pipeline and measurable ROI." },
-  { num: "03", icon: Users, title: "Sales Development", desc: "Prospecting, LinkedIn outreach, email outreach and appointment setting to build your sales pipeline." },
-  { num: "04", icon: Handshake, title: "Sales Conversion & Closing", desc: "Follow-ups, opportunity management and sales support to move qualified prospects toward closed deals." },
-  { num: "05", icon: Zap, title: "Conversion Optimization", desc: "Landing pages, funnels and conversion journeys designed to turn traffic and prospects into customers." },
-  { num: "06", icon: TrendingUp, title: "Growth Analytics", desc: "Track marketing, pipeline and sales performance so you know what is working and where revenue is being lost." },
+  { num: "01", icon: Target, title: "Digital Marketing Strategy", desc: "Build a growth strategy around your business goals, audience, market and revenue targets." },
+  { num: "02", icon: BarChart3, title: "Performance Marketing", desc: "Run Google Ads, Meta Ads and paid campaigns focused on qualified leads, customer acquisition and measurable ROI." },
+  { num: "03", icon: TrendingUp, title: "SEO & Organic Growth", desc: "Improve search visibility, attract relevant organic traffic and create sustainable growth through search engine optimization." },
+  { num: "04", icon: Users, title: "Social Media Marketing", desc: "Build your brand, engage your audience and create social strategies that support awareness, leads and sales." },
+  { num: "05", icon: Zap, title: "Content Marketing", desc: "Create content that builds trust, attracts the right audience and supports the customer journey." },
+  { num: "06", icon: Award, title: "Personal Branding", desc: "Build a stronger professional presence and position founders, executives and experts as trusted voices in their market." },
+  { num: "07", icon: Sparkles, title: "Influencer Marketing", desc: "Connect your brand with relevant creators and influencers to reach targeted audiences and build credibility." },
+  { num: "08", icon: Phone, title: "Lead Generation & Outreach", desc: "Generate qualified prospects through targeted campaigns, prospecting, LinkedIn outreach and email outreach." },
+  { num: "09", icon: Handshake, title: "Sales Development", desc: "Qualify leads, set appointments, manage follow-ups and help build a consistent sales pipeline." },
+  { num: "10", icon: CheckCircle2, title: "Sales Conversion & Closing", desc: "Support opportunity management, follow-ups and sales conversations to help move qualified prospects toward closed deals." },
+  { num: "11", icon: Target, title: "Conversion Optimization", desc: "Improve landing pages, forms, funnels and conversion journeys so more of your traffic becomes leads and customers." },
+  { num: "12", icon: BarChart3, title: "Growth Analytics", desc: "Track marketing, pipeline and sales performance so you know what is working and where revenue opportunities are being lost." },
 ];
 
 const industries = [
@@ -71,23 +77,40 @@ const industries = [
   "B2B Businesses",
   "Professional Services",
   "Real Estate",
-  "MSMEs",
-  "Growing Businesses",
+  "MSMEs & Growing Businesses",
+  "E-Commerce & D2C Brands",
+  "Healthcare & Clinics",
+  "Education & EdTech",
+  "Finance & FinTech",
+  "IT & Software Companies",
+  "Manufacturing & Industrial",
+  "Consulting & Agencies",
+  "Hospitality & Travel",
+  "Retail & Consumer Brands",
+  "Construction & Infrastructure",
+  "Legal & Business Services",
+  "Recruitment & HR Services",
 ];
 
 const serviceOptions = [
   "Complete Marketing + Sales Support",
   "Lead Generation & Outreach",
   "Sales & Pipeline Management",
-  "Performance & Organic Marketing",
-  "Content & Social Media",
+  "Performance Marketing",
+  "SEO & Organic Growth",
+  "Social Media Marketing",
+  "Content & Brand Growth",
+  "Personal Branding",
+  "Influencer Marketing",
 ];
 
 const challengeOptions = [
   "We need more qualified leads",
-  "We’re not converting enough leads into customers",
-  "Our sales pipeline and follow-ups need improvement",
-  "Deals are getting stuck or taking too long to close",
+  "We are not converting enough leads into customers",
+  "Our sales pipeline needs improvement",
+  "Our follow-ups are not working",
+  "Deals are taking too long to close",
+  "Our marketing is not generating enough ROI",
   "We need a complete marketing and sales growth team",
 ];
 
@@ -104,8 +127,34 @@ const revenueFunnel = [
 ];
 
 const ownMatrix = {
-  marketing: ["Strategy", "Content", "SEO", "Paid Ads", "Social Media", "Branding", "CRO", "Analytics"],
-  sales: ["Prospecting", "Outreach", "Qualification", "Appointment Setting", "Follow-ups", "Pipeline Management", "Closing Support", "Sales Reporting"],
+  marketing: [
+    "Growth Strategy",
+    "Performance Marketing",
+    "SEO",
+    "Google Ads",
+    "Meta Ads",
+    "Social Media Marketing",
+    "Content Marketing",
+    "Personal Branding",
+    "Influencer Marketing",
+    "Landing Pages",
+    "CRO",
+    "Analytics",
+    "Marketing Automation",
+  ],
+  sales: [
+    "Lead Generation",
+    "Prospecting",
+    "LinkedIn Outreach",
+    "Email Outreach",
+    "Lead Qualification",
+    "Appointment Setting",
+    "Sales Follow-ups",
+    "Pipeline Management",
+    "Opportunity Management",
+    "Closing Support",
+    "Sales Reporting",
+  ],
 };
 
 const marketingCapabilities = [
@@ -131,23 +180,26 @@ const salesCapabilities = [
 ];
 
 const results = [
-  { brand: "D2C skincare brand", before: "1.4x ROAS", after: "4.6x ROAS", note: "in 90 days" },
-  { brand: "B2B SaaS", before: "38 MQLs/mo", after: "212 MQLs/mo", note: "in 6 months" },
-  { brand: "Healthcare clinic chain", before: "₹820 CPL", after: "₹190 CPL", note: "in 120 days" },
+  { brand: "D2C Skincare Brand", before: "1.4x ROAS", after: "4.6x ROAS", note: "in 90 days" },
+  { brand: "B2B SaaS", before: "38 MQLs/month", after: "212 MQLs/month", note: "in 6 months" },
+  { brand: "Healthcare Clinic Chain", before: "₹820 CPL", after: "₹190 CPL", note: "in 120 days" },
 ];
 
 const why = [
-  { t: "An extended growth & revenue team", d: "Marketing and sales expertise under one team, working alongside yours." },
-  { t: "Senior team, no hand-offs", d: "You work directly with strategists and sales specialists who have built pipelines at scale." },
-  { t: "Transparent reporting", d: "Live dashboards across marketing, pipeline and sales. Weekly calls, no jargon." },
-  { t: "One partner, full journey", d: "From demand generation to qualification, follow-ups and closing support." },
+  { t: "Marketing + Sales Expertise", d: "We combine digital marketing and sales expertise to help businesses move from traffic and leads toward measurable revenue." },
+  { t: "Trusted By 100+ Businesses", d: "Businesses across industries trust CWP to support their growth, lead generation and marketing performance." },
+  { t: "10+ Years Of Growth Marketing Experience", d: "Our team brings years of experience across performance marketing, SEO, lead generation, conversion and sales growth." },
+  { t: "Senior Team, No Unnecessary Hand-Offs", d: "Work directly with experienced strategists and specialists focused on your business goals." },
+  { t: "Transparent Reporting", d: "Track marketing, leads, pipeline and performance through clear reporting and regular reviews." },
+  { t: "One Partner. Full Growth Journey.", d: "From generating demand to converting opportunities, one team supports the journey." },
 ];
 
 const faqs = [
-  { q: "How quickly can we get started?", a: "Onboarding takes 3–5 business days. Most campaigns and outreach sequences go live in week 2." },
-  { q: "What's your minimum engagement?", a: "We start with a 90-day growth sprint, then continue month-to-month." },
-  { q: "Can you support sales, not just marketing?", a: "Yes. We can support prospecting, qualification, appointment setting, follow-ups, pipeline management and closing support." },
-  { q: "Who do you work with?", a: "Startups, SaaS and technology, B2B businesses, professional services, real estate and MSMEs." },
+  { q: "How quickly can we get started?", a: "After the initial consultation, we review your current marketing and sales setup and recommend the most practical next steps." },
+  { q: "What's your minimum engagement?", a: "We recommend a plan based on your goals, current stage, services required and expected growth opportunity." },
+  { q: "Can you support sales, not just marketing?", a: "Yes. CWP combines marketing, lead generation, sales development, follow-ups, pipeline management and conversion support." },
+  { q: "Who do you work with?", a: "We work with startups, SaaS and technology companies, B2B businesses, professional services, real estate brands, MSMEs and growing businesses." },
+  { q: "Do you provide performance marketing?", a: "Yes. We manage Google Ads, Meta Ads and other performance campaigns focused on qualified leads, customer acquisition and measurable ROI." },
 ];
 
 const Enquiry = () => {
