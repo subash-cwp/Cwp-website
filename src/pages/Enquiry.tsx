@@ -771,10 +771,10 @@ const Enquiry = () => {
                     <span className="text-xs font-semibold tracking-widest uppercase text-primary">Who We Help</span>
                   </div>
                   <h2 className="text-3xl md:text-4xl font-bold">
-                    Built for businesses that want to <span className="text-gradient-primary">grow</span> — not just market.
+                    Helping Businesses Generate <span className="text-gradient-primary">Leads &amp; Sales</span>
                   </h2>
                   <p className="text-muted-foreground mt-3">
-                    Whether you need your first predictable pipeline or want to scale an existing sales engine, we build the team around your growth stage.
+                    CWP combines marketing, lead generation and sales expertise to help businesses attract the right customers and close more opportunities.
                   </p>
                 </div>
                 <div className="flex flex-wrap justify-center gap-3">
