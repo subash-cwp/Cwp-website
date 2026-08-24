@@ -45,20 +45,27 @@ export const ContactMap = () => {
               className="grayscale hover:grayscale-0 transition-all duration-500"
             />
 
-            {/* Overlay with Address */}
+            {/* Overlay with Business Info */}
             <div className="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-border/50">
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold mb-1">CWP Marketing</p>
+                  <p className="font-semibold mb-1">{OFFICE_NAME}</p>
                   <p className="text-sm text-muted-foreground break-words">
-                    {OFFICE_ADDRESS}
+                    {OFFICE_CATEGORY}
                   </p>
+                  <div className="flex items-center gap-2 text-sm mt-1">
+                    <span className="text-primary font-medium">{OFFICE_RATING}</span>
+                    <Star className="w-4 h-4 fill-primary text-primary" />
+                    <span className="text-muted-foreground">({OFFICE_REVIEW_COUNT})</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">{OFFICE_HOURS}</p>
                 </div>
               </div>
             </div>
+
           </div>
 
           {/* Quick Actions */}
