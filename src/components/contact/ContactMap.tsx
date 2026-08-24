@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const OFFICE_ADDRESS =
   "SIDCO Electronics Complex, Guindy Industrial Estate, Chennai, Tamil Nadu 600032";
-const OFFICE_MAP_LINK = "https://maps.app.goo.gl/xccEJPxwTWZk1gDYA";
+const OFFICE_MAP_LINK = "https://share.google/yfBOoMM75sG3ZdjKv";
 const OFFICE_DIRECTIONS_LINK = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
   OFFICE_ADDRESS
 )}`;
