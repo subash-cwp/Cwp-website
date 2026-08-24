@@ -88,19 +88,19 @@ export const ContactMap = () => {
             </div>
 
             <div className="bg-card border border-border/50 rounded-2xl p-6">
-              <h3 className="font-bold text-lg mb-4">Landmarks</h3>
+              <h3 className="font-bold text-lg mb-4">Business Info</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  SIDCO Electronics Complex
+                  {OFFICE_CATEGORY}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  Kalaignar Centenary Super Speciality Hospital (KCSSH)
+                  {OFFICE_RATING} out of 5 ({OFFICE_REVIEW_COUNT} reviews)
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  Guindy Industrial Estate Park
+                  {OFFICE_HOURS}
                 </li>
               </ul>
             </div>
