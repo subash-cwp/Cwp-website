@@ -40,7 +40,7 @@ export const ContactMap = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="CWP Marketing Office Location"
+              title="CWP | Consult With Professionals Office Location"
               className="grayscale hover:grayscale-0 transition-all duration-500"
             />
 
