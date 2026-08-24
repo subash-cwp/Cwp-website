@@ -16,7 +16,6 @@ const OFFICE_EMBED_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
   `${OFFICE_NAME}, Guindy, Chennai`
 )}&output=embed`;
 
-
 export const ContactMap = () => {
   return (
     <section className="section-spacing bg-card/30">
