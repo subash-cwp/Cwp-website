@@ -1,6 +1,11 @@
-import { MapPin, ExternalLink, Navigation } from "lucide-react";
+import { MapPin, ExternalLink, Navigation, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const OFFICE_NAME = "CWP | Consult With Professionals";
+const OFFICE_CATEGORY = "Internet marketing service";
+const OFFICE_RATING = "5.0";
+const OFFICE_REVIEW_COUNT = "18";
+const OFFICE_HOURS = "Open · Closes 7pm";
 const OFFICE_ADDRESS =
   "SIDCO Electronics Complex, Guindy Industrial Estate, Chennai, Tamil Nadu 600032";
 const OFFICE_MAP_LINK = "https://share.google/yfBOoMM75sG3ZdjKv";
@@ -8,8 +13,9 @@ const OFFICE_DIRECTIONS_LINK = `https://www.google.com/maps/dir/?api=1&destinati
   OFFICE_ADDRESS
 )}`;
 const OFFICE_EMBED_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
-  OFFICE_ADDRESS
+  `${OFFICE_NAME}, Guindy, Chennai`
 )}&output=embed`;
+
 
 export const ContactMap = () => {
   return (
