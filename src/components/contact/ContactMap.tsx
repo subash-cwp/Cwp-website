@@ -1,6 +1,11 @@
-import { MapPin, ExternalLink, Navigation } from "lucide-react";
+import { MapPin, ExternalLink, Navigation, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const OFFICE_NAME = "CWP | Consult With Professionals";
+const OFFICE_CATEGORY = "Internet marketing service";
+const OFFICE_RATING = "5.0";
+const OFFICE_REVIEW_COUNT = "18";
+const OFFICE_HOURS = "Open · Closes 7pm";
 const OFFICE_ADDRESS =
   "SIDCO Electronics Complex, Guindy Industrial Estate, Chennai, Tamil Nadu 600032";
 const OFFICE_MAP_LINK = "https://share.google/yfBOoMM75sG3ZdjKv";
@@ -8,7 +13,7 @@ const OFFICE_DIRECTIONS_LINK = `https://www.google.com/maps/dir/?api=1&destinati
   OFFICE_ADDRESS
 )}`;
 const OFFICE_EMBED_SRC = `https://www.google.com/maps?q=${encodeURIComponent(
-  OFFICE_ADDRESS
+  `${OFFICE_NAME}, Guindy, Chennai`
 )}&output=embed`;
 
 export const ContactMap = () => {
@@ -35,24 +40,31 @@ export const ContactMap = () => {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="CWP Marketing Office Location"
+              title="CWP | Consult With Professionals Office Location"
               className="grayscale hover:grayscale-0 transition-all duration-500"
             />
 
-            {/* Overlay with Address */}
+            {/* Overlay with Business Info */}
             <div className="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-sm rounded-xl p-4 border border-border/50">
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold mb-1">CWP Marketing</p>
+                  <p className="font-semibold mb-1">{OFFICE_NAME}</p>
                   <p className="text-sm text-muted-foreground break-words">
-                    {OFFICE_ADDRESS}
+                    {OFFICE_CATEGORY}
                   </p>
+                  <div className="flex items-center gap-2 text-sm mt-1">
+                    <span className="text-primary font-medium">{OFFICE_RATING}</span>
+                    <Star className="w-4 h-4 fill-primary text-primary" />
+                    <span className="text-muted-foreground">({OFFICE_REVIEW_COUNT})</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">{OFFICE_HOURS}</p>
                 </div>
               </div>
             </div>
+
           </div>
 
           {/* Quick Actions */}
@@ -76,19 +88,19 @@ export const ContactMap = () => {
             </div>
 
             <div className="bg-card border border-border/50 rounded-2xl p-6">
-              <h3 className="font-bold text-lg mb-4">Landmarks</h3>
+              <h3 className="font-bold text-lg mb-4">Business Info</h3>
               <ul className="space-y-3 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  SIDCO Electronics Complex
+                  {OFFICE_CATEGORY}
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  Kalaignar Centenary Super Speciality Hospital (KCSSH)
+                  {OFFICE_RATING} out of 5 ({OFFICE_REVIEW_COUNT} reviews)
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  Guindy Industrial Estate Park
+                  {OFFICE_HOURS}
                 </li>
               </ul>
             </div>
