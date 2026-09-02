@@ -66,6 +66,25 @@ export const ContactForm = () => {
 
       if (error) throw error;
 
+      // Fire-and-forget team notification email
+      supabase.functions
+        .invoke("send-transactional-email", {
+          body: {
+            templateName: "enquiry-notification",
+            idempotencyKey: `contact-${values.email.trim().toLowerCase()}-${Date.now()}`,
+            templateData: {
+              name: values.name.trim(),
+              email: values.email.trim(),
+              phone: values.phone.trim(),
+              company: values.company.trim(),
+              service: "Contact page form",
+              message: values.message.trim(),
+              submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
+            },
+          },
+        })
+        .catch((err) => console.error("Team notification failed", err));
+
       // Also send via WhatsApp
       const whatsappNumber = settings.integrations.whatsappNumber.replace(/[^0-9]/g, "");
       const message = `New Contact Form Submission:\n\nName: ${values.name}\nEmail: ${values.email}\nPhone: ${values.phone}\nCompany: ${values.company}\n\nMessage:\n${values.message}`;
