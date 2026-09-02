@@ -296,21 +296,18 @@ const Enquiry = () => {
 
       // Fire-and-forget team notification email
       supabase.functions
-        .invoke("send-transactional-email", {
+        .invoke("notify-enquiry-lead", {
           body: {
-            templateName: "enquiry-notification",
-            idempotencyKey: `enquiry-${values.email.trim().toLowerCase()}-${Date.now()}`,
-            templateData: {
-              name: values.name.trim(),
-              email: values.email.trim(),
-              phone: values.phone.trim(),
-              company: values.company.trim(),
-              service: servicesLine,
-              message: composedMessage,
-              submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-            },
+            name: values.name.trim(),
+            email: values.email.trim(),
+            phone: values.phone.trim(),
+            company: values.company.trim(),
+            service: servicesLine,
+            message: composedMessage,
+            submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
           },
         })
+
         .catch((err) => console.error("Team notification failed", err));
 
       // Fire-and-forget append to Google Sheet
