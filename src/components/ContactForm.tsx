@@ -68,21 +68,18 @@ export const ContactForm = () => {
 
       // Fire-and-forget team notification email
       supabase.functions
-        .invoke("send-transactional-email", {
+        .invoke("notify-contact-lead", {
           body: {
-            templateName: "enquiry-notification",
-            idempotencyKey: `contact-${values.email.trim().toLowerCase()}-${Date.now()}`,
-            templateData: {
-              name: values.name.trim(),
-              email: values.email.trim(),
-              phone: values.phone.trim(),
-              company: values.company.trim(),
-              service: "Contact page form",
-              message: values.message.trim(),
-              submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-            },
+            name: values.name.trim(),
+            email: values.email.trim(),
+            phone: values.phone.trim(),
+            company: values.company.trim(),
+            service: "Contact page form",
+            message: values.message.trim(),
+            submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
           },
         })
+
         .catch((err) => console.error("Team notification failed", err));
 
       // Also send via WhatsApp
