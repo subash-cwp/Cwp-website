@@ -22,7 +22,6 @@ import CustomPage from "./pages/CustomPage";
 import Auth from "./pages/Auth";
 import Enquiry from "./pages/Enquiry";
 import ThankYou from "./pages/ThankYou";
-import Unsubscribe from "./pages/Unsubscribe";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -76,7 +75,6 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/enquiry" element={<Enquiry />} />
               <Route path="/thank-you" element={<ThankYou />} />
-              <Route path="/unsubscribe" element={<Unsubscribe />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/reset-password" element={<ResetPassword />} />

@@ -67,20 +67,17 @@ export const FooterContactForm = () => {
 
       // Fire-and-forget team notification email
       supabase.functions
-        .invoke("send-transactional-email", {
+        .invoke("notify-footer-lead", {
           body: {
-            templateName: "enquiry-notification",
-            idempotencyKey: `footer-${formData.email.trim().toLowerCase()}-${Date.now()}`,
-            templateData: {
-              name: formData.name.trim(),
-              email: formData.email.trim(),
-              service: "Footer form",
-              message: formData.message.trim(),
-              submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
-            },
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            service: "Footer form",
+            message: formData.message.trim(),
+            submittedAt: new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }),
           },
         })
         .catch((err) => console.error("Team notification failed", err));
+
 
       toast({
         title: "Message Sent!",
