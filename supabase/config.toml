@@ -3,17 +3,17 @@ project_id = "xztsijmsttkwmzcrjhlk"
 [functions]
   [functions.auth-email-hook]
     verify_jwt = false
-  [functions.process-email-queue]
-    verify_jwt = true
   [functions.admin-create-user]
     verify_jwt = true
   [functions.admin-delete-user]
     verify_jwt = true
-  [functions.send-transactional-email]
-    verify_jwt = true
   [functions.preview-transactional-email]
     verify_jwt = false
-  [functions.handle-email-unsubscribe]
+  [functions.handle-email-events]
     verify_jwt = false
-  [functions.handle-email-suppression]
-    verify_jwt = false
+  [functions.notify-enquiry-lead]
+    verify_jwt = true
+  [functions.notify-contact-lead]
+    verify_jwt = true
+  [functions.notify-footer-lead]
+    verify_jwt = true
